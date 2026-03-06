@@ -2047,8 +2047,33 @@
           });
           const div = document.createElement("div");
           div.className = "message bot";
-          // Create bot message content
-          let botContent = `${formatText(text)}`;
+          const isFirstFeedbackMsg = messagesEl.querySelectorAll('.message').length === 0;
+          let feedbackHTML = '';
+          if (!isFirstFeedbackMsg) {
+            feedbackHTML = `
+              <div class="feedback-container" style="display: flex; gap: 12px; margin-top: 12px; margin-bottom: 2px; align-items: center;">
+                <button class="feedback-like" title="Helpful" style="background: none; border: none; cursor: pointer; padding: 0; color: #9ca3af; transition: color 0.2s;" 
+                        onmouseover="this.style.color='#0176d3'; this.querySelector('svg').setAttribute('fill', 'currentColor');" 
+                        onmouseout="this.style.color='#9ca3af'; this.querySelector('svg').setAttribute('fill', 'none');" 
+                        onclick="this.parentElement.innerHTML = '<span style=\\'font-size:12px; color:gray; font-weight: normal;\\'>Thank you for your feedback!</span>';">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                  </svg>
+                </button>
+                <button class="feedback-dislike" title="Not Helpful" style="background: none; border: none; cursor: pointer; padding: 0; color: #9ca3af; transition: color 0.2s;" 
+                        onmouseover="this.style.color='#ef4444'; this.querySelector('svg').setAttribute('fill', 'currentColor');" 
+                        onmouseout="this.style.color='#9ca3af'; this.querySelector('svg').setAttribute('fill', 'none');" 
+                        onclick="this.parentElement.innerHTML = '<span style=\\'font-size:12px; color:gray; font-weight: normal;\\'>Thank you for your feedback!</span>';">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path>
+                  </svg>
+                </button>
+              </div>
+            `;
+          }
+
+          // Create bot message content, passing feedback HTML to formatText so it can inject it before suggestion buttons
+          let botContent = `${formatText(text, feedbackHTML)}`;
 
           // Always add Main Menu button to bot messages, whether there are inline buttons or not
           setTimeout(() => {
@@ -2128,7 +2153,9 @@
 
           div.innerHTML = `
             <div class="message-avatar"><img src="logo.jpg" alt="Logo" style="object-fit:contain;border-radius:50%;width:30px;height:30px;display:block;background:#e1f0fa;"></div>
-            <div class="message-content">${botContent}</div>
+            <div class="message-content">
+              ${botContent}
+            </div>
           `;
           messagesEl.appendChild(div);
           setTimeout(scrollBottom, 50);
@@ -2152,7 +2179,7 @@
           return div;
         }
 
-        function formatText(t) {
+        function formatText(t, feedbackHTML = "") {
           let formatted = t.replace(/\n/g, "<br>");
           formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
 
@@ -2178,25 +2205,39 @@
             }
           );
 
-          // Auto-convert [Button Text] to inline chips
-          formatted = formatted.replace(
-            /\[([^\]]+)\]/g,
-            '<button class="inline-suggestion-btn">$1</button>'
-          );
-          return formatted;
+          // We want the feedback to appear BEFORE the suggestion buttons.
+          // By splitting the formatText at the first button, we can inject feedback there.
+          if (formatted.includes("[") && formatted.match(/\[([^\]]+)\]/)) {
+            let parts = formatted.split(/(?=\[[^\]]+\])/, 2); // Split at the first button 
+            let firstPart = parts[0];
+            let rest = formatted.substring(firstPart.length);
+            
+            // Auto-convert [Button Text] to inline chips in the rest
+            rest = rest.replace(
+              /\[([^\]]+)\]/g,
+              '<button class="inline-suggestion-btn">$1</button>'
+            );
+            
+            return firstPart + feedbackHTML + rest;
+          } else {
+             // If no inline buttons, just put it at the end
+             return formatted + feedbackHTML;
+          }
         }
 
         // Improved Scroll function with slight delay to ensure DOM paint
         function scrollBottom() {
           // Use setTimeout for reliable scroll after DOM update
           setTimeout(() => {
-            const lastMsg = messagesEl.querySelector(".message:last-child");
-            if (lastMsg) {
-              lastMsg.scrollIntoView({ behavior: "smooth", block: "end" });
-            } else {
-              messagesEl.scrollTop = messagesEl.scrollHeight;
+            // The scrollable container is actually .chat-body, not the inner #chat-messages container
+            const chatBody = document.querySelector(".chat-body");
+            if (chatBody) {
+              chatBody.scrollTo({
+                top: chatBody.scrollHeight,
+                behavior: "smooth"
+              });
             }
-          }, 10);
+          }, 50);
         }
 
         // Contact Form
