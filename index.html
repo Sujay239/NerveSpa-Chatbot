@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+    </style>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NerveSpa_v2</title>
+
+    <style>
+      #chatbot-container,
+      #chatbot-container * {
+        font-family: "Lexend", sans-serif !important;
+        /* font-weight: 300 !important; */
+        font-style: normal !important;
+      }
+
+      #chatbot-container .message-content {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        color: #3c3c3c !important;
+        letter-spacing: 0.02em !important;
+        font-weight: 300 !important;
+      }
+
+      :root {
+        /* --- Salesforce / Agentforce Color Palette --- */
+        --sf-blue: #0176d3;
+        --sf-blue-hover: #005fb2;
+        --sf-navy: #032d60;
+        --sf-text-main: #181818;
+        --sf-text-light: #706e6b;
+        --sf-bg: #ffffff;
+        --sf-border: #dddbda;
+
+        /* Background Gradient */
+        --sf-gradient: radial-gradient(
+          circle at 50% 30%,
+          #ffffff 20%,
+          #ebf5ff 100%
+        );
+
+        /* Input Colors */
+        --input-border: #c9c7c5;
+        --input-focus-border: #0176d3;
+        --input-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        --input-placeholder: #747474;
+        --send-icon-color: #747474;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Salesforce Sans", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f6f9;
+      }
+
+      /* Demo Website Header */
+
+      .site-header {
+        background: #0f172a;
+        color: white;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      /* ...existing code... */
+
+      /* --- MAIN CHAT CONTAINER --- */
+      #chatbot-container {
+        position: fixed;
+        bottom: 0px;
+        right: 20px;
+        width: 524px;
+        height: 750px;
+        max-width: 95vw;
+        max-height: 90vh;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        font-family: "Salesforce Sans", sans-serif !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      /* Chatbot open/close animation */
+      .chat-window {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        transition: opacity 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+          transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .chat-window.open {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .chat-window.close {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+      }
+      /* ...existing code... */
+
+      /* Chat Window Card */
+      .chat-window {
+        width: 100%;
+        height: 100%;
+        background: var(--sf-bg);
+        border-radius: 6px 6px 0 0;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        position: relative;
+      }
+      .chat-window {
+        width: 100%;
+        height: 100%;
+        background: var(--sf-bg);
+        border-radius: 6px 6px 0 0;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* --- FULLSCREEN LOGIC --- */
+      @media (min-width: 601px) {
+        #chatbot-container.fullscreen {
+          width: 80vw;
+          height: 90vh;
+          top: 10vh;
+          /* REMOVED 'left' property so it anchors to the right */
+          right: 10vw;
+          bottom: 0;
+          max-width: none;
+          max-height: none;
+        }
+        #chatbot-container.fullscreen .chat-window {
+          border-radius: 0px 0px 0 0;
+          /* border: 1px solid rgba(0, 0, 0, 0.1); */
+          /* box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); */
+          /* background: var(--sf-gradient); */
+          background: var(
+            --af-modal-bg-gradient,
+            linear-gradient(
+              248.35deg,
+              #86cdff -11.3%,
+              #f4f4fe 16.44%,
+              #fff 28.3%,
+              #fff 72.47%,
+              #ebeafe 89.69%,
+              #bec6f7 101.94%
+            )
+          );
+        }
+      }
+      /* ...existing code... */
+
+      @media (max-width: 600px) {
+        #chatbot-container.fullscreen {
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: 0;
+          border-radius: 0;
+        }
+        #chatbot-container.fullscreen .chat-window {
+          border-radius: 0;
+          border: none;
+          background: var(--sf-gradient);
+        }
+      }
+      /* ...existing code... */
+
+      /* --- HEADER --- */
+      .chat-header {
+        background: linear-gradient(135deg, #0072bc 0%, #2c97e6 100%);
+        backdrop-filter: blur(10px);
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--sf-navy);
+        flex-shrink: 0;
+        z-index: 100;
+        border-bottom: 1px solid transparent;
+      }
+      .chat-header-left {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 700;
+        font-size: 18px;
+      }
+      .chat-header-right {
+        display: flex;
+        gap: 6px;
+      }
+      .header-icon-btn {
+        background: #e3c8c857;
+        border: none;
+        cursor: pointer;
+        color: #fffefd;
+        padding: 4px 6px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .header-icon-btn:hover {
+        background: rgba(0, 0, 0, 0.05);
+        color: #fffefd;
+      }
+
+      /* Hide fullscreen button in mobile */
+      @media (max-width: 600px) {
+        .header-icon-btn.chat-fullscreen-btn {
+          display: none !important;
+        }
+      }
+
+      /* --- CHAT BODY --- */
+      .chat-body {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        scroll-behavior: smooth;
+
+        /* Hide Scrollbar Logic */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+      }
+      /* Hide Scrollbar Logic for Chrome/Safari */
+      .chat-body::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background: transparent;
+      }
+
+      .chat-content-wrapper {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      #chatbot-container.fullscreen .chat-content-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* HERO SECTION */
+      .agentforce-hero {
+        padding: 40px 20px 10px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      #chatbot-container.fullscreen .agentforce-hero {
+        padding-top: 80px;
+      }
+      .agentforce-hero h1 {
+        font-size: 32px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: var(--sf-navy);
+        margin: 0 0 10px 0;
+      }
+      .agentforce-hero h1 span {
+        color: var(--sf-blue);
+      }
+      .joined-text {
+        font-size: 12px;
+        color: var(--sf-text-light);
+        margin-bottom: 20px;
+        margin-top: 15px;
+        text-align: center;
+        width: 100%;
+      }
+
+      /* MESSAGES */
+      .chat-messages {
+        padding: 0 20px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding-bottom: 10px; /* Space for scrolling */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .message {
+        display: flex;
+        gap: 12px;
+        max-width: 90%;
+        font-size: 15px;
+        line-height: 1.5;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .message.bot {
+        align-self: flex-start;
+      }
+      .message-avatar {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        background-color: #e1f0fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .message.bot .message-avatar svg {
+        fill: var(--sf-blue);
+        width: 20px;
+        height: 20px;
+      }
+      .message-content {
+        padding-top: 4px;
+        color: var(--sf-text-main);
+        /* Fix for mobile overflow */
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+      }
+      .message.user {
+        align-self: flex-end;
+        justify-content: flex-end;
+      }
+      .message.user .message-content {
+        background-color: #f3f3f3;
+        color: #181818;
+        padding: 8px 13px;
+        border-radius: 20px;
+        border-bottom-right-radius: 4px;
+        text-align: left;
+      }
+
+      /* --- SUGGESTION BUTTONS --- */
+      .suggestions-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        margin-top: 8px;
+        margin-left: 42px; /* Align with bot text */
+        width: fit-content;
+        min-width: 250px; /* Ensure buttons have some width */
+        max-width: 80%; /* Ensure buttons don't overflow on small screens */
+      }
+
+      .suggestion-button {
+        display: block;
+        background: #ffffff;
+        border: 1px solid var(--sf-blue);
+        color: var(--sf-blue);
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: left;
+        white-space: normal;
+        box-shadow: none;
+        margin-top: 7px;
+        width: 100%; /* Let it fill wrapper */
+      }
+
+      .suggestion-button:hover {
+        background-color: #f0f8ff; /* Light blue on hover */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        transform: translateY(-1px);
+      }
+
+      /* Inline Chips inside bot messages */
+      .inline-suggestion-btn {
+        display: block;
+        background: #ffffff;
+        border: 1px solid var(--sf-blue);
+        color: var(--sf-blue);
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: left;
+        white-space: normal;
+        box-shadow: none;
+        margin-top: 7px;
+        max-width: 100%;
+        font-weight: 500 !important;
+      }
+      .inline-suggestion-btn:hover {
+        background-color: #f4f6f9;
+      }
+
+      /* --- FOOTER / INPUT --- */
+      .chat-footer {
+        padding: 20px;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .chat-input {
+        position: relative;
+        background: #fff;
+        border: 1px solid var(--input-border);
+        border-radius: 8px;
+        box-shadow: var(--input-shadow);
+        display: flex;
+        align-items: flex-end;
+        padding: 6px;
+        transition: all 0.2s ease;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      #chatbot-container.fullscreen .chat-input {
+        max-width: 800px;
+      }
+      .chat-input:focus-within {
+        border-color: var(--input-focus-border);
+        box-shadow: 0 0 0 1px var(--input-focus-border), var(--input-shadow);
+      }
+      .chat-input textarea {
+        flex: 1;
+        border: none;
+        resize: none;
+        padding: 10px 12px;
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+        min-height: 20px;
+        max-height: 120px;
+        color: var(--sf-text-main);
+        background: transparent;
+        height: 40px;
+        line-height: 1.2;
+      }
+      .chat-input textarea::placeholder {
+        color: var(--input-placeholder);
+        opacity: 1;
+      }
+      .chat-input button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        color: var(--send-icon-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.2s;
+      }
+      .chat-input button svg {
+        width: 22px;
+        height: 22px;
+        transform: rotate(0deg);
+      }
+      .chat-input button:hover:not(:disabled) {
+        color: var(--sf-blue);
+      }
+      .chat-input button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* --- TOGGLE & FORM --- */
+      .chat-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 51px;
+        height: 51px;
+        background: var(--sf-blue);
+        border-radius: 50%;
+        box-shadow: 0 6px 16px rgba(1, 118, 211, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 9998;
+        transition: transform 0.2s;
+        color: white;
+      }
+      .chat-toggle:hover {
+        transform: scale(1.05);
+        background: var(--sf-blue-hover);
+      }
+      .chat-contact-form {
+        position: absolute;
+        top: 62px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--sf-bg);
+        z-index: 10;
+        padding: 40px;
+        box-sizing: border-box;
+        display: none;
+        animation: slideUp 0.3s ease;
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .contact-submit-btn {
+        width: 100%;
+        background: var(--sf-blue);
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .close-form-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: var(--sf-text-light);
+        cursor: pointer;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #dddbda;
+        border-radius: 4px;
+        font-size: 15px;
+        box-sizing: border-box;
+      }
+      .typing-text-animation {
+        font-style: italic;
+        color: var(--sf-text-light);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        min-height: 24px;
+      }
+
+      .dot-loader {
+        display: inline-flex;
+        align-items: center;
+        height: 24px;
+        margin-left: 2px;
+      }
+      .dot-loader span {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin: 0 2px;
+        background: #0176d3;
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: dotFlashing 1.2s infinite linear;
+      }
+      .dot-loader span:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .dot-loader span:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      @keyframes dotFlashing {
+        0% { opacity: 0.2; }
+        50% { opacity: 1; }
+        100% { opacity: 0.2; }
+      }
+
+      /* Mobile Reset */
+      @media (max-width: 600px) {
+        #chatbot-container {
+          width: 100%;
+          height: 100%;
+          bottom: 0;
+          right: 0;
+          max-width: 100%;
+          max-height: 100%;
+        }
+        .chat-window {
+          border-radius: 0;
+        }
+        .chat-toggle {
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <!------------------------------------------------ website-container ------------------------------------------------------------------->
+
+
+    <div class="website-container">
+   <head>
+
+	<!-- Facebook Pixel Code -->
+	<script>
+		! function(f, b, e, v, n, t, s) {
+			if (f.fbq) return;
+			n = f.fbq = function() {
+				n.callMethod ?
+					n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+			};
+			if (!f._fbq) f._fbq = n;
+			n.push = n;
+			n.loaded = !0;
+			n.version = '2.0';
+			n.queue = [];
+			t = b.createElement(e);
+			t.async = !0;
+			t.src = v;
+			s = b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t, s)
+		}(window, document, 'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '1061340941017439');
+		fbq('track', 'PageView');
+	</script>
+	<noscript>
+		<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1061340941017439&ev=PageView&noscript=1" />
+	</noscript>
+	<!-- End Facebook Pixel Code -->
+
+
+	<!-- Google Tag Manager -->
+	<script>
+		(function(w, d, s, l, i) {
+			w[l] = w[l] || [];
+			w[l].push({
+				'gtm.start': new Date().getTime(),
+				event: 'gtm.js'
+			});
+			var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s),
+				dl = l != 'dataLayer' ? '&l=' + l : '';
+			j.async = true;
+			j.src =
+				'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+			f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-WJJCKKW');
+	</script>
+	<!-- End Google Tag Manager -->
+
+	<link rel="icon" href="https://nervespa.com/favicon.ico" type="image/x-icon">
+	<meta name="theme-color" content="#000000" />
+
+	<title>NerveSpa - Aquatic Nerve Stimulation Therapy</title>	<meta name="robots" content="index,follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="keywords" content="NerveSpa,Stimulation Therapy,Relieves pain" />
+<meta name="description" content="NerveSpa - Aquatic Nerve Stimulation Therapy" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta property="og:title" content="NerveSpa - Aquatic Nerve Stimulation Therapy." />
+			<link rel="stylesheet" type="text/css"  href="https://cdn.hmsctl.com/css/css_nervespa/stylesheets/style.css" media="all"/>
+<link rel="stylesheet" type="text/css"  href="https://cdn.hmsctl.com/css/css_nervespa/bootstrap-responsive.min.css" media="all"/>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<script>
+		var base_url = 'https://nervespa.com/';
+		var current_controller = 'index';
+		var current_method = 'index';
+		var img_dir = 'https://cdn.hmsctl.com/images/images_nervespa/';
+	</script>
+	<script src="https://cdn.hmsctl.com/js/js_nervespa/modernizr.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-356788-20"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-356788-20');
+	</script>
+
+
+	<!-- Begin Inspectlet Asynchronous Code -->
+	<script type="text/javascript">
+		(function() {
+			window.__insp = window.__insp || [];
+			__insp.push(['wid', 1713183297]);
+			var ldinsp = function() {
+				if (typeof window.__inspld != "undefined") return;
+				window.__inspld = 1;
+				var insp = document.createElement('script');
+				insp.type = 'text/javascript';
+				insp.async = true;
+				insp.id = "inspsync";
+				insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1713183297&r=' + Math.floor(new Date().getTime() / 3600000);
+				var x = document.getElementsByTagName('script')[0];
+				x.parentNode.insertBefore(insp, x);
+			};
+			setTimeout(ldinsp, 0);
+		})();
+	</script>
+
+	<!-- End Inspectlet Asynchronous Code -->
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.hmsctl.com/css/css_common/common.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.hmsctl.com/css/css_nervespa/redesign.css">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<style>
+		.g-recaptcha {
+			justify-content: flex-start;
+		}
+	</style>
+</head>
+
+<body id="nervespaweb">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJJCKKW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+	<div style="display:none" class="instant-alert" id="error_msg">
+  <div data-alert="danger">
+    <div class="content">
+      <p></p>      <span class="close-area">X</span>
+    </div>
+  </div>
+</div>
+<div style="display:none;" class="instant-alert" data-alert="cart" id="minicart">
+  <div class="content"> </div>
+</div>
+<style>
+  span.dropdown-arrow {
+    font-size: 18px;
+  }
+</style>
+<div id="mainheader" class="newcss">
+  <div id="topheader">
+    <div class="container toplinks">
+      <!-- <span class="notificationmsg">$4.99 Flat-Rate Shipping</span> -->
+
+
+      <span class="mobcal"><a href="tel:800-239-7880" data="tel"><i><img width="36" src="https://cdn.hmsctl.com/images/images_nervespa/svg/call-icon.svg"></i> 800-239-7880</a></span>
+    </div>
+  </div>
+  <header id="header" role="heading">
+    <div class="container">
+      <div class="row">
+        <nav>
+          <h1 class="logo">
+            <a href="https://nervespa.com/">
+              <img src="https://cdn.hmsctl.com/images/images_nervespa/logo.png" width="194" height="60" alt="NerveSpa - Neuropathy Relief FootBath"></a>
+          </h1>
+          <ul id="mainmenu">
+                        <li>
+              <a href="https://nervespa.com/products" class="">Products <span class="dropdown-arrow">&#9662;</span></a>
+
+              <ul class="submenu">
+                <li class="col">
+                  <a href="https://nervespa.com/products/nerve-&amp;-neuropathy-543" class="category--hero-link">Nerve &amp; Neuropathy</a>
+                </li>
+
+                <li class="col">
+                  <a href="https://nervespa.com/products/joint-&amp;-mobility-662" class="category--hero-link">Joint &amp; Mobility</a>
+                </li>
+
+                <li class="col">
+                  <a href="https://nervespa.com/products/metabolic-gut-immunity-661" class="category--hero-link">Metabolic, Gut, &amp; Immunity</a>
+                </li>
+
+                <li class="col">
+                  <a href="https://nervespa.com/products/clinical-devices-699" class="category--hero-link">Clinical Devices</a>
+                </li>
+
+              </ul>
+
+            </li>
+
+            <li><a href="https://nervespa.com/protocol" class="">Protocol</a></li>
+
+            <li><a href="https://nervespa.com/how-it-works" class="">How It Works</a></li>
+            <li><a href="https://nervespa.com/real-stories" class="">Real Stories</a></li>
+            <li><a href="https://nervespa.com/wholesale" class="">Wholesale</a></li>
+            <!-- <li><a href="<? // site_url('mediaassets');
+                              ?>" class="<? // ($uri == 'mediaassets') ? 'active' : '';
+                                          ?>">Media Assets</a></li> -->
+            <li><a href="https://nervespa.com/contact" class="">Contact</a></li>
+
+            <!-- <li><a href="<? // site_url('faq');
+                              ?>" class="<? // ($uri == 'faq') ? 'active' : '';
+                                          ?>">Faq</a></li> -->
+
+            <li class="log-ses">
+
+                <a href="https://nervespa.com/login">LOGIN</a>
+
+
+            </li>
+                        <li class="viewcart" onclick="location.href='https://nervespa.com/checkout';"><a href="https://nervespa.com/checkout">View Cart</a>
+              <div data-cart="count" id="cart_count"  style="display:none;" > 0</div>
+            </li>
+
+          </ul>
+          <div class="nav__icon">
+            <span></span><span></span><span></span>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="mob_view_data">
+
+  </div>
+</div>
+
+<style>
+  span.mobcal {
+    margin-top: 6px;
+  }
+</style>		 <!-- Owl Carousel CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+ <div id="redesignseccmain" class="newcss redesignsec">
+   <div class="hms-new">
+     <section class="hero-section">
+
+       <div class="container">
+         <div class="row">
+
+           <h1 class="hero-main-title">Built for Clinics.</h1>
+           <h2 class="hero-sub-title">Backed by Science.</h2>
+           <p>Clinical-grade protocols, for treating peripheral neuropathy, degenerative joint conditions,
+             and whole-body supplementation-trusted by providers, completed by patients.</p>
+           <a href="https://nervespa.com/haveuscall#contact" class="btn btn-primary blue-btn izbtn1">Book A Demo</a>
+
+
+           <div class="container my-4">
+             <div class="owl-carousel owl-theme">
+               <div class="item"><a href="https://nervespa.com/products/nerve-&-neuropathy/the-quake-plate-vibrational-massage-therapy-18988?pa=1"><img src="https://cdn.hmsctl.com/images/images_nervespa/slide1.png" alt=""></a></div>
+               <div class="item"><a href="https://nervespa.com/products/nerve-&-neuropathy/the-nervebeam-led-light-therapy-wrap-red-&-infrared-light-therapy-1-pair-19043?pa=1"><img src="https://cdn.hmsctl.com/images/images_nervespa/slide2.png" alt=""></a></div>
+               <div class="item"><a href="https://nervespa.com/products/joint-&-mobility/nerve-spa-knee-pro-advanced-oara-treatment-device-size:-fits-small-to-large-19728?pa=1"><img src="https://cdn.hmsctl.com/images/images_nervespa/slide3.png" alt=""></a></div>
+               <div class="item"><a href="https://nervespa.com/products/clinical-devices/nerve-wave-by-nerve-spa-clinical-nerve-spa-multi-modality-treatment-device-19868?pa=1"><img src="https://cdn.hmsctl.com/images/images_nervespa/slide4.png" alt=""></a></div>
+               <div class="item"><a href="https://nervespa.com/products/nerve-&-neuropathy/the-nervebeam-cold-laser-18986?pa=1"><img src="https://cdn.hmsctl.com/images/images_nervespa/slide5.png" alt=""></a></div>
+               <div class="item"><a href="https://nervespa.com/products/nerve-&-neuropathy/nervespa-classic-hand-and-foot-pain-relief-system-10-day-supply-program-18883?pa=1"><img src="https://cdn.hmsctl.com/images/images_nervespa/slide6.png" alt=""></a></div>
+             </div>
+           </div>
+
+         </div>
+
+
+       </div>
+
+
+     </section>
+
+     <section class="py-5 bg-white hero-welcome">
+       <div class="container">
+         <div class="row align-items-center">
+
+           <!-- Left Column -->
+           <div class="col-md-5 mb-4 mb-md-0 welcomeleft">
+             <h2 class="font-weight-bold">
+               Turnkey Integration.
+
+             </h2>
+             <h2 class="font-weight-bold">
+
+               <span class="text-primary">Tangible Results.</span>
+             </h2>
+             <p class="text-muted mb-3">
+               NerveSpa delivers a protocol-based system that's easy for clinics to implement-and proven to keep patients on track with measurable outcomes.
+             </p>
+             <!-- <p class="blue-btn1"><a href="#" class="btn btn-primary mb-4 blue-btn blue-btn2">Ask a Question</a></p> -->
+
+             <img src="https://cdn.hmsctl.com/images/images_nervespa/nervespakit-img.jpg" alt="Doctor with patient" class="img-fluid rounded sitingimage">
+           </div>
+
+           <!-- Right Column: Feature Cards -->
+           <div class="col-md-7 welcomeright">
+
+             <p class="nerve-logo"> <img src="https://cdn.hmsctl.com/images/images_nervespa/NerveSpa-logo.png" /></p>
+             <div class="row">
+               <!-- Feature Card 1 -->
+               <div class="col-sm-6 mb-4">
+                 <div class="gradient-border-wrapper">
+                   <div class="easy-launch-box">
+                     <h3>Easy Launch</h3>
+                     <div class="divider"></div>
+                     <p>
+                       Guided onboarding and product training. Integrates seamlessly into your clinical program.
+                     </p>
+                   </div>
+                 </div>
+
+               </div>
+
+               <!-- Feature Card 2 -->
+               <div class="col-sm-6 mb-4">
+                 <div class="gradient-border-wrapper">
+                   <div class="easy-launch-box">
+                     <h3>Grows With Your Clinic</h3>
+                     <div class="divider"></div>
+                     <p>
+                       Add new patients without adding pressure to your staff and systems.
+                     </p>
+                   </div>
+                 </div>
+
+               </div>
+
+               <!-- Feature Card 3 -->
+               <div class="col-sm-6 mb-4">
+                 <div class="gradient-border-wrapper">
+                   <div class="easy-launch-box">
+                     <h3>Patients Finish the Program</h3>
+                     <div class="divider"></div>
+                     <p>
+                       Clear treatments and ongoing check-ins help patients complete all 90 days.
+                     </p>
+                   </div>
+                 </div>
+               </div>
+
+               <!-- Feature Card 4 -->
+               <div class="col-sm-6 mb-4">
+                 <div class="gradient-border-wrapper">
+                   <div class="easy-launch-box">
+                     <h3>Device Usage Tracking</h3>
+                     <div class="divider"></div>
+                     <p>
+                       View usage data for each device - improving compliance and ensuring results.
+                     </p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+         </div>
+       </div>
+     </section>
+
+
+     <!-- Container -->
+     <section class="py-5 bg-light text-center why-clinics">
+       <div class="container">
+         <h2 class="font-weight-bold mb-5">
+           Why Clinics <span class="text-primary">Choose NerveSpa</span>
+         </h2>
+
+         <div class="row">
+           <!-- Card 1 -->
+           <div class="col-md-4 mb-4">
+             <div class="card shadow-sm p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/day.png" alt="calendar icon" />
+               </div>
+               <h5 class="font-weight-bold">90-Day Program</h5>
+               <p class="text-muted small">Comprehensive program for delivering results</p>
+             </div>
+           </div>
+
+           <!-- Card 2 -->
+           <div class="col-md-4 mb-4">
+             <div class="card shadow-sm p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/clinics.png" alt="clinic icon" />
+               </div>
+               <h5 class="font-weight-bold">500+ Clinics</h5>
+               <p class="text-muted small">Trusted by clinics across the U.S.</p>
+             </div>
+           </div>
+
+           <!-- Card 3 -->
+           <div class="col-md-4 mb-4">
+             <div class="card shadow-sm p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/treat.png" alt="treated icon" />
+               </div>
+               <h5 class="font-weight-bold">15,000+ Treated</h5>
+               <p class="text-muted small">Clinically Guided. Patient-Approved</p>
+             </div>
+           </div>
+
+           <!-- Card 4 -->
+           <div class="col-md-4 mb-4">
+             <div class="card shadow-sm p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/return.png" alt="return icon" />
+               </div>
+               <h5 class="font-weight-bold">Less Than 1% Return Rate</h5>
+               <p class="text-muted small">Retention proves the results</p>
+             </div>
+           </div>
+
+           <!-- Card 5 -->
+           <div class="col-md-4 mb-4">
+             <div class="card shadow-sm p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/patients.png" alt="improved icon" />
+               </div>
+               <h5 class="font-weight-bold">95% Patients Improved</h5>
+               <p class="text-muted small">95% report less pain & better function</p>
+             </div>
+           </div>
+
+           <!-- Card 6 -->
+           <div class="col-md-4 mb-4">
+             <div class="card shadow-sm p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/satisfied.png" alt="satisfaction icon" />
+               </div>
+               <h5 class="font-weight-bold">98% Clinic Satisfaction</h5>
+               <p class="text-muted small">Patient outcomes drive practice success</p>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+     <section class="py-5 text-center bg-white simplicity">
+       <div class="container">
+         <h2 class="font-weight-bold">Designed for Simplicity.
+
+         </h2>
+         <h2 class="font-weight-bold">
+           <span class="text-primary">Engineered for Results.</span>
+         </h2>
+         <p class="text-muted mb-5">Three targeted protocols-engineered for clinical-grade<br>results and effortless adoption.</p>
+
+         <div class="row simplicityrow">
+           <!-- Card 1 -->
+           <div class="col-md-4 mb-4">
+             <div class="p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/gr1.png" alt="Peripheral Neuropathy" />
+               </div>
+               <h5 class="font-weight-bold">Peripheral Neuropathy</h5>
+               <p class="text-muted small">Clinical Grade Devices and protocols used to address neuropathic pain and improve nerve function.</p>
+             </div>
+           </div>
+
+           <!-- Card 2 -->
+           <div class="col-md-4 mb-4">
+             <div class="p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/gr2.png" alt="Joint & Mobility" />
+               </div>
+               <h5 class="font-weight-bold">Joint & Mobility</h5>
+               <p class="text-muted small">Targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint.</p>
+             </div>
+           </div>
+
+           <!-- Card 3 -->
+           <div class="col-md-4 mb-4">
+             <div class="p-4 h-100">
+               <div class="mb-3">
+                 <img src="https://cdn.hmsctl.com/images/images_nervespa/gr3.png" alt="Supplement Kits" />
+               </div>
+               <h5 class="font-weight-bold">Supplement Kits</h5>
+               <p class="text-muted small">Custom supplement solutions to boost results. Focused on key nutrients and delivery includes.</p>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+
+
+     <section class="py-5 text-white testimonial-nerve">
+
+       <div class="testimonial-section text-white">
+         <div class="container">
+           <div class="d-flex justify-content-between align-items-center mb-3">
+             <div>
+               <h2 class="font-weight-bold">Real Results. Real Relief.</h2>
+               <p class="small">Clinics see higher retention. Patients feel the difference.</p>
+             </div>
+             <div>
+               <button class="btn btn-light btn-sm mr-2" id="prevArrow"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+               </button>
+               <button class="btn btn-light btn-sm" id="nextArrow"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+               </button>
+             </div>
+           </div>
+
+           <div class="testimonial-slider">
+
+
+
+             <div class="px-3">
+               <div class="card h-100 p-4">
+                 <div class="text-center text-primary display-4"><img src="https://cdn.hmsctl.com/images/images_nervespa/quote.png"></div>
+                 <p class="mb-3">We implemented the NerveSpa system in just one afternoon. Patients love the ease and we've seen retention go up.</p>
+                 <strong>- Dr. Corey Brumbaugh, DC</strong>
+                 <small>Fairlawn, OH</small>
+               </div>
+             </div>
+             <!-- Add more testimonials here if needed -->
+
+
+             <div class="px-3">
+               <div class="card h-100 p-4">
+                 <div class="text-center text-primary display-4"><img src="https://cdn.hmsctl.com/images/images_nervespa/quote.png"></div>
+                 <p class="mb-3">My neuropathy patients finally have an option that doesn't involve weekly in-office treatments.</p>
+                 <strong>- Dr. Alyse Duffer, DC</strong><br>
+                 <small>Webster, TX</small>
+               </div>
+             </div>
+             <!-- Add more testimonials here if needed -->
+
+             <div class="px-3">
+               <div class="card h-100 p-4">
+                 <div class="text-center text-primary display-4"><img src="https://cdn.hmsctl.com/images/images_nervespa/quote.png"></div>
+                 <p class="mb-3">It's like handing them a plan they enjoy and that they'll actually stick to. It just works.</p>
+                 <strong>- Dr. James P. Perkins, D.C</strong><br>
+                 <small>Youngstown, OH</small>
+               </div>
+             </div>
+             <!-- Add more testimonials here if needed -->
+
+             <div class="px-3">
+               <div class="card h-100 p-4">
+                 <div class="text-center text-primary display-4"><img src="https://cdn.hmsctl.com/images/images_nervespa/quote.png"></div>
+                 <p class="mb-3">We implemented the NerveSpa system in just one afternoon. Patients love the ease and we've seen retention go up.</p>
+                 <strong>- Dr. Corey Brumbaugh, DC</strong>
+                 <small>Fairlawn, OH</small>
+               </div>
+             </div>
+             <!-- Add more testimonials here if needed -->
+
+
+             <div class="px-3">
+               <div class="card h-100 p-4">
+                 <div class="text-center text-primary display-4"><img src="https://cdn.hmsctl.com/images/images_nervespa/quote.png"></div>
+                 <p class="mb-3">My neuropathy patients finally have an option that doesn't involve weekly in-office treatments.</p>
+                 <strong>- Dr. Alyse Duffer, DC</strong><br>
+                 <small>Webster, TX</small>
+               </div>
+             </div>
+             <!-- Add more testimonials here if needed -->
+
+             <div class="px-3">
+               <div class="card h-100 p-4">
+                 <div class="text-center text-primary display-4"><img src="https://cdn.hmsctl.com/images/images_nervespa/quote.png"></div>
+                 <p class="mb-3">It's like handing them a plan they enjoy and that they'll actually stick to. It just works.</p>
+                 <strong>- Dr. James P. Perkins, D.C</strong><br>
+                 <small>Youngstown, OH</small>
+               </div>
+             </div>
+             <!-- Add more testimonials here if needed -->
+
+
+
+
+           </div>
+           <p class="blue-btn1"><a href="https://nervespa.com/real-stories" class="btn btn-primary mb-4 blue-btn blue-btn2">See More Real Stories</a></p>
+
+         </div>
+       </div>
+
+
+
+     </section>
+
+
+     <!-- Logos Section -->
+     <section class="py-4 bg-white">
+       <div class="container">
+         <div class="row justify-content-center align-items-center text-center">
+           <div class="col-6 col-sm-3 mb-3">
+             <img src="https://cdn.hmsctl.com/images/images_nervespa/client1.png" class="img-fluid" alt="Logo 1">
+           </div>
+           <div class="col-6 col-sm-3 mb-3">
+             <img src="https://cdn.hmsctl.com/images/images_nervespa/client2.png" class="img-fluid" alt="Logo 2">
+           </div>
+           <div class="col-6 col-sm-3 mb-3">
+             <img src="https://cdn.hmsctl.com/images/images_nervespa/client3.png" class="img-fluid" alt="Logo 3">
+           </div>
+           <div class="col-6 col-sm-3 mb-3">
+             <img src="https://cdn.hmsctl.com/images/images_nervespa/client4.png" class="img-fluid" alt="Logo 4">
+           </div>
+         </div>
+       </div>
+     </section>
+
+
+
+     <!--new redesign -->
+
+
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+     <script>
+       jQuery(document).ready(function($) {
+         $(".owl-carousel").owlCarousel({
+           loop: true,
+           margin: 10,
+           nav: true,
+           autoplay: true,
+           autoplayTimeout: 3000,
+           responsive: {
+             0: {
+               items: 2
+             },
+             600: {
+               items: 3
+             },
+             1000: {
+               items: 5
+             }
+           }
+         });
+       });
+     </script>
+
+     <script>
+       $(document).ready(function() {
+         var $slider = $('.testimonial-slider');
+
+         $slider.slick({
+           slidesToShow: 3,
+           slidesToScroll: 1,
+           arrows: false,
+           dots: false,
+           autoplay: true, // ✅ Enable auto-scroll
+           autoplaySpeed: 4000, // ✅ Set auto-scroll interval (ms)
+           responsive: [{
+               breakpoint: 992,
+               settings: {
+                 slidesToShow: 2
+               }
+             },
+             {
+               breakpoint: 768,
+               settings: {
+                 slidesToShow: 1
+               }
+             }
+           ]
+         });
+
+         $('#prevArrow').on('click', function() {
+           $slider.slick('slickPrev');
+         });
+
+         $('#nextArrow').on('click', function() {
+           $slider.slick('slickNext');
+         });
+       });
+     </script>
+   </div>
+
+ </div>	<!--Footer section-->
+<div class="newcss">
+  <section id="newsletter">
+    <form data-form="subscribe" action="#">
+      <input type="text" id="email" name="email" placeholder="Enter your email address">
+      <input type="button" class="subscribe-btn" onclick="static_subscribe();" value="ENTER">
+    </form>
+  </section>
+  <footer>
+    <div class="container">
+      <center>
+        <a href="https://nervespa.com/"><img width="184" src="https://cdn.hmsctl.com/images/images_nervespa/svg/nerve-spa-logo-white.svg" alt="NerveSpa"></a>
+      </center>
+
+      <div class="row footlink">
+        <div class="col-md-6">
+          <div class="follow-link"> Follow us:
+            <!-- <a href="javascript:void(0);" data-icon="instagram"><img src="https://cdn.hmsctl.com/images/images_nervespa/svg/instagram-icon.svg" /> </a>
+            <a href="javascript:void(0);" data-icon="twitter"><img src="https://cdn.hmsctl.com/images/images_nervespa/svg/twitter-icon.svg" /> </a> -->
+            <a href="http://www.facebook.com/nervespa" target="_blank" data-icon="facebook"><img src="https://cdn.hmsctl.com/images/images_nervespa/svg/facebook-icon.svg" /> </a>
+            <a href="#" target="_blank" data-icon="Youtube"><img src="https://cdn.hmsctl.com/images/images_nervespa/svg/youtube-icon.svg" /> </a>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+          <div class="footer-box extended-box">
+            <div class="footer-contact">
+              <div class="row justify-content-between">
+                <a href="tel:800.239.7880" data-icon="tel">800.239.7880</a>
+                <a href="mailto:support@nervespa.com" data-icon="mail">support@nervespa.com</a>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="quick__links footer-box">
+            <a href="https://nervespa.com/faq">FAQS</a>
+            <a href="https://nervespa.com/contact">CONTACT US</a>
+            <a href="https://nervespa.com/info">Trouble Shooting</a></li>
+
+            <div class="parentcompany"><a target="_blank" href="https://paintechnology.com/"><img src="https://cdn.hmsctl.com/images/images_nervespa/pmt-pain-management-logo.png" width="242" height="116" alt="pmt-pain-management-logo"><span>Parent Company</span></a></div>
+
+          </div>
+
+          <div class="footnote">
+
+            <span class="notificationmsg"><a class="notifi_link" target="_blank" href="https://docs.google.com/spreadsheets/u/0/d/1qX86EUZUUwZKHMVHDy6IqY27pQankwW89ukJwa-F7G8/edit">NerveSpa Compliance Details</a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="contacinfo d-flex align-items-center justify-content-center">
+        <div class="col-auto text-center">
+          <address>
+            <div class="d-flex footlinks">
+              Phone: <a href="tel:1-800-239-7880" class="tel mr-3">1-800-239-7880</a>
+              Fax: <a href="fax:1-888-304-5454" class="tel mr-3">1-888-304-5454</a>
+              Email: <a href="mailto:support@nervespa.com" class="tel">support@nervespa.com</a>
+            </div>
+            <div class="d-flex justify-content-center">
+              <p>1760 Wadsworth Road | Akron Ohio 44320</p>
+            </div>
+          </address>
+        </div>
+      </div>
+
+
+
+      <p class="copy-text">&copy; <span id="year">2025</span> <span>NerveSpa LLC, All Rights Reserved.</span> </p>
+
+    </div>
+  </footer>
+</div>
+	<script type="text/javascript" src="https://cdn.hmsctl.com/js/js_nervespa/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.hmsctl.com/js/js_nervespa/flexslider.js"></script>
+<script type="text/javascript" src="https://cdn.hmsctl.com/js/js_nervespa/slick.min.js"></script>
+<script type="text/javascript" src="https://cdn.hmsctl.com/js/js_nervespa/common.js"></script>
+
+
+	<script>
+		if (current_controller == 'sell_itens' || current_method == 'profile') {
+			//Set the initial state: highlight the first button...
+			$('.tab-header').find('li:eq(0)').addClass('selected');
+			//and hide all slides except the first one
+			$('.tab-content').find('> div[class="tabs"]:eq(0)').nextAll().hide();
+			//actions that apply on click of any of the buttons
+			$('.tab-header li').click(function(event) {
+				//turn off the link so it doesn't try to jump down the page
+				event.preventDefault();
+				//un-highlight the buttons
+				$('.tab-header li').removeClass();
+				//hide all the slides
+				$('.tab-content > div[class="tabs"]').hide();
+				//highlight the current button
+				$(this).addClass('selected');
+				//get the index of the current button...
+				var index = $('.tab-header li').index(this);
+				//and use that index to show the corresponding slide
+				$('.tab-content > div[class="tabs"]:eq(' + index + ')').show();
+
+			});
+
+			//for mobile devices part
+			$("<select />").appendTo("aside");
+			//$("<option />", { "selected": "", "value"   : "", "text"    : "Select Tab..." }).appendTo("aside select");
+
+			// Populate dropdown with menu items
+			$("aside a").each(function() {
+				var el = $(this);
+				$("<option />", {
+					"value": el.attr("href"),
+					"text": el.text()
+				}).appendTo("aside select");
+			});
+
+			$("aside select").change(function() {
+				window.location = $(this).find("option:selected").val();
+			});
+
+			$("select").change(function() {
+
+				var val = $(this).val();
+				$('.tab-content > div[class="tabs"]').hide();
+				$('.tab-content div[data-id="' + val + '"]').show();
+
+			});
+
+			active_tab_type = (typeof active_tab_type != 'undefined') ? active_tab_type : '';
+
+			if (active_tab_type != '') {
+
+				if ($('.tab-header select').is(':visible')) {
+					$('.tab-header select').val("#" + active_tab_type).trigger('change');
+				} else {
+					$('.tab-header li a[href="#' + active_tab_type + '"]').trigger("click");
+				}
+			}
+		}
+	</script>
+
+
+</body>
+
+
+    </div>
+
+    <!------------------------------------------------ chatbot-container ------------------------------------------------------------------->
+    <div id="chatbot-container">
+      <div class="chat-window" style="display: none">
+        <div class="chat-header">
+          <div class="chat-header-left">
+            <img
+              src="fullogo.png"
+              alt="Logo"
+              style="height: 34px; vertical-align: middle; margin-left: 0px"
+            />
+          </div>
+          <div class="chat-header-right">
+            <button
+              class="header-icon-btn chat-contact-btn"
+              title="Support"
+              aria-label="Support"
+            >
+              <img
+                src="support.png"
+                alt="Support icon"
+                style="
+                  width: 20px;
+                  height: 20px;
+                  object-fit: contain;
+                  margin-right: 8px;
+                  display: inline-block;
+                  vertical-align: middle;
+                "
+              />
+              <span style="vertical-align: middle">Support</span>
+            </button>
+            <button
+              class="header-icon-btn chat-fullscreen-btn"
+              title="Fullscreen"
+            >
+              <svg
+                class="icon-expand"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 3h6v6M9 21H3v-6M21 9v6M3 15V9" />
+              </svg>
+            </button>
+            <button class="header-icon-btn chat-close-btn" title="Close">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="chat-body">
+          <div class="chat-content-wrapper">
+            <div class="agentforce-hero" id="hero-section">
+              <h1>Welcome to <span>NerveSpa</span></h1>
+              <div class="joined-text">Nerve and Neuropathy Relief Science</div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages"></div>
+          </div>
+        </div>
+
+        <div class="chat-footer">
+          <div class="chat-input">
+            <textarea placeholder="Message NerveSpa"></textarea>
+            <button disabled>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="chat-contact-form" id="contact-form">
+          <button class="close-form-btn">&times;</button>
+          <h2>Contact Support</h2>
+          <form id="chatContactForm">
+            <div class="form-group">
+              <input
+                type="text"
+                id="contact_name"
+                placeholder="Your name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                id="contact_email"
+                placeholder="Your email address"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="tel"
+                id="contact_phone"
+                placeholder="Your phone number"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                id="contact_message"
+                rows="4"
+                placeholder="How can we help?"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="contact-submit-btn">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="chat-toggle">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 70px;
+          "
+        >
+          <div
+            id="chat-toggle-animated-text"
+            style="
+              position: absolute;
+              left: -190px;
+              top: 50%;
+              transform: translateY(-50%);
+              background: #ffffff;
+              color: #0176d3;
+              border-radius: 18px 18px 18px 18px;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 12.12);
+              padding: 8px 8px 8px 18px;
+              font-weight: 600;
+              font-size: 16px;
+              z-index: 10000;
+              white-space: nowrap;
+              opacity: 0;
+              pointer-events: none;
+              transition: opacity 0.5s;
+              border-left: 4px solid #0176d3;
+              min-width: 166px;
+            "
+          >
+            Need help?
+          </div>
+          <img
+            src="message.png"
+            alt="Message"
+            style="
+              width: 36px;
+              height: 36px;
+              object-fit: contain;
+              display: block;
+            "
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("chatbot-container");
+        const chatWindow = container.querySelector(".chat-window");
+        const toggle = container.querySelector(".chat-toggle");
+        const messagesEl = document.getElementById("chat-messages");
+        const inputArea = container.querySelector(".chat-input");
+        const textarea = inputArea.querySelector("textarea");
+        const sendBtn = inputArea.querySelector("button");
+        const contactForm = document.getElementById("contact-form");
+        // Ensure contact form submit event listener is attached after DOMContentLoaded
+        const chatContactForm = document.getElementById("chatContactForm");
+        if (chatContactForm) {
+          chatContactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const name = document.getElementById("contact_name").value;
+            const email = document.getElementById("contact_email").value;
+            const phone = document.getElementById("contact_phone").value;
+            const message = document.getElementById("contact_message").value;
+            try {
+              const params = new URLSearchParams({
+                sessionId,
+                name,
+                email,
+                phone,
+                message,
+              });
+              const url = `https://n8n.srv917960.hstgr.cloud/webhook/e8e9d39a-8d41-4a2e-8dd1-5c906647b05e?${params}`;
+              const response = await fetch(url, { method: "GET" });
+              console.log("Webhook response:", response);
+              if (!response.ok) {
+                messagesEl.appendChild(
+                  createBotMessage(
+                    "❗️ Sorry, there was a problem sending your request. Please try again later."
+                  )
+                );
+                throw new Error("Webhook GET failed: " + response.status);
+              }
+            } catch (err) {
+              messagesEl.appendChild(
+                createBotMessage(
+                  "❗️ Failed to send your request to support. Please check your connection or try again later."
+                )
+              );
+              console.error("Failed to send contact form to webhook:", err);
+            }
+            // Hide Main Menu button and suggested question buttons when contact form is submitted
+            document
+              .querySelectorAll(".main-menu-btn")
+              .forEach((btn) => (btn.style.display = "none"));
+            document
+              .querySelectorAll(".inline-suggestion-btn")
+              .forEach((btn) => (btn.style.display = "none"));
+            document
+              .querySelectorAll(".suggestions-wrapper")
+              .forEach((wrapper) => (wrapper.style.display = "none"));
+            // Show success message in chat
+            contactForm.style.display = "none";
+            messagesContainer.style.display = "flex";
+            inputArea.style.display = "flex";
+            faqCont.style.display = "flex";
+            messagesEl.appendChild(
+              createBotMessage(
+                `Thank you for contacting us, ${name}! We'll get back to you shortly at ${email}.`
+              )
+            );
+            setTimeout(() => {
+              messagesEl.appendChild(
+                createBotMessage(
+                  "In the meantime, I'm here to help answer any questions you might have. What would you like to know about NerveSpa?"
+                )
+              );
+            }, 1000);
+            chatContactForm.reset();
+          });
+        }
+
+        let sessionId = "sess-" + Date.now();
+        let isChatStarted = false;
+
+        // Show animated text above chat-toggle in a loop, each for 2s
+        setTimeout(() => {
+          const animatedText = document.getElementById(
+            "chat-toggle-animated-text"
+          );
+          if (!animatedText) return;
+          const messages = ["Need help?", "Have questions?", "Chat with us!"];
+          let msgIdx = 0;
+          function showNextMessage() {
+            animatedText.textContent = messages[msgIdx % messages.length];
+            animatedText.style.opacity = "1";
+            setTimeout(() => {
+              animatedText.style.opacity = "0";
+              msgIdx++;
+              setTimeout(showNextMessage, 600); // fade out, then show next
+            }, 4000); // show for 2s
+          }
+          showNextMessage();
+        }, 4500);
+
+        // Open Chat
+        toggle.addEventListener("click", () => {
+          chatWindow.style.display = "flex";
+          chatWindow.classList.remove("close");
+          void chatWindow.offsetWidth; // force reflow for animation
+          chatWindow.classList.add("open");
+          toggle.style.display = "none";
+          document.body.style.overflow = "hidden";
+          document.querySelector(".website-container").style.overflow =
+            "hidden";
+          if (!isChatStarted) {
+            initChat();
+            isChatStarted = true;
+          }
+        });
+
+        // Close Chat
+        container
+          .querySelector(".chat-close-btn")
+          .addEventListener("click", () => {
+            chatWindow.classList.remove("open");
+            chatWindow.classList.add("close");
+            setTimeout(() => {
+              chatWindow.style.display = "none";
+            }, 350);
+            toggle.style.display = "flex";
+            document.body.style.overflow = "";
+            document.querySelector(".website-container").style.overflow = "";
+            // Remove fullscreen overlay if present
+            document.getElementById(
+              "chatbot-fullscreen-overlay"
+            ).style.display = "none";
+            container.classList.remove("fullscreen");
+          });
+
+        // Toggle Fullscreen
+        container
+          .querySelector(".chat-fullscreen-btn")
+          .addEventListener("click", () => {
+            container.classList.toggle("fullscreen");
+            const overlay = document.getElementById(
+              "chatbot-fullscreen-overlay"
+            );
+            if (container.classList.contains("fullscreen")) {
+              overlay.style.display = "block";
+              document.body.style.overflow = "hidden";
+              document.querySelector(".website-container").style.overflow =
+                "hidden";
+            } else {
+              overlay.style.display = "none";
+              document.body.style.overflow = "";
+              document.querySelector(".website-container").style.overflow = "";
+            }
+          });
+
+        // Send Logic
+        textarea.addEventListener("input", () => {
+          sendBtn.disabled = !textarea.value.trim();
+        });
+        textarea.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            if (!sendBtn.disabled) {
+              sendMessage();
+              setTimeout(scrollBottom, 50);
+            }
+          }
+        });
+        sendBtn.addEventListener("click", () => {
+          sendMessage();
+          setTimeout(scrollBottom, 50);
+        });
+
+        // Handle clicks on inline buttons inside bot messages
+        messagesEl.addEventListener("click", (e) => {
+          if (e.target.classList.contains("inline-suggestion-btn")) {
+            // HIDE all inline buttons immediately
+            const allInlineBtns = document.querySelectorAll(
+              ".inline-suggestion-btn"
+            );
+            allInlineBtns.forEach((btn) => {
+              btn.style.display = "none";
+            });
+            sendMessage(e.target.textContent);
+            setTimeout(scrollBottom, 50);
+          }
+        });
+
+        function initChat() {
+          // 1. Bot Intro
+          const introMsg = createBotMessage(
+            "Select a category to explore. Prefer a human? Submit a support request and we’ll follow up."
+          );
+          messagesEl.appendChild(introMsg);
+
+          // 2. Menu Buttons
+          const menuData = [
+            {
+              name: "Setup & Getting Started",
+              questions: [
+                "How do I set up the Nerve Bath?",
+                "How do I use the NerveBeam LED / Power Wrap?",
+                "How do I set up Knee Pro?",
+                "How do I set up Shoulder Pro?",
+              ],
+            },
+            {
+              name: "Programs & Protocols",
+              questions: [
+                "What is the Neuropathy Protocol?",
+                "What is the Joint + Mobility Protocol",
+                "What is the Metabolic, Gut, & Immunity Protocol?",
+                "How do I combine multiple NerveSpa systems or protocols in one routine?",
+              ],
+            },
+            {
+              name: "Troubleshooting",
+              questions: [
+                "My device is not powering on or the screen isn’t lighting up. What should I check?",
+                "I don’t feel any sensation or tingling during my session. Is that normal?",
+                "The current feels too strong, sharp, or uncomfortable. How do I adjust it?",
+                "My wraps, pads, or cables aren’t working properly. What should I do?",
+              ],
+            },
+            {
+              name: "Orders & Billing",
+              questions: [
+                "How do I place a wholesale or bulk order for my clinic?",
+                "How can I track my NerveSpa order or shipment status?",
+                "I need a copy of my receipt or invoice. How can I get one?",
+                "How do I return a product or request a refund?",
+              ],
+            },
+            {
+              name: "Care & Warranty",
+              questions: [
+                "How do I clean and care for NerveSpa devices?",
+                "How often should wraps, pads, or electrodes be replaced?",
+                "What does the NerveSpa warranty cover and how long does it last?",
+                "How do I submit a warranty claim or request a replacement?",
+              ],
+            },
+          ];
+
+          window.showMenu = function () {
+            // Remove any previous menu/questions
+            const old = messagesEl.querySelector(".suggestions-wrapper");
+            if (old) old.remove();
+            const menuWrapper = document.createElement("div");
+            menuWrapper.className = "suggestions-wrapper";
+            menuData.forEach((item, idx) => {
+              const btn = document.createElement("button");
+              btn.className = "suggestion-button";
+              btn.textContent = item.name;
+              btn.addEventListener("click", () => showQuestions(idx));
+              menuWrapper.appendChild(btn);
+            });
+            messagesEl.appendChild(menuWrapper);
+            scrollBottom();
+          };
+
+          function showQuestions(menuIdx) {
+            // Remove menu
+            const old = messagesEl.querySelector(".suggestions-wrapper");
+            if (old) old.remove();
+            const questionsWrapper = document.createElement("div");
+            questionsWrapper.className = "suggestions-wrapper";
+            menuData[menuIdx].questions.forEach((q) => {
+              const btn = document.createElement("button");
+              btn.className = "suggestion-button";
+              btn.textContent = q;
+              btn.addEventListener("click", () => {
+                // Remove questions
+                questionsWrapper.remove();
+                sendMessage(q);
+              });
+              questionsWrapper.appendChild(btn);
+            });
+            // Back button
+            const backBtn = document.createElement("button");
+            backBtn.className = "suggestion-button";
+            backBtn.textContent = "← Back to Menu";
+            backBtn.style.background = "#f4f6f9";
+            backBtn.style.color = "#0176d3";
+            backBtn.style.fontWeight = "bold";
+            backBtn.addEventListener("click", showMenu);
+            questionsWrapper.appendChild(backBtn);
+            messagesEl.appendChild(questionsWrapper);
+            scrollBottom();
+          }
+
+          showMenu();
+        }
+
+        async function sendMessage(overrideText = null) {
+          const text = overrideText || textarea.value.trim();
+          if (!text) return;
+
+          // 1. Add User Message
+          addUserMessage(text);
+          textarea.value = "";
+          sendBtn.disabled = true;
+
+          // 2. Hide previous suggestions (optional, cleans up UI)
+          const oldSuggestions = messagesEl.querySelector(
+            ".suggestions-wrapper"
+          );
+          if (oldSuggestions) oldSuggestions.style.display = "none";
+
+          // 3. Scroll immediately after adding user message
+          scrollBottom();
+
+          // 4. Show Typing
+          const typingEl = createTypingIndicator();
+          messagesEl.appendChild(typingEl);
+          scrollBottom(); // Scroll again to show typing
+
+          // 5. Webhook Call
+          try {
+            const url = `https://n8n.srv917960.hstgr.cloud/webhook/nervespa?chatInput=${encodeURIComponent(
+              text
+            )}&sessionId=${sessionId}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            typingEl.remove();
+
+            // SHOW only the last inline button after webhook response
+            const allInlineBtns = document.querySelectorAll(
+              ".inline-suggestion-btn"
+            );
+            allInlineBtns.forEach((btn, idx) => {
+              btn.style.display =
+                idx === allInlineBtns.length - 1 ? "" : "none";
+            });
+
+            let botText = "I received your message.";
+            if (Array.isArray(data) && data[0]?.output) {
+              botText = data[0].output;
+            } else if (data && typeof data === "object" && data.output) {
+              botText = data.output;
+            }
+            messagesEl.appendChild(createBotMessage(botText));
+            // 6. Scroll FINAL time to show bot response
+            scrollBottom();
+          } catch (e) {
+            typingEl.remove();
+
+            // SHOW all inline buttons again even on error
+            const hiddenInlineBtns = document.querySelectorAll(
+              ".inline-suggestion-btn"
+            );
+            hiddenInlineBtns.forEach((btn) => {
+              btn.style.display = "";
+            });
+
+            messagesEl.appendChild(
+              createBotMessage("Sorry, connection error.")
+            );
+            scrollBottom();
+          }
+        }
+
+        function addUserMessage(text) {
+          const div = document.createElement("div");
+          div.className = "message user";
+          div.innerHTML = `<div class="message-content">${formatText(
+            text
+          )}</div>`;
+          messagesEl.appendChild(div);
+          // Hide Main Menu button and suggested question buttons when user sends a message
+          document
+            .querySelectorAll(".main-menu-btn")
+            .forEach((btn) => (btn.style.display = "none"));
+          document
+            .querySelectorAll(".inline-suggestion-btn")
+            .forEach((btn) => (btn.style.display = "none"));
+          document
+            .querySelectorAll(".suggestions-wrapper")
+            .forEach((wrapper) => (wrapper.style.display = "none"));
+          setTimeout(scrollBottom, 50);
+        }
+
+        function createBotMessage(text) {
+          // Remove Main Menu buttons from previous bot messages
+          const prevMenuBtns = messagesEl.querySelectorAll(
+            ".message.bot:not(:last-child) .main-menu-btn"
+          );
+          prevMenuBtns.forEach((btn) => btn.remove());
+          // Hide all previous inline-suggestion-btns before adding new bot message
+          const prevBtns = messagesEl.querySelectorAll(
+            ".inline-suggestion-btn"
+          );
+          prevBtns.forEach((btn) => (btn.style.display = "none"));
+
+          // Hide all previous 'You might also be interested in:' lines
+          const interestLines = messagesEl.querySelectorAll(".message-content");
+          interestLines.forEach((el) => {
+            if (
+              el.textContent &&
+              el.textContent
+                .trim()
+                .startsWith("You might also be interested in:")
+            ) {
+              el.style.display = "none";
+            }
+          });
+          const div = document.createElement("div");
+          div.className = "message bot";
+          // Create bot message content
+          let botContent = `${formatText(text)}`;
+
+          // Always add Main Menu button to bot messages, whether there are inline buttons or not
+          setTimeout(() => {
+            const inlineBtns = div.querySelectorAll(".inline-suggestion-btn");
+            const menuBtn = document.createElement("button");
+            menuBtn.className = "main-menu-btn";
+            menuBtn.textContent = "Main Menu";
+            
+            // Match UI of inline-suggestion-btn
+            menuBtn.style.background = "#f4f6f9";
+            menuBtn.style.color = "#0176d3";
+            menuBtn.style.fontWeight = "bold";
+            menuBtn.style.border = "1px solid var(--sf-blue)";
+            menuBtn.style.padding = "8px 16px";
+            menuBtn.style.borderRadius = "4px";
+            menuBtn.style.fontSize = "14px";
+            menuBtn.style.marginTop = "7px";
+            menuBtn.style.maxWidth = "100%";
+            menuBtn.style.cursor = "pointer";
+            
+            // Adding a thin margin if it's the only button to match standard padding
+            if (inlineBtns.length === 0) {
+                 menuBtn.style.display = "block";
+                 menuBtn.style.marginBottom = "10px";
+            }
+            
+            menuBtn.addEventListener("click", function (e) {
+              // Hide all inline-suggestion-btns
+              document
+                .querySelectorAll(".inline-suggestion-btn")
+                .forEach((b) => (b.style.display = "none"));
+              // Hide the buttons inside the last bot message, not the message itself
+              const lastBotMsg = document.querySelector(
+                ".message.bot:last-child"
+              );
+              if (lastBotMsg) {
+                lastBotMsg
+                  .querySelectorAll(
+                    ".inline-suggestion-btn, .main-menu-btn"
+                  )
+                  .forEach((btn) => (btn.style.display = "none"));
+              }
+              // Hide Main Menu button itself
+              menuBtn.style.display = "none";
+              // Remove all current question buttons (suggestions-wrapper)
+              document
+                .querySelectorAll(".suggestions-wrapper")
+                .forEach((w) => w.remove());
+              // Show main menu in same place
+              if (typeof window.showMenu === "function") {
+                window.showMenu();
+              }
+              // Scroll to bottom
+              setTimeout(() => {
+                if (typeof scrollBottom === "function") scrollBottom();
+              }, 50);
+            });
+
+            if (inlineBtns.length > 0) {
+              // Show Main Menu button next to last inline-suggestion-btn
+              const lastBtn = inlineBtns[inlineBtns.length - 1];
+              if (lastBtn) {
+                lastBtn.parentNode.insertBefore(menuBtn, lastBtn.nextSibling);
+              }
+            } else {
+                // If there are no inline buttons, append it directly to the message content block
+                // BUT only if this is NOT the very first welcome message
+                const isFirstMessage = messagesEl.querySelectorAll('.message').length <= 1;
+                if (!isFirstMessage) {
+                    const msgContent = div.querySelector(".message-content");
+                    if (msgContent) {
+                       msgContent.appendChild(menuBtn);
+                    }
+                }
+            }
+          }, 0);
+
+          div.innerHTML = `
+            <div class="message-avatar"><img src="logo.jpg" alt="Logo" style="object-fit:contain;border-radius:50%;width:30px;height:30px;display:block;background:#e1f0fa;"></div>
+            <div class="message-content">${botContent}</div>
+          `;
+          messagesEl.appendChild(div);
+          setTimeout(scrollBottom, 50);
+          return div;
+        }
+
+        function createTypingIndicator() {
+          const div = document.createElement("div");
+          div.className = "message bot";
+          div.innerHTML = `
+            <div class="message-avatar"><img src="logo.jpg" alt="Logo" style="object-fit:contain;border-radius:50%;width:30px;height:30px;display:block;background:#e1f0fa;"></div>
+            <div class="message-content typing-text-animation">
+              <span class="dot-loader">
+                <span></span><span></span><span></span>
+              </span>
+            </div>
+          `;
+          
+          messagesEl.appendChild(div);
+          setTimeout(scrollBottom, 50);
+          return div;
+        }
+
+        function formatText(t) {
+          let formatted = t.replace(/\n/g, "<br>");
+          formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+
+          // Convert Markdown-style [text](url) links to clickable links showing the shortened URL
+          formatted = formatted.replace(
+            /\[(.*?)\]\((https?:[^)]+)\)/g,
+            function (match, text, url) {
+              let displayUrl = url.length > 24 ? url.slice(0, 24) + '...' : url;
+              return `<a href="${url}" target="_blank" rel="noopener noreferrer">${displayUrl}</a>`;
+            }
+          );
+
+          // Auto-detect and convert any plain link to clickable, showing only first 24 chars
+          formatted = formatted.replace(
+            /(https?:\/\/[^\s<]+|www\.[^\s<]+|drive\.google\.com\/[^\s<]+)/gi,
+            function (url) {
+              let href = url;
+              if (!href.match(/^https?:\/\//)) {
+                href = "https://" + href;
+              }
+              let displayUrl = url.length > 24 ? url.slice(0, 24) + '...' : url;
+              return `<a href="${href}" target="_blank" rel="noopener noreferrer">${displayUrl}</a>`;
+            }
+          );
+
+          // Auto-convert [Button Text] to inline chips
+          formatted = formatted.replace(
+            /\[([^\]]+)\]/g,
+            '<button class="inline-suggestion-btn">$1</button>'
+          );
+          return formatted;
+        }
+
+        // Improved Scroll function with slight delay to ensure DOM paint
+        function scrollBottom() {
+          // Use setTimeout for reliable scroll after DOM update
+          setTimeout(() => {
+            const lastMsg = messagesEl.querySelector(".message:last-child");
+            if (lastMsg) {
+              lastMsg.scrollIntoView({ behavior: "smooth", block: "end" });
+            } else {
+              messagesEl.scrollTop = messagesEl.scrollHeight;
+            }
+          }, 10);
+        }
+
+        // Contact Form
+        container
+          .querySelector(".chat-contact-btn")
+          .addEventListener(
+            "click",
+            () => (contactForm.style.display = "block")
+          );
+        container
+          .querySelector(".close-form-btn")
+          .addEventListener(
+            "click",
+            () => (contactForm.style.display = "none")
+          );
+      });
+
+      // Handle contact form submission
+      const chatContactForm = document.getElementById("chatContactForm");
+      chatContactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("contact_name").value;
+        const email = document.getElementById("contact_email").value;
+        const phone = document.getElementById("contact_phone").value;
+        const message = document.getElementById("contact_message").value;
+
+        // Send data to n8n webhook (sessionId, name, email, phone, message) using GET to avoid CORS
+        try {
+          const params = new URLSearchParams({
+            sessionId,
+            name,
+            email,
+            phone,
+            message,
+          });
+          const url = `https://n8n.srv917960.hstgr.cloud/webhook/e8e9d39a-8d41-4a2e-8dd1-5c906647b05e?${params}`;
+          const response = await fetch(url, { method: "GET" });
+          console.log("Webhook response:", response);
+          if (!response.ok) {
+            messagesEl.appendChild(
+              createBotMessage(
+                "❗️ Sorry, there was a problem sending your request. Please try again later."
+              )
+            );
+            throw new Error("Webhook GET failed: " + response.status);
+          }
+        } catch (err) {
+          messagesEl.appendChild(
+            createBotMessage(
+              "❗️ Failed to send your request to support. Please check your connection or try again later."
+            )
+          );
+          console.error("Failed to send contact form to webhook:", err);
+        }
+
+        // Hide Main Menu button and suggested question buttons when contact form is submitted
+        document
+          .querySelectorAll(".main-menu-btn")
+          .forEach((btn) => (btn.style.display = "none"));
+        document
+          .querySelectorAll(".inline-suggestion-btn")
+          .forEach((btn) => (btn.style.display = "none"));
+        document
+          .querySelectorAll(".suggestions-wrapper")
+          .forEach((wrapper) => (wrapper.style.display = "none"));
+
+        // Show success message in chat
+        contactForm.style.display = "none";
+        messagesContainer.style.display = "flex";
+        inputArea.style.display = "flex";
+        faqCont.style.display = "flex";
+
+        // Add bot messages for better conversation flow
+        messagesEl.appendChild(
+          createBotMessage(
+            `Thank you for contacting us, ${name}! We'll get back to you shortly at ${email}.`
+          )
+        );
+        setTimeout(() => {
+          messagesEl.appendChild(
+            createBotMessage(
+              "In the meantime, I'm here to help answer any questions you might have. What would you like to know about NerveSpa?"
+            )
+          );
+        }, 1000);
+
+        // Clear form
+        chatContactForm.reset();
+      });
+    </script>
+  </body>
+</html>

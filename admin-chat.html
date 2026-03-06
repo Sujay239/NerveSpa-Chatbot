@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Chat Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      height: 100vh;
+      display: flex;
+    }
+
+    /* Sidebar for user list */
+    .sidebar {
+      width: 280px;
+      background: #fff;
+      border-right: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+    }
+    .sidebar h2 {
+      padding: 20px;
+      margin: 0;
+      background: #2196F3;
+      color: #fff;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .user-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+    .user {
+      padding: 14px 20px;
+      margin: 4px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .user:hover {
+      background: #f5f9ff;
+      transform: translateY(-1px);
+    }
+    .user.active {
+      background: #e3f2fd;
+      color: #1976D2;
+      font-weight: 500;
+    }
+    .user::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #4CAF50;
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    /* Chat area */
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .chat-header {
+      background: #2196F3;
+      color: #fff;
+      padding: 18px 24px;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .message {
+      margin: 6px 0;
+      max-width: 70%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      line-height: 1.5;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    .message.user {
+      background: #f5f5f5;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      color: #333;
+    }
+    .message.admin {
+      background: #e3f2fd;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      color: #0d47a1;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Input box */
+    .chat-input {
+      display: flex;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: #fff;
+      padding: 16px 24px;
+      align-items: center;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    .chat-input input {
+      flex: 1;
+      border: 1px solid #e0e0e0;
+      outline: none;
+      padding: 12px 16px;
+      font-size: 15px;
+      border-radius: 24px;
+      transition: all 0.3s ease;
+      margin-right: 12px;
+    }
+    .chat-input input:focus {
+      border-color: #2196F3;
+      box-shadow: 0 0 0 3px rgba(33,150,243,0.1);
+    }
+    .chat-input button {
+      background: #2196F3;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 24px;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .chat-input button:hover {
+      background: #1976D2;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(33,150,243,0.3);
+    }
+    .chat-input button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Users</h2>
+    <div class="user-list">
+      <div class="user">User 1</div>
+      <div class="user">User 2</div>
+      <div class="user">User 3</div>
+    </div>
+  </div>
+
+  <!-- Chat Area -->
+  <div class="chat-container">
+    <div class="chat-header">Chat with User 1</div>
+    <div class="chat-box" id="chatBox">
+      <div class="message user">Hello Admin!</div>
+      <div class="message admin">Hi User, how can I help?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="messageInput" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("messageInput");
+      const chatBox = document.getElementById("chatBox");
+
+      if (input.value.trim() === "") return;
+
+      // Append admin message
+      const msg = document.createElement("div");
+      msg.className = "message admin";
+      msg.textContent = input.value;
+      chatBox.appendChild(msg);
+
+      // Scroll to bottom
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // TODO: Send to n8n webhook (admin-message)
+      fetch("https://n8n.srv917960.hstgr.cloud/webhook/admin-message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: "user1", message: input.value })
+      });
+
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>

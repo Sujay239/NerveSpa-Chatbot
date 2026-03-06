@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Submissions - NerveSpa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f8fafc;
+            margin: 0;
+            min-height: 100vh;
+            color: #1a202c;
+        }
+        h1 { 
+            text-align: center;
+            margin: 32px 0 48px;
+            color: #0072bc;
+            font-weight: 600;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 1px;
+        }
+        
+        .data-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        table { 
+            margin: 0 auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            background: #fff;
+            font-size: 0.925rem;
+        }
+        th, td { 
+            padding: 12px 16px;
+            text-align: left;
+        }
+        
+        th { 
+            background: #f8fafc;
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tr {
+            transition: background 0.2s ease;
+        }
+        
+        tr:hover { 
+            background: #f8fafc;
+        }
+        
+        td {
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+            font-size: 0.875rem;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .message-cell {
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .error { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #dc2626;
+            text-align: center;
+            margin: 32px 0;
+            padding: 16px;
+            font-size: 0.875rem;
+        }
+        
+        .error svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 48px 0;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e2e8f0;
+            border-top-color: #0369a1;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 240px;
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+            color: #1a202c;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .sidebar-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .sidebar-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 0 24px;
+        }
+        .sidebar-link {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            padding: 10px 12px;
+            margin: 2px 0;
+            text-align: left;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sidebar-link svg {
+            width: 18px;
+            height: 18px;
+            opacity: 0.7;
+        }
+        
+        .sidebar-link.active {
+            background: #f1f5f9;
+            color: #0369a1;
+        }
+        
+        .sidebar-link:hover:not(.active) {
+            background: #f8fafc;
+            color: #334155;
+        }
+        .dashboard-main {
+            flex: 1;
+            padding: 0px 26px;
+            background: #f8fafc;
+            min-height: 100vh;
+            margin-left: 240px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: -2px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #f8fafc;
+           
+        }
+        
+        #dashboard-title {
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dashboard-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .dashboard-btn {
+            padding: 8px 16px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            color: #475569;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .dashboard-btn:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+        }
+        
+        #dashboard-content {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        @media (max-width: 900px) {
+            .dashboard-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0 12px;
+                box-shadow: none;
+            }
+            .sidebar-header {
+                padding: 16px 0;
+            }
+            .sidebar-nav {
+                flex-direction: row;
+                gap: 12px;
+                margin-top: 0;
+                padding: 0;
+            }
+            .dashboard-main {
+                padding: 16px 0 0 0;
+            }
+            #dashboard-title {
+                margin: 24px 0 16px 16px;
+                font-size: 1.5rem;
+            }
+            #dashboard-content {
+                margin-left: 16px;
+                margin-right: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="logo.jpg" alt="NerveSpa Logo" class="sidebar-logo">
+                <span class="sidebar-title">NerveSpa</span>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="sidebar-link active" id="sidebar-dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="2"/>
+                        <rect x="14" y="3" width="7" height="7" rx="2"/>
+                        <rect x="14" y="14" width="7" height="7" rx="2"/>
+                        <rect x="3" y="14" width="7" height="7" rx="2"/>
+                    </svg>
+                    Dashboard
+                </button>
+                <button class="sidebar-link" id="sidebar-submissions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Submissions
+                </button>
+                <button class="sidebar-link" id="sidebar-conversations">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                    Conversations
+                </button>
+            </nav>
+        </aside>
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h1 id="dashboard-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Contact Submissions
+                </h1>
+                <div class="dashboard-actions" id="dashboard-actions">
+                    <button class="dashboard-btn" id="refresh-btn-submissions">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+            <div id="dashboard-content">
+                <div class="data-card">
+                    <div id="table-container">
+                        <div class="loading">Loading data</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+    function fetchContactData() {
+        const tableContainer = document.getElementById('table-container');
+        if (tableContainer) {
+            tableContainer.innerHTML = `<div class=\"loading\"><div class=\"loading-spinner\"></div>Loading submissions...</div>`;
+        }
+        // Replace with your n8n endpoint that returns all submissions as JSON
+        const url = 'https://n8n.srv917960.hstgr.cloud/webhook/ce10fcd9-bd8b-4cdf-bf96-01ad02a19074';
+        console.log('Fetching submissions from:', url);
+        fetch(url)
+            .then(response => {
+                console.log('Fetch response:', response);
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                console.log('Fetched data:', data);
+                let rows = Array.isArray(data) ? data : [data];
+                rows.sort((a, b) => {
+                    const getTs = s => {
+                        if (!s) return 0;
+                        const parts = s.split('-');
+                        return parseInt(parts[parts.length - 1], 10) || 0;
+                    };
+                    return getTs(b.sessionid) - getTs(a.sessionid);
+                });
+                if (!rows.length || !rows[0].sessionid) {
+                    tableContainer.innerHTML = `
+                        <div class=\"error\">
+                            <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\"/></svg>
+                            No submissions found
+                        </div>`;
+                    return;
+                }
+                let table = '<table><thead><tr>';
+                table += '<th>Session ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Message</th></tr></thead><tbody>';
+                rows.forEach(row => {
+                    table += `<tr>
+                        <td>${row.sessionid || ''}</td>
+                        <td>${row.name || ''}</td>
+                        <td>${row.email || ''}</td>
+                        <td>${row.phonen || ''}</td>
+                        <td>${row.message || ''}</td>
+                    </tr>`;
+                });
+                table += '</tbody></table>';
+                tableContainer.innerHTML = table;
+            })
+            .catch(err => {
+                console.error('Failed to fetch submissions:', err);
+                tableContainer.innerHTML = `<div class=\"error\">
+                    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\"/></svg>
+                    Unable to load submissions. Please check your internet connection or try again later.
+                </div>`;
+            });
+    }
+
+    function fetchConversationsData() {
+        const dashboardContent = document.getElementById('dashboard-content');
+        if (dashboardContent) {
+            dashboardContent.innerHTML = `<div class='data-card'><div class='loading'><div class='loading-spinner'></div>Loading conversations...</div></div>`;
+        }
+        // Updated webhook endpoint for conversations
+        const url = 'https://n8n.srv917960.hstgr.cloud/webhook/ecbeb13e-6565-4e83-ae86-2a6d12d08741';
+        console.log('Fetching conversations from:', url);
+        fetch(url)
+            .then(response => {
+                console.log('Fetch response:', response);
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                console.log('Fetched conversations data:', data);
+                let rows = Array.isArray(data) ? data : [data];
+                if (!rows.length) {
+                    dashboardContent.innerHTML = `
+                        <div class='data-card'><div class='error'>
+                            <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
+                                <path d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'/>
+                            </svg>
+                            No conversation data available yet.
+                        </div></div>`;
+                    return;
+                }
+                // Group messages by session_id
+                const grouped = {};
+                rows.forEach(row => {
+                    const sid = row.session_id || row.sessionId || '';
+                    if (!grouped[sid]) grouped[sid] = [];
+                    grouped[sid].push(row);
+                });
+                let table = '<table><thead><tr>';
+                table += '<th>Session ID</th><th>Messages</th></tr></thead><tbody>';
+                // Sort session IDs by newest first (based on first message id in each group)
+                const sortedSessionIds = Object.keys(grouped).sort((a, b) => {
+                    // Use the highest id in each session group for sorting
+                    const getMaxId = sid => Math.max(...grouped[sid].map(m => m.id || 0));
+                    return getMaxId(b) - getMaxId(a);
+                });
+                sortedSessionIds.forEach(sessionId => {
+                    let messagesHtml = '<ul style="margin:0;padding-left:18px;">';
+                    grouped[sessionId].forEach(msg => {
+                        let messageContent = '';
+                        if (typeof msg.message === 'object') {
+                            const type = msg.message.type !== undefined ? msg.message.type : '';
+                            const content = msg.message.content !== undefined ? msg.message.content : '';
+                            messageContent = `<strong>type:</strong> ${type}, <strong>content:</strong> ${content}`;
+                        } else {
+                            messageContent = msg.message;
+                        }
+                        messagesHtml += `<li style=\"margin-bottom:8px;\">${messageContent}</li>`;
+                    });
+                    messagesHtml += '</ul>';
+                    table += `<tr><td>${sessionId}</td><td>${messagesHtml}</td></tr>`;
+                });
+                table += '</tbody></table>';
+                dashboardContent.innerHTML = `<div class='data-card'>${table}</div>`;
+            })
+            .catch(err => {
+                console.error('Failed to fetch conversations:', err);
+                dashboardContent.innerHTML = `<div class='data-card'><div class='error'>Failed to load data: ${err.message}</div></div>`;
+            });
+    }
+
+    // Sidebar navigation logic
+    const submissionsBtn = document.getElementById('sidebar-submissions');
+    const conversationsBtn = document.getElementById('sidebar-conversations');
+    const dashboardBtn = document.getElementById('sidebar-dashboard');
+    const dashboardTitle = document.getElementById('dashboard-title');
+    const dashboardContent = document.getElementById('dashboard-content');
+
+    submissionsBtn.addEventListener('click', () => {
+        submissionsBtn.classList.add('active');
+        conversationsBtn.classList.remove('active');
+        dashboardBtn.classList.remove('active');
+        dashboardTitle.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Contact Submissions`;
+        dashboardContent.innerHTML = `<div id="table-container"><div class="loading">Loading data</div></div>`;
+        document.getElementById('dashboard-actions').innerHTML = `
+            <input type="text" id="search-submissions" placeholder="Search submissions" style="padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;font-size:0.95rem;margin-right:8px;" />
+            <button class="dashboard-btn" id="refresh-btn-submissions">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                Refresh
+            </button>`;
+        let lastSubmissionsData = null;
+        function renderSubmissionsTable(data, filterText = '') {
+            let rows = Array.isArray(data) ? data : [data];
+            rows.sort((a, b) => {
+                const getTs = s => {
+                    if (!s) return 0;
+                    const parts = s.split('-');
+                    return parseInt(parts[parts.length - 1], 10) || 0;
+                };
+                return getTs(b.sessionid) - getTs(a.sessionid);
+            });
+            if (!rows.length || !rows[0].sessionid) {
+                document.getElementById('table-container').innerHTML = `
+                    <div class="error">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        No submissions found
+                    </div>`;
+                return;
+            }
+            let table = '<table><thead><tr>';
+            table += '<th>Session ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Message</th></tr></thead><tbody>';
+            rows.forEach(row => {
+                const searchString = `${row.sessionid || ''} ${row.name || ''} ${row.email || ''} ${row.phonen || ''} ${row.message || ''}`.toLowerCase();
+                if (filterText && !searchString.includes(filterText.toLowerCase())) return;
+                table += `<tr>
+                    <td>${row.sessionid || ''}</td>
+                    <td>${row.name || ''}</td>
+                    <td>${row.email || ''}</td>
+                    <td>${row.phonen || ''}</td>
+                    <td>${row.message || ''}</td>
+                </tr>`;
+            });
+            table += '</tbody></table>';
+            document.getElementById('table-container').innerHTML = table;
+        }
+        function fetchAndRenderSubmissions() {
+            const tableContainer = document.getElementById('table-container');
+            if (tableContainer) {
+                tableContainer.innerHTML = `<div class=\"loading\"><div class=\"loading-spinner\"></div>Loading submissions...</div>`;
+            }
+            const url = 'https://n8n.srv917960.hstgr.cloud/webhook/ce10fcd9-bd8b-4cdf-bf96-01ad02a19074';
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    lastSubmissionsData = data;
+                    renderSubmissionsTable(data);
+                })
+                .catch(err => {
+                    tableContainer.innerHTML = `<div class=\"error\">Unable to load submissions. Please check your internet connection or try again later.</div>`;
+                });
+        }
+        fetchAndRenderSubmissions();
+        document.getElementById('refresh-btn-submissions').onclick = fetchAndRenderSubmissions;
+        document.getElementById('search-submissions').addEventListener('input', function(e) {
+            const filterValue = e.target.value.trim();
+            renderSubmissionsTable(lastSubmissionsData || [], filterValue);
+        });
+    });
+    conversationsBtn.addEventListener('click', () => {
+        submissionsBtn.classList.remove('active');
+        conversationsBtn.classList.add('active');
+        dashboardBtn.classList.remove('active');
+        dashboardTitle.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg> User Conversations`;
+        dashboardContent.innerHTML = `<div class='data-card'><div class='loading'><div class='loading-spinner'></div>Loading conversations...</div></div>`;
+        document.getElementById('dashboard-actions').innerHTML = `
+            <input type="text" id="search-session-id" placeholder="Search by Session ID" style="padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;font-size:0.95rem;margin-right:8px;" />
+            <button class="dashboard-btn" id="refresh-btn-conversations">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                Refresh
+            </button>`;
+        let lastConversationsData = null;
+        function renderConversationsTable(data, filterSessionId = '') {
+            let rows = Array.isArray(data) ? data : [data];
+            if (!rows.length) {
+                dashboardContent.innerHTML = `
+                    <div class='data-card'><div class='error'>
+                        <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
+                            <path d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'/>
+                        </svg>
+                        No conversation data available yet.
+                    </div></div>`;
+                return;
+            }
+            // Group messages by session_id
+            const grouped = {};
+            rows.forEach(row => {
+                const sid = row.session_id || row.sessionId || '';
+                if (!grouped[sid]) grouped[sid] = [];
+                grouped[sid].push(row);
+            });
+            // Sort session IDs by newest first
+            const sortedSessionIds = Object.keys(grouped).sort((a, b) => {
+                const getMaxId = sid => Math.max(...grouped[sid].map(m => m.id || 0));
+                return getMaxId(b) - getMaxId(a);
+            });
+            let table = '<table><thead><tr>';
+            table += '<th>Session</th><th></th></tr></thead><tbody>';
+            sortedSessionIds.forEach((sessionId, idx) => {
+                if (filterSessionId && !sessionId.includes(filterSessionId)) return;
+                // Collapsible row: closed by default
+                const collapseId = `collapse-session-${idx}`;
+                let messagesHtml = '<ul style="margin:0;padding-left:18px;">';
+                grouped[sessionId].forEach(msg => {
+                    let messageContent = '';
+                    if (typeof msg.message === 'object') {
+                        const type = msg.message.type !== undefined ? msg.message.type : '';
+                        const content = msg.message.content !== undefined ? msg.message.content : '';
+                        messageContent = `<strong>type:</strong> ${type}, <strong>content:</strong> ${content}`;
+                    } else {
+                        messageContent = msg.message;
+                    }
+                    messagesHtml += `<li style=\"margin-bottom:8px;\">${messageContent}</li>`;
+                });
+                messagesHtml += '</ul>';
+                table += `<tr class="session-row" data-collapse="${collapseId}" style="cursor:pointer;background:#f8fafc;">
+                    <td colspan="2"><span style="font-weight:600;color:#0369a1;">${sessionId}</span> <span style="float:right;color:#64748b;font-size:0.95rem;">Click to open</span></td>
+                </tr>`;
+                table += `<tr id="${collapseId}" style="display:none;"><td></td><td>${messagesHtml}</td></tr>`;
+            });
+            table += '</tbody></table>';
+            dashboardContent.innerHTML = `<div class='data-card'>${table}</div>`;
+            // Add collapse/expand logic
+            Array.from(document.querySelectorAll('.session-row')).forEach(row => {
+                row.addEventListener('click', function() {
+                    const collapseId = row.getAttribute('data-collapse');
+                    const detailRow = document.getElementById(collapseId);
+                    if (detailRow) {
+                        if (detailRow.style.display === 'none') {
+                            detailRow.style.display = '';
+                            row.querySelector('span:last-child').textContent = 'Click to close';
+                        } else {
+                            detailRow.style.display = 'none';
+                            row.querySelector('span:last-child').textContent = 'Click to open';
+                        }
+                    }
+                });
+            });
+        }
+        function fetchAndRenderConversations() {
+            const url = 'https://n8n.srv917960.hstgr.cloud/webhook/ecbeb13e-6565-4e83-ae86-2a6d12d08741';
+            dashboardContent.innerHTML = `<div class='data-card'><div class='loading'><div class='loading-spinner'></div>Loading conversations...</div></div>`;
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    lastConversationsData = data;
+                    renderConversationsTable(data);
+                })
+                .catch(err => {
+                    dashboardContent.innerHTML = `<div class='data-card'><div class='error'>Failed to load data: ${err.message}</div></div>`;
+                });
+        }
+        fetchAndRenderConversations();
+        document.getElementById('refresh-btn-conversations').onclick = fetchAndRenderConversations;
+        document.getElementById('search-session-id').addEventListener('input', function(e) {
+            const filterValue = e.target.value.trim();
+            renderConversationsTable(lastConversationsData || [], filterValue);
+        });
+    });
+    dashboardBtn.addEventListener('click', () => {
+        dashboardBtn.classList.add('active');
+        submissionsBtn.classList.remove('active');
+        conversationsBtn.classList.remove('active');
+        dashboardTitle.innerHTML = `<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" width=\"24\" height=\"24\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/></svg> Dashboard`;
+        dashboardContent.innerHTML = `<div class='data-card' style='padding:32px;text-align:center;'>
+            <h2 style='color:#0369a1;font-size:2rem;font-weight:600;margin-bottom:16px;'>Welcome to NerveSpa Chatbot Dashboard</h2>
+            <p style='font-size:1.1rem;color:#475569;margin-bottom:24px;'>Here you can manage submissions, view user conversations, and monitor system status.</p>
+            <div style='display:flex;justify-content:center;gap:32px;margin-bottom:32px;'>
+                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
+                    <div style='font-size:2.2rem;font-weight:700;color:#0f172a;'>124</div>
+                    <div style='color:#64748b;font-size:1rem;'>Total Submissions</div>
+                </div>
+                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
+                    <div style='font-size:2.2rem;font-weight:700;color:#0f172a;'>58</div>
+                    <div style='color:#64748b;font-size:1rem;'>User Conversations</div>
+                </div>
+                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
+                    <div style='font-size:2.2rem;font-weight:700;color:#0f172a;'>99%</div>
+                    <div style='color:#64748b;font-size:1rem;'>System Uptime</div>
+                </div>
+            </div>
+           
+        </div>`;
+        document.getElementById('dashboard-actions').innerHTML = '';
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        dashboardBtn.classList.add('active');
+        submissionsBtn.classList.remove('active');
+        conversationsBtn.classList.remove('active');
+        dashboardTitle.innerHTML = `<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" width=\"24\" height=\"24\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"2\"/></svg> Dashboard`;
+        dashboardContent.innerHTML = `<div class='data-card' style='padding:32px;text-align:center;'>
+            <h2 style='color:#0369a1;font-size:2rem;font-weight:600;margin-bottom:16px;'>Welcome to NerveSpa Chatbot Dashboard</h2>
+            <p style='font-size:1.1rem;color:#475569;margin-bottom:24px;'>Here you can manage submissions, view user conversations, and monitor system status.</p>
+            <div style='display:flex;justify-content:center;gap:32px;margin-bottom:32px;'>
+                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
+                    <div style='font-size:2.2rem;font-weight:700;color:#0f172a;'>124</div>
+                    <div style='color:#64748b;font-size:1rem;'>Total Submissions</div>
+                </div>
+                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
+                    <div style='font-size:2.2rem;font-weight:700;color:#0f172a;'>58</div>
+                    <div style='color:#64748b;font-size:1rem;'>User Conversations</div>
+                </div>
+                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
+                    <div style='font-size:2.2rem;font-weight:700;color:#0f172a;'>99%</div>
+                    <div style='color:#64748b;font-size:1rem;'>System Uptime</div>
+                </div>
+            </div>
+            
+        </div>`;
+        document.getElementById('dashboard-actions').innerHTML = '';
+    });
+    </script>
+</body>
+</html>
