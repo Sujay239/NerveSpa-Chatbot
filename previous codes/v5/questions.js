@@ -3,7 +3,6 @@ const incomingQuestion = $input.first().json.query.chatInput;
 
 // Define your predefined questions
 const predefinedQuestions = [
-
   "youtube",
   "What is NerveSpa?",
   "What conditions and symptoms can NerveSpa support?",
@@ -598,90 +597,23 @@ const predefinedQuestions = [
   "Are international certifications or markets planned for NerveSpa?",
   "Can clinics outside the U.S. request information or express interest?",
   "How does NerveSpa evaluate expansion into new regions or care settings?",
-  "What is (1pk) Effervescent Tablets?",
-  "What is Carbon Rubber Electrodes?",
-  "What is Epsom Salt - 8oz jar?",
-  "What is LAVENDER SCENTED EPSOM SALT - 8OZ JAR?",
-  "What is N1-Nerve+ Neuropathy Support?",
-  "What is NERVESPA SILVER CONDUCTIVE GLOVE - HAND GARMENT SYSTEM?",
-  "What is NERVESPA SILVER CONDUCTIVE SOCK - FOOT GARMENT SYSTEM?",
-  "What is NERVESPA PRO - 60 DAY SUPPLY PROGRAM?",
-  "What is NERVESPA PRO - 90 DAY SUPPLY PROGRAM?",
-  "What is NERVESPA PRO, HAND AND FOOT NEUROPATHY SYSTEM - 90 DAY SUPPLY PROGRAM - DUAL CHANNEL DEVICE?",
-  "What is Nerve & Neuropathy Cream by NerveSpa - Maximum Strength Relief?",
-  "What is Nerve & Neuropathy Support Kit (Includes: Blood Flow Drink powder, Neuropathy Capsules, Nerve ODF, Nerve Cream)?",
-  "What is Nerve Spa Foot bath Supply Kit?",
-  "What is Nerve Spa Performance diabetic Socks?",
-  "What is Nerve Spa performance Supplement?",
-  "What is NerveSpa Classic, Hand and Foot Pain Relief System - 10 DAY SUPPLY PROGRAM?",
-  "What is Replacement Charger cord for The NerveBeam cold laser?",
-  "What is Replacement Charger cord for The Quake Plate?",
-  "What is Replacement Charger for The NerveBeam LED Light Therapy Wrap?",
-  "What is Replacement Charger for the Nerve Spa Nerve Bath System?",
-  "What is Replacement lead wires for Nerve Spa?",
-  "What is The 90-Day Neuropathy Program?",
-  "What is The Blood Flow Super formula Drink Powder by Nerve Spa?",
-  "What is The NerveBeam Cold Laser?",
-  "What is The NerveBeam LED Light Therapy Wrap - Red & Infrared light therapy?",
-  "What is The Quake Plate Vibrational Massage Therapy?",
-  "What is Joint Heath Support Kit (Includes: Joint Drink Powder, OA Cream)?",
-  "What is Nerve Spa Knee Pro - Advanced OA/RA treatment Device - Size: Fits Small to Large?",
-  "What is Nerve Spa Knee Pro - Replacement Pads - 3 x VB35 and 3 x VBKnee?",
-  "What is Nerve Spa Shoulder Pro?",
-  "What is NerveSpa Knee Pro - 180 day supply kit?",
-  "What is NerveSpa Knee Pro Size Extender Straps (1 pair) _ XL-XXL?",
-  "What is Osteoarthritis and Rheumatoid Arthritis Cream?",
-  "What is Roll On Pain Relief by Nerve Target - Roll On Muscle Pain Reliever, Back Pain, Arthritis?",
-  "What is Super Flex Joint Formula Drink Powder by NerveSpa - Joint Support Supplement?",
-  "What is ImmunoGut Super Formula: Essential Immunity & Gut Support | Vitamin D, Zinc, Beta Glucan | Detox & Stress Relief | 480g Powder, 60 Servings?",
-  "What is N1 - Gut Support with probiotics?",
-  "What is N1 - Skinny Blend?",
-  "What is Nerve Spa Vibe | Deep Tissue Vibrational Massager with Attachement Heads?",
-  "What is Nerve Wave 2.5 Rd Clinical Grade Electrode?",
-  "What is Nerve Wave by Nerve Spa - Clinical Nerve Spa Multi-Modality Treatment Device?",
-  "What is The Power Wrap - Ultra-High Powered LED COLD LASER?",
-  "What if the Knee Pro stimulation feels too weak?",
 ];
-
-// Synonym map for common variants
-const synonyms = {
-  made: "manufactured",
-  produced: "manufactured",
-  created: "manufactured",
-  built: "manufactured",
-  origin: "manufactured",
-  cost: "pricing",
-  pay: "pricing",
-  price: "pricing",
-  purchase: "pricing",
-  buy: "pricing",
-  amount: "pricing",
-};
 
 // Helper function to normalize text
 function normalize(text) {
   if (!text) return "";
-  let base = text
+  return text
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-
-  // Replace synonyms
-  let words = base.split(" ");
-  for (let i = 0; i < words.length; i++) {
-    if (synonyms[words[i]]) {
-      words[i] = synonyms[words[i]];
-    }
-  }
-  return words.join(" ");
 }
 
 // Simple stemmer
 function stem(w) {
   if (w.length <= 3) return w;
-  return w.replace(/(ing|ly|ed|er|es|s|ion)$/, "");
+  return w.replace(/(ing|ly|ed|er|es|s)$/, "");
 }
 
 // Calculate Levenshtein Distance to allow minor typos
@@ -763,12 +695,6 @@ function getSemanticScore(input, target) {
     "where",
     "when",
     "who",
-    "has",
-    "been",
-    "hold",
-    "us",
-    "u",
-    "s",
   ]);
   const getTokens = (str) =>
     normalize(str)
@@ -798,7 +724,7 @@ function getSemanticScore(input, target) {
         bestMatchScore = 1;
         bestMatchIdx = j;
         break;
-      } else if (w1.length >= 2 && w2.length >= 2) {
+      } else if (w1.length >= 3 && w2.length >= 3) {
         let dist = levenshteinDistance(w1, w2);
         if (dist <= 1) {
           if (0.8 > bestMatchScore) {
@@ -806,8 +732,8 @@ function getSemanticScore(input, target) {
             bestMatchIdx = j;
           }
         } else if (w1.includes(w2) || w2.includes(w1)) {
-          if (0.6 > bestMatchScore) {
-            bestMatchScore = 0.6;
+          if (0.5 > bestMatchScore) {
+            bestMatchScore = 0.5;
             bestMatchIdx = j;
           }
         }
@@ -824,10 +750,6 @@ function getSemanticScore(input, target) {
 
   let inputCoverage = intersection / tokens1.length;
   let finalScore = baseScore;
-
-  if (tokens1.length >= 2 && inputCoverage <= 0.5) {
-    finalScore *= 0.3; // Penalty
-  }
 
   return finalScore;
 }

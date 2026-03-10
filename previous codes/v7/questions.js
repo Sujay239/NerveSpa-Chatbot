@@ -639,8 +639,7 @@ const predefinedQuestions = [
   "What is Nerve Spa Vibe | Deep Tissue Vibrational Massager with Attachement Heads?",
   "What is Nerve Wave 2.5 Rd Clinical Grade Electrode?",
   "What is Nerve Wave by Nerve Spa - Clinical Nerve Spa Multi-Modality Treatment Device?",
-  "What is The Power Wrap - Ultra-High Powered LED COLD LASER?",
-  "What if the Knee Pro stimulation feels too weak?",
+  "What is The Power Wrap - Ultra-High Powered LED COLD LASER?"
 ];
 
 // Synonym map for common variants

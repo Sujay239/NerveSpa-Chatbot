@@ -1,0 +1,45 @@
+Q: What conditions can NerveSpa support?
+Expected: NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.
+Actual: NerveSpa is designed for neuropathy, arthritis, chronic pain, and circulation issues. Results vary by condition and adherence. Manuals: https://drive.google.com/file/d/1IEghxBOy0alvw3U4V9CDd7D4eulpxcgs/view?usp=sharing. [What results can I expect from using NerveSpa Footbath?][Can NerveSpa help with arthritis?][What improvements do patients report?]
+Reason: Only 3/8 key terms found (38%). Missing: chemotherapy-related, joint-related, peripheral, discomfort, fasciitis
+---
+Q: What is the NerveSpa Quake Plate?
+Expected: The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.
+Actual: The QuakePlate is a vibrational therapy platform designed to stimulate circulation, relieve pain, and support recovery through targeted vibration therapy. It offers both low frequency and high rpm frequency. [How is the QuakePlate used?][Who should not use the QuakePlate?][What outcomes are expected with the QuakePlate?]
+Reason: Only 3/8 key terms found (38%). Missing: nervespa, quake plate, extremities, irritated, increased
+---
+Q: Who should not use the Quake Plate?
+Expected: Patients with circulatory syndromes such as Raynaud’s disease, Buerger’s disease, peripheral vascular disease, vasospastic disorders, sickle cell anemia, hypercoagulable clotting disorders, local tissue infection, or potential wound-healing problems should not use the Quake Plate unless cleared by their provider. It should also not be used if you are pregnant or on a recent injury. Always review the CONTRAINDICATIONS and ELECTRICAL PRECAUTIONS sections in the Quake Plate User Manual and consult your clinic before use.
+Actual: Patients with pacemakers, seizure disorders, or uncontrolled cardiovascular conditions should not use the QuakePlate. Providers should screen before prescribing. [What outcomes are expected with the QuakePlate?]
+Reason: Only 3/11 key terms found (27%). Missing: quake plate, disease, contraindications, hypercoagulable, wound-healing...
+---
+Q: What outcomes are expected with the Knee Pro?
+Expected: Patients commonly report improved mobility, reduced discomfort, and better day-to-day function over consistent multi-month use. Individual outcomes vary, but long-term adherence is key. For an in-clinic perspective on patient results, see Dr. Perkins’ Knee Pro testimonial: https://youtu.be/mUzxul6TRfc?si=Gtv4vV9wVNWR5IHb
+Actual: Patients report reduced knee pain, improved flexibility, and greater mobility with consistent sessions. Outcomes vary depending on severity and adherence. [What outcomes are expected with the ShoulderPro?][What outcomes are expected with the Vibe?]
+Reason: Only 1/8 key terms found (13%). Missing: knee pro, multi-month, perspective, testimonial, discomfort...
+---
+Q: How is the Shoulder Pro used?
+Expected: Place the Shoulder Pro over the shoulder so the treatment area is fully covered, then secure the straps as shown in the Quick Start Guide. Connect it to the controller and follow your clinic’s instructions for session length and frequency, typically longer-duration sessions similar to other joint protocols. For placement diagrams and setup steps, refer to the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf
+Actual: The ShoulderPro is strapped securely around the shoulder and connected to the controller. Sessions are 1 hour long and used over a long duration treatment program of 6-9 months. [Who should not use the ShoulderPro?][What outcomes are expected with the ShoulderPro?]
+Reason: Only 4/12 key terms found (33%). Missing: shoulder pro, nervespa, quick, start, guide...
+---
+Q: Who should not use the Shoulder Pro?
+Expected: Patients with pacemakers, open wounds near the shoulder, or uncontrolled medical conditions should not use the Shoulder Pro. Providers should screen for contraindications before prescribing and patients should follow clinic-directed use only. For safety information, see the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf
+Actual: Patients with pacemakers, severe skin conditions, or open wounds near the shoulder should not use the ShoulderPro. Providers should evaluate safety before recommending. [What outcomes are expected with the ShoulderPro?]
+Reason: Only 3/9 key terms found (33%). Missing: shoulder pro, nervespa, contraindications, clinic-directed, uncontrolled...
+---
+Q: What outcomes are expected with the Shoulder Pro?
+Expected: When used consistently as directed, patients commonly report reduced shoulder discomfort, improved range of motion, and better day-to-day shoulder function over time. Individual results vary based on the condition and adherence to the program. Your clinic will guide expectations as part of your overall joint and mobility plan.
+Actual: Patients report reduced pain, increased shoulder mobility, and improved daily function with consistent use. Results vary depending on the individual’s condition. [What outcomes are expected with the Vibe?]
+Reason: Only 3/8 key terms found (38%). Missing: consistently, expectations, discomfort, day-to-day, adherence
+---
+Q: How often should the Quake Plate be used?
+Expected: The Quake Plate is commonly used once per session as part of the Neuropathy Program, often on a daily or near-daily basis. Use contributes toward the overall 60–90 uses recommended by the provider.
+Actual: Use 1–2× daily or per clinic protocol on non-irritated skin. Do not combine with water/electrotherapy sessions. Manual: https://drive.google.com/file/d/1BNgb7jAoSEezTWMbTTh5R7rr5xXs1b_n/view?usp=sharing. [How long is a QuakePlate session?][What is QuakePlate and what does it do?][How do I clean and maintain QuakePlate?]
+Reason: Only 0/7 key terms found (0%). Missing: quake plate, contributes, recommended, neuropathy, near-daily...
+---
+Q: What if the stimulation feels too weak?
+Expected: Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin
+Actual: Check connections, electrode placement, or device positioning. Follow provider guidance for proper setup and intensity.
+Reason: Only 1/5 key terms found (20%). Missing: comfortable, gradually, sensation, increase
+---

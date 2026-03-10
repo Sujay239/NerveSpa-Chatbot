@@ -1,5 +1,5 @@
 // Get the incoming question from the chat trigger
-const incomingQuestion = $input.first().json.query.chatInput;
+const incomingQuestion = "What if the stimulation feels too weak?";
 
 // Define your predefined questions
 const predefinedQuestions = [
@@ -849,13 +849,18 @@ for (const q of predefinedQuestions) {
   }
 }
 
-let outputValue = isMatch ? "0" : "1";
 
-// Return the output in n8n format
-return [
-  {
-    json: {
-      result: outputValue,
-    },
-  },
-];
+console.log("Input:", incomingQuestion);
+console.log("Threshold Lev:", thresholdLev);
+
+for (const q of predefinedQuestions) {
+  const qNorm = normalize(q);
+  const dist = levenshteinDistance(cleanIncoming, qNorm);
+  const semanticScore = getSemanticScore(incomingQuestion, q);
+  
+  if (dist <= thresholdLev || semanticScore >= 0.45) {
+    console.log('EARLY BREAK TRIGGERED BY:', q);
+    console.log('dist:', dist, 'semanticScore:', semanticScore);
+    break;
+  }
+}

@@ -3,7 +3,6 @@ const incomingQuestion = $input.first().json.query.chatInput;
 
 // Define your predefined questions
 const predefinedQuestions = [
-
   "youtube",
   "What is NerveSpa?",
   "What conditions and symptoms can NerveSpa support?",
@@ -640,7 +639,6 @@ const predefinedQuestions = [
   "What is Nerve Wave 2.5 Rd Clinical Grade Electrode?",
   "What is Nerve Wave by Nerve Spa - Clinical Nerve Spa Multi-Modality Treatment Device?",
   "What is The Power Wrap - Ultra-High Powered LED COLD LASER?",
-  "What if the Knee Pro stimulation feels too weak?",
 ];
 
 // Synonym map for common variants

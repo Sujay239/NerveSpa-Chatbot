@@ -1,10 +1,8 @@
-// Get the incoming question from the chat trigger
-const incomingQuestion = $input.first().json.query.chatInput;
+import re
 
-// Define your predefined questions
-const predefinedQuestions = [
-
-  "youtube",
+# === Candidate questions (plain ASCII quotes) ===
+CANDIDATE_QUESTIONS = [
+"youtube",
   "What is NerveSpa?",
   "What conditions and symptoms can NerveSpa support?",
   "How can my clinic order NerveSpa or get a demo?",
@@ -598,264 +596,177 @@ const predefinedQuestions = [
   "Are international certifications or markets planned for NerveSpa?",
   "Can clinics outside the U.S. request information or express interest?",
   "How does NerveSpa evaluate expansion into new regions or care settings?",
-  "What is (1pk) Effervescent Tablets?",
-  "What is Carbon Rubber Electrodes?",
-  "What is Epsom Salt - 8oz jar?",
-  "What is LAVENDER SCENTED EPSOM SALT - 8OZ JAR?",
-  "What is N1-Nerve+ Neuropathy Support?",
-  "What is NERVESPA SILVER CONDUCTIVE GLOVE - HAND GARMENT SYSTEM?",
-  "What is NERVESPA SILVER CONDUCTIVE SOCK - FOOT GARMENT SYSTEM?",
-  "What is NERVESPA PRO - 60 DAY SUPPLY PROGRAM?",
-  "What is NERVESPA PRO - 90 DAY SUPPLY PROGRAM?",
-  "What is NERVESPA PRO, HAND AND FOOT NEUROPATHY SYSTEM - 90 DAY SUPPLY PROGRAM - DUAL CHANNEL DEVICE?",
-  "What is Nerve & Neuropathy Cream by NerveSpa - Maximum Strength Relief?",
-  "What is Nerve & Neuropathy Support Kit (Includes: Blood Flow Drink powder, Neuropathy Capsules, Nerve ODF, Nerve Cream)?",
-  "What is Nerve Spa Foot bath Supply Kit?",
-  "What is Nerve Spa Performance diabetic Socks?",
-  "What is Nerve Spa performance Supplement?",
-  "What is NerveSpa Classic, Hand and Foot Pain Relief System - 10 DAY SUPPLY PROGRAM?",
-  "What is Replacement Charger cord for The NerveBeam cold laser?",
-  "What is Replacement Charger cord for The Quake Plate?",
-  "What is Replacement Charger for The NerveBeam LED Light Therapy Wrap?",
-  "What is Replacement Charger for the Nerve Spa Nerve Bath System?",
-  "What is Replacement lead wires for Nerve Spa?",
-  "What is The 90-Day Neuropathy Program?",
-  "What is The Blood Flow Super formula Drink Powder by Nerve Spa?",
-  "What is The NerveBeam Cold Laser?",
-  "What is The NerveBeam LED Light Therapy Wrap - Red & Infrared light therapy?",
-  "What is The Quake Plate Vibrational Massage Therapy?",
-  "What is Joint Heath Support Kit (Includes: Joint Drink Powder, OA Cream)?",
-  "What is Nerve Spa Knee Pro - Advanced OA/RA treatment Device - Size: Fits Small to Large?",
-  "What is Nerve Spa Knee Pro - Replacement Pads - 3 x VB35 and 3 x VBKnee?",
-  "What is Nerve Spa Shoulder Pro?",
-  "What is NerveSpa Knee Pro - 180 day supply kit?",
-  "What is NerveSpa Knee Pro Size Extender Straps (1 pair) _ XL-XXL?",
-  "What is Osteoarthritis and Rheumatoid Arthritis Cream?",
-  "What is Roll On Pain Relief by Nerve Target - Roll On Muscle Pain Reliever, Back Pain, Arthritis?",
-  "What is Super Flex Joint Formula Drink Powder by NerveSpa - Joint Support Supplement?",
-  "What is ImmunoGut Super Formula: Essential Immunity & Gut Support | Vitamin D, Zinc, Beta Glucan | Detox & Stress Relief | 480g Powder, 60 Servings?",
-  "What is N1 - Gut Support with probiotics?",
-  "What is N1 - Skinny Blend?",
-  "What is Nerve Spa Vibe | Deep Tissue Vibrational Massager with Attachement Heads?",
-  "What is Nerve Wave 2.5 Rd Clinical Grade Electrode?",
-  "What is Nerve Wave by Nerve Spa - Clinical Nerve Spa Multi-Modality Treatment Device?",
-  "What is The Power Wrap - Ultra-High Powered LED COLD LASER?",
-  "What if the Knee Pro stimulation feels too weak?",
-];
+]
 
-// Synonym map for common variants
-const synonyms = {
-  made: "manufactured",
-  produced: "manufactured",
-  created: "manufactured",
-  built: "manufactured",
-  origin: "manufactured",
-  cost: "pricing",
-  pay: "pricing",
-  price: "pricing",
-  purchase: "pricing",
-  buy: "pricing",
-  amount: "pricing",
-};
+# === Helpers ===
+def to_python(value):
+    """Convert JsProxy-like objects to native Python when possible."""
+    try:
+        return value.to_py()
+    except Exception:
+        return value
 
-// Helper function to normalize text
-function normalize(text) {
-  if (!text) return "";
-  let base = text
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+_word_regex = re.compile(r"\b[\w']+\b", re.UNICODE)
 
-  // Replace synonyms
-  let words = base.split(" ");
-  for (let i = 0; i < words.length; i++) {
-    if (synonyms[words[i]]) {
-      words[i] = synonyms[words[i]];
-    }
-  }
-  return words.join(" ");
-}
+def words_set(s):
+    """Return normalized set of words from a string (lowercase, alnum + apostrophe)."""
+    if not s:
+        return set()
+    s = str(s).lower()
+    return {w for w in _word_regex.findall(s) if len(w) > 0}
 
-// Simple stemmer
-function stem(w) {
-  if (w.length <= 3) return w;
-  return w.replace(/(ing|ly|ed|er|es|s|ion)$/, "");
-}
+def normalize_text_for_compare(s):
+    """Lowercase and strip surrounding punctuation/whitespace for simple comparisons."""
+    if s is None:
+        return ""
+    s = str(s).strip().lower()
+    s = re.sub(r'^[\W_]+|[\W_]+$', '', s)
+    return s
 
-// Calculate Levenshtein Distance to allow minor typos
-function levenshteinDistance(s, t) {
-  if (!s.length) return t.length;
-  if (!t.length) return s.length;
-  const arr = [];
-  for (let i = 0; i <= t.length; i++) {
-    arr[i] = [i];
-    for (let j = 1; j <= s.length; j++) {
-      arr[i][j] =
-        i === 0
-          ? j
-          : Math.min(
-              arr[i - 1][j] + 1,
-              arr[i][j - 1] + 1,
-              arr[i - 1][j - 1] + (s[j - 1] === t[i - 1] ? 0 : 1),
-            );
-    }
-  }
-  return arr[t.length][s.length];
-}
+def existing_bracketed_questions(text):
+    """Return a set of existing bracketed questions normalized for duplicate checking."""
+    if text is None:
+        return set()
+    found = re.findall(r'\[([^\]]+)\]', str(text))
+    return {normalize_text_for_compare(q) for q in found}
 
-// Calculate semantic/token matching score using Sorensen-Dice coefficient
-function getSemanticScore(input, target) {
-  const stopWords = new Set([
-    "a",
-    "an",
-    "and",
-    "are",
-    "as",
-    "at",
-    "be",
-    "but",
-    "by",
-    "for",
-    "if",
-    "in",
-    "into",
-    "is",
-    "it",
-    "no",
-    "of",
-    "on",
-    "or",
-    "such",
-    "that",
-    "the",
-    "their",
-    "then",
-    "there",
-    "these",
-    "they",
-    "this",
-    "to",
-    "was",
-    "will",
-    "with",
-    "do",
-    "does",
-    "did",
-    "can",
-    "could",
-    "should",
-    "would",
-    "i",
-    "you",
-    "he",
-    "she",
-    "we",
-    "my",
-    "your",
-    "his",
-    "her",
-    "our",
-    "how",
-    "what",
-    "why",
-    "where",
-    "when",
-    "who",
-    "has",
-    "been",
-    "hold",
-    "us",
-    "u",
-    "s",
-  ]);
-  const getTokens = (str) =>
-    normalize(str)
-      .split(" ")
-      .filter((w) => w.length > 0 && !stopWords.has(w))
-      .map(stem);
+def score_candidate(candidate_q, incoming_words):
+    cand_words = words_set(candidate_q)
+    overlap = cand_words & incoming_words
+    return len(overlap), overlap
 
-  const tokens1 = getTokens(input);
-  const tokens2 = getTokens(target);
+# === Get chatInput from the FIRST input item explicitly ===
+chat_input_global = None
+try:
+    first_item = items[0] if items and isinstance(items, list) else {}
+    chat_input_global = to_python(first_item.get("json", {}) .get("query", {}) .get("chatInput"))
+except Exception:
+    chat_input_global = None
 
-  if (tokens1.length === 0 || tokens2.length === 0) return 0;
+# Normalized forms of chat_input for robust matching
+chat_input_words = words_set(chat_input_global)
+chat_input_norm = normalize_text_for_compare(chat_input_global) if chat_input_global else None
 
-  let intersection = 0;
-  const matched2 = new Set();
+# If chat_input exactly matches any candidate by word-set equality, exclude that candidate
+excluded_by_chat_input = set()
+if chat_input_words:
+    for c in CANDIDATE_QUESTIONS:
+        if words_set(c) == chat_input_words or normalize_text_for_compare(c) == chat_input_norm:
+            excluded_by_chat_input.add(normalize_text_for_compare(c))
 
-  for (let i = 0; i < tokens1.length; i++) {
-    let bestMatchScore = 0;
-    let bestMatchIdx = -1;
-    let w1 = tokens1[i];
+# === Main processing ===
+output_items = []
 
-    for (let j = 0; j < tokens2.length; j++) {
-      if (matched2.has(j)) continue;
+for item in items:
+    incoming_json = to_python(item.get("json", {}) or {})
 
-      let w2 = tokens2[j];
+    # current output text
+    raw_output = to_python(incoming_json.get("output", ""))
 
-      if (w1 === w2) {
-        bestMatchScore = 1;
-        bestMatchIdx = j;
-        break;
-      } else if (w1.length >= 2 && w2.length >= 2) {
-        let dist = levenshteinDistance(w1, w2);
-        if (dist <= 1) {
-          if (0.8 > bestMatchScore) {
-            bestMatchScore = 0.8;
-            bestMatchIdx = j;
-          }
-        } else if (w1.includes(w2) || w2.includes(w1)) {
-          if (0.6 > bestMatchScore) {
-            bestMatchScore = 0.6;
-            bestMatchIdx = j;
-          }
-        }
-      }
-    }
+    # Remove chatInput occurrences from working_text ONLY if it exactly matched a candidate (to avoid bias).
+    working_text = str(raw_output) if raw_output is not None else ""
+    if chat_input_global and normalize_text_for_compare(chat_input_global) in excluded_by_chat_input:
+        try:
+            escaped = re.escape(str(chat_input_global))
+            working_text = re.sub(escaped, "", working_text, flags=re.IGNORECASE)
+        except Exception:
+            working_text = working_text.replace(str(chat_input_global), "")
 
-    if (bestMatchIdx !== -1) {
-      intersection += bestMatchScore;
-      matched2.add(bestMatchIdx);
-    }
-  }
+    # Prepare sets for matching and duplicate avoidance
+    incoming_words = words_set(working_text)
+    existing_qs_norm = existing_bracketed_questions(raw_output)
 
-  let baseScore = (2 * intersection) / (tokens1.length + tokens2.length);
+    # Score candidates while skipping existing/excluded ones
+    scored = []
+    for q in CANDIDATE_QUESTIONS:
+        q_norm = normalize_text_for_compare(q)
+        if q_norm in existing_qs_norm:
+            continue
+        if q_norm in excluded_by_chat_input:
+            continue
+        s, overlap = score_candidate(q, incoming_words)
+        scored.append((s, q, overlap))
 
-  let inputCoverage = intersection / tokens1.length;
-  let finalScore = baseScore;
+    # Select up to 4 with score >= 3 first (priority)
+    high_match = [(s, q, ov) for s, q, ov in scored if s >= 3]
+    high_match.sort(key=lambda x: (-x[0], CANDIDATE_QUESTIONS.index(x[1])))
+    selected = []
+    selected_norm = set()
+    for s, q, ov in high_match:
+        if len(selected) >= 3:
+            break
+        qn = normalize_text_for_compare(q)
+        if qn in selected_norm:
+            continue
+        # Extra safety: never select if it matches chat_input by either measure
+        if chat_input_global and (words_set(q) == chat_input_words or qn == chat_input_norm):
+            continue
+        selected.append(q)
+        selected_norm.add(qn)
 
-  if (tokens1.length >= 2 && inputCoverage <= 0.5) {
-    finalScore *= 0.3; // Penalty
-  }
+    # Fill remaining slots from remaining candidates by highest score (even if < 3)
+    if len(selected) < 3:
+        remaining = [(s, q, ov) for s, q, ov in scored if normalize_text_for_compare(q) not in selected_norm]
+        remaining.sort(key=lambda x: (-x[0], CANDIDATE_QUESTIONS.index(x[1])))
+        for s, q, ov in remaining:
+            if len(selected) >= 3:
+                break
+            qn = normalize_text_for_compare(q)
+            if qn in selected_norm:
+                continue
+            if chat_input_global and (words_set(q) == chat_input_words or qn == chat_input_norm):
+                continue
+            selected.append(q)
+            selected_norm.add(qn)
 
-  return finalScore;
-}
+    # Final fallback: fill from full candidate list (avoid existing/excluded/duplicates)
+    if len(selected) < 3:
+        for q in CANDIDATE_QUESTIONS:
+            qn = normalize_text_for_compare(q)
+            if qn in existing_qs_norm or qn in excluded_by_chat_input or qn in selected_norm:
+                continue
+            if chat_input_global and (words_set(q) == chat_input_words or qn == chat_input_norm):
+                continue
+            selected.append(q)
+            selected_norm.add(qn)
+            if len(selected) >= 3:
+                break
 
-// Normalize the incoming input
-const cleanIncoming = normalize(incomingQuestion);
-const thresholdLev = Math.max(3, Math.floor(cleanIncoming.length * 0.15));
+    # Build bracketed strings ensuring we don't duplicate existing ones and not include excluded candidate
+    to_append = []
+    for q in selected:
+        qn = normalize_text_for_compare(q)
+        if qn in existing_qs_norm:
+            continue
+        if chat_input_global and (words_set(q) == chat_input_words or qn == chat_input_norm):
+            continue
+        to_append.append("[" + q + "]")
 
-let isMatch = false;
+    to_append = to_append[:3]  # now append 4 questions
 
-for (const q of predefinedQuestions) {
-  const qNorm = normalize(q);
-  const dist = levenshteinDistance(cleanIncoming, qNorm);
-  const semanticScore = getSemanticScore(incomingQuestion, q);
+    # Append them to original text preserving format
+    original_text = str(raw_output).rstrip()
+    if not to_append:
+        new_text = original_text
+    else:
+        trailing_brackets_match = re.search(r'(\s*(\[[^\]]+\]\s*)+)\s*$', original_text, re.DOTALL)
+        if trailing_brackets_match:
+            new_text = original_text + ''.join(to_append)
+        else:
+            new_text = original_text + "\n\n" + ''.join(to_append)
 
-  if (dist <= thresholdLev || semanticScore >= 0.45) {
-    isMatch = true;
-    break;
-  }
-}
+    # Build pure-Python json for return
+    new_json = {}
+    for k, v in incoming_json.items():
+        new_json[k] = to_python(v)
+    new_json["output"] = new_text
 
-let outputValue = isMatch ? "0" : "1";
+    # Optional debug metadata (uncomment to include in returned item for testing)
+    # new_json["_chat_input_global"] = chat_input_global
+    # new_json["_excluded_by_chat_input"] = list(excluded_by_chat_input)
+    # new_json["_selected_questions"] = selected
 
-// Return the output in n8n format
-return [
-  {
-    json: {
-      result: outputValue,
-    },
-  },
-];
+    output_items.append({"json": new_json})
+
+# REQUIRED by n8n: return list of dicts
+return output_items

@@ -13,11 +13,6 @@ const qaPairs = [
       "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, poor circulation, numbness, tingling, burning, stiffness, balance issues, cramps, cold feet, and general nerve discomfort.  As welll as arthritis (knee, shoulder, OA/RA) and other joint related ailments through our joint therapy devices.",
   },
   {
-    question: "What conditions can NerveSpa support?",
-    answer:
-      "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-  },
-  {
     question: "How can my clinic order NerveSpa or get a demo?",
     answer:
       "Clinics can open a provider account with NerveSpa to place orders or request demos. Starter kits and bundles are available. Patients cannot purchase directly but may obtain consumables and replacment parts through approved channels such as DoctorStore.com.\n[How do I set up a provider account?][How do clinics contact NerveSpa for support?]",
@@ -91,7 +86,7 @@ const qaPairs = [
   {
     question: "What is the NerveSpa QuakePlate?",
     answer:
-      "The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.",
+      "The QuakePlate is a vibrational therapy platform designed to stimulate circulation, relieve pain, and support recovery through targeted vibration therapy.  It offers both low frequency and high rpm frequency.\n[How is the QuakePlate used?][Who should not use the QuakePlate?][What outcomes are expected with the QuakePlate?]",
   },
   {
     question: "How is the QuakePlate used?",
@@ -101,7 +96,7 @@ const qaPairs = [
   {
     question: "Who should not use the QuakePlate?",
     answer:
-      "Patients with circulatory syndromes such as Raynaud’s disease, Buerger’s disease, peripheral vascular disease, vasospastic disorders, sickle cell anemia, hypercoagulable clotting disorders, local tissue infection, or potential wound-healing problems should not use the Quake Plate unless cleared by their provider. It should also not be used if you are pregnant or on a recent injury. Always review the CONTRAINDICATIONS and ELECTRICAL PRECAUTIONS sections in the Quake Plate User Manual and consult your clinic before use.",
+      "Patients with pacemakers, seizure disorders, or uncontrolled cardiovascular conditions should not use the QuakePlate. Providers should screen before prescribing.\n[What outcomes are expected with the QuakePlate?]",
   },
   {
     question: "What outcomes are expected with the QuakePlate?",
@@ -126,7 +121,7 @@ const qaPairs = [
   {
     question: "What outcomes are expected with the KneePro?",
     answer:
-      "Patients commonly report improved mobility, reduced discomfort, and better day-to-day function over consistent multi-month use. Individual outcomes vary, but long-term adherence is key. For an in-clinic perspective on patient results, see Dr. Perkins’ Knee Pro testimonial: https://youtu.be/mUzxul6TRfc?si=Gtv4vV9wVNWR5IHb",
+      "Patients report reduced knee pain, improved flexibility, and greater mobility with consistent sessions. Outcomes vary depending on severity and adherence.\n[What outcomes are expected with the ShoulderPro?][What outcomes are expected with the Vibe?]",
   },
   {
     question: "What is the NerveSpa ShoulderPro?",
@@ -136,17 +131,17 @@ const qaPairs = [
   {
     question: "How is the ShoulderPro used?",
     answer:
-      "Place the Shoulder Pro over the shoulder so the treatment area is fully covered, then secure the straps as shown in the Quick Start Guide. Connect it to the controller and follow your clinic’s instructions for session length and frequency, typically longer-duration sessions similar to other joint protocols. For placement diagrams and setup steps, refer to the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "The ShoulderPro is strapped securely around the shoulder and connected to the controller. Sessions are 1 hour long and used over a long duration treatment program of 6-9 months.\n[Who should not use the ShoulderPro?][What outcomes are expected with the ShoulderPro?]",
   },
   {
     question: "Who should not use the ShoulderPro?",
     answer:
-      "Patients with pacemakers, open wounds near the shoulder, or uncontrolled medical conditions should not use the Shoulder Pro. Providers should screen for contraindications before prescribing and patients should follow clinic-directed use only. For safety information, see the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "Patients with pacemakers, severe skin conditions, or open wounds near the shoulder should not use the ShoulderPro. Providers should evaluate safety before recommending.\n[What outcomes are expected with the ShoulderPro?]",
   },
   {
     question: "What outcomes are expected with the ShoulderPro?",
     answer:
-      "When used consistently as directed, patients commonly report reduced shoulder discomfort, improved range of motion, and better day-to-day shoulder function over time. Individual results vary based on the condition and adherence to the program. Your clinic will guide expectations as part of your overall joint and mobility plan.",
+      "Patients report reduced pain, increased shoulder mobility, and improved daily function with consistent use. Results vary depending on the individual’s condition.\n[What outcomes are expected with the Vibe?]",
   },
   {
     question: "What is the NerveSpa Vibe?",
@@ -746,7 +741,7 @@ const qaPairs = [
   {
     question: "What is QuakePlate and what does it do?",
     answer:
-      "The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.",
+      "A deep-tissue vibration/massage platform for feet/lower extremities to improve mobility, relieve pain, and support circulation. Manual: https://drive.google.com/file/d/1BNgb7jAoSEezTWMbTTh5R7rr5xXs1b_n/view?usp=sharing.\n[How do I use QuakePlate safely?][Who should NOT use QuakePlate?][How long is a QuakePlate session?]",
   },
   {
     question: "How do I use QuakePlate safely?",
@@ -756,7 +751,7 @@ const qaPairs = [
   {
     question: "Who should NOT use QuakePlate?",
     answer:
-      "Patients with circulatory syndromes such as Raynaud’s disease, Buerger’s disease, peripheral vascular disease, vasospastic disorders, sickle cell anemia, hypercoagulable clotting disorders, local tissue infection, or potential wound-healing problems should not use the Quake Plate unless cleared by their provider. It should also not be used if you are pregnant or on a recent injury. Always review the CONTRAINDICATIONS and ELECTRICAL PRECAUTIONS sections in the Quake Plate User Manual and consult your clinic before use.",
+      "Avoid if pregnant, with recent injuries, local infections, or circulatory syndromes (e.g., Raynaud’s, PVD, sickle cell). Manual: https://drive.google.com/file/d/1BNgb7jAoSEezTWMbTTh5R7rr5xXs1b_n/view?usp=sharing.\n[How do I use QuakePlate safely?][How long is a QuakePlate session?]",
   },
   {
     question: "What is NerveSpa Knee Pro?",
@@ -806,7 +801,7 @@ const qaPairs = [
   {
     question: "Who should NOT use Shoulder Pro?",
     answer:
-      "Patients with pacemakers, open wounds near the shoulder, or uncontrolled medical conditions should not use the Shoulder Pro. Providers should screen for contraindications before prescribing and patients should follow clinic-directed use only. For safety information, see the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "Contraindications include pacemakers/serious arrhythmia, pregnancy (especially abdominal), undiagnosed pain syndromes, epilepsy (consult doctor). Use only under physician supervision. Quick Start: https://drive.google.com/file/d/1QwjkbWJhezrzXTys7ha8bHr52qRlPJcF/view?usp=sharing.\n[What is NerveSpa Shoulder Pro?][How do I set up Shoulder Pro?]",
   },
   {
     question: "Can children use NerveSpa products?",
@@ -1256,7 +1251,7 @@ const qaPairs = [
   {
     question: "How often should QuakePlate be used?",
     answer:
-      "The Quake Plate is commonly used once per session as part of the Neuropathy Program, often on a daily or near-daily basis. Use contributes toward the overall 60–90 uses recommended by the provider.",
+      "Use 1–2× daily or per clinic protocol on non-irritated skin. Do not combine with water/electrotherapy sessions. Manual: https://drive.google.com/file/d/1BNgb7jAoSEezTWMbTTh5R7rr5xXs1b_n/view?usp=sharing.\n[How long is a QuakePlate session?][What is QuakePlate and what does it do?][How do I clean and maintain QuakePlate?]",
   },
   {
     question: "How often should the LED Wrap be used?",
@@ -1788,7 +1783,7 @@ const qaPairs = [
   {
     question: "How long and how often should I use the Quake Plate?",
     answer:
-      "The Quake Plate is commonly used once per session as part of the Neuropathy Program, often on a daily or near-daily basis. Use contributes toward the overall 60–90 uses recommended by the provider.",
+      "Session length and weekly frequency for the Quake Plate should follow your clinic’s specific protocol and the guidance in the Quake Plate User Manual. Your provider will determine how long each session should last and how often you should use it based on your condition, goals, and overall program. Do not exceed the usage recommended by your clinic.",
   },
   {
     question: "Who should not use the Quake Plate?",
@@ -2532,7 +2527,7 @@ const qaPairs = [
   {
     question: "What if stimulation feels too weak?",
     answer:
-      "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin.",
+      "Check connections, electrode placement, or device positioning. Follow provider guidance for proper setup and intensity.",
   },
   {
     question: "Can I continue treatment if I experience skin irritation?",
@@ -2842,11 +2837,6 @@ const qaPairs = [
       "Confirm the controller is charged and all connections are secure. Press the power button firmly to start the session.",
   },
   {
-    question: "What if the Knee Pro stimulation feels too strong?",
-    answer:
-      "Lower the intensity until the sensation is mild and comfortable. Knee Pro sessions should never be painful.",
-  },
-  {
     question: "What if the stimulation feels too strong?",
     answer:
       "Lower the intensity until the sensation is mild and comfortable. Knee Pro sessions should never be painful.",
@@ -3032,48 +3022,16 @@ const qaPairs = [
 ];
 
 // Default output
-let outputValue =
-  "Sorry, I couldn't find a relevant answer for your question. Please try a different question or contact support directly at support@nervespa.com";
-
-// Synonym map for common variants
-const synonyms = {
-  made: "manufactured",
-  produced: "manufactured",
-  created: "manufactured",
-  built: "manufactured",
-  origin: "manufactured",
-  cost: "pricing",
-  pay: "pricing",
-  price: "pricing",
-  purchase: "pricing",
-  buy: "pricing",
-  amount: "pricing",
-};
+let outputValue = "No match";
 
 // Helper function to normalize text for comparison
 function normalize(text) {
   if (!text) return "";
-  let base = text
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
+  return text
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-
-  // Replace synonyms
-  let words = base.split(" ");
-  for (let i = 0; i < words.length; i++) {
-    if (synonyms[words[i]]) {
-      words[i] = synonyms[words[i]];
-    }
-  }
-  return words.join(" ");
-}
-
-// Simple stemmer
-function stem(w) {
-  if (w.length <= 3) return w;
-  return w.replace(/(ing|ly|ed|er|es|s|ion)$/, "");
 }
 
 // Calculate Levenshtein Distance to allow minor typos
@@ -3116,6 +3074,7 @@ function getSemanticScore(input, target) {
     "is",
     "it",
     "no",
+    "not",
     "of",
     "on",
     "or",
@@ -3132,6 +3091,12 @@ function getSemanticScore(input, target) {
     "was",
     "will",
     "with",
+    "how",
+    "what",
+    "why",
+    "where",
+    "when",
+    "who",
     "do",
     "does",
     "did",
@@ -3149,79 +3114,35 @@ function getSemanticScore(input, target) {
     "his",
     "her",
     "our",
-    "how",
-    "what",
-    "why",
-    "where",
-    "when",
-    "who",
-    "has",
-    "been",
-    "hold",
-    "us",
-    "u",
-    "s",
   ]);
   const getTokens = (str) =>
     normalize(str)
       .split(" ")
-      .filter((w) => w.length > 0 && !stopWords.has(w))
-      .map(stem);
+      .filter((w) => w.length > 0 && !stopWords.has(w));
 
-  const tokens1 = getTokens(input);
-  const tokens2 = getTokens(target);
+  const set1 = new Set(getTokens(input));
+  const set2 = new Set(getTokens(target));
 
-  if (tokens1.length === 0 || tokens2.length === 0) return 0;
+  if (set1.size === 0 || set2.size === 0) return 0;
 
   let intersection = 0;
-  const matched2 = new Set();
-
-  for (let i = 0; i < tokens1.length; i++) {
-    let bestMatchScore = 0;
-    let bestMatchIdx = -1;
-    let w1 = tokens1[i];
-
-    for (let j = 0; j < tokens2.length; j++) {
-      if (matched2.has(j)) continue;
-
-      let w2 = tokens2[j];
-
+  for (let w1 of set1) {
+    for (let w2 of set2) {
       if (w1 === w2) {
-        bestMatchScore = 1;
-        bestMatchIdx = j;
+        intersection++;
         break;
-      } else if (w1.length >= 2 && w2.length >= 2) {
-        let dist = levenshteinDistance(w1, w2);
-        if (dist <= 1) {
-          if (0.8 > bestMatchScore) {
-            bestMatchScore = 0.8;
-            bestMatchIdx = j;
-          }
-        } else if (w1.includes(w2) || w2.includes(w1)) {
-          if (0.6 > bestMatchScore) {
-            bestMatchScore = 0.6;
-            bestMatchIdx = j;
-          }
-        }
+      } else if (
+        w1.length >= 4 &&
+        w2.length >= 4 &&
+        (w1.includes(w2) || w2.includes(w1) || levenshteinDistance(w1, w2) <= 1)
+      ) {
+        intersection++;
+        break;
       }
     }
-
-    if (bestMatchIdx !== -1) {
-      intersection += bestMatchScore;
-      matched2.add(bestMatchIdx);
-    }
   }
 
-  let baseScore = (2 * intersection) / (tokens1.length + tokens2.length);
-
-  let inputCoverage = intersection / tokens1.length;
-  let finalScore = baseScore;
-
-  if (tokens1.length >= 2 && inputCoverage <= 0.5) {
-    finalScore *= 0.3; // Penalty
-  }
-
-  return finalScore;
+  return (2 * intersection) / (set1.size + set2.size);
 }
 
 // Normalize the incoming question once
@@ -3231,266 +3152,19 @@ const thresholdLev = Math.max(3, Math.floor(cleanIncoming.length * 0.15));
 let bestMatch = null;
 let bestScore = -1;
 
-// Injecting new products dynamically
-qaPairs.push(
-  ...[
-    {
-      question: "What is (1pk) Effervescent Tablets?",
-      answer:
-        "These effervescent tablets are designed to provide support for nerve and neuropathy issues. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/(1pk)-effervescent-tablets-19037?pa=1",
-    },
-    {
-      question: "What is Carbon Rubber Electrodes?",
-      answer:
-        "Clinical-grade carbon rubber electrodes used for TENS or similar electrotherapy devices. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/carbon-rubber-electrodes-19030?pa=1",
-    },
-    {
-      question: "What is Epsom Salt - 8oz jar?",
-      answer:
-        "A jar of traditional Epsom salt, often used for foot soaks to help soothe discomfort. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/epsom-salt-8oz-jar-19038?pa=1",
-    },
-    {
-      question: "What is LAVENDER SCENTED EPSOM SALT - 8OZ JAR?",
-      answer:
-        "Epsom salt infused with a relaxing lavender scent for an enhanced foot bath experience. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/lavender-scented-epsom-salt-8oz-jar-19435?pa=1",
-    },
-    {
-      question: "What is N1-Nerve+ Neuropathy Support?",
-      answer:
-        "A dedicated supplement designed to provide specialized support for nerve and neuropathy health. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/n1-nerve+-neuropathy-support-19489?pa=1",
-    },
-    {
-      question:
-        "What is NERVESPA SILVER CONDUCTIVE GLOVE - HAND GARMENT SYSTEM?",
-      answer:
-        "A conductive glove system designed to deliver electrotherapy relief to the hands. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-silver-conductive-glove-hand-garment-system-19476?pa=1",
-    },
-    {
-      question:
-        "What is NERVESPA SILVER CONDUCTIVE SOCK - FOOT GARMENT SYSTEM?",
-      answer:
-        "A conductive sock system designed to deliver electrotherapy relief to the feet. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-silver-conductive-sock-foot-garment-system-19487?pa=1",
-    },
-    {
-      question: "What is NERVESPA PRO - 60 DAY SUPPLY PROGRAM?",
-      answer:
-        "A comprehensive 60-day supply program for the NerveSpa Pro system. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-pro-60-day-supply-program-19459?pa=1",
-    },
-    {
-      question: "What is NERVESPA PRO - 90 DAY SUPPLY PROGRAM?",
-      answer:
-        "A comprehensive 90-day supply program for the NerveSpa Pro system. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-pro-90-day-supply-program-18936?pa=1",
-    },
-    {
-      question:
-        "What is NERVESPA PRO, HAND AND FOOT NEUROPATHY SYSTEM - 90 DAY SUPPLY PROGRAM - DUAL CHANNEL DEVICE?",
-      answer:
-        "A complete dual-channel system for hand and foot neuropathy treatment, including a 90-day supply. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-pro-hand-and-foot-neuropathy-system-90-day-supply-program-dual-channel-device-19671?pa=1",
-    },
-    {
-      question:
-        "What is Nerve & Neuropathy Cream by NerveSpa - Maximum Strength Relief..?",
-      answer:
-        "A maximum strength topical cream with L-Arginine, B6, and Menthol for pain relief and improved circulation in feet, hands, and legs. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-&-neuropathy-cream-by-nervespa-maximum-strength-relief-for-foot-hands-legs-toes-includes-7grams-of-larginine-vitamin-b6-menthol-aloe-scientifically-developed-to-improve-blood-circulation-and-relieve-pain-2.82oz-19194?pa=1",
-    },
-    {
-      question:
-        "What is Nerve & Neuropathy Support Kit (Includes: Blood Flow Drink powder, Neuropathy Capsules, Nerve ODF, Nerve Cream)?",
-      answer:
-        "A complete kit combining supplements and cream for comprehensive nerve and neuropathy support. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-&-neuropathy-support-kit-(includes:-blood-flow-drink-powder-neuropathy-capsules-nerve-odf-nerve-cream)-19635?pa=1",
-    },
-    {
-      question: "What is Nerve Spa Foot bath Supply Kit?",
-      answer:
-        "A convenient supply kit for use with the Nerve Spa foot bath system. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-spa-foot-bath-supply-kit-18934?pa=1",
-    },
-    {
-      question: "What is Nerve Spa Performance diabetic Socks?",
-      answer:
-        "Specialized diabetic socks designed for comfort and performance (available in Small and Large). You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-spa-performance-diabetic-socks-18935?pa=1",
-    },
-    {
-      question: "What is Nerve Spa performance Supplement?",
-      answer:
-        "A performance-focused dietary supplement to support nerve function. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-spa-performance-supplement-18933?pa=1",
-    },
-    {
-      question:
-        "What is NerveSpa Classic, Hand and Foot Pain Relief System - 10 DAY SUPPLY PROGRAM?",
-      answer:
-        "A 10-day supply program for the NerveSpa Classic hand and foot pain relief system. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-classic-hand-and-foot-pain-relief-system-10-day-supply-program-18883?pa=1",
-    },
-    {
-      question:
-        "What is Replacement Charger cord for The NerveBeam cold laser?",
-      answer:
-        "A replacement charging cord for the NerveBeam Cold Laser device. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/replacement-charger-cord-for-the-nervebeam-cold-laser-19903?pa=1",
-    },
-    {
-      question: "What is Replacement Charger cord for The Quake Plate?",
-      answer:
-        "The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.",
-    },
-    {
-      question:
-        "What is Replacement Charger for The NerveBeam LED Light Therapy Wrap?",
-      answer:
-        "A replacement charger for the NerveBeam LED Light Therapy Wrap device. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/replacement-charger-for-the-nervebeam-led-light-therapy-wrap-19887?pa=1",
-    },
-    {
-      question:
-        "What is Replacement Charger for the Nerve Spa Nerve Bath System?",
-      answer:
-        "A replacement charger for the Nerve Spa Nerve Bath System. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/replacement-charger-for-the-nerve-spa-nerve-bath-system.-19460?pa=1",
-    },
-    {
-      question: "What is Replacement lead wires for Nerve Spa?",
-      answer:
-        "Replacement wires for connecting electrodes to the Nerve Spa devices. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/replacement-lead-wires-for-nerve-spa-19562?pa=1",
-    },
-    {
-      question: "What is The 90-Day Neuropathy Program?",
-      answer:
-        "A complete 90-day program designed to manage and support neuropathy. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/the-90-day-neuropathy-program-19044?pa=1",
-    },
-    {
-      question:
-        "What is The Blood Flow Super formula Drink Powder by Nerve Spa?",
-      answer:
-        "A drink powder formulated to support and improve healthy blood flow. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/the-blood-flow-super-formula-drink-powder-by-nerve-spa-19483?pa=1",
-    },
-    {
-      question: "What is The NerveBeam Cold Laser?",
-      answer:
-        "A cold laser device intended for therapeutic use in relieving pain (available in White). You can find it here: https://nervespa.com/products/nerve-&-neuropathy/the-nervebeam-cold-laser-18986?pa=1",
-    },
-    {
-      question:
-        "What is The NerveBeam LED Light Therapy Wrap - Red & Infrared light therapy?",
-      answer:
-        "An LED light therapy wrap utilizing red and infrared light for therapeutic relief (available in single and pair options). You can find it here: https://nervespa.com/products/nerve-&-neuropathy/the-nervebeam-led-light-therapy-wrap-red-&-infrared-light-therapy-18990?pa=1",
-    },
-    {
-      question: "What is The Quake Plate Vibrational Massage Therapy?",
-      answer:
-        "The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.",
-    },
-    {
-      question:
-        "What is Joint Heath Support Kit (Includes: Joint Drink Powder, OA Cream)?",
-      answer:
-        "A kit that combines a joint drink powder and an Osteoarthritis (OA) cream for comprehensive joint support. You can find it here: https://nervespa.com/products/joint-&-mobility/joint-heath-support-kit-(includes:-joint-drink-powder-oa-cream)-19636?pa=1",
-    },
-    {
-      question:
-        "What is Nerve Spa Knee Pro - Advanced OA/RA treatment Device - Size: Fits Small to Large?",
-      answer:
-        "An advanced device for the treatment of Osteoarthritis (OA) and Rheumatoid Arthritis (RA) in the knee (also available in a 90-day supply kit). You can find it here: https://nervespa.com/products/joint-&-mobility/nerve-spa-knee-pro-advanced-oara-treatment-device-size:-fits-small-to-large-19728?pa=1",
-    },
-    {
-      question:
-        "What is Nerve Spa Knee Pro - Replacement Pads - 3 x VB35 and 3 x VBKnee?",
-      answer:
-        "Replacement electrode pads for the Nerve Spa Knee Pro device. You can find it here: https://nervespa.com/products/joint-&-mobility/nerve-spa-knee-pro-replacement-pads-3-x-vb35-and-3-x-vbknee-19647?pa=1",
-    },
-    {
-      question: "What is Nerve Spa Shoulder Pro?",
-      answer:
-        "A device designed for therapeutic support and treatment for the shoulder joint. You can find it here: https://nervespa.com/products/joint-&-mobility/nerve-spa-shoulder-pro-19760?pa=1",
-    },
-    {
-      question: "What is NerveSpa Knee Pro - 180 day supply kit?",
-      answer:
-        "A comprehensive 180-day supply kit for the NerveSpa Knee Pro system. You can find it here: https://nervespa.com/products/joint-&-mobility/nervespa-knee-pro-180-day-supply-kit-19729?pa=1",
-    },
-    {
-      question:
-        "What is NerveSpa Knee Pro Size Extender Straps (1 pair) _ XL-XXL?",
-      answer:
-        "Extender straps to help fit the NerveSpa Knee Pro device on larger sizes. You can find it here: https://nervespa.com/products/joint-&-mobility/nervespa-knee-pro-size-extender-straps-(1-pair)-_-xl-xxl-19731?pa=1",
-    },
-    {
-      question: "What is Osteoarthritis and Rheumatoid Arthritis Cream?",
-      answer:
-        "A topical cream formulated to help relieve discomfort associated with Osteoarthritis and Rheumatoid Arthritis. You can find it here: https://nervespa.com/products/joint-&-mobility/osteoarthritis-and-rheumatoid-arthritis-cream-19378?pa=1",
-    },
-    {
-      question:
-        "What is Roll On Pain Relief by Nerve Target - Roll On Muscle Pain Reliever, Back Pain, Arthritis..?",
-      answer:
-        "A roll-on topical muscle and joint pain reliever containing Arnica, Menthol, and Camphor. You can find it here: https://nervespa.com/products/joint-&-mobility/roll-on-pain-relief-by-nerve-target-roll-on-muscle-pain-reliever-back-pain-arthritis-with-arnica-menthol-&-camphor-19908?pa=1",
-    },
-    {
-      question:
-        "What is Super Flex Joint Formula Drink Powder by NerveSpa - Joint Support Supplement..?",
-      answer:
-        "A powdered drink supplement containing Glucosamine, Chondroitin, and Turmeric to support and restore joint health. You can find it here: https://nervespa.com/products/joint-&-mobility/super-flex-joint-formula-drink-powder-by-nervespa-joint-support-supplement-help-repairrestore-with-glucosamine-chondroitin-turmeric-ginger-msm-boswellia-30-servings-19503?pa=1",
-    },
-    {
-      question:
-        "What is ImmunoGut Super Formula: Essential Immunity & Gut Support | Vitamin D, Zinc, Beta Glucan | Detox & Stress Relief | 480g Powder, 60 Servings?",
-      answer:
-        "A powdered super formula designed for comprehensive immune and gut health, containing Vitamin D, Zinc, and Beta Glucan. You can find it here: https://nervespa.com/products/metabolic-gut-&-immunity/immunogut-super-formula:-essential-immunity-&-gut-support-vitamin-d-zinc-beta-glucan-detox-&-stress-relief-480g-powder-60-servings.-19711?pa=1",
-    },
-    {
-      question: "What is N1 - Gut Support with probiotics?",
-      answer:
-        "A supplement formulated for gut health and digestive support, fortified with probiotics. You can find it here: https://nervespa.com/products/metabolic-gut-&-immunity/n1-gut-support-with-probiotics-19490?pa=1",
-    },
-    {
-      question: "What is N1 - Skinny Blend?",
-      answer:
-        "A blend supplement intended to support weight control and metabolic health. You can find it here: https://nervespa.com/products/metabolic-gut-&-immunity/n1-skinny-blend-19488?pa=1",
-    },
-    {
-      question:
-        "What is Nerve Spa Vibe | Deep Tissue Vibrational Massager with Attachement Heads..?",
-      answer:
-        "A powerful, cordless deep tissue vibrational massager with interchangeable heads for relief from sciatica, neuropathy, and muscle pain. You can find it here: https://nervespa.com/products/clinical-devices/nerve-spa-vibe-deep-tissue-vibrational-massager-with-attachement-heads-7500-rpm-vibration-therapy-for-deep-tissue-sciatica-neuropathy, joint-&-muscle-relief-cordless-compact-&-powerful.-19915?pa=1",
-    },
-    {
-      question: "What is Nerve Wave 2.5 Rd Clinical Grade Electrode?",
-      answer:
-        "Clinical-grade, 2.5-inch round electrodes for use with electrotherapy devices. You can find it here: https://nervespa.com/products/clinical-devices/nerve-wave-2.5-rd-clinical-grade-electrode-19901?pa=1",
-    },
-    {
-      question:
-        "What is Nerve Wave by Nerve Spa - Clinical Nerve Spa Multi-Modality Treatment Device?",
-      answer:
-        "A clinical, multi-modality treatment device for comprehensive nerve spa therapy. You can find it here: https://nervespa.com/products/clinical-devices/nerve-wave-by-nerve-spa-clinical-nerve-spa-multi-modality-treatment-device-19868?pa=1",
-    },
-    {
-      question: "What is The Power Wrap - Ultra-High Powered LED COLD LASER..?",
-      answer:
-        "An ultra-high-powered LED cold laser wrap using infrared and red light for intense relief therapy. You can find it here: https://nervespa.com/products/clinical-devices/the-power-wrap-ultra-high-powered-led-cold-laser-infrared-and-red-light-relief-12-000mw-650nm-red-light-808nm-infrared-diodes-78-lasers-+-192-leds-19721?pa=1",
-    },
-  ],
-);
-
 // Loop through Q&A and find the closest match
-for (let i = 0; i < qaPairs.length; i++) {
-  const pair = qaPairs[i];
-  if (!pair || !pair.question) {
-    console.log(
-      "UNDEFINED PAIR AT INDEX:",
-      i,
-      qaPairs[i - 1],
-      qaPairs[i],
-      qaPairs[i + 1],
-    );
-    continue;
-  }
+for (const pair of qaPairs) {
   const qNorm = normalize(pair.question);
 
   const dist = levenshteinDistance(cleanIncoming, qNorm);
-  const semanticScore = getSemanticScore(incomingQuestion, pair.question);
+  const semanticScore = getSemanticScore(cleanIncoming, qNorm);
 
   // Calculate a combined heuristic score for sorting:
   // We want to pick the absolute best match if multiple exceed the thresholds
   const matchScore = (dist <= thresholdLev ? 1.0 : 0) + semanticScore;
 
   if (
-    (dist <= thresholdLev || semanticScore >= 0.45) &&
+    (dist <= thresholdLev || semanticScore >= 0.6) &&
     matchScore > bestScore
   ) {
     bestScore = matchScore;

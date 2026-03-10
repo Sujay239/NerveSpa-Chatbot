@@ -1,4 +1,6 @@
-// Get the incoming question from the chat trigger
+
+function runTest(incomingQuestion) {
+  // Get the incoming question from the chat trigger
 const incomingQuestion = $input.first().json.query.chatInput;
 
 // Define your predefined questions
@@ -859,3 +861,6 @@ return [
     },
   },
 ];
+
+}
+module.exports = runTest;

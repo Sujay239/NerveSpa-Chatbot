@@ -1,0 +1,20 @@
+{
+  "name": "chatbot-tester",
+  "version": "1.0.0",
+  "description": "Automated chatbot testing agent - API and browser-based testing",
+  "main": "test-runner.js",
+  "scripts": {
+    "test": "node test-runner.js",
+    "test:api": "node test-runner.js --mode api",
+    "test:browser": "node test-runner.js --mode browser",
+    "test:report": "node test-runner.js --mode api --report html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "csv-parse": "^5.6.0",
+    "playwright": "^1.49.0"
+  }
+}
