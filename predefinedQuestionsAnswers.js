@@ -2530,6 +2530,10 @@ const qaPairs = [
       "Stop the session and reduce intensity or adjust placement according to provider guidance. Therapy should remain comfortable at all times.",
   },
   {
+    question: "What if the stimulation feels too weak?",
+    answer :   "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin."
+  },
+  {
     question: "What if stimulation feels too weak?",
     answer:
       "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin.",
@@ -2850,11 +2854,6 @@ const qaPairs = [
     question: "What if the stimulation feels too strong?",
     answer:
       "Lower the intensity until the sensation is mild and comfortable. Knee Pro sessions should never be painful.",
-  },
-  {
-    question: "What if the stimulation feels too weak?",
-    answer:
-      "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin",
   },
   {
     question: "How do clinics measure patient engagement with NerveSpa?",

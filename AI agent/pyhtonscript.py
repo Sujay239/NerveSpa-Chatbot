@@ -676,12 +676,14 @@ def to_python(value):
 
 _word_regex = re.compile(r"\b[\w']+\b", re.UNICODE)
 
+_stop_words = {"a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with", "do", "does", "did", "can", "could", "should", "would", "i", "you", "he", "she", "we", "my", "your", "his", "her", "our", "how", "what", "why", "where", "when", "who", "has", "been", "hold", "us", "u", "s"}
+
 def words_set(s):
-    """Return normalized set of words from a string (lowercase, alnum + apostrophe)."""
+    """Return normalized set of words from a string (lowercase, alnum + apostrophe), excluding stopwords."""
     if not s:
         return set()
     s = str(s).lower()
-    return {w for w in _word_regex.findall(s) if len(w) > 0}
+    return {w for w in _word_regex.findall(s) if len(w) > 0 and w not in _stop_words}
 
 def normalize_text_for_compare(s):
     """Lowercase and strip surrounding punctuation/whitespace for simple comparisons."""
