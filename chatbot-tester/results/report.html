@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot Test Report</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 24px; background: #0f0f14; color: #e8e8f0; }
+    h1 { color: #fff; } .meta { color: #8888a8; margin-bottom: 24px; }
+    .summary { display: flex; gap: 24px; margin-bottom: 24px; }
+    .stat { background: #1e1e2e; padding: 16px 24px; border-radius: 12px; text-align: center; }
+    .stat .number { font-size: 32px; font-weight: 700; }
+    .stat .label { color: #8888a8; font-size: 13px; }
+    .stat.pass .number { color: #22c55e; } .stat.fail .number { color: #ef4444; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { background: #1e1e2e; padding: 10px; text-align: left; border-bottom: 2px solid #2e2e44; }
+    td { padding: 10px; border-bottom: 1px solid #2e2e44; vertical-align: top; max-width: 300px; word-wrap: break-word; }
+    tr.pass .status { color: #22c55e; font-weight: 600; }
+    tr.fail .status { color: #ef4444; font-weight: 600; }
+    tr.fail { background: rgba(239,68,68,0.05); }
+  </style>
+</head>
+<body>
+  <h1>Chatbot Test Report</h1>
+  <div class="meta">Mode: API | Date: 2/14/2026, 4:47:49 AM | Duration: 38.6s</div>
+  <div class="summary">
+    <div class="stat"><div class="number">10</div><div class="label">Total Tests</div></div>
+    <div class="stat pass"><div class="number">7</div><div class="label">Passed</div></div>
+    <div class="stat fail"><div class="number">3</div><div class="label">Failed</div></div>
+    <div class="stat"><div class="number">70%</div><div class="label">Pass Rate</div></div>
+  </div>
+  <table>
+    <thead><tr><th>#</th><th>Question</th><th>Expected</th><th>Actual</th><th>Status</th><th>Reason</th><th>Time</th></tr></thead>
+    <tbody>
+    <tr class="pass">
+      <td>1</td>
+      <td>What is NerveSpa?</td>
+      <td>NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.</td>
+      <td>NerveSpa is a clinical-grade program with clinical grade modalities that specializes in neuropathy, joint pain, and metabolic supplementation. It combines aquatic nerve stimulation, high powered LED w...</td>
+      <td class="status">PASS</td>
+      <td>Matched 10/10 key terms (100%)</td>
+      <td>737ms</td>
+    </tr>
+  
+    <tr class="fail">
+      <td>2</td>
+      <td>Who owns NerveSpa?</td>
+      <td>NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com</td>
+      <td>Sorry, I couldn't find a relevant answer for your question. Please try different question or contact support directly at support@nervespa.com. [How do clinics contact NerveSpa for support?][Who do I c...</td>
+      <td class="status">FAIL</td>
+      <td>Only 1/7 key terms found (14%). Missing: pain management technologies, pmt, fda, fda-registered, establishment...</td>
+      <td>5606ms</td>
+    </tr>
+  
+    <tr class="pass">
+      <td>3</td>
+      <td>How do providers implement NerveSpa?</td>
+      <td>NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.</td>
+      <td>NerveSpa does not require a medical prescription. It is typically recommended and distributed by licensed providers such as chiropractors, who guide patients on use and may include supplements or cons...</td>
+      <td class="status">PASS</td>
+      <td>Matched 3/6 key terms (50%)</td>
+      <td>4851ms</td>
+    </tr>
+  
+    <tr class="pass">
+      <td>4</td>
+      <td>What conditions can NerveSpa support?</td>
+      <td>NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.</td>
+      <td>NerveSpa is designed to support symptoms related to peripheral neuropathy and other nerve conditions. [What conditions and symptoms can NerveSpa support?][How does the Blood Flow Super Formula support...</td>
+      <td class="status">PASS</td>
+      <td>Matched 4/8 key terms (50%)</td>
+      <td>3068ms</td>
+    </tr>
+  
+    <tr class="fail">
+      <td>5</td>
+      <td>How can clinics order NerveSpa or request a demo?</td>
+      <td>Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels.</td>
+      <td>Clinics interested in ordering NerveSpa or scheduling a demo can contact our sales team directly at sales@nervespa.com or by calling 1-800-793-6523. [Can NerveSpa devices be used in clinics or only at...</td>
+      <td class="status">FAIL</td>
+      <td>Only 1/6 key terms found (17%). Missing: accessories, available, provider, products, patients</td>
+      <td>3318ms</td>
+    </tr>
+  
+    <tr class="pass">
+      <td>6</td>
+      <td>What are NerveSpa’s pricing options?</td>
+      <td>NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan.</td>
+      <td>Nerve Spa is sold through clinics and doctors offices. Pricing includes wholesale rates for providers (with options for bundles and starter kits) and retail pricing for patients on consumables only, s...</td>
+      <td class="status">PASS</td>
+      <td>Matched 7/8 key terms (88%)</td>
+      <td>120ms</td>
+    </tr>
+  
+    <tr class="pass">
+      <td>7</td>
+      <td>Is NerveSpa FDA-registered?</td>
+      <td>Yes. NerveSpa devices are FDA-registered and manufactured in FDA-registered facilities. Registration confirms establishment and product listing; it does not represent FDA approval of medical claims.</td>
+      <td>NerveSpa products are FDA registered and/or cleared, and manufactured in FDA-registered facilities and distributed by PMT, an FDA-registered establishment. FDA registration confirms establishment and ...</td>
+      <td class="status">PASS</td>
+      <td>Matched 7/7 key terms (100%)</td>
+      <td>123ms</td>
+    </tr>
+  
+    <tr class="pass">
+      <td>8</td>
+      <td>Is NerveSpa covered by insurance?</td>
+      <td>Coverage varies by plan. Some clinics bill eligible components under neuropathy programs, while others use cash-pay, HSA/FSA, or membership models. Patients should verify with their insurer.</td>
+      <td>Coverage varies by plan. Some providers bill eligible treatments under neuropathy programs; others use cash-pay, HSA/FSA, or memberships. Patients should check benefits with their insurer; clinic bill...</td>
+      <td class="status">PASS</td>
+      <td>Matched 6/7 key terms (86%)</td>
+      <td>285ms</td>
+    </tr>
+  
+    <tr class="pass">
+      <td>9</td>
+      <td>What warranty and return policy does NerveSpa offer?</td>
+      <td>All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.</td>
+      <td>Devices include a limited warranty against defects for one year. Returns are accepted within 30 days if undamaged; buyers are responsible for shipping and a restocking fee. Contact your seller for RMA...</td>
+      <td class="status">PASS</td>
+      <td>Matched 3/6 key terms (50%)</td>
+      <td>110ms</td>
+    </tr>
+  
+    <tr class="fail">
+      <td>10</td>
+      <td>Where is NerveSpa manufactured?</td>
+      <td>NerveSpa devices are manufactured in FDA-registered facilities from all over the world, with final distribution handled through PMT in Akron, Ohio.</td>
+      <td>NerveSpa is manufactured in the USA. [What is the NerveSpa QuakePlate?][What is the NerveSpa KneePro?][What is the NerveSpa ShoulderPro?]</td>
+      <td class="status">FAIL</td>
+      <td>Only 2/7 key terms found (29%). Missing: fda, pmt, fda-registered, distribution, facilities</td>
+      <td>2310ms</td>
+    </tr>
+  </tbody>
+  </table>
+</body>
+</html>

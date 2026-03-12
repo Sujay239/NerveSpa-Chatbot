@@ -727,24 +727,26 @@
 	</script>
 
 
-	<!-- Begin Inspectlet Asynchronous Code -->
+	<!-- Begin Inspectlet Asynchronous Code (skipped on localhost for local testing) -->
 	<script type="text/javascript">
-		(function() {
-			window.__insp = window.__insp || [];
-			__insp.push(['wid', 1713183297]);
-			var ldinsp = function() {
-				if (typeof window.__inspld != "undefined") return;
-				window.__inspld = 1;
-				var insp = document.createElement('script');
-				insp.type = 'text/javascript';
-				insp.async = true;
-				insp.id = "inspsync";
-				insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1713183297&r=' + Math.floor(new Date().getTime() / 3600000);
-				var x = document.getElementsByTagName('script')[0];
-				x.parentNode.insertBefore(insp, x);
-			};
-			setTimeout(ldinsp, 0);
-		})();
+		if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+			(function() {
+				window.__insp = window.__insp || [];
+				__insp.push(['wid', 1713183297]);
+				var ldinsp = function() {
+					if (typeof window.__inspld != "undefined") return;
+					window.__inspld = 1;
+					var insp = document.createElement('script');
+					insp.type = 'text/javascript';
+					insp.async = true;
+					insp.id = "inspsync";
+					insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1713183297&r=' + Math.floor(new Date().getTime() / 3600000);
+					var x = document.getElementsByTagName('script')[0];
+					x.parentNode.insertBefore(insp, x);
+				};
+				setTimeout(ldinsp, 0);
+			})();
+		}
 	</script>
 
 	<!-- End Inspectlet Asynchronous Code -->
@@ -1697,21 +1699,13 @@
               .forEach((wrapper) => (wrapper.style.display = "none"));
             // Show success message in chat
             contactForm.style.display = "none";
-            messagesContainer.style.display = "flex";
+            messagesEl.style.display = "flex";
             inputArea.style.display = "flex";
-            faqCont.style.display = "flex";
             messagesEl.appendChild(
               createBotMessage(
-                `Thank you for contacting us, ${name}! We'll get back to you shortly at ${email}.`
+                `Thank you for contacting us, ${name}! We'll get back to you shortly at ${email}.\n\nIn the meantime, I'm here to help answer any questions you might have. What would you like to know about NerveSpa?`
               )
             );
-            setTimeout(() => {
-              messagesEl.appendChild(
-                createBotMessage(
-                  "In the meantime, I'm here to help answer any questions you might have. What would you like to know about NerveSpa?"
-                )
-              );
-            }, 1000);
             chatContactForm.reset();
           });
         }
@@ -2214,79 +2208,7 @@
           );
       });
 
-      // Handle contact form submission
-      const chatContactForm = document.getElementById("chatContactForm");
-      chatContactForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
 
-        const name = document.getElementById("contact_name").value;
-        const email = document.getElementById("contact_email").value;
-        const phone = document.getElementById("contact_phone").value;
-        const message = document.getElementById("contact_message").value;
-
-        // Send data to n8n webhook (sessionId, name, email, phone, message) using GET to avoid CORS
-        try {
-          const params = new URLSearchParams({
-            sessionId,
-            name,
-            email,
-            phone,
-            message,
-          });
-          const url = `https://n8n.srv917960.hstgr.cloud/webhook/e8e9d39a-8d41-4a2e-8dd1-5c906647b05e?${params}`;
-          const response = await fetch(url, { method: "GET" });
-          console.log("Webhook response:", response);
-          if (!response.ok) {
-            messagesEl.appendChild(
-              createBotMessage(
-                "❗️ Sorry, there was a problem sending your request. Please try again later."
-              )
-            );
-            throw new Error("Webhook GET failed: " + response.status);
-          }
-        } catch (err) {
-          messagesEl.appendChild(
-            createBotMessage(
-              "❗️ Failed to send your request to support. Please check your connection or try again later."
-            )
-          );
-          console.error("Failed to send contact form to webhook:", err);
-        }
-
-        // Hide Main Menu button and suggested question buttons when contact form is submitted
-        document
-          .querySelectorAll(".main-menu-btn")
-          .forEach((btn) => (btn.style.display = "none"));
-        document
-          .querySelectorAll(".inline-suggestion-btn")
-          .forEach((btn) => (btn.style.display = "none"));
-        document
-          .querySelectorAll(".suggestions-wrapper")
-          .forEach((wrapper) => (wrapper.style.display = "none"));
-
-        // Show success message in chat
-        contactForm.style.display = "none";
-        messagesContainer.style.display = "flex";
-        inputArea.style.display = "flex";
-        faqCont.style.display = "flex";
-
-        // Add bot messages for better conversation flow
-        messagesEl.appendChild(
-          createBotMessage(
-            `Thank you for contacting us, ${name}! We'll get back to you shortly at ${email}.`
-          )
-        );
-        setTimeout(() => {
-          messagesEl.appendChild(
-            createBotMessage(
-              "In the meantime, I'm here to help answer any questions you might have. What would you like to know about NerveSpa?"
-            )
-          );
-        }, 1000);
-
-        // Clear form
-        chatContactForm.reset();
-      });
     </script>
   </body>
 </html>

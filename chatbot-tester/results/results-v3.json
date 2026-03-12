@@ -1,0 +1,2686 @@
+{
+  "timestamp": "2026-03-10T08:27:02.038Z",
+  "mode": "api",
+  "totalDurationMs": 866272,
+  "summary": {
+    "total": 297,
+    "passed": 296,
+    "failed": 1,
+    "passRate": 100
+  },
+  "results": [
+    {
+      "id": 1,
+      "question": "What is NerveSpa?",
+      "expectedAnswer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+      "actualAnswer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians. [How do providers prescribe or implement NerveSpa?][What conditions and symptoms can NerveSpa support?][How can my clinic order NerveSpa or get a demo?]",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 1040
+    },
+    {
+      "id": 2,
+      "question": "Who owns NerveSpa?",
+      "expectedAnswer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com",
+      "actualAnswer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 550
+    },
+    {
+      "id": 3,
+      "question": "How do providers implement NerveSpa?",
+      "expectedAnswer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
+      "actualAnswer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 631
+    },
+    {
+      "id": 4,
+      "question": "What conditions and symptoms can NerveSpa support?",
+      "expectedAnswer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
+      "actualAnswer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, poor circulation, numbness, tingling, burning, stiffness, balance issues, cramps, cold feet, and general nerve discomfort. As welll as arthritis (knee, shoulder, OA/RA) and other joint related ailments through our joint therapy devices.",
+      "pass": true,
+      "reason": "Matched 7/8 key terms (88%)",
+      "durationMs": 727
+    },
+    {
+      "id": 5,
+      "question": "How can clinics order NerveSpa or request a demo?",
+      "expectedAnswer": "Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels.",
+      "actualAnswer": "Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 735
+    },
+    {
+      "id": 6,
+      "question": "What are NerveSpa’s pricing options?",
+      "expectedAnswer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan.",
+      "actualAnswer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan. [Are bundles available for patients?]",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 602
+    },
+    {
+      "id": 7,
+      "question": "What conditions can NerveSpa support?",
+      "expectedAnswer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
+      "actualAnswer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 619
+    },
+    {
+      "id": 8,
+      "question": "Is NerveSpa FDA-registered?",
+      "expectedAnswer": "Yes. NerveSpa devices are FDA-registered and manufactured in FDA-registered facilities. Registration confirms establishment and product listing; it does not represent FDA approval of medical claims.",
+      "actualAnswer": "Yes. NerveSpa devices are FDA-registered and manufactured in FDA-registered facilities. Registration confirms establishment and product listing; it does not represent FDA approval of medical claims. [Is NerveSpa covered by insurance?][Where can FDA listings be verified?][What certifications does PMT hold?]",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 567
+    },
+    {
+      "id": 9,
+      "question": "Is NerveSpa covered by insurance?",
+      "expectedAnswer": "Coverage varies by plan. Some clinics bill eligible components under neuropathy programs, while others use cash-pay, HSA/FSA, or membership models. Patients should verify with their insurer.",
+      "actualAnswer": "Coverage varies by plan. Some clinics bill eligible components under neuropathy programs, while others use cash-pay, HSA/FSA, or membership models. Patients should verify with their insurer. [What is HCPCS code E0720?][Does insurance cover consumables like salts or garments?][How do providers bill insurance for NerveSpa?]",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 617
+    },
+    {
+      "id": 10,
+      "question": "What warranty and return policy does NerveSpa offer?",
+      "expectedAnswer": "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
+      "actualAnswer": "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions. [What is the NerveSpa return policy?][Who should patients contact for technical issues?][How quickly are products shipped?]",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 916
+    },
+    {
+      "id": 11,
+      "question": "Where is NerveSpa manufactured?",
+      "expectedAnswer": "NerveSpa devices are manufactured in FDA-registered facilities from all over the world, with final distribution handled through PMT in Akron, Ohio.",
+      "actualAnswer": "NerveSpa devices are manufactured in FDA-registered facilities from all over the world, with final distribution handled through PMT in Akron, Ohio.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 547
+    },
+    {
+      "id": 12,
+      "question": "How long has PMT been in business?",
+      "expectedAnswer": "PMT has been in business for over 25 years, supplying clinics nationwide with FDA-registered therapeutic technologies.",
+      "actualAnswer": "PMT has been in business for over 25 years, supplying clinics nationwide with FDA-registered therapeutic technologies.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 642
+    },
+    {
+      "id": 13,
+      "question": "Where can FDA listings be verified?",
+      "expectedAnswer": "Clinics can verify FDA establishment registrations and product listings through the FDA’s official database using PMT’s registration information.  View listings here: https://docs.google.com/spreadsheets/u/0/d/1qX86EUZUUwZKHMVHDy6IqY27pQankwW89ukJwa-F7G8/edit",
+      "actualAnswer": "Clinics can verify FDA establishment registrations and product listings through the FDA’s official database using PMT’s registration information. View listings here: https://docs.google.com/spreadsheets/u/0/d/1qX86EUZUUwZKHMVHDy6IqY27pQankwW89ukJwa-F7G8/edit [What certifications does PMT hold?][Is NerveSpa FDA-registered?][Where are NerveSpa products manufactured?]",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 645
+    },
+    {
+      "id": 14,
+      "question": "What certifications does PMT hold?",
+      "expectedAnswer": "PMT maintains FDA establishment registration and manufactures products through FDA-registered facilities worldwide, ensuring compliance with federal manufacturing and distribution standards.",
+      "actualAnswer": "PMT maintains FDA establishment registration and manufactures products through FDA-registered facilities worldwide, ensuring compliance with federal manufacturing and distribution standards. [Who is PMT in relation to NerveSpa?][Where are NerveSpa products manufactured?][Where can FDA listings be verified?]",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 639
+    },
+    {
+      "id": 15,
+      "question": "Does NerveSpa replace medical care?",
+      "expectedAnswer": "No. NerveSpa does not replace medical diagnosis or treatment. Providers determine appropriate use, recommend protocols, and guide patients throughout care.",
+      "actualAnswer": "No. NerveSpa does not replace medical diagnosis or treatment. Providers determine appropriate use, recommend protocols, and guide patients throughout care. [Who decides if NerveSpa is appropriate?][Can NerveSpa be used with other treatments?][What role do patients play in outcomes?]",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 686
+    },
+    {
+      "id": 16,
+      "question": "Who decides if NerveSpa is appropriate?",
+      "expectedAnswer": "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient’s condition, safety factors, and treatment goals.",
+      "actualAnswer": "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient’s condition, safety factors, and treatment goals. [What research supports NerveSpa therapies?][What role do patients play in outcomes?][What support resources are available?]",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 671
+    },
+    {
+      "id": 17,
+      "question": "Can NerveSpa be used with other treatments?",
+      "expectedAnswer": "Yes. Clinics commonly pair NerveSpa with chiropractic care, PT, metabolic programs, red light therapy, or other supportive modalities as part of a broader treatment plan.",
+      "actualAnswer": "Yes. Clinics commonly pair NerveSpa with chiropractic care, PT, metabolic programs, red light therapy, or other supportive modalities as part of a broader treatment plan. [Can multiple NerveSpa modalities be used in the same day?][What lifestyle changes support NerveSpa therapy?][Who decides if NerveSpa is appropriate?]",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 685
+    },
+    {
+      "id": 18,
+      "question": "How does NerveSpa compare to other nerve therapy systems?",
+      "expectedAnswer": "NerveSpa integrates multiple clinical-grade modalities—water-based stimulation, LED therapy, cold laser, vibration therapy, and supplementation—creating broader coverage than single-modality systems.",
+      "actualAnswer": "NerveSpa integrates multiple clinical-grade modalities—water-based stimulation, LED therapy, cold laser, vibration therapy, and supplementation—creating broader coverage than single-modality systems.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 861
+    },
+    {
+      "id": 19,
+      "question": "What makes NerveSpa unique?",
+      "expectedAnswer": "NerveSpa integrates multiple clinical-grade modalities into one family of products—water-based stimulation, high-powered LED wraps, cold laser, vibration therapy, targeted joint devices, and supplementation—offering broader coverage than single-modality systems.",
+      "actualAnswer": "NerveSpa integrates multiple clinical-grade modalities into one family of products—water-based stimulation, high-powered LED wraps, cold laser, vibration therapy, targeted joint devices, and supplementation—offering broader coverage than single-modality systems. [Is NerveSpa FDA-registered?][How does the Hand & Foot Neuropathy System work?]",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 558
+    },
+    {
+      "id": 20,
+      "question": "How does the NerveSpa family of products work together?",
+      "expectedAnswer": "Each product plays a specific role across nerve, joint, and metabolic pathways. Clinics can combine devices and supplements to build customized, condition-specific programs that extend care between visits.",
+      "actualAnswer": "Each product plays a specific role across nerve, joint, and metabolic pathways. Clinics can combine devices and supplements to build customized, condition-specific programs that extend care between visits.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 911
+    },
+    {
+      "id": 21,
+      "question": "Can patients purchase NerveSpa directly?",
+      "expectedAnswer": "Patients cannot purchase full therapeutic systems directly. Devices are distributed through licensed clinics. Patients may reorder consumables such as salts, garments, and supplements through approved channels.",
+      "actualAnswer": "Patients cannot purchase full therapeutic systems directly. Devices are distributed through licensed clinics. Patients may reorder consumables such as salts, garments, and supplements through approved channels.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 643
+    },
+    {
+      "id": 22,
+      "question": "Are starter kits or bundles available for clinics?",
+      "expectedAnswer": "Yes. Clinics may order starter kits or pathway-specific bundles depending on their patient population and protocols.",
+      "actualAnswer": "Yes. Clinics may order starter kits or pathway-specific bundles depending on their patient population and protocols.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 805
+    },
+    {
+      "id": 23,
+      "question": "Are NerveSpa programs difficult to implement?",
+      "expectedAnswer": "Clinics typically integrate NerveSpa in one session. Devices are designed for ease of use, and providers oversee protocols while patients follow structured at-home routines.",
+      "actualAnswer": "Clinics typically integrate NerveSpa in one session. Devices are designed for ease of use, and providers oversee protocols while patients follow structured at-home routines.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 723
+    },
+    {
+      "id": 24,
+      "question": "How long is a typical NerveSpa program?",
+      "expectedAnswer": "Most pathways follow a structured 60–90 day program with additional maintenance options depending on patient outcomes and provider guidance.",
+      "actualAnswer": "Most pathways follow a structured 60–90 day program with additional maintenance options depending on patient outcomes and provider guidance.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 646
+    },
+    {
+      "id": 25,
+      "question": "Is NerveSpa safe for most patients?",
+      "expectedAnswer": "NerveSpa devices are generally safe when used as directed under the guidance of a licensed provider. Providers screen for contraindications such as pacemakers, open wounds, pregnancy, or certain medical conditions depending on the device.",
+      "actualAnswer": "NerveSpa devices are generally safe when used as directed under the guidance of a licensed provider. Providers screen for contraindications such as pacemakers, open wounds, pregnancy, or certain medical conditions depending on the device.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 610
+    },
+    {
+      "id": 26,
+      "question": "Does NerveSpa offer training for clinics?",
+      "expectedAnswer": "Yes. Clinics receive onboarding support, device training, and access to guides, protocols, and provider resources. Additional training is available as needed.",
+      "actualAnswer": "Yes. Clinics receive onboarding support, device training, and access to guides, protocols, and provider resources. Additional training is available as needed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 661
+    },
+    {
+      "id": 27,
+      "question": "How do clinics contact NerveSpa for support?",
+      "expectedAnswer": "Clinics can contact NerveSpa by clicking ‘Support’ in this chatbot to submit a contact form, by emailing support@nervespa.com, or by calling 1-800-239-7880.",
+      "actualAnswer": "Providers can reach out for support in the following ways: | Chatbot – Use the “Contact Support” option directly in the chatbot. | Email – support@nervespa.com | Phone – 1-800-239-7880 (available during business hours). | Provider Portal – coming soon. [How do patients contact NerveSpa?][How do clinics order or reorder supplies?]",
+      "pass": true,
+      "reason": "Matched 5/7 key terms (71%)",
+      "durationMs": 662
+    },
+    {
+      "id": 28,
+      "question": "Does NerveSpa replace medical treatment?",
+      "expectedAnswer": "No. NerveSpa does not replace medical diagnosis or treatment. Providers determine whether the products and protocols are appropriate and patients should follow professional guidance.",
+      "actualAnswer": "No. NerveSpa does not replace medical diagnosis or treatment. Providers determine whether the products and protocols are appropriate and patients should follow professional guidance. [Who determines how NerveSpa should be used?][What support resources are available?][What role do patients play in outcomes?]",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 675
+    },
+    {
+      "id": 29,
+      "question": "Who determines if a patient is a good candidate for NerveSpa?",
+      "expectedAnswer": "Licensed providers determine suitability based on symptoms, medical history, and contraindications for each device or supplement.",
+      "actualAnswer": "Licensed providers determine suitability based on symptoms, medical history, and contraindications for each device or supplement.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1079
+    },
+    {
+      "id": 30,
+      "question": "Does NerveSpa support insurance reimbursement?",
+      "expectedAnswer": "Insurance coverage varies by provider and plan. Some clinics bill eligible treatments under neuropathy programs. Others use cash-pay, HSA/FSA, or memberships.",
+      "actualAnswer": "Insurance coverage varies by provider and plan. Some clinics bill eligible treatments under neuropathy programs. Others use cash-pay, HSA/FSA, or memberships.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 700
+    },
+    {
+      "id": 31,
+      "question": "What is HCPCS code E0720?",
+      "expectedAnswer": "E0720 is a durable medical equipment (DME) billing code used by some clinics for certain types of neuromuscular stimulation. Coverage depends on the insurer and clinical documentation.",
+      "actualAnswer": "E0720 is a durable medical equipment (DME) billing code used by some clinics for certain types of neuromuscular stimulation. Coverage depends on the insurer and clinical documentation. [Is NerveSpa covered by insurance?][How do clinics bill insurance for NerveSpa?]",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 558
+    },
+    {
+      "id": 32,
+      "question": "How quickly are products shipped?",
+      "expectedAnswer": "Most orders ship within standard fulfillment timelines depending on inventory and clinic volume. Providers can contact their representative for order-specific updates.",
+      "actualAnswer": "Most orders ship within standard fulfillment timelines depending on inventory and clinic volume. Providers can contact their representative for order-specific updates. [How are returns processed?][What warranty does NerveSpa offer?][How do patients receive consumables or supplements?]",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 740
+    },
+    {
+      "id": 33,
+      "question": "Can NerveSpa be combined with in-clinic treatments?",
+      "expectedAnswer": "Yes. Many clinics layer NerveSpa with chiropractic, PT, neuropathy care, and joint mobility programs to support outcomes between visits.",
+      "actualAnswer": "Yes. Many clinics layer NerveSpa with chiropractic, PT, neuropathy care, and joint mobility programs to support outcomes between visits.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 774
+    },
+    {
+      "id": 34,
+      "question": "What outcomes do patients commonly report?",
+      "expectedAnswer": "Patients often report reduced tingling, burning, and numbness; improved circulation; decreased stiffness; and better mobility or sleep depending on the product used. Outcomes vary by individual and consistency.",
+      "actualAnswer": "Patients often report reduced tingling, burning, and numbness; improved circulation; decreased stiffness; and better mobility or sleep depending on the product used. Outcomes vary by individual and consistency.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 883
+    },
+    {
+      "id": 35,
+      "question": "Can patients travel with NerveSpa devices?",
+      "expectedAnswer": "Most NerveSpa products are compact and travel-friendly. Patients should pack chargers, consumables, and any accessories, and follow provider instructions while away.",
+      "actualAnswer": "Most NerveSpa products are compact and travel-friendly. Patients should pack chargers, consumables, and any accessories, and follow provider instructions while away.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 734
+    },
+    {
+      "id": 36,
+      "question": "What is the NerveSpa Nerve Bath?",
+      "expectedAnswer": "The NerveSpa Nerve Bath (Hand & Foot Neuropathy System) is a touch-screen aquatic electrotherapy device for hands or feet. Patients submerge their hands or feet in warm water with Epsom salt and effervescent tablets so the system can deliver circumferential nerve stimulation that supports circulation and nerve activity.",
+      "actualAnswer": "The NerveSpa Nerve Bath (Hand & Foot Neuropathy System) is a touch-screen aquatic electrotherapy device for hands or feet. Patients submerge their hands or feet in warm water with Epsom salt and effervescent tablets so the system can deliver circumferential nerve stimulation that supports circulation and nerve activity.",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 710
+    },
+    {
+      "id": 37,
+      "question": "How does the NerveSpa Nerve Bath work?",
+      "expectedAnswer": "The system delivers comfortable low-frequency stimulation through a warm water bath. Patients place their hands or feet in the basins with Epsom salt and effervescent tablets, then the device runs a pre-programmed waveform to support circulation and nerve health. For a step-by-step overview, see the Quick Guide: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing",
+      "actualAnswer": "The system delivers comfortable low-frequency stimulation through a warm water bath. Patients place their hands or feet in the basins with Epsom salt and effervescent tablets, then the device runs a pre-programmed waveform to support circulation and nerve health. For a step-by-step overview, see the Quick Guide: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 711
+    },
+    {
+      "id": 38,
+      "question": "How should the NerveSpa Nerve Bath be set up?",
+      "expectedAnswer": "Connect the lead wires and electrodes, fill both sides with warm water, add 1 tablespoon of Epsom salt and 1 effervescent tablet per side, place hands or feet in the water, power on the unit, select Hands/Feet mode, and gradually increase intensity until you feel a mild, comfortable tingle. For visuals and full instructions, use the Quick Guide: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing and the Full User Guide: https://drive.google.com/file/d/1IEghxBOy0alvw3U4V9CDd7D4eulpxcgs/view?usp=sharing",
+      "actualAnswer": "Connect the lead wires and electrodes, fill both sides with warm water, add 1 tablespoon of Epsom salt and 1 effervescent tablet per side, place hands or feet in the water, power on the unit, select Hands/Feet mode, and gradually increase intensity until you feel a mild, comfortable tingle. For visuals and full instructions, use the Quick Guide: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing and the Full User Guide: https://drive.google.com/file/d/1IEghxBOy0alvw3U4V9CDd7D4eulpxcgs/view?usp=sharing",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 744
+    },
+    {
+      "id": 39,
+      "question": "How long is a typical NerveSpa Nerve Bath session?",
+      "expectedAnswer": "The default program runs for 30 minutes and the device will automatically shut off at the end of the session. After treatment, remove hands or feet and dry the skin thoroughly. Session timing is also outlined in the Quick Guide: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing",
+      "actualAnswer": "The default program runs for 30 minutes and the device will automatically shut off at the end of the session. After treatment, remove hands or feet and dry the skin thoroughly. Session timing is also outlined in the Quick Guide: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 878
+    },
+    {
+      "id": 40,
+      "question": "How often should the NerveSpa Nerve Bath be used?",
+      "expectedAnswer": "Typical clinic and home protocols use the system once daily, 4–6 days per week, for about 90 sessions total. After the initial program, many patients transition to periodic maintenance, often repeating a 90-session cycle once per year as needed. Details are included in the Full User Guide: https://drive.google.com/file/d/1IEghxBOy0alvw3U4V9CDd7D4eulpxcgs/view?usp=sharing",
+      "actualAnswer": "Typical clinic and home protocols use the system once daily, 4–6 days per week, for about 90 sessions total. After the initial program, many patients transition to periodic maintenance, often repeating a 90-session cycle once per year as needed. Details are included in the Full User Guide: https://drive.google.com/file/d/1IEghxBOy0alvw3U4V9CDd7D4eulpxcgs/view?usp=sharing",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 807
+    },
+    {
+      "id": 41,
+      "question": "Why water-based therapy for the NerveSpa Nerve Bath?",
+      "expectedAnswer": "Warm water allows full circumferential contact around the hands or feet, so current is distributed evenly rather than just through small pad areas. This helps improve comfort, consistency of stimulation, and engagement of more nerve endings compared to pad-only approaches.",
+      "actualAnswer": "Warm water allows full circumferential contact around the hands or feet, so current is distributed evenly rather than just through small pad areas. This helps improve comfort, consistency of stimulation, and engagement of more nerve endings compared to pad-only approaches.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 906
+    },
+    {
+      "id": 42,
+      "question": "What improvements do patients report with the NerveSpa Nerve Bath?",
+      "expectedAnswer": "Many patients report reduced tingling, burning, numbness, coldness, and stiffness in their feet or hands, along with improved circulation, comfort, and sleep over time. Results vary by individual, condition severity, and how consistently the program is followed.",
+      "actualAnswer": "Many patients report reduced tingling, burning, numbness, coldness, and stiffness in their feet or hands, along with improved circulation, comfort, and sleep over time. Results vary by individual, condition severity, and how consistently the program is followed.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 1114
+    },
+    {
+      "id": 43,
+      "question": "What consumables does the NerveSpa Nerve Bath use?",
+      "expectedAnswer": "Each session uses warm water plus Epsom salt and one effervescent tablet per side. These consumables are replaced as needed. The Quick Guide also lists the required consumables for each session: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing",
+      "actualAnswer": "Each session uses warm water plus Epsom salt and one effervescent tablet per side. These consumables are replaced as needed. The Quick Guide also lists the required consumables for each session: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 816
+    },
+    {
+      "id": 44,
+      "question": "What are NerveSpa conductive foot pads, socks, and gloves?",
+      "expectedAnswer": "NerveSpa conductive foot pads, socks, and gloves are silver-conductive garment systems designed for localized stimulation of the feet and hands. They connect to the NerveSpa controller to deliver targeted electrotherapy as part of a neuropathy or nerve-support program.",
+      "actualAnswer": "NerveSpa conductive foot pads, socks, and gloves are silver-conductive garment systems designed for localized stimulation of the feet and hands. They connect to the NerveSpa controller to deliver targeted electrotherapy as part of a neuropathy or nerve-support program.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 753
+    },
+    {
+      "id": 45,
+      "question": "How are the NerveSpa conductive foot pads and gloves used in therapy?",
+      "expectedAnswer": "Patients wear the conductive pads or gloves over the targeted area, moisten them slightly, and connect them to the NerveSpa unit. Providers guide placement and settings to help ensure safe and effective stimulation as part of the overall program.",
+      "actualAnswer": "Patients wear the conductive pads or gloves over the targeted area, moisten them slightly, and connect them to the NerveSpa unit. Providers guide placement and settings to help ensure safe and effective stimulation as part of the overall program.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 868
+    },
+    {
+      "id": 46,
+      "question": "Who should not use NerveSpa conductive garments?",
+      "expectedAnswer": "Patients with pacemakers, other implanted electronics, or severe skin conditions in the treatment area should not use conductive garments. Providers should screen patients for contraindications before recommending use.",
+      "actualAnswer": "Patients with pacemakers, other implanted electronics, or severe skin conditions in the treatment area should not use conductive garments. Providers should screen patients for contraindications before recommending use.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 950
+    },
+    {
+      "id": 47,
+      "question": "What is the NerveSpa Quake Plate?",
+      "expectedAnswer": "The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.",
+      "actualAnswer": "The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 594
+    },
+    {
+      "id": 48,
+      "question": "How do I set up and use the Quake Plate?",
+      "expectedAnswer": "Place the Quake Plate on a flat, stable surface, connect it to a 110V AC outlet, and install the provided battery in the remote as shown in the user manual. Sit or stand as instructed by your clinic, place your feet (or hands) on the platform, and use the remote to start and adjust the session to a comfortable setting. Always follow the Quake Plate User Manual (https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/QuakePlate_Manual_230713.pdf) and your clinic’s instructions, and you can also watch the setup video here: https://youtu.be/GZT58LDOT2o?si=Cik7VKLMSM7uEfLL.",
+      "actualAnswer": "Place the Quake Plate on a flat, stable surface, connect it to a 110V AC outlet, and install the provided battery in the remote as shown in the user manual. Sit or stand as instructed by your clinic, place your feet (or hands) on the platform, and use the remote to start and adjust the session to a comfortable setting. Always follow the Quake Plate User Manual (https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/QuakePlate_Manual_230713.pdf) and your clinic’s instructions, and you can also watch the setup video here: https://youtu.be/GZT58LDOT2o?si=Cik7VKLMSM7uEfLL.",
+      "pass": true,
+      "reason": "Matched 11/11 key terms (100%)",
+      "durationMs": 652
+    },
+    {
+      "id": 49,
+      "question": "How long and how often should I use the Quake Plate?",
+      "expectedAnswer": "Session length and weekly frequency for the Quake Plate should follow your clinic’s specific protocol and the guidance in the Quake Plate User Manual. Your provider will determine how long each session should last and how often you should use it based on your condition, goals, and overall program. Do not exceed the usage recommended by your clinic.",
+      "actualAnswer": "The Quake Plate is commonly used once per session as part of the Neuropathy Program, often on a daily or near-daily basis. Use contributes toward the overall 60–90 uses recommended by the provider.",
+      "pass": true,
+      "reason": "Matched 5/7 key terms (71%)",
+      "durationMs": 726
+    },
+    {
+      "id": 50,
+      "question": "Who should not use the Quake Plate?",
+      "expectedAnswer": "Patients with circulatory syndromes such as Raynaud’s disease, Buerger’s disease, peripheral vascular disease, vasospastic disorders, sickle cell anemia, hypercoagulable clotting disorders, local tissue infection, or potential wound-healing problems should not use the Quake Plate unless cleared by their provider. It should also not be used if you are pregnant or on a recent injury. Always review the CONTRAINDICATIONS and ELECTRICAL PRECAUTIONS sections in the Quake Plate User Manual and consult your clinic before use.",
+      "actualAnswer": "Patients with circulatory syndromes such as Raynaud’s disease, Buerger’s disease, peripheral vascular disease, vasospastic disorders, sickle cell anemia, hypercoagulable clotting disorders, local tissue infection, or potential wound-healing problems should not use the Quake Plate unless cleared by their provider. It should also not be used if you are pregnant or on a recent injury. Always review the CONTRAINDICATIONS and ELECTRICAL PRECAUTIONS sections in the Quake Plate User Manual and consult your clinic before use.",
+      "pass": true,
+      "reason": "Matched 11/11 key terms (100%)",
+      "durationMs": 586
+    },
+    {
+      "id": 51,
+      "question": "What is the NerveBeam LED Light Therapy Wrap?",
+      "expectedAnswer": "The NerveBeam LED Wrap is a flexible red and infrared light therapy wrap designed to support circulation, reduce inflammation, and help with nerve and joint discomfort in areas like the knee, shoulder, arm, or leg. It is intended to be used under the guidance of a clinic as part of a structured program. For full details and instructions, please refer to the NerveBeam LED Wrap User Guide: https://cdn.hmsctl.com/media/nervespa/pdf/NerveBeam_UserManual_LED-wrap_v03.pdf",
+      "actualAnswer": "The NerveBeam LED Wrap is a flexible red and infrared light therapy wrap designed to support circulation, reduce inflammation, and help with nerve and joint discomfort in areas like the knee, shoulder, arm, or leg. It is intended to be used under the guidance of a clinic as part of a structured program. For full details and instructions, please refer to the NerveBeam LED Wrap User Guide: https://cdn.hmsctl.com/media/nervespa/pdf/NerveBeam_UserManual_LED-wrap_v03.pdf [How is the NerveBeam LED Wrap used?][Who should not use the NerveBeam LED Wrap?][What outcomes are expected from the LED Wrap?]",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 833
+    },
+    {
+      "id": 52,
+      "question": "How is the NerveBeam LED Wrap used?",
+      "expectedAnswer": "Place the NerveBeam LED Wrap around the target area, secure it with the straps so it is snug but comfortable, and connect it to the controller. Turn the system on and follow your clinic’s recommended program for session length and frequency. For step-by-step setup, refer to the NerveBeam LED Wrap User Guide: https://cdn.hmsctl.com/media/nervespa/pdf/NerveBeam_UserManual_LED-wrap_v03.pdf",
+      "actualAnswer": "Place the NerveBeam LED Wrap around the target area, secure it with the straps so it is snug but comfortable, and connect it to the controller. Turn the system on and follow your clinic’s recommended program for session length and frequency. For step-by-step setup, refer to the NerveBeam LED Wrap User Guide: https://cdn.hmsctl.com/media/nervespa/pdf/NerveBeam_UserManual_LED-wrap_v03.pdf [What outcomes are expected from the LED Wrap?]",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 667
+    },
+    {
+      "id": 53,
+      "question": "Who should not use the NerveBeam LED Wrap?",
+      "expectedAnswer": "Patients with pacemakers or other implanted electronic devices, known light sensitivity or photosensitive conditions, active cancer in the treatment area, or those whose provider has advised against light-based or stimulation therapies should not use the NerveBeam LED Wrap. Always review the safety and contraindication section of the NerveBeam LED Wrap User Guide (https://cdn.hmsctl.com/media/nervespa/pdf/NerveBeam_UserManual_LED-wrap_v03.pdf) and consult your clinic before use.",
+      "actualAnswer": "Patients with pacemakers or other implanted electronic devices, known light sensitivity or photosensitive conditions, active cancer in the treatment area, or those whose provider has advised against light-based or stimulation therapies should not use the NerveBeam LED Wrap. Always review the safety and contraindication section of the NerveBeam LED Wrap User Guide (https://cdn.hmsctl.com/media/nervespa/pdf/NerveBeam_UserManual_LED-wrap_v03.pdf) and consult your clinic before use. [What outcomes are expected from the LED Wrap?]",
+      "pass": true,
+      "reason": "Matched 11/11 key terms (100%)",
+      "durationMs": 731
+    },
+    {
+      "id": 54,
+      "question": "What outcomes are expected with LED wrap therapy?",
+      "expectedAnswer": "When used consistently as directed by a provider, the NerveBeam LED Wrap is intended to support reduced pain, improved circulation, and better comfort and mobility in the treated area over time. Individual results vary based on the condition being treated and adherence to the prescribed program. For guidance on clinical use, clinics should refer to the NerveBeam LED Wrap User Guide: https://cdn.hmsctl.com/media/nervespa/pdf/NerveBeam_UserManual_LED-wrap_v03.pdf",
+      "actualAnswer": "When used consistently as directed by a provider, the NerveBeam LED Wrap is intended to support reduced pain, improved circulation, and better comfort and mobility in the treated area over time. Individual results vary based on the condition being treated and adherence to the prescribed program. For guidance on clinical use, clinics should refer to the NerveBeam LED Wrap User Guide: https://cdn.hmsctl.com/media/nervespa/pdf/NerveBeam_UserManual_LED-wrap_v03.pdf",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 1005
+    },
+    {
+      "id": 55,
+      "question": "What is the NerveBeam Cold Laser?",
+      "expectedAnswer": "The NerveBeam Cold Laser is a handheld low-level laser therapy device that uses red and infrared laser light to support circulation, reduce inflammation, and provide targeted comfort in nerve and joint areas as part of a clinic-directed plan. For detailed setup instructions and safety, see the Cold Laser User Guide: https://drive.google.com/file/d/1pHUIbj5dt7BjVwwqzriCmf5ODdpA5hLQ/view?usp=sharing and for an overview of how red and infrared light support cellular energy, you can watch: https://youtu.be/wrWQvDcjEFA",
+      "actualAnswer": "The NerveBeam Cold Laser is a handheld low-level laser therapy device that uses red and infrared laser light to support circulation, reduce inflammation, and provide targeted comfort in nerve and joint areas as part of a clinic-directed plan. For detailed setup instructions and safety, see the Cold Laser User Guide: https://drive.google.com/file/d/1pHUIbj5dt7BjVwwqzriCmf5ODdpA5hLQ/view?usp=sharing and for an overview of how red and infrared light support cellular energy, you can watch: https://youtu.be/wrWQvDcjEFA [How is the Cold Laser used?][Who should not use the Cold Laser?]",
+      "pass": true,
+      "reason": "Matched 11/11 key terms (100%)",
+      "durationMs": 713
+    },
+    {
+      "id": 56,
+      "question": "How is the NerveBeam Cold Laser used?",
+      "expectedAnswer": "Place the handheld Cold Laser applicator directly over the target area and keep it in place for the session length recommended by your clinic, often around 15–20 minutes per site. Do not shine the laser into the eyes and always follow your provider’s protocol. For placement diagrams and step-by-step instructions, refer to the Cold Laser User Guide: https://drive.google.com/file/d/1pHUIbj5dt7BjVwwqzriCmf5ODdpA5hLQ/view?usp=sharing and the educational video on red/infrared light therapy: https://youtu.be/wrWQvDcjEFA",
+      "actualAnswer": "Place the handheld Cold Laser applicator directly over the target area and keep it in place for the session length recommended by your clinic, often around 15–20 minutes per site. Do not shine the laser into the eyes and always follow your provider’s protocol. For placement diagrams and step-by-step instructions, refer to the Cold Laser User Guide: https://drive.google.com/file/d/1pHUIbj5dt7BjVwwqzriCmf5ODdpA5hLQ/view?usp=sharing and the educational video on red/infrared light therapy: https://youtu.be/wrWQvDcjEFA",
+      "pass": true,
+      "reason": "Matched 12/12 key terms (100%)",
+      "durationMs": 747
+    },
+    {
+      "id": 57,
+      "question": "Who should not use the NerveBeam Cold Laser?",
+      "expectedAnswer": "Patients with pacemakers, epilepsy, or cancerous lesions in the treatment area should not use the Cold Laser. It should also not be used over the eyes or in any area where your provider has advised against light-based therapy. Providers should screen patients for contraindications before recommending use. For full safety guidance, see the Cold Laser User Guide: https://drive.google.com/file/d/1pHUIbj5dt7BjVwwqzriCmf5ODdpA5hLQ/view?usp=sharing",
+      "actualAnswer": "Patients with pacemakers, epilepsy, or cancerous lesions in the treatment area should not use the Cold Laser. It should also not be used over the eyes or in any area where your provider has advised against light-based therapy. Providers should screen patients for contraindications before recommending use. For full safety guidance, see the Cold Laser User Guide: https://drive.google.com/file/d/1pHUIbj5dt7BjVwwqzriCmf5ODdpA5hLQ/view?usp=sharing",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 869
+    },
+    {
+      "id": 58,
+      "question": "What outcomes are expected with Cold Laser therapy?",
+      "expectedAnswer": "When used consistently as part of a clinic-directed plan, patients often experience improved circulation, reduced discomfort, and better mobility in the treated area over time. Individual outcomes vary based on the condition and adherence to the program. For more on how red and infrared light support cellular energy pathways, see: https://youtu.be/wrWQvDcjEFA and review the Cold Laser User Guide: https://drive.google.com/file/d/1pHUIbj5dt7BjVwwqzriCmf5ODdpA5hLQ/view?usp=sharing",
+      "actualAnswer": "When used consistently as part of a clinic-directed plan, patients often experience improved circulation, reduced discomfort, and better mobility in the treated area over time. Individual outcomes vary based on the condition and adherence to the program. For more on how red and infrared light support cellular energy pathways, see: https://youtu.be/wrWQvDcjEFA and review the Cold Laser User Guide: https://drive.google.com/file/d/1pHUIbj5dt7BjVwwqzriCmf5ODdpA5hLQ/view?usp=sharing",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 1003
+    },
+    {
+      "id": 59,
+      "question": "What is the Knee Pro?",
+      "expectedAnswer": "The Knee Pro is a clinical-grade knee therapy device designed to support OA/RA comfort, mobility, and cartilage health using targeted stimulation and long-duration sessions. It is used as part of a clinic-directed plan over several months. For setup and placement details, see the Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Quick%20start%20guide-250916-print.pdf and the Knee Pro overview video: https://youtu.be/D3mmA02khW8?si=rUQjdsxa5mfJHXLp",
+      "actualAnswer": "The Knee Pro is a clinical-grade knee therapy device designed to support OA/RA comfort, mobility, and cartilage health using targeted stimulation and long-duration sessions. It is used as part of a clinic-directed plan over several months. For setup and placement details, see the Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Quick%20start%20guide-250916-print.pdf and the Knee Pro overview video: https://youtu.be/D3mmA02khW8?si=rUQjdsxa5mfJHXLp",
+      "pass": true,
+      "reason": "Matched 12/12 key terms (100%)",
+      "durationMs": 531
+    },
+    {
+      "id": 60,
+      "question": "How is the Knee Pro used?",
+      "expectedAnswer": "The Knee Pro wraps securely around the knee and connects to the controller. Sessions are typically 1 hour and the Knee Pro is meant for long-duration, multi-month use (often 6–9 months) as part of a structured joint protocol. Always follow your provider’s instructions. For correct setup and strap placement, refer to the Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Quick%20start%20guide-250916-print.pdf and the How-It-Works demonstration: https://youtu.be/D3mmA02khW8?si=rUQjdsxa5mfJHXLp",
+      "actualAnswer": "The KneePro is strapped securely around the knee and connected to the controller. Sessions usually last 1 hour. The knee pro is a long duration treatment modality and is used for 6-9 months in total duration. [Who should not use the KneePro?][What outcomes are expected with the KneePro?]",
+      "pass": true,
+      "reason": "Matched 5/12 key terms (42%)",
+      "durationMs": 582
+    },
+    {
+      "id": 61,
+      "question": "Who should not use the Knee Pro?",
+      "expectedAnswer": "Patients with pacemakers, open wounds near the knee, or uncontrolled medical conditions should not use the Knee Pro. Providers should screen for contraindications before prescribing. Always follow clinic-directed use. For safety guidelines, refer to the Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Quick%20start%20guide-250916-print.pdf",
+      "actualAnswer": "Patients with pacemakers, open wounds near the knee, or uncontrolled medical conditions should not use the KneePro. Providers should evaluate safety before prescribing. [What outcomes are expected with the KneePro?]",
+      "pass": true,
+      "reason": "Matched 4/9 key terms (44%)",
+      "durationMs": 586
+    },
+    {
+      "id": 62,
+      "question": "What outcomes are expected with the Knee Pro?",
+      "expectedAnswer": "Patients commonly report improved mobility, reduced discomfort, and better day-to-day function over consistent multi-month use. Individual outcomes vary, but long-term adherence is key. For an in-clinic perspective on patient results, see Dr. Perkins’ Knee Pro testimonial: https://youtu.be/mUzxul6TRfc?si=Gtv4vV9wVNWR5IHb",
+      "actualAnswer": "Patients commonly report improved mobility, reduced discomfort, and better day-to-day function over consistent multi-month use. Individual outcomes vary, but long-term adherence is key. For an in-clinic perspective on patient results, see Dr. Perkins’ Knee Pro testimonial: https://youtu.be/mUzxul6TRfc?si=Gtv4vV9wVNWR5IHb",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 674
+    },
+    {
+      "id": 63,
+      "question": "What is the Shoulder Pro?",
+      "expectedAnswer": "The Shoulder Pro is a clinical-grade shoulder therapy device designed to support joint comfort, mobility, and function in the shoulder using targeted stimulation and long-duration sessions. It is used as part of a clinic-directed program over several months. For setup and strap placement, see the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "actualAnswer": "The Shoulder Pro is a clinical-grade shoulder therapy device designed to support joint comfort, mobility, and function in the shoulder using targeted stimulation and long-duration sessions. It is used as part of a clinic-directed program over several months. For setup and strap placement, see the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 513
+    },
+    {
+      "id": 64,
+      "question": "How is the Shoulder Pro used?",
+      "expectedAnswer": "Place the Shoulder Pro over the shoulder so the treatment area is fully covered, then secure the straps as shown in the Quick Start Guide. Connect it to the controller and follow your clinic’s instructions for session length and frequency, typically longer-duration sessions similar to other joint protocols. For placement diagrams and setup steps, refer to the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "actualAnswer": "Place the Shoulder Pro over the shoulder so the treatment area is fully covered, then secure the straps as shown in the Quick Start Guide. Connect it to the controller and follow your clinic’s instructions for session length and frequency, typically longer-duration sessions similar to other joint protocols. For placement diagrams and setup steps, refer to the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "pass": true,
+      "reason": "Matched 12/12 key terms (100%)",
+      "durationMs": 581
+    },
+    {
+      "id": 65,
+      "question": "Who should not use the Shoulder Pro?",
+      "expectedAnswer": "Patients with pacemakers, open wounds near the shoulder, or uncontrolled medical conditions should not use the Shoulder Pro. Providers should screen for contraindications before prescribing and patients should follow clinic-directed use only. For safety information, see the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "actualAnswer": "Patients with pacemakers, open wounds near the shoulder, or uncontrolled medical conditions should not use the Shoulder Pro. Providers should screen for contraindications before prescribing and patients should follow clinic-directed use only. For safety information, see the Shoulder Pro Quick Start Guide: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/NerveSpa-Shoulder-Quick%20start%20guide-250916-lowres-print.pdf",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 684
+    },
+    {
+      "id": 66,
+      "question": "What outcomes are expected with the Shoulder Pro?",
+      "expectedAnswer": "When used consistently as directed, patients commonly report reduced shoulder discomfort, improved range of motion, and better day-to-day shoulder function over time. Individual results vary based on the condition and adherence to the program. Your clinic will guide expectations as part of your overall joint and mobility plan.",
+      "actualAnswer": "When used consistently as directed, patients commonly report reduced shoulder discomfort, improved range of motion, and better day-to-day shoulder function over time. Individual results vary based on the condition and adherence to the program. Your clinic will guide expectations as part of your overall joint and mobility plan.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 833
+    },
+    {
+      "id": 67,
+      "question": "What is the PowerWrap?",
+      "expectedAnswer": "The PowerWrap is a high-powered LED + laser wrap designed to deliver red and infrared light therapy around a joint or limb to help support circulation, reduce discomfort, and target nerve and joint pain. It contains both LEDs and lasers in a flexible wrap format and is used as part of a clinic-directed program. For full details, see the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf and the product demo: https://youtu.be/lj_1L8FRtwM?si=FK7RkRbKwKhTmnyH",
+      "actualAnswer": "The PowerWrap is a high-powered LED + laser wrap designed to deliver red and infrared light therapy around a joint or limb to help support circulation, reduce discomfort, and target nerve and joint pain. It contains both LEDs and lasers in a flexible wrap format and is used as part of a clinic-directed program. For full details, see the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf and the product demo: https://youtu.be/lj_1L8FRtwM?si=FK7RkRbKwKhTmnyH [How is the PowerWrap used?][Who should not use the PowerWrap?]",
+      "pass": true,
+      "reason": "Matched 12/12 key terms (100%)",
+      "durationMs": 626
+    },
+    {
+      "id": 68,
+      "question": "How is the PowerWrap used?",
+      "expectedAnswer": "Place the PowerWrap around the target area (such as a knee, shoulder, or limb), secure it snugly with the straps, and connect it to the controller. Follow your clinic’s instructions for session length and frequency. For step-by-step setup, placement diagrams, and operating instructions, refer to the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf and the product demo video: https://youtu.be/lj_1L8FRtwM?si=FK7RkRbKwKhTmnyH",
+      "actualAnswer": "Place the PowerWrap around the target area (such as a knee, shoulder, or limb), secure it snugly with the straps, and connect it to the controller. Follow your clinic’s instructions for session length and frequency. For step-by-step setup, placement diagrams, and operating instructions, refer to the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf and the product demo video: https://youtu.be/lj_1L8FRtwM?si=FK7RkRbKwKhTmnyH [Who should not use the PowerWrap?]",
+      "pass": true,
+      "reason": "Matched 11/11 key terms (100%)",
+      "durationMs": 620
+    },
+    {
+      "id": 69,
+      "question": "Who should not use the PowerWrap?",
+      "expectedAnswer": "Patients with pacemakers or other implanted electronic devices, light-sensitive conditions, or cancerous lesions in the treatment area should not use the PowerWrap. It should not be used over the eyes or in any area where your provider has advised against light-based therapy. Providers must screen patients for contraindications before recommending use. For full safety guidance, consult the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf",
+      "actualAnswer": "Patients with pacemakers or other implanted electronic devices, light-sensitive conditions, or cancerous lesions in the treatment area should not use the PowerWrap. It should not be used over the eyes or in any area where your provider has advised against light-based therapy. Providers must screen patients for contraindications before recommending use. For full safety guidance, consult the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf",
+      "pass": true,
+      "reason": "Matched 11/11 key terms (100%)",
+      "durationMs": 689
+    },
+    {
+      "id": 70,
+      "question": "What outcomes are expected with PowerWrap therapy?",
+      "expectedAnswer": "When used consistently as part of a clinic-directed program, patients often report reduced pain and stiffness and improved comfort and mobility in the treated area over time. Individual results vary based on the condition and adherence to the protocol. For a clinician’s perspective on patient experience, see the doctor testimonial: https://youtube.com/shorts/QRF_zFGeMUI?si=5RPxEfqIQtJ5lxzx and review the PowerWrap User Manual for best-practice use: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf",
+      "actualAnswer": "When used consistently as part of a clinic-directed program, patients often report reduced pain and stiffness and improved comfort and mobility in the treated area over time. Individual results vary based on the condition and adherence to the protocol. For a clinician’s perspective on patient experience, see the doctor testimonial: https://youtube.com/shorts/QRF_zFGeMUI?si=5RPxEfqIQtJ5lxzx and review the PowerWrap User Manual for best-practice use: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf",
+      "pass": true,
+      "reason": "Matched 13/13 key terms (100%)",
+      "durationMs": 921
+    },
+    {
+      "id": 71,
+      "question": "What are the NerveSpa Performance Diabetic Socks?",
+      "expectedAnswer": "The NerveSpa Performance Diabetic Socks are comfort-focused, non-binding socks designed to support circulation, reduce irritation, and provide gentle cushioning for neuropathy-related foot discomfort. They are made with soft, moisture-wicking materials and a seamless toe to help minimize friction and pressure points.",
+      "actualAnswer": "The NerveSpa Performance Diabetic Socks are comfort-focused, non-binding socks designed to support circulation, reduce irritation, and provide gentle cushioning for neuropathy-related foot discomfort. They are made with soft, moisture-wicking materials and a seamless toe to help minimize friction and pressure points.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 762
+    },
+    {
+      "id": 72,
+      "question": "How do I put on the Diabetic Socks correctly?",
+      "expectedAnswer": "Slide the socks on smoothly to avoid bunching, making sure the heel and toe areas are aligned. The socks are designed to be non-binding, so they should fit comfortably without squeezing the calf or ankle. Ensure no wrinkles under the foot to prevent pressure points for sensitive neuropathy patients.",
+      "actualAnswer": "Slide the socks on smoothly to avoid bunching, making sure the heel and toe areas are aligned. The socks are designed to be non-binding, so they should fit comfortably without squeezing the calf or ankle. Ensure no wrinkles under the foot to prevent pressure points for sensitive neuropathy patients.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 916
+    },
+    {
+      "id": 73,
+      "question": "How should the Diabetic Socks be washed or cared for?",
+      "expectedAnswer": "Wash the Diabetic Socks in cold or warm water on a gentle cycle and tumble dry low or air dry. Avoid bleach or high-heat drying, as these can damage fibers and reduce softness. Proper care helps maintain the cushioning and comfort needed for neuropathy support.",
+      "actualAnswer": "Wash the Diabetic Socks in cold or warm water on a gentle cycle and tumble dry low or air dry. Avoid bleach or high-heat drying, as these can damage fibers and reduce softness. Proper care helps maintain the cushioning and comfort needed for neuropathy support.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 942
+    },
+    {
+      "id": 74,
+      "question": "Can the Diabetic Socks be worn all day?",
+      "expectedAnswer": "Yes. The socks are designed for extended wear, providing gentle comfort and reduced friction throughout the day. Many neuropathy patients wear them during daily activities, at home, and in shoes. Follow your clinic’s guidance if you have circulation-related medical conditions.",
+      "actualAnswer": "Yes. The socks are designed for extended wear, providing gentle comfort and reduced friction throughout the day. Many neuropathy patients wear them during daily activities, at home, and in shoes. Follow your clinic’s guidance if you have circulation-related medical conditions.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 840
+    },
+    {
+      "id": 75,
+      "question": "What is the NerveSpa Neuropathy Program?",
+      "expectedAnswer": "The NerveSpa Neuropathy Program is a structured, multi-modal protocol designed to support peripheral nerve health, circulation, and comfort. It combines nerve stimulation, light-based therapies, vibration, targeted topicals, and supplementation to support nerve function when used consistently under provider guidance.",
+      "actualAnswer": "The NerveSpa Neuropathy Program is a structured, multi-modal protocol designed to support peripheral nerve health, circulation, and comfort. It combines nerve stimulation, light-based therapies, vibration, targeted topicals, and supplementation to support nerve function when used consistently under provider guidance.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 696
+    },
+    {
+      "id": 76,
+      "question": "How does the Neuropathy Program work?",
+      "expectedAnswer": "The program uses a layered approach that combines electrical stimulation, light therapy, vibration therapy, topical support, and supplements. These modalities are used together to support circulation, nerve signaling, and tissue health as part of a coordinated protocol directed by a provider.",
+      "actualAnswer": "The program uses a layered approach that combines electrical stimulation, light therapy, vibration therapy, topical support, and supplements. These modalities are used together to support circulation, nerve signaling, and tissue health as part of a coordinated protocol directed by a provider.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 844
+    },
+    {
+      "id": 77,
+      "question": "What devices are used in the Neuropathy Program?",
+      "expectedAnswer": "Depending on the provider’s recommendations, the Neuropathy Program may include the NerveSpa Nerve Bath, conductive garments, Quake Plate vibration therapy, NerveBeam LED Light Therapy Wrap, NerveBeam Cold Laser, and related accessories. Not all patients require every modality.",
+      "actualAnswer": "Depending on the provider’s recommendations, the Neuropathy Program may include the NerveSpa Nerve Bath, conductive garments, Quake Plate vibration therapy, NerveBeam LED Light Therapy Wrap, NerveBeam Cold Laser, and related accessories. Not all patients require every modality.",
+      "pass": true,
+      "reason": "Matched 11/11 key terms (100%)",
+      "durationMs": 929
+    },
+    {
+      "id": 78,
+      "question": "Do patients need all the devices in the Neuropathy Program?",
+      "expectedAnswer": "No. Providers customize the program based on the patient’s symptoms, tolerance, and goals. Some patients may use a full system, while others may use select devices and supplements as part of their personalized protocol.",
+      "actualAnswer": "No. Providers customize the program based on the patient’s symptoms, tolerance, and goals. Some patients may use a full system, while others may use select devices and supplements as part of their personalized protocol.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1118
+    },
+    {
+      "id": 79,
+      "question": "How long does the Neuropathy Program take?",
+      "expectedAnswer": "The Neuropathy Program is structured around approximately 60–90 total uses of each recommended modality. Sessions are typically about 30 minutes and are used consistently as directed by the provider, followed by a maintenance phase if appropriate.",
+      "actualAnswer": "The Neuropathy Program is structured around approximately 60–90 total uses of each recommended modality. Sessions are typically about 30 minutes and are used consistently as directed by the provider, followed by a maintenance phase if appropriate.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 978
+    },
+    {
+      "id": 80,
+      "question": "Why is consistency important in the Neuropathy Program?",
+      "expectedAnswer": "The Neuropathy Program is designed to work through repeated, consistent use. Each session builds on prior sessions, supporting cumulative effects over time. Skipping or inconsistent use may reduce the overall effectiveness of the protocol.",
+      "actualAnswer": "The Neuropathy Program is designed to work through repeated, consistent use. Each session builds on prior sessions, supporting cumulative effects over time. Skipping or inconsistent use may reduce the overall effectiveness of the protocol.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1095
+    },
+    {
+      "id": 81,
+      "question": "What happens after the initial Neuropathy Program is completed?",
+      "expectedAnswer": "After completing the initial series of uses, many providers transition patients into a maintenance routine. Maintenance protocols vary and may include periodic device use, continued supplementation, and lifestyle guidance based on individual needs.",
+      "actualAnswer": "After completing the initial series of uses, many providers transition patients into a maintenance routine. Maintenance protocols vary and may include periodic device use, continued supplementation, and lifestyle guidance based on individual needs.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 926
+    },
+    {
+      "id": 82,
+      "question": "Can the Neuropathy Program be adjusted over time?",
+      "expectedAnswer": "Yes. Providers may adjust device selection, frequency, or supportive products as symptoms change or improve. The program is designed to be flexible and responsive to patient progress under clinical supervision.",
+      "actualAnswer": "Yes. Providers may adjust device selection, frequency, or supportive products as symptoms change or improve. The program is designed to be flexible and responsive to patient progress under clinical supervision.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 986
+    },
+    {
+      "id": 83,
+      "question": "How do supplements fit into the Neuropathy Program?",
+      "expectedAnswer": "Supplements are used to support nerve health, circulation, and metabolic processes that influence nerve function. They are typically taken daily as directed by the provider and are intended to complement device-based therapies, not replace them.",
+      "actualAnswer": "Supplements are used to support nerve health, circulation, and metabolic processes that influence nerve function. They are typically taken daily as directed by the provider and are intended to complement device-based therapies, not replace them.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1200
+    },
+    {
+      "id": 84,
+      "question": "Can supplements be used alone without devices?",
+      "expectedAnswer": "Supplements may be used independently in some cases, but many providers recommend combining them with device-based therapies for a more comprehensive approach. The appropriate combination depends on individual clinical assessment.",
+      "actualAnswer": "Supplements may be used independently in some cases, but many providers recommend combining them with device-based therapies for a more comprehensive approach. The appropriate combination depends on individual clinical assessment.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 939
+    },
+    {
+      "id": 85,
+      "question": "How long is a typical Nerve Bath session?",
+      "expectedAnswer": "A standard Nerve Bath session lasts approximately 30 minutes. The device includes an automatic shutoff at the end of the session to support consistent and safe use as directed by the provider.",
+      "actualAnswer": "A standard Nerve Bath session lasts approximately 30 minutes. The device includes an automatic shutoff at the end of the session to support consistent and safe use as directed by the provider.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 763
+    },
+    {
+      "id": 86,
+      "question": "Can the Nerve Bath be used with other devices the same day?",
+      "expectedAnswer": "Yes. Many providers integrate the Nerve Bath with other modalities such as light therapy, vibration therapy, topicals, or supplements on the same day. The specific combination and order are determined by the provider.",
+      "actualAnswer": "Yes. Many providers integrate the Nerve Bath with other modalities such as light therapy, vibration therapy, topicals, or supplements on the same day. The specific combination and order are determined by the provider.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 858
+    },
+    {
+      "id": 87,
+      "question": "What should patients feel during a Nerve Bath session?",
+      "expectedAnswer": "Patients typically feel a mild to moderate tingling sensation in the feet or hands. The intensity should remain comfortable and is adjustable. Strong discomfort or pain is not expected and should be discussed with the provider.",
+      "actualAnswer": "Patients typically feel a mild to moderate tingling sensation in the feet or hands. The intensity should remain comfortable and is adjustable. Strong discomfort or pain is not expected and should be discussed with the provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 966
+    },
+    {
+      "id": 88,
+      "question": "How often should the Quake Plate be used?",
+      "expectedAnswer": "The Quake Plate is commonly used once per session as part of the Neuropathy Program, often on a daily or near-daily basis. Use contributes toward the overall 60–90 uses recommended by the provider.",
+      "actualAnswer": "The Quake Plate is commonly used once per session as part of the Neuropathy Program, often on a daily or near-daily basis. Use contributes toward the overall 60–90 uses recommended by the provider.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 746
+    },
+    {
+      "id": 89,
+      "question": "How long should a Quake Plate session last?",
+      "expectedAnswer": "A typical Quake Plate session ranges from 10 to 20 minutes, depending on provider guidance and patient tolerance. Duration may be adjusted as part of the overall protocol.",
+      "actualAnswer": "A typical Quake Plate session ranges from 10 to 20 minutes, depending on provider guidance and patient tolerance. Duration may be adjusted as part of the overall protocol.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 804
+    },
+    {
+      "id": 90,
+      "question": "Can Quake Plate be used with other neuropathy devices?",
+      "expectedAnswer": "Yes. Providers often combine vibration therapy with nerve stimulation, light therapy, and supplements. The order and combination are individualized based on patient needs and clinic protocols.",
+      "actualAnswer": "Yes. Providers often combine vibration therapy with nerve stimulation, light therapy, and supplements. The order and combination are individualized based on patient needs and clinic protocols.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 989
+    },
+    {
+      "id": 91,
+      "question": "What should patients feel during Quake Plate therapy?",
+      "expectedAnswer": "Patients typically experience gentle vibration through the feet or hands. Sensations may include warmth or increased circulation. Discomfort should be avoided and settings adjusted as needed.",
+      "actualAnswer": "Patients typically experience gentle vibration through the feet or hands. Sensations may include warmth or increased circulation. Discomfort should be avoided and settings adjusted as needed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1070
+    },
+    {
+      "id": 92,
+      "question": "How often should the NerveBeam LED Wrap be used?",
+      "expectedAnswer": "The NerveBeam LED Wrap is commonly used consistently as part of the Neuropathy Program, often daily or near-daily. Sessions are typically about 30 minutes and contribute toward the recommended 60–90 uses.",
+      "actualAnswer": "The NerveBeam LED Wrap is commonly used consistently as part of the Neuropathy Program, often daily or near-daily. Sessions are typically about 30 minutes and contribute toward the recommended 60–90 uses.",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 878
+    },
+    {
+      "id": 93,
+      "question": "How long is an LED Wrap session?",
+      "expectedAnswer": "A typical LED Wrap session lasts approximately 20–30 minutes, depending on provider guidance. The wrap is positioned over the target area and used comfortably without excessive heat.",
+      "actualAnswer": "A typical LED Wrap session lasts approximately 20–30 minutes, depending on provider guidance. The wrap is positioned over the target area and used comfortably without excessive heat.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 825
+    },
+    {
+      "id": 94,
+      "question": "What should patients feel during LED Wrap therapy?",
+      "expectedAnswer": "Most patients feel gentle warmth or little to no sensation during LED Wrap sessions. The treatment should remain comfortable. If the wrap feels excessively hot or irritating, stop use and follow your provider’s guidance.",
+      "actualAnswer": "Most patients feel gentle warmth or little to no sensation during LED Wrap sessions. The treatment should remain comfortable. If the wrap feels excessively hot or irritating, stop use and follow your provider’s guidance.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 991
+    },
+    {
+      "id": 95,
+      "question": "How should the LED Wrap be positioned for treatment?",
+      "expectedAnswer": "Place the LED Wrap over the target area as directed by your provider and secure it so it lies flat against the body without creasing or excessive pressure. Proper positioning supports even coverage and consistent treatment.",
+      "actualAnswer": "Place the LED Wrap over the target area as directed by your provider and secure it so it lies flat against the body without creasing or excessive pressure. Proper positioning supports even coverage and consistent treatment.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 865
+    },
+    {
+      "id": 96,
+      "question": "Who should not use the LED Wrap?",
+      "expectedAnswer": "Patients with pacemakers or implanted electronic devices, or those with known light sensitivity, should not use the LED Wrap unless cleared by a provider. Providers should screen for contraindications based on individual medical history.",
+      "actualAnswer": "Patients with pacemakers or implanted electronic devices, or those with known light sensitivity, should not use the LED Wrap unless cleared by a provider. Providers should screen for contraindications based on individual medical history.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 687
+    },
+    {
+      "id": 97,
+      "question": "How often should the NerveBeam Cold Laser be used?",
+      "expectedAnswer": "Providers typically recommend consistent Cold Laser use as part of the Neuropathy Program. Sessions are integrated into the overall protocol and contribute toward the recommended 60–90 total uses, based on provider direction.",
+      "actualAnswer": "Providers typically recommend consistent Cold Laser use as part of the Neuropathy Program. Sessions are integrated into the overall protocol and contribute toward the recommended 60–90 total uses, based on provider direction.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 850
+    },
+    {
+      "id": 98,
+      "question": "How long is a Cold Laser session?",
+      "expectedAnswer": "A typical Cold Laser session is guided by the provider and is performed per treatment area. Follow your clinic’s instructions for duration, placement, and total coverage for the session.",
+      "actualAnswer": "A typical Cold Laser session is guided by the provider and is performed per treatment area. Follow your clinic’s instructions for duration, placement, and total coverage for the session.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 758
+    },
+    {
+      "id": 99,
+      "question": "How should the Cold Laser be positioned during treatment?",
+      "expectedAnswer": "The Cold Laser applicator is placed directly over the target area as instructed by the provider. Maintain steady placement and avoid shining light into the eyes. Your provider will guide site selection and treatment coverage.",
+      "actualAnswer": "The Cold Laser applicator is placed directly over the target area as instructed by the provider. Maintain steady placement and avoid shining light into the eyes. Your provider will guide site selection and treatment coverage.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 1030
+    },
+    {
+      "id": 100,
+      "question": "What should patients feel during Cold Laser therapy?",
+      "expectedAnswer": "Cold Laser therapy is typically comfortable and may produce little to no sensation. Some patients notice mild warmth or a subtle soothing feeling in the treated area. Discomfort is not expected—pause and consult your provider if it occurs.",
+      "actualAnswer": "Cold Laser therapy is typically comfortable and may produce little to no sensation. Some patients notice mild warmth or a subtle soothing feeling in the treated area. Discomfort is not expected—pause and consult your provider if it occurs.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 997
+    },
+    {
+      "id": 101,
+      "question": "Who should not use the Cold Laser?",
+      "expectedAnswer": "Patients with pacemakers or implanted electronic devices, epilepsy, or cancerous lesions should not use Cold Laser therapy unless cleared by a provider. Providers should screen for contraindications and proper use.",
+      "actualAnswer": "Patients with pacemakers or implanted electronic devices, epilepsy, or cancerous lesions should not use Cold Laser therapy unless cleared by a provider. Providers should screen for contraindications and proper use.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 667
+    },
+    {
+      "id": 102,
+      "question": "Can Cold Laser be combined with other neuropathy modalities?",
+      "expectedAnswer": "Yes. Many providers combine Cold Laser with nerve stimulation, LED therapy, vibration therapy, supplements, and topicals as part of a coordinated protocol. The exact combination and order should follow provider direction.",
+      "actualAnswer": "Yes. Many providers combine Cold Laser with nerve stimulation, LED therapy, vibration therapy, supplements, and topicals as part of a coordinated protocol. The exact combination and order should follow provider direction.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1081
+    },
+    {
+      "id": 103,
+      "question": "What supplements are commonly used in the Neuropathy Program?",
+      "expectedAnswer": "Depending on the provider’s plan, neuropathy supplementation may include Nerve Rebuilder, Nerve Regeneration, and Blood Flow Super Formula. These are typically used daily as directed to complement device-based therapies.",
+      "actualAnswer": "Depending on the provider’s plan, neuropathy supplementation may include Nerve Rebuilder, Nerve Regeneration, and Blood Flow Super Formula. These are typically used daily as directed to complement device-based therapies.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 1053
+    },
+    {
+      "id": 104,
+      "question": "When should Nerve Rebuilder be taken?",
+      "expectedAnswer": "Nerve Rebuilder is typically taken daily as directed by the provider. It is intended to support nerve health and metabolic processes as part of the overall Neuropathy Program, alongside device-based therapies.",
+      "actualAnswer": "Nerve Rebuilder is typically taken daily as directed by the provider. It is intended to support nerve health and metabolic processes as part of the overall Neuropathy Program, alongside device-based therapies.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 709
+    },
+    {
+      "id": 105,
+      "question": "When should Nerve Regeneration be taken?",
+      "expectedAnswer": "Nerve Regeneration is generally taken daily according to provider guidance. It is designed to complement other neuropathy modalities by supporting nerve-related cellular processes when used consistently.",
+      "actualAnswer": "Nerve Regeneration is generally taken daily according to provider guidance. It is designed to complement other neuropathy modalities by supporting nerve-related cellular processes when used consistently.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 713
+    },
+    {
+      "id": 106,
+      "question": "When should Blood Flow Super Formula be taken?",
+      "expectedAnswer": "Blood Flow Super Formula is typically taken daily as directed by the provider. It is used to support circulation as part of a comprehensive Neuropathy Program and is often paired with stimulation and light-based therapies.",
+      "actualAnswer": "Blood Flow Super Formula is typically taken daily as directed by the provider. It is used to support circulation as part of a comprehensive Neuropathy Program and is often paired with stimulation and light-based therapies.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 719
+    },
+    {
+      "id": 107,
+      "question": "How do supplements support the Neuropathy Program?",
+      "expectedAnswer": "Supplements are used to support nerve health, circulation, and metabolic pathways that influence nerve function. They are intended to work alongside device-based therapies rather than replace them, under provider direction.",
+      "actualAnswer": "Supplements are used to support nerve health, circulation, and metabolic pathways that influence nerve function. They are intended to work alongside device-based therapies rather than replace them, under provider direction.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 851
+    },
+    {
+      "id": 108,
+      "question": "What is the NerveSpa Joint & Mobility Program?",
+      "expectedAnswer": "The Joint & Mobility Program is a provider-guided protocol designed to support joint comfort, mobility, and function. It combines targeted stimulation devices, light-based therapies, and joint-focused supplements to address joint-related discomfort under clinical direction.",
+      "actualAnswer": "The Joint & Mobility Program is a provider-guided protocol designed to support joint comfort, mobility, and function. It combines targeted stimulation devices, light-based therapies, and joint-focused supplements to address joint-related discomfort under clinical direction.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 724
+    },
+    {
+      "id": 109,
+      "question": "How does the Joint & Mobility Program work?",
+      "expectedAnswer": "The program integrates targeted joint devices with supportive therapies and supplements. Providers customize usage based on joint location, severity, and patient tolerance, focusing on consistent use over time.",
+      "actualAnswer": "The program integrates targeted joint devices with supportive therapies and supplements. Providers customize usage based on joint location, severity, and patient tolerance, focusing on consistent use over time.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 915
+    },
+    {
+      "id": 110,
+      "question": "What devices are used in the Joint & Mobility Program?",
+      "expectedAnswer": "Depending on the provider’s plan, the Joint & Mobility Program may include Knee Pro, Shoulder Pro, PowerWrap, and related joint-focused modalities. Not all patients require every device.",
+      "actualAnswer": "Depending on the provider’s plan, the Joint & Mobility Program may include Knee Pro, Shoulder Pro, PowerWrap, and related joint-focused modalities. Not all patients require every device.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 1006
+    },
+    {
+      "id": 111,
+      "question": "How long does the Joint & Mobility Program take?",
+      "expectedAnswer": "The Joint & Mobility Program is designed for consistent, long-term use as directed by the provider. Program length varies depending on joint condition, severity, and response to therapy.",
+      "actualAnswer": "The Joint & Mobility Program is designed for consistent, long-term use as directed by the provider. Program length varies depending on joint condition, severity, and response to therapy.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 947
+    },
+    {
+      "id": 112,
+      "question": "Can the Joint & Mobility Program be adjusted over time?",
+      "expectedAnswer": "Yes. Providers may adjust device selection, session frequency, and supportive products based on patient progress, comfort, and clinical goals.",
+      "actualAnswer": "Yes. Providers may adjust device selection, session frequency, and supportive products based on patient progress, comfort, and clinical goals.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1026
+    },
+    {
+      "id": 113,
+      "question": "How often should patients use the Knee Pro?",
+      "expectedAnswer": "The Knee Pro is used according to provider guidance as part of the Joint & Mobility Program. It is designed for consistent, repeated use over time to support joint comfort and mobility, with session frequency determined by the clinic.",
+      "actualAnswer": "The Knee Pro is used according to provider guidance as part of the Joint & Mobility Program. It is designed for consistent, repeated use over time to support joint comfort and mobility, with session frequency determined by the clinic.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 709
+    },
+    {
+      "id": 114,
+      "question": "How long is a Knee Pro session?",
+      "expectedAnswer": "A typical Knee Pro session is a long-duration treatment, often up to one hour, as directed by the provider. The duration is intended to support sustained joint-focused therapy.",
+      "actualAnswer": "A typical Knee Pro session is a long-duration treatment, often up to one hour, as directed by the provider. The duration is intended to support sustained joint-focused therapy.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 667
+    },
+    {
+      "id": 115,
+      "question": "Can Knee Pro be used with other joint therapies?",
+      "expectedAnswer": "Yes. Providers may combine Knee Pro with other joint-focused modalities such as LED therapy, vibration therapy, or joint supplements as part of a coordinated Joint & Mobility Program.",
+      "actualAnswer": "Yes. Providers may combine Knee Pro with other joint-focused modalities such as LED therapy, vibration therapy, or joint supplements as part of a coordinated Joint & Mobility Program.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 920
+    },
+    {
+      "id": 116,
+      "question": "What should patients feel during Knee Pro therapy?",
+      "expectedAnswer": "Patients may feel gentle stimulation, warmth, or compression around the knee. Sensations should remain comfortable. Any discomfort should be reported to the provider for adjustment.",
+      "actualAnswer": "Patients may feel gentle stimulation, warmth, or compression around the knee. Sensations should remain comfortable. Any discomfort should be reported to the provider for adjustment.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 802
+    },
+    {
+      "id": 117,
+      "question": "How often should patients use the Shoulder Pro?",
+      "expectedAnswer": "The Shoulder Pro is used as directed by the provider as part of the Joint & Mobility Program. Frequency is customized based on shoulder condition, tolerance, and treatment goals.",
+      "actualAnswer": "The Shoulder Pro is used as directed by the provider as part of the Joint & Mobility Program. Frequency is customized based on shoulder condition, tolerance, and treatment goals.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 781
+    },
+    {
+      "id": 118,
+      "question": "How long is a Shoulder Pro session?",
+      "expectedAnswer": "Shoulder Pro sessions are performed according to provider direction and are designed for extended use to support shoulder mobility and comfort. Duration may vary based on clinical guidance.",
+      "actualAnswer": "Shoulder Pro sessions are performed according to provider direction and are designed for extended use to support shoulder mobility and comfort. Duration may vary based on clinical guidance.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 781
+    },
+    {
+      "id": 119,
+      "question": "Can Shoulder Pro be used with other joint therapies?",
+      "expectedAnswer": "Yes. Providers may integrate Shoulder Pro with other joint-focused therapies such as PowerWrap, LED therapy, or supplements as part of a coordinated plan.",
+      "actualAnswer": "Yes. Providers may integrate Shoulder Pro with other joint-focused therapies such as PowerWrap, LED therapy, or supplements as part of a coordinated plan.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 965
+    },
+    {
+      "id": 120,
+      "question": "What should patients feel during Shoulder Pro therapy?",
+      "expectedAnswer": "Patients may feel gentle stimulation or compression around the shoulder. Sensations should be comfortable and adjustable. Pain or discomfort should be discussed with the provider.",
+      "actualAnswer": "Patients may feel gentle stimulation or compression around the shoulder. Sensations should be comfortable and adjustable. Pain or discomfort should be discussed with the provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 908
+    },
+    {
+      "id": 121,
+      "question": "What joint supplements are commonly used in the Joint & Mobility Program?",
+      "expectedAnswer": "Depending on provider guidance, joint supplementation may include Super Flex Joint Formula – Rebuild + Maintain, OA & RA Relief Cream, and Nerve Target Roll-On. These products are used to support joint comfort and mobility alongside device-based therapies.",
+      "actualAnswer": "Depending on provider guidance, joint supplementation may include Super Flex Joint Formula – Rebuild + Maintain, OA & RA Relief Cream, and Nerve Target Roll-On. These products are used to support joint comfort and mobility alongside device-based therapies.",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 1213
+    },
+    {
+      "id": 122,
+      "question": "When should Super Flex Joint Formula – Rebuild + Maintain be used?",
+      "expectedAnswer": "Super Flex Joint Formula is typically taken daily as directed by the provider. It is intended to support joint structure and comfort as part of the overall Joint & Mobility Program.",
+      "actualAnswer": "Super Flex Joint Formula is typically taken daily as directed by the provider. It is intended to support joint structure and comfort as part of the overall Joint & Mobility Program.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 941
+    },
+    {
+      "id": 123,
+      "question": "When should OA & RA Relief Cream be used?",
+      "expectedAnswer": "OA & RA Relief Cream is generally applied to the affected joint area as directed by the provider. It is often used alongside device-based therapies to support localized comfort.",
+      "actualAnswer": "OA & RA Relief Cream is generally applied to the affected joint area as directed by the provider. It is often used alongside device-based therapies to support localized comfort.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 755
+    },
+    {
+      "id": 124,
+      "question": "When should Nerve Target Roll-On be used?",
+      "expectedAnswer": "Nerve Target Roll-On is applied topically to targeted joint or muscle areas as directed by the provider. It is typically used to complement other joint-focused therapies within the program.",
+      "actualAnswer": "Nerve Target Roll-On is applied topically to targeted joint or muscle areas as directed by the provider. It is typically used to complement other joint-focused therapies within the program.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 658
+    },
+    {
+      "id": 125,
+      "question": "How do joint supplements fit into the Joint & Mobility Program?",
+      "expectedAnswer": "Joint supplements and topicals are used to support comfort, mobility, and recovery while patients follow device-based therapies. Providers determine how supplements are integrated based on individual joint needs.",
+      "actualAnswer": "Joint supplements and topicals are used to support comfort, mobility, and recovery while patients follow device-based therapies. Providers determine how supplements are integrated based on individual joint needs.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1132
+    },
+    {
+      "id": 126,
+      "question": "Can joint supplements be used alone without devices?",
+      "expectedAnswer": "In some cases, joint supplements may be used independently. However, many providers recommend combining them with devices such as Knee Pro or Shoulder Pro for a more comprehensive approach.",
+      "actualAnswer": "In some cases, joint supplements may be used independently. However, many providers recommend combining them with devices such as Knee Pro or Shoulder Pro for a more comprehensive approach.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 1116
+    },
+    {
+      "id": 127,
+      "question": "What is the PowerWrap used for in the Clinical Program?",
+      "expectedAnswer": "PowerWrap is used in the Clinical Program as a wrap-style light therapy modality (red + infrared) to support targeted comfort and recovery as directed by the provider. It includes adjustable power levels and mode options (Constant, Pulse, Alternating) with preset safety timers.",
+      "actualAnswer": "PowerWrap is used in the Clinical Program as a wrap-style light therapy modality (red + infrared) to support targeted comfort and recovery as directed by the provider. It includes adjustable power levels and mode options (Constant, Pulse, Alternating) with preset safety timers.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 945
+    },
+    {
+      "id": 128,
+      "question": "How long is a PowerWrap session?",
+      "expectedAnswer": "PowerWrap session length depends on the mode: the device uses **preset timers**—**Constant mode is preset to 3 minutes**, and **Pulse mode is preset to 6 minutes** (Alternating switches between the two).",
+      "actualAnswer": "PowerWrap session length depends on the mode: the device uses **preset timers**—**Constant mode is preset to 3 minutes**, and **Pulse mode is preset to 6 minutes** (Alternating switches between the two).",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 703
+    },
+    {
+      "id": 129,
+      "question": "How often can I use PowerWrap in a day?",
+      "expectedAnswer": "Follow provider guidance. The user manual advises **not exceeding 1–2 times per treatment area per day**. It also recommends taking **1 rest day for every 2 days of treatment**.",
+      "actualAnswer": "Follow provider guidance. The user manual advises **not exceeding 1–2 times per treatment area per day**. It also recommends taking **1 rest day for every 2 days of treatment**.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 918
+    },
+    {
+      "id": 130,
+      "question": "What power level should I start with on PowerWrap?",
+      "expectedAnswer": "The manual recommends starting on **Low or Medium power** for the first uses and adjusting only as tolerated. Power levels shown on the remote are **Low (8,000 mW)**, **Medium (10,000 mW)**, and **High (12,000 mW)**.",
+      "actualAnswer": "The manual recommends starting on **Low or Medium power** for the first uses and adjusting only as tolerated. Power levels shown on the remote are **Low (8,000 mW)**, **Medium (10,000 mW)**, and **High (12,000 mW)**.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 1002
+    },
+    {
+      "id": 131,
+      "question": "How do I choose Constant vs Pulse mode on PowerWrap?",
+      "expectedAnswer": "Use **MODE** on the remote to switch between **Constant**, **Pulse**, and **Alternating**. The manual notes **Constant mode should not exceed 3 minutes per treatment area**, and **Pulse mode should not exceed 6 minutes per treatment area**.",
+      "actualAnswer": "Use **MODE** on the remote to switch between **Constant**, **Pulse**, and **Alternating**. The manual notes **Constant mode should not exceed 3 minutes per treatment area**, and **Pulse mode should not exceed 6 minutes per treatment area**.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 1161
+    },
+    {
+      "id": 132,
+      "question": "What are the key safety rules for PowerWrap use?",
+      "expectedAnswer": "Key manual guidance includes: **do not overlap** treatment areas; if moving the wrap, place it on a **new, untreated area**; and **inspect skin** during/after use. The manual also cautions to reduce intensity or stop if sensitivity occurs.",
+      "actualAnswer": "Key manual guidance includes: **do not overlap** treatment areas; if moving the wrap, place it on a **new, untreated area**; and **inspect skin** during/after use. The manual also cautions to reduce intensity or stop if sensitivity occurs.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 946
+    },
+    {
+      "id": 133,
+      "question": "Can PowerWrap be combined with other therapies?",
+      "expectedAnswer": "Yes—providers may coordinate PowerWrap with other modalities as part of an overall plan. Always follow provider direction on sequencing and frequency, and keep PowerWrap use within the manual’s timing/frequency guidance.",
+      "actualAnswer": "Yes—providers may coordinate PowerWrap with other modalities as part of an overall plan. Always follow provider direction on sequencing and frequency, and keep PowerWrap use within the manual’s timing/frequency guidance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 792
+    },
+    {
+      "id": 134,
+      "question": "What is NerveWave used for in the Clinical Program?",
+      "expectedAnswer": "NerveWave is a clinical electrotherapy device with preset programs and adjustable intensity that should always feel **comfortable to mild (never strong)**. It’s used under provider guidance within structured pathways such as regenerative pain control, neuropathy support, restorative recovery, and vagus nerve therapy.",
+      "actualAnswer": "NerveWave is a clinical electrotherapy device with preset programs and adjustable intensity that should always feel **comfortable to mild (never strong)**. It’s used under provider guidance within structured pathways such as regenerative pain control, neuropathy support, restorative recovery, and vagus nerve therapy.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 906
+    },
+    {
+      "id": 135,
+      "question": "How do I start a program on NerveWave?",
+      "expectedAnswer": "Quick operation steps: **charge the device for 12 hours before first use (or power via wall adapter)**, plug in lead wires by channel, **hold the Power button to turn on**, press **Program** to access programs, select a program/subprogram, then **increase intensity** using the large dial. Each program is **preset with a timer**, and stimulation ends when the program ends.",
+      "actualAnswer": "Quick operation steps: **charge the device for 12 hours before first use (or power via wall adapter)**, plug in lead wires by channel, **hold the Power button to turn on**, press **Program** to access programs, select a program/subprogram, then **increase intensity** using the large dial. Each program is **preset with a timer**, and stimulation ends when the program ends.",
+      "pass": true,
+      "reason": "Matched 9/9 key terms (100%)",
+      "durationMs": 838
+    },
+    {
+      "id": 136,
+      "question": "What intensity should NerveWave be set to?",
+      "expectedAnswer": "The Quick Start Guide states intensity should **always feel comfortable to mild—never strong**.",
+      "actualAnswer": "The Quick Start Guide states intensity should **always feel comfortable to mild—never strong**.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 973
+    },
+    {
+      "id": 137,
+      "question": "What is the recommended schedule for NerveWave regenerative pain control?",
+      "expectedAnswer": "The Quick Start Guide lists **Regenerative Pain Control** usage guidance as **4–5x/week over the course of 26 weeks**, including use for degenerative joint conditions (such as OA/RA of the knee, hand, shoulder) and intractable back pain, under provider guidance.",
+      "actualAnswer": "The Quick Start Guide lists **Regenerative Pain Control** usage guidance as **4–5x/week over the course of 26 weeks**, including use for degenerative joint conditions (such as OA/RA of the knee, hand, shoulder) and intractable back pain, under provider guidance.",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 1496
+    },
+    {
+      "id": 138,
+      "question": "How is NerveWave typically used for neuropathy?",
+      "expectedAnswer": "The Quick Start Guide lists **Neuropathy** usage guidance as **5x/week over 60–90 days**. It also notes: for the first **60–90 uses**, use the **Primary and Secondary phases**, ideally **two treatments per day** (1 primary + 1 secondary). After the initial uses, it notes a **maintenance phase** schedule such as **2–3 times/week for 6 weeks**, and repeating consistency **about 1x/year** (per provider guidance).",
+      "actualAnswer": "The Quick Start Guide lists **Neuropathy** usage guidance as **5x/week over 60–90 days**. It also notes: for the first **60–90 uses**, use the **Primary and Secondary phases**, ideally **two treatments per day** (1 primary + 1 secondary). After the initial uses, it notes a **maintenance phase** schedule such as **2–3 times/week for 6 weeks**, and repeating consistency **about 1x/year** (per provider guidance).",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 747
+    },
+    {
+      "id": 139,
+      "question": "What is the recommended schedule for NerveWave restorative recovery?",
+      "expectedAnswer": "The Quick Start Guide lists **Restorative Recovery** usage guidance as **4–5x/week over the course of 13–20 weeks**, including use for post-surgical or post-injury pain and muscle rehabilitation (Rehabilitative Relief) and for muscular-derived pain conditions (Muscle Activation), under provider guidance.",
+      "actualAnswer": "The Quick Start Guide lists **Restorative Recovery** usage guidance as **4–5x/week over the course of 13–20 weeks**, including use for post-surgical or post-injury pain and muscle rehabilitation (Rehabilitative Relief) and for muscular-derived pain conditions (Muscle Activation), under provider guidance.",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 1203
+    },
+    {
+      "id": 140,
+      "question": "How does NerveWave track usage?",
+      "expectedAnswer": "The Quick Start Guide notes the “**track usage**” button shows cumulative use—**number of sessions and total minutes used**. It also notes users can record pain scale results post-treatment (manual entry is possible, and there can be an automated pop-up before each program for starting/ending pain scale if enabled).",
+      "actualAnswer": "The Quick Start Guide notes the “**track usage**” button shows cumulative use—**number of sessions and total minutes used**. It also notes users can record pain scale results post-treatment (manual entry is possible, and there can be an automated pop-up before each program for starting/ending pain scale if enabled).",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 759
+    },
+    {
+      "id": 141,
+      "question": "Can NerveWave be used with accessory tools?",
+      "expectedAnswer": "Yes. The Quick Start Guide includes accessory guidance such as a **scraper tool (gua sha scraper)**, **earlobe clips** (for vagus nerve stimulation—both clips on the **same ear**, not one on each ear), **pre-gelled electrodes** (keep pads **1–6 inches apart**), **carbon rubber pads**, and **foot pads** (sold separately).",
+      "actualAnswer": "Yes. The Quick Start Guide includes accessory guidance such as a **scraper tool (gua sha scraper)**, **earlobe clips** (for vagus nerve stimulation—both clips on the **same ear**, not one on each ear), **pre-gelled electrodes** (keep pads **1–6 inches apart**), **carbon rubber pads**, and **foot pads** (sold separately).",
+      "pass": true,
+      "reason": "Matched 8/8 key terms (100%)",
+      "durationMs": 734
+    },
+    {
+      "id": 142,
+      "question": "What is the recommended schedule for NerveWave vagus nerve therapy?",
+      "expectedAnswer": "The Quick Start Guide lists **Vagus Nerve Therapy** usage guidance as **10 minutes, 1–2x daily as needed**, and notes that longer durations may be used when guided by the timer and provider direction.",
+      "actualAnswer": "The Quick Start Guide lists **Vagus Nerve Therapy** usage guidance as **10 minutes, 1–2x daily as needed**, and notes that longer durations may be used when guided by the timer and provider direction.",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 1353
+    },
+    {
+      "id": 143,
+      "question": "How long should Vibe be used in a typical session?",
+      "expectedAnswer": "The Vibe document states the device has an **automatic 10-minute timer** for a session.",
+      "actualAnswer": "The Vibe document states the device has an **automatic 10-minute timer** for a session.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 813
+    },
+    {
+      "id": 144,
+      "question": "How is Vibe typically used within a clinical plan?",
+      "expectedAnswer": "The Vibe document describes Vibe as a **5–10 minute add-on session** that can complement a broader plan, depending on provider direction.",
+      "actualAnswer": "The Vibe document describes Vibe as a **5–10 minute add-on session** that can complement a broader plan, depending on provider direction.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1147
+    },
+    {
+      "id": 145,
+      "question": "What should I do if my Nerve Bath device is frozen?",
+      "expectedAnswer": "1) Confirm the lock/unlock icon at the top of the screen is set to unlocked. 2) Confirm lead wires are plugged in, carbon rubber pads are connected (one in each water bay), and feet are inserted—intensity won’t engage until the user is engaged. 3) Make sure hands are not wet when touching the touch screen. 4) Use a light tap—don’t press the buttons too hard. 5) Confirm the device was not dropped in water. 6) Shut down the device, charge for 24 hours, and restart.",
+      "actualAnswer": "1) Confirm the lock/unlock icon at the top of the screen is set to unlocked. 2) Confirm lead wires are plugged in, carbon rubber pads are connected (one in each water bay), and feet are inserted—intensity won’t engage until the user is engaged. 3) Make sure hands are not wet when touching the touch screen. 4) Use a light tap—don’t press the buttons too hard. 5) Confirm the device was not dropped in water. 6) Shut down the device, charge for 24 hours, and restart.",
+      "pass": true,
+      "reason": "Matched 11/11 key terms (100%)",
+      "durationMs": 919
+    },
+    {
+      "id": 146,
+      "question": "What if there is no stimulation or weak stimulation in the Nerve Bath?",
+      "expectedAnswer": "1) Confirm lead wires are plugged in, carbon rubber pads are connected (one in each water bay), and feet are inserted—intensity won’t engage until the user is engaged. 2) If neuropathy is late stage, you may have reduced sensation—test by inserting your hands into the bays with the intensity up (don’t over-stimulate your feet by turning it up too high). 3) Add more salt to the water. 4) Replace lead wires if the device is over 6 months old.",
+      "actualAnswer": "1) Confirm lead wires are plugged in, carbon rubber pads are connected (one in each water bay), and feet are inserted—intensity won’t engage until the user is engaged. 2) If neuropathy is late stage, you may have reduced sensation—test by inserting your hands into the bays with the intensity up (don’t over-stimulate your feet by turning it up too high). 3) Add more salt to the water. 4) Replace lead wires if the device is over 6 months old.",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 1158
+    },
+    {
+      "id": 147,
+      "question": "What if the Nerve Bath device does not power on?",
+      "expectedAnswer": "1) Charge the device for 24 hours. 2) Hold down the power button on the side of the device for 3–5 seconds.",
+      "actualAnswer": "1) Charge the device for 24 hours. 2) Hold down the power button on the side of the device for 3–5 seconds.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 763
+    },
+    {
+      "id": 148,
+      "question": "What if stimulation stops or the program ends short of 30 minutes?",
+      "expectedAnswer": "Charge the device for 24 hours.",
+      "actualAnswer": "Charge the device for 24 hours.",
+      "pass": true,
+      "reason": "Matched 4/4 key terms (100%)",
+      "durationMs": 1141
+    },
+    {
+      "id": 149,
+      "question": "What should I do if the LED Wrap lights are flickering or powering down early?",
+      "expectedAnswer": "Make sure the cord is firmly connected to the wall and into the power brick.",
+      "actualAnswer": "Make sure the cord is firmly connected to the wall and into the power brick.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1254
+    },
+    {
+      "id": 150,
+      "question": "Which treatment mode should I use on the LED Wrap?",
+      "expectedAnswer": "Use the blue mode (second setting), not the green mode (first setting). Blue mode powers both the red lights and the infrared lights. Green mode powers just the red lights.",
+      "actualAnswer": "Use the blue mode (second setting), not the green mode (first setting). Blue mode powers both the red lights and the infrared lights. Green mode powers just the red lights.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1034
+    },
+    {
+      "id": 151,
+      "question": "What should I avoid doing with the LED Wrap?",
+      "expectedAnswer": "IMPORTANT: Never crease the LED wrap by folding it in half and then putting pressure on it.",
+      "actualAnswer": "IMPORTANT: Never crease the LED wrap by folding it in half and then putting pressure on it.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 782
+    },
+    {
+      "id": 152,
+      "question": "How do I power the Knee Pro on/off and change modes?",
+      "expectedAnswer": "Hold the power button down to turn on or off. Tap to change modes. The device will automatically cycle from Mode 1 to Mode 2.",
+      "actualAnswer": "Hold the power button down to turn on or off. Tap to change modes. The device will automatically cycle from Mode 1 to Mode 2.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 970
+    },
+    {
+      "id": 153,
+      "question": "What if I’m having issues with stimulation on Knee Pro?",
+      "expectedAnswer": "Charge the device for 24 hours to make sure the battery is fully charged.",
+      "actualAnswer": "Charge the device for 24 hours to make sure the battery is fully charged.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 995
+    },
+    {
+      "id": 154,
+      "question": "What should I know before using the Quake Plate?",
+      "expectedAnswer": "Do not stand on the Quake Plate.",
+      "actualAnswer": "Do not stand on the Quake Plate.",
+      "pass": true,
+      "reason": "Matched 4/4 key terms (100%)",
+      "durationMs": 718
+    },
+    {
+      "id": 155,
+      "question": "What if the Quake Plate makes a loud grinding noise?",
+      "expectedAnswer": "A loud grinding noise usually indicates a mechanical issue. Stop using the device and contact support for further assistance.",
+      "actualAnswer": "A loud grinding noise usually indicates a mechanical issue. Stop using the device and contact support for further assistance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 991
+    },
+    {
+      "id": 156,
+      "question": "What if the Quake Plate remote does not work?",
+      "expectedAnswer": "Check that the remote has a working battery and that there are no obstructions between the remote and the device. If issues persist, contact support.",
+      "actualAnswer": "Check that the remote has a working battery and that there are no obstructions between the remote and the device. If issues persist, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 790
+    },
+    {
+      "id": 157,
+      "question": "What battery does the Quake Plate remote use?",
+      "expectedAnswer": "The Quake Plate remote uses a standard coin-style battery. Replace the battery if the remote becomes unresponsive.",
+      "actualAnswer": "The Quake Plate remote uses a standard coin-style battery. Replace the battery if the remote becomes unresponsive.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 672
+    },
+    {
+      "id": 158,
+      "question": "What should I do if stimulation feels weak with conductive socks or gloves?",
+      "expectedAnswer": "Lightly moisten the conductive garments before use and confirm proper leadwire connection. Weak stimulation is often related to dryness or loose connections.",
+      "actualAnswer": "Lightly moisten the conductive garments before use and confirm proper leadwire connection. Weak stimulation is often related to dryness or loose connections.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1671
+    },
+    {
+      "id": 159,
+      "question": "How do I clean conductive socks, gloves, or garments?",
+      "expectedAnswer": "Hand wash with mild soap and water, then air dry completely before reuse. Do not machine wash or dry.",
+      "actualAnswer": "Hand wash with mild soap and water, then air dry completely before reuse. Do not machine wash or dry.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 889
+    },
+    {
+      "id": 160,
+      "question": "How often should conductive garments be replaced?",
+      "expectedAnswer": "Replacement frequency depends on use and care. If stimulation becomes inconsistent despite proper moistening and connections, replacement may be needed.",
+      "actualAnswer": "Replacement frequency depends on use and care. If stimulation becomes inconsistent despite proper moistening and connections, replacement may be needed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 891
+    },
+    {
+      "id": 161,
+      "question": "What should I do if the Cold Laser does not turn on?",
+      "expectedAnswer": "Confirm the device is fully charged and that the power button is held down for several seconds. If it still does not power on, contact support.",
+      "actualAnswer": "Confirm the device is fully charged and that the power button is held down for several seconds. If it still does not power on, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 817
+    },
+    {
+      "id": 162,
+      "question": "What if the Cold Laser shuts off during treatment?",
+      "expectedAnswer": "Check battery charge and restart the device. If the issue continues, contact support.",
+      "actualAnswer": "Check battery charge and restart the device. If the issue continues, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 941
+    },
+    {
+      "id": 163,
+      "question": "What should I do if the LED Wrap does not turn on?",
+      "expectedAnswer": "Confirm the power brick is plugged into a working outlet and securely connected to the wrap. Try a different outlet if needed.",
+      "actualAnswer": "Confirm the power brick is plugged into a working outlet and securely connected to the wrap. Try a different outlet if needed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 799
+    },
+    {
+      "id": 164,
+      "question": "What if the LED Wrap lights flicker during use?",
+      "expectedAnswer": "Check that the power brick and cable connections are secure at both the outlet and the device. Flickering is commonly caused by a loose connection.",
+      "actualAnswer": "Check that the power brick and cable connections are secure at both the outlet and the device. Flickering is commonly caused by a loose connection.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 937
+    },
+    {
+      "id": 165,
+      "question": "What should I do if the LED Wrap powers down early?",
+      "expectedAnswer": "Confirm the power brick is firmly connected and that the outlet is providing consistent power. If the issue continues, discontinue use and contact support.",
+      "actualAnswer": "Confirm the power brick is firmly connected and that the outlet is providing consistent power. If the issue continues, discontinue use and contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 849
+    },
+    {
+      "id": 166,
+      "question": "How do I clean the LED Wrap?",
+      "expectedAnswer": "Disconnect the wrap from power before cleaning. Wipe the surface gently with a soft, dry or lightly damp cloth. Do not submerge in water.",
+      "actualAnswer": "Disconnect the wrap from power before cleaning. Wipe the surface gently with a soft, dry or lightly damp cloth. Do not submerge in water.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 646
+    },
+    {
+      "id": 167,
+      "question": "What should I do if the PowerWrap does not turn on?",
+      "expectedAnswer": "Ensure the device is charged and the power button is pressed firmly. If it still does not turn on, discontinue use and contact support.",
+      "actualAnswer": "Ensure the device is charged and the power button is pressed firmly. If it still does not turn on, discontinue use and contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 849
+    },
+    {
+      "id": 168,
+      "question": "What should I do if my skin feels too sensitive after PowerWrap use?",
+      "expectedAnswer": "Stop treatment and allow the skin to return to normal before resuming. Reduce power level or frequency as directed by your provider.",
+      "actualAnswer": "Stop treatment and allow the skin to return to normal before resuming. Reduce power level or frequency as directed by your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1279
+    },
+    {
+      "id": 169,
+      "question": "What if the PowerWrap remote does not respond?",
+      "expectedAnswer": "Replace the remote battery and confirm there is a clear line of sight to the device. If the issue persists, contact support.",
+      "actualAnswer": "Replace the remote battery and confirm there is a clear line of sight to the device. If the issue persists, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 913
+    },
+    {
+      "id": 170,
+      "question": "What should I do if NerveWave does not power on?",
+      "expectedAnswer": "Confirm the device is charged or connected to a wall adapter. Hold the power button to turn on. If it still does not start, contact support.",
+      "actualAnswer": "Confirm the device is charged or connected to a wall adapter. Hold the power button to turn on. If it still does not start, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 872
+    },
+    {
+      "id": 171,
+      "question": "What if I feel no sensation during NerveWave use?",
+      "expectedAnswer": "Increase intensity gradually until a comfortable, mild sensation is felt. Check electrode placement and leadwire connections.",
+      "actualAnswer": "Increase intensity gradually until a comfortable, mild sensation is felt. Check electrode placement and leadwire connections.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 977
+    },
+    {
+      "id": 172,
+      "question": "What should I do if NerveWave stimulation feels too strong?",
+      "expectedAnswer": "Reduce the intensity immediately to a comfortable level. Stimulation should always feel mild and never painful.",
+      "actualAnswer": "Reduce the intensity immediately to a comfortable level. Stimulation should always feel mild and never painful.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1111
+    },
+    {
+      "id": 173,
+      "question": "What if the electrodes are not sticking properly?",
+      "expectedAnswer": "Replace worn electrodes and ensure the skin is clean and dry before placement. Poor adhesion can reduce stimulation effectiveness.",
+      "actualAnswer": "Replace worn electrodes and ensure the skin is clean and dry before placement. Poor adhesion can reduce stimulation effectiveness.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1036
+    },
+    {
+      "id": 174,
+      "question": "How do I place electrodes correctly?",
+      "expectedAnswer": "Place electrodes on clean, dry skin with pads spaced approximately 1–6 inches apart, following provider guidance and the user guide.",
+      "actualAnswer": "Place electrodes on clean, dry skin with pads spaced approximately 1–6 inches apart, following provider guidance and the user guide.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 724
+    },
+    {
+      "id": 175,
+      "question": "What should I do if NerveWave shuts off during treatment?",
+      "expectedAnswer": "Check the battery level and restart the device. If shutdown continues, discontinue use and contact support.",
+      "actualAnswer": "Check the battery level and restart the device. If shutdown continues, discontinue use and contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1160
+    },
+    {
+      "id": 176,
+      "question": "What should I do if the Vibe device does not turn on?",
+      "expectedAnswer": "Confirm the device is charged or properly powered, then press the power button firmly. If it does not turn on, contact support.",
+      "actualAnswer": "Confirm the device is charged or properly powered, then press the power button firmly. If it does not turn on, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 985
+    },
+    {
+      "id": 177,
+      "question": "What if the Vibe stops during a session?",
+      "expectedAnswer": "Allow the session to complete its automatic timer. If the device stops unexpectedly, recharge and restart.",
+      "actualAnswer": "Allow the session to complete its automatic timer. If the device stops unexpectedly, recharge and restart.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 817
+    },
+    {
+      "id": 178,
+      "question": "What should patients feel during Vibe use?",
+      "expectedAnswer": "A gentle vibration is expected. If discomfort occurs, stop use and consult your provider.",
+      "actualAnswer": "A gentle vibration is expected. If discomfort occurs, stop use and consult your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 882
+    },
+    {
+      "id": 179,
+      "question": "What should I do if Knee Pro does not power on?",
+      "expectedAnswer": "Charge the device fully and hold the power button to turn it on. If it does not respond, contact support.",
+      "actualAnswer": "Charge the device fully and hold the power button to turn it on. If it does not respond, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 673
+    },
+    {
+      "id": 180,
+      "question": "What if stimulation feels weak on Knee Pro?",
+      "expectedAnswer": "Charge the device fully and confirm proper leadwire and garment placement. Weak stimulation is often related to battery level or placement.",
+      "actualAnswer": "Charge the device fully and confirm proper leadwire and garment placement. Weak stimulation is often related to battery level or placement.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 753
+    },
+    {
+      "id": 181,
+      "question": "How do I change Knee Pro modes?",
+      "expectedAnswer": "Tap the power button to cycle through available modes. The device will automatically progress through its preset modes.",
+      "actualAnswer": "Tap the power button to cycle through available modes. The device will automatically progress through its preset modes.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 637
+    },
+    {
+      "id": 182,
+      "question": "What should I do if Shoulder Pro does not power on?",
+      "expectedAnswer": "Charge the device fully and press the power button to turn it on. If it does not respond, contact support.",
+      "actualAnswer": "Charge the device fully and press the power button to turn it on. If it does not respond, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 683
+    },
+    {
+      "id": 183,
+      "question": "What if stimulation feels weak on Shoulder Pro?",
+      "expectedAnswer": "Confirm the device is fully charged and that the conductive garment is properly fitted and snug. Weak stimulation is commonly related to battery level or garment placement.",
+      "actualAnswer": "Confirm the device is fully charged and that the conductive garment is properly fitted and snug. Weak stimulation is commonly related to battery level or garment placement.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 737
+    },
+    {
+      "id": 184,
+      "question": "How do I change Shoulder Pro modes?",
+      "expectedAnswer": "Press the power button to cycle through the preset modes. The device will automatically advance through its programmed sequence.",
+      "actualAnswer": "Press the power button to cycle through the preset modes. The device will automatically advance through its programmed sequence.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 724
+    },
+    {
+      "id": 185,
+      "question": "What if I feel little or no sensation during a Nerve Bath session?",
+      "expectedAnswer": "Check water level, electrode placement, and connection cables. Sensation may vary and should be guided by provider instructions.",
+      "actualAnswer": "Check water level, electrode placement, and connection cables. Sensation may vary and should be guided by provider instructions.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1128
+    },
+    {
+      "id": 186,
+      "question": "What should I do if the Nerve Bath unit does not turn on?",
+      "expectedAnswer": "Confirm the unit is plugged in securely and the power switch is on. If the unit still does not power on, contact support.",
+      "actualAnswer": "Confirm the unit is plugged in securely and the power switch is on. If the unit still does not power on, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 947
+    },
+    {
+      "id": 187,
+      "question": "Is tingling or warmth normal during a Nerve Bath session?",
+      "expectedAnswer": "Mild tingling or warmth can be normal. If discomfort occurs, stop the session and consult your provider.",
+      "actualAnswer": "Mild tingling or warmth can be normal. If discomfort occurs, stop the session and consult your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1028
+    },
+    {
+      "id": 188,
+      "question": "What if the LED wrap does not turn on?",
+      "expectedAnswer": "Ensure the controller is charged and properly connected to the wrap. If it still does not power on, contact support.",
+      "actualAnswer": "Ensure the controller is charged and properly connected to the wrap. If it still does not power on, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 695
+    },
+    {
+      "id": 189,
+      "question": "What should I feel during LED wrap therapy?",
+      "expectedAnswer": "A gentle warmth is typical. If excessive heat or discomfort occurs, stop use and consult your provider.",
+      "actualAnswer": "A gentle warmth is typical. If excessive heat or discomfort occurs, stop use and consult your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 799
+    },
+    {
+      "id": 190,
+      "question": "What if the Cold Laser does not activate?",
+      "expectedAnswer": "Confirm the device is charged and properly powered. Follow the user guide for correct activation steps.",
+      "actualAnswer": "Confirm the device is charged and properly powered. Follow the user guide for correct activation steps.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 799
+    },
+    {
+      "id": 191,
+      "question": "What should I feel during Cold Laser therapy?",
+      "expectedAnswer": "Cold Laser therapy is typically painless. A mild warming sensation may occur, but no discomfort should be felt.",
+      "actualAnswer": "Cold Laser therapy is typically painless. A mild warming sensation may occur, but no discomfort should be felt.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 810
+    },
+    {
+      "id": 192,
+      "question": "What if the Quake Plate feels too intense?",
+      "expectedAnswer": "Reduce intensity or shorten session time as directed by your provider. Stop use if discomfort occurs.",
+      "actualAnswer": "Reduce intensity or shorten session time as directed by your provider. Stop use if discomfort occurs.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 852
+    },
+    {
+      "id": 193,
+      "question": "What if the Quake Plate does not start vibrating?",
+      "expectedAnswer": "Confirm the unit is plugged in, powered on, and that the control settings are properly selected. If the plate does not activate, contact support.",
+      "actualAnswer": "Confirm the unit is plugged in, powered on, and that the control settings are properly selected. If the plate does not activate, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 774
+    },
+    {
+      "id": 194,
+      "question": "Is muscle fatigue normal after using the Quake Plate?",
+      "expectedAnswer": "Mild muscle fatigue can occur after use. If soreness persists or discomfort increases, pause use and consult your provider.",
+      "actualAnswer": "Mild muscle fatigue can occur after use. If soreness persists or discomfort increases, pause use and consult your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 894
+    },
+    {
+      "id": 195,
+      "question": "What should I do if the PowerWrap does not power on?",
+      "expectedAnswer": "Ensure the controller is fully charged and properly connected to the wrap. Refer to the user guide for setup steps before contacting support.",
+      "actualAnswer": "Ensure the controller is fully charged and properly connected to the wrap. Refer to the user guide for setup steps before contacting support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 850
+    },
+    {
+      "id": 196,
+      "question": "What if PowerWrap feels uncomfortable during use?",
+      "expectedAnswer": "Stop the session and adjust placement or intensity as directed by your provider. Discomfort should not occur during normal use.",
+      "actualAnswer": "Stop the session and adjust placement or intensity as directed by your provider. Discomfort should not occur during normal use.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 969
+    },
+    {
+      "id": 197,
+      "question": "What if I feel little or no sensation during NerveWave use?",
+      "expectedAnswer": "Check electrode placement and connections. Sensation levels may vary and should follow provider guidance.",
+      "actualAnswer": "Check electrode placement and connections. Sensation levels may vary and should follow provider guidance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1068
+    },
+    {
+      "id": 198,
+      "question": "What should I feel during a NerveWave session?",
+      "expectedAnswer": "A mild pulsing or tingling sensation is typical. If discomfort occurs, stop use and consult your provider.",
+      "actualAnswer": "A mild pulsing or tingling sensation is typical. If discomfort occurs, stop use and consult your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 779
+    },
+    {
+      "id": 199,
+      "question": "What if NerveWave does not turn on?",
+      "expectedAnswer": "Confirm the device is charged and that electrodes are properly connected. If the issue continues, contact support.",
+      "actualAnswer": "Confirm the device is charged and that electrodes are properly connected. If the issue continues, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 816
+    },
+    {
+      "id": 200,
+      "question": "When should I contact support for device issues?",
+      "expectedAnswer": "If a device does not function as expected after following setup and troubleshooting steps, contact support for assistance.",
+      "actualAnswer": "If a device does not function as expected after following setup and troubleshooting steps, contact support for assistance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 947
+    },
+    {
+      "id": 201,
+      "question": "What if my device will not charge?",
+      "expectedAnswer": "Check that the charging cable and power source are working properly. Allow the device to charge fully before use. If it still does not charge, contact support.",
+      "actualAnswer": "Check that the charging cable and power source are working properly. Allow the device to charge fully before use. If it still does not charge, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 632
+    },
+    {
+      "id": 202,
+      "question": "What if my device turns off during use?",
+      "expectedAnswer": "If a device powers off unexpectedly, stop the session and ensure it is adequately charged. Restart only after confirming proper power levels.",
+      "actualAnswer": "If a device powers off unexpectedly, stop the session and ensure it is adequately charged. Restart only after confirming proper power levels.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 912
+    },
+    {
+      "id": 203,
+      "question": "What if stimulation feels too strong or uncomfortable?",
+      "expectedAnswer": "Stop the session and reduce intensity or adjust placement according to provider guidance. Therapy should remain comfortable at all times.",
+      "actualAnswer": "Stop the session and reduce intensity or adjust placement according to provider guidance. Therapy should remain comfortable at all times.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1067
+    },
+    {
+      "id": 204,
+      "question": "What if stimulation feels too weak?",
+      "expectedAnswer": "Check connections, electrode placement, or device positioning. Follow provider guidance for proper setup and intensity.",
+      "actualAnswer": "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin.",
+      "pass": false,
+      "reason": "Only 1/5 key terms found (20%). Missing: connections, positioning, electrode, placement",
+      "durationMs": 640
+    },
+    {
+      "id": 205,
+      "question": "Can I continue treatment if I experience skin irritation?",
+      "expectedAnswer": "Stop use if irritation occurs and allow skin to recover. Consult your provider before resuming therapy.",
+      "actualAnswer": "Stop use if irritation occurs and allow skin to recover. Consult your provider before resuming therapy.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1179
+    },
+    {
+      "id": 206,
+      "question": "What if my conductive socks or garments do not work properly?",
+      "expectedAnswer": "Ensure garments are slightly moistened and properly connected. Replace worn garments as recommended by your provider.",
+      "actualAnswer": "Ensure garments are slightly moistened and properly connected. Replace worn garments as recommended by your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1210
+    },
+    {
+      "id": 207,
+      "question": "How do I clean conductive garments?",
+      "expectedAnswer": "Follow care instructions provided with the garments. Proper cleaning helps maintain conductivity and performance.",
+      "actualAnswer": "Follow care instructions provided with the garments. Proper cleaning helps maintain conductivity and performance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 683
+    },
+    {
+      "id": 208,
+      "question": "Where can I find setup guides and manuals?",
+      "expectedAnswer": "Setup guides and user manuals are provided by your clinic or can be accessed through official NerveSpa resources as directed by your provider.",
+      "actualAnswer": "Setup guides and user manuals are provided by your clinic or can be accessed through official NerveSpa resources as directed by your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 912
+    },
+    {
+      "id": 209,
+      "question": "What if I feel no sensation during a Nerve Bath session?",
+      "expectedAnswer": "Ensure the unit is powered on, salts/tablets are added as directed, and hands or feet are fully submerged. Gradually increase intensity to a comfortable level per provider guidance.",
+      "actualAnswer": "Ensure the unit is powered on, salts/tablets are added as directed, and hands or feet are fully submerged. Gradually increase intensity to a comfortable level per provider guidance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1052
+    },
+    {
+      "id": 210,
+      "question": "What if the water feels too hot or uncomfortable?",
+      "expectedAnswer": "Stop the session and allow the water to cool. Sessions should always be comfortable; adjust water temperature before restarting.",
+      "actualAnswer": "Stop the session and allow the water to cool. Sessions should always be comfortable; adjust water temperature before restarting.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 992
+    },
+    {
+      "id": 211,
+      "question": "What if the unit does not power on?",
+      "expectedAnswer": "Check the power connection and battery charge. If the unit still does not power on, contact support for assistance.",
+      "actualAnswer": "Check the power connection and battery charge. If the unit still does not power on, contact support for assistance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 668
+    },
+    {
+      "id": 212,
+      "question": "What if stimulation feels uneven between hands or feet?",
+      "expectedAnswer": "Reposition hands or feet evenly in the water and confirm equal setup on both sides. Adjust intensity gradually as needed.",
+      "actualAnswer": "Reposition hands or feet evenly in the water and confirm equal setup on both sides. Adjust intensity gradually as needed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1134
+    },
+    {
+      "id": 213,
+      "question": "What if the PowerWrap does not turn on?",
+      "expectedAnswer": "Verify the power connection and ensure the device is properly charged before use. Restart only after confirming power.",
+      "actualAnswer": "Verify the power connection and ensure the device is properly charged before use. Restart only after confirming power.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 722
+    },
+    {
+      "id": 214,
+      "question": "What if the wrap feels too warm?",
+      "expectedAnswer": "Stop the session and allow the device to cool. PowerWrap therapy should remain comfortable when used as directed by a provider.",
+      "actualAnswer": "Stop the session and allow the device to cool. PowerWrap therapy should remain comfortable when used as directed by a provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 771
+    },
+    {
+      "id": 215,
+      "question": "What if I do not feel stimulation with NerveWave?",
+      "expectedAnswer": "Check electrode placement and connections. Increase intensity slowly to a comfortable level per provider guidance.",
+      "actualAnswer": "Check electrode placement and connections. Increase intensity slowly to a comfortable level per provider guidance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1033
+    },
+    {
+      "id": 216,
+      "question": "What if electrodes lose adhesion during use?",
+      "expectedAnswer": "Replace or reapply electrodes as directed. Clean, dry skin helps maintain proper adhesion during sessions.",
+      "actualAnswer": "Replace or reapply electrodes as directed. Clean, dry skin helps maintain proper adhesion during sessions.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1062
+    },
+    {
+      "id": 217,
+      "question": "What if the NerveWave unit will not power on?",
+      "expectedAnswer": "Confirm the device is charged and all connections are secure. If the unit still does not power on, contact support for assistance.",
+      "actualAnswer": "Confirm the device is charged and all connections are secure. If the unit still does not power on, contact support for assistance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 883
+    },
+    {
+      "id": 218,
+      "question": "What if the Vibe device does not start?",
+      "expectedAnswer": "Ensure the device is properly connected and powered on. Restart the device following the setup steps provided by your clinic or provider.",
+      "actualAnswer": "Ensure the device is properly connected and powered on. Restart the device following the setup steps provided by your clinic or provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 838
+    },
+    {
+      "id": 219,
+      "question": "What if vibration feels uncomfortable?",
+      "expectedAnswer": "Stop the session and restart at a lower setting if recommended by your provider. Vibration therapy should remain comfortable at all times.",
+      "actualAnswer": "Stop the session and restart at a lower setting if recommended by your provider. Vibration therapy should remain comfortable at all times.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 861
+    },
+    {
+      "id": 220,
+      "question": "What if the Knee Pro does not deliver sensation?",
+      "expectedAnswer": "Check strap placement and ensure the device is powered on. Increase intensity gradually as directed by your provider.",
+      "actualAnswer": "Check strap placement and ensure the device is powered on. Increase intensity gradually as directed by your provider.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 725
+    },
+    {
+      "id": 221,
+      "question": "What if the Knee Pro strap feels too tight or loose?",
+      "expectedAnswer": "Readjust the strap so it is secure but comfortable. Proper fit helps ensure effective therapy.",
+      "actualAnswer": "Readjust the strap so it is secure but comfortable. Proper fit helps ensure effective therapy.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1073
+    },
+    {
+      "id": 222,
+      "question": "What if the Shoulder Pro feels uncomfortable during use?",
+      "expectedAnswer": "Stop the session and adjust placement. Shoulder Pro should fit securely without causing pain or discomfort.",
+      "actualAnswer": "Stop the session and adjust placement. Shoulder Pro should fit securely without causing pain or discomfort.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1086
+    },
+    {
+      "id": 223,
+      "question": "What if the Shoulder Pro does not power on?",
+      "expectedAnswer": "Check connections and power status. If the issue persists, contact support for further guidance.",
+      "actualAnswer": "Check connections and power status. If the issue persists, contact support for further guidance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 621
+    },
+    {
+      "id": 224,
+      "question": "What if I don’t feel stimulation in the water?",
+      "expectedAnswer": "Gradually increase the intensity using the control dial until a mild, comfortable sensation is felt. Ensure the water contains the recommended salts and tablets as directed.",
+      "actualAnswer": "Gradually increase the intensity using the control dial until a mild, comfortable sensation is felt. Ensure the water contains the recommended salts and tablets as directed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1084
+    },
+    {
+      "id": 225,
+      "question": "What if stimulation feels uneven between feet or hands?",
+      "expectedAnswer": "Ensure both sides are filled with the same amount of warm water and consumables. Adjust positioning so hands or feet are fully submerged and relaxed.",
+      "actualAnswer": "Ensure both sides are filled with the same amount of warm water and consumables. Adjust positioning so hands or feet are fully submerged and relaxed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1106
+    },
+    {
+      "id": 226,
+      "question": "What if the unit shuts off during a session?",
+      "expectedAnswer": "The NerveSpa Nerve Bath includes an automatic shutoff at the end of the programmed session. If it shuts off early, check battery charge and restart if needed.",
+      "actualAnswer": "The NerveSpa Nerve Bath includes an automatic shutoff at the end of the programmed session. If it shuts off early, check battery charge and restart if needed.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 876
+    },
+    {
+      "id": 227,
+      "question": "What if the Cold Laser does not emit light?",
+      "expectedAnswer": "Check that the device is powered on and properly charged. Ensure the applicator is positioned correctly against the skin.",
+      "actualAnswer": "Check that the device is powered on and properly charged. Ensure the applicator is positioned correctly against the skin.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 783
+    },
+    {
+      "id": 228,
+      "question": "What if treatment feels ineffective?",
+      "expectedAnswer": "Confirm session duration and placement follow provider guidance. Consistent use over time is important for results.",
+      "actualAnswer": "Confirm session duration and placement follow provider guidance. Consistent use over time is important for results.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 686
+    },
+    {
+      "id": 229,
+      "question": "What if vibration feels too intense?",
+      "expectedAnswer": "Stop the session and restart at a lower setting if recommended by your provider. Vibration should remain comfortable.",
+      "actualAnswer": "Stop the session and restart at a lower setting if recommended by your provider. Vibration should remain comfortable.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 825
+    },
+    {
+      "id": 230,
+      "question": "What if the Quake Plate does not power on?",
+      "expectedAnswer": "Check the power source and ensure the device is properly connected. Contact support if the issue continues.",
+      "actualAnswer": "Check the power source and ensure the device is properly connected. Contact support if the issue continues.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 666
+    },
+    {
+      "id": 231,
+      "question": "What if conductive socks or gloves feel dry during use?",
+      "expectedAnswer": "Lightly moisten the conductive garments with water before starting the session. Proper moisture helps ensure consistent stimulation.",
+      "actualAnswer": "Lightly moisten the conductive garments with water before starting the session. Proper moisture helps ensure consistent stimulation.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 848
+    },
+    {
+      "id": 232,
+      "question": "What if stimulation cuts in and out when using conductive garments?",
+      "expectedAnswer": "Check lead wire connections and ensure the garments are evenly moistened. Inconsistent stimulation is often related to connection or moisture issues.",
+      "actualAnswer": "Check lead wire connections and ensure the garments are evenly moistened. Inconsistent stimulation is often related to connection or moisture issues.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1272
+    },
+    {
+      "id": 233,
+      "question": "What if the garment no longer conducts stimulation well?",
+      "expectedAnswer": "Over time, conductive garments can wear down. If stimulation remains inconsistent despite proper setup, replacement may be needed.",
+      "actualAnswer": "Over time, conductive garments can wear down. If stimulation remains inconsistent despite proper setup, replacement may be needed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1169
+    },
+    {
+      "id": 234,
+      "question": "What if Knee Pro shuts off during a session?",
+      "expectedAnswer": "Charge the device fully before restarting. If shutdown continues, discontinue use and contact support.",
+      "actualAnswer": "Charge the device fully before restarting. If shutdown continues, discontinue use and contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1058
+    },
+    {
+      "id": 235,
+      "question": "What if the Knee Pro feels uncomfortable around the knee?",
+      "expectedAnswer": "Stop the session and adjust strap placement so the device is secure but comfortable.",
+      "actualAnswer": "Stop the session and adjust strap placement so the device is secure but comfortable.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1167
+    },
+    {
+      "id": 236,
+      "question": "What if the Shoulder Pro shifts during use?",
+      "expectedAnswer": "Readjust the wrap so it fits snugly and remains in place during the session.",
+      "actualAnswer": "Readjust the wrap so it fits snugly and remains in place during the session.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 707
+    },
+    {
+      "id": 237,
+      "question": "What if the Shoulder Pro shuts off unexpectedly?",
+      "expectedAnswer": "Ensure the device is fully charged before use. If the issue continues, contact support.",
+      "actualAnswer": "Ensure the device is fully charged before use. If the issue continues, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 777
+    },
+    {
+      "id": 238,
+      "question": "What if the screen does not respond or freezes?",
+      "expectedAnswer": "Turn the device off and back on. If the issue persists, discontinue use and contact support.",
+      "actualAnswer": "Turn the device off and back on. If the issue persists, discontinue use and contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1087
+    },
+    {
+      "id": 239,
+      "question": "What if lead wires appear damaged?",
+      "expectedAnswer": "Stop using the device and replace damaged lead wires. Using compromised accessories can affect performance.",
+      "actualAnswer": "Stop using the device and replace damaged lead wires. Using compromised accessories can affect performance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 834
+    },
+    {
+      "id": 240,
+      "question": "When should I stop treatment and contact my provider?",
+      "expectedAnswer": "Stop treatment if pain, discomfort, or unexpected reactions occur. Contact your provider for guidance before resuming use.",
+      "actualAnswer": "Stop treatment if pain, discomfort, or unexpected reactions occur. Contact your provider for guidance before resuming use.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1362
+    },
+    {
+      "id": 241,
+      "question": "What if a device will not power on?",
+      "expectedAnswer": "Ensure the device is fully charged or properly connected to power. If it still does not turn on, discontinue use and contact support.",
+      "actualAnswer": "Ensure the device is fully charged or properly connected to power. If it still does not turn on, discontinue use and contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 702
+    },
+    {
+      "id": 242,
+      "question": "What if stimulation feels weaker than expected?",
+      "expectedAnswer": "Check connections, electrode or garment moisture, and device settings. Weak stimulation is often related to setup issues.",
+      "actualAnswer": "Check connections, electrode or garment moisture, and device settings. Weak stimulation is often related to setup issues.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 852
+    },
+    {
+      "id": 243,
+      "question": "What if the device becomes warm during use?",
+      "expectedAnswer": "Mild warmth can be normal. If the device becomes excessively hot, stop use and allow it to cool before restarting.",
+      "actualAnswer": "Mild warmth can be normal. If the device becomes excessively hot, stop use and allow it to cool before restarting.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1078
+    },
+    {
+      "id": 244,
+      "question": "What if an error message appears on the screen?",
+      "expectedAnswer": "Power the device off and restart. If the error persists, contact support for further guidance.",
+      "actualAnswer": "Power the device off and restart. If the error persists, contact support for further guidance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1022
+    },
+    {
+      "id": 245,
+      "question": "What if the battery drains faster than expected?",
+      "expectedAnswer": "Fully charge the device before each use. If battery performance declines significantly, contact support.",
+      "actualAnswer": "Fully charge the device before each use. If battery performance declines significantly, contact support.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1056
+    },
+    {
+      "id": 246,
+      "question": "What if accessories are lost or damaged?",
+      "expectedAnswer": "Replacement accessories can be ordered through approved channels. Contact support for assistance.",
+      "actualAnswer": "Replacement accessories can be ordered through approved channels. Contact support for assistance.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 754
+    },
+    {
+      "id": 247,
+      "question": "Can devices be shared between patients?",
+      "expectedAnswer": "Devices are assigned per provider guidance. Sharing policies depend on clinical protocols and hygiene standards.",
+      "actualAnswer": "Devices are assigned per provider guidance. Sharing policies depend on clinical protocols and hygiene standards.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 897
+    },
+    {
+      "id": 248,
+      "question": "How should devices be cleaned after use?",
+      "expectedAnswer": "Follow the cleaning instructions provided in the user guide. Use gentle cleaning methods and avoid submerging electronic components.",
+      "actualAnswer": "Follow the cleaning instructions provided in the user guide. Use gentle cleaning methods and avoid submerging electronic components.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 932
+    },
+    {
+      "id": 249,
+      "question": "When should I contact NerveSpa support?",
+      "expectedAnswer": "Contact support if troubleshooting steps do not resolve the issue or if the device does not function as expected.",
+      "actualAnswer": "Contact support if troubleshooting steps do not resolve the issue or if the device does not function as expected.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 663
+    },
+    {
+      "id": 250,
+      "question": "What if there is no sensation during a NerveSpa Nerve Bath session?",
+      "expectedAnswer": "Check that lead wires are connected properly, salts and tablets are added, and intensity is increased gradually until a mild sensation is felt.",
+      "actualAnswer": "Check that lead wires are connected properly, salts and tablets are added, and intensity is increased gradually until a mild sensation is felt.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1302
+    },
+    {
+      "id": 251,
+      "question": "What if the sensation feels uneven between feet or hands?",
+      "expectedAnswer": "Uneven sensation can occur due to skin condition or placement. Adjust position and ensure equal contact with the water.",
+      "actualAnswer": "Uneven sensation can occur due to skin condition or placement. Adjust position and ensure equal contact with the water.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1092
+    },
+    {
+      "id": 252,
+      "question": "What if the water feels too warm or too cool?",
+      "expectedAnswer": "Use warm, comfortable water. Avoid hot water, as it may affect comfort and session quality.",
+      "actualAnswer": "Use warm, comfortable water. Avoid hot water, as it may affect comfort and session quality.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1013
+    },
+    {
+      "id": 253,
+      "question": "What if the session stops",
+      "expectedAnswer": "If the session stops before the full programmed time, first check whether the device automatically completed its preset cycle. Many NerveSpa devices are designed to stop once the selected program has finished.\r\n\r\nIf the session stopped unexpectedly:\r\n\r\n• Ensure the device is properly connected and powered on\r\n• Check that all cables, pads, or wraps are securely attached\r\n• Confirm the battery is adequately charged (if applicable)\r\n• Restart the device and begin a new session\r\n\r\nIf the device continues to stop unexpectedly after these steps, discontinue use and contact NerveSpa customer support or your provider for assistance.",
+      "actualAnswer": "If the session stops before the full programmed time, first check whether the device automatically completed its preset cycle. Many NerveSpa devices are designed to stop once the selected program has finished. If the session stopped unexpectedly: • Ensure the device is properly connected and powered on • Check that all cables, pads, or wraps are securely attached • Confirm the battery is adequately charged (if applicable) • Restart the device and begin a new session If the device continues to stop unexpectedly after these steps, discontinue use and contact NerveSpa customer support or your provider for assistance.",
+      "pass": true,
+      "reason": "Matched 12/12 key terms (100%)",
+      "durationMs": 722
+    },
+    {
+      "id": 254,
+      "question": "What if the session stops before 30 minutes?",
+      "expectedAnswer": "The NerveSpa Nerve Bath is designed with an automatic 30-minute shutoff. If the session ends early, check battery charge and connections before restarting.",
+      "actualAnswer": "The NerveSpa Nerve Bath is designed with an automatic 30-minute shutoff. If the session ends early, check battery charge and connections before restarting.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 895
+    },
+    {
+      "id": 255,
+      "question": "What if the device will not power on?",
+      "expectedAnswer": "Ensure the unit is fully charged and all cables are securely connected. If the device still does not power on, contact support.",
+      "actualAnswer": "Ensure the device is fully charged or properly connected to power. If it still does not turn on, discontinue use and contact support.",
+      "pass": true,
+      "reason": "Matched 4/5 key terms (80%)",
+      "durationMs": 664
+    },
+    {
+      "id": 256,
+      "question": "What if stimulation feels too strong?",
+      "expectedAnswer": "Reduce intensity using the control buttons until the sensation is mild and comfortable. Sessions should never be painful.",
+      "actualAnswer": "Reduce intensity using the control buttons until the sensation is mild and comfortable. Sessions should never be painful.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 872
+    },
+    {
+      "id": 257,
+      "question": "What if the wrap shuts off during a session?",
+      "expectedAnswer": "The wrap may shut off automatically at the end of a programmed session or if battery power is low. Recharge the unit and restart if needed.",
+      "actualAnswer": "The wrap may shut off automatically at the end of a programmed session or if battery power is low. Recharge the unit and restart if needed.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 956
+    },
+    {
+      "id": 258,
+      "question": "What if I do not feel anything during treatment?",
+      "expectedAnswer": "LED therapy may not produce a strong sensation. Consistent use as directed is important even if minimal sensation is felt.",
+      "actualAnswer": "LED therapy may not produce a strong sensation. Consistent use as directed is important even if minimal sensation is felt.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1107
+    },
+    {
+      "id": 259,
+      "question": "What if the Cold Laser does not power on?",
+      "expectedAnswer": "Ensure the device is fully charged and the power button is pressed firmly. Confirm the applicator is properly connected before starting a session.",
+      "actualAnswer": "Ensure the device is fully charged and the power button is pressed firmly. Confirm the applicator is properly connected before starting a session.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 738
+    },
+    {
+      "id": 260,
+      "question": "What if the laser shuts off during treatment?",
+      "expectedAnswer": "The Cold Laser may shut off automatically at the end of a timed session or if the battery is low. Recharge the device and restart as directed.",
+      "actualAnswer": "The Cold Laser may shut off automatically at the end of a timed session or if the battery is low. Recharge the device and restart as directed.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 968
+    },
+    {
+      "id": 261,
+      "question": "What if I do not feel any sensation from the laser?",
+      "expectedAnswer": "Cold laser therapy may not create a noticeable sensation. Follow provider guidance and use consistently even if little or no sensation is felt.",
+      "actualAnswer": "Cold laser therapy may not create a noticeable sensation. Follow provider guidance and use consistently even if little or no sensation is felt.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1099
+    },
+    {
+      "id": 262,
+      "question": "What should I do if the device overheats?",
+      "expectedAnswer": "If the device feels unusually warm, stop the session and allow it to cool. Ensure proper placement and airflow before resuming use.",
+      "actualAnswer": "If the device feels unusually warm, stop the session and allow it to cool. Ensure proper placement and airflow before resuming use.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 941
+    },
+    {
+      "id": 263,
+      "question": "What if the wrap does not stay secured?",
+      "expectedAnswer": "Adjust the straps to ensure a snug but comfortable fit around the treatment area. Proper positioning helps deliver consistent therapy.",
+      "actualAnswer": "Adjust the straps to ensure a snug but comfortable fit around the treatment area. Proper positioning helps deliver consistent therapy.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 922
+    },
+    {
+      "id": 264,
+      "question": "What if the LEDs appear dim?",
+      "expectedAnswer": "Check battery level and ensure the wrap is fully charged. Dim light may indicate low battery power.",
+      "actualAnswer": "Check battery level and ensure the wrap is fully charged. Dim light may indicate low battery power.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 740
+    },
+    {
+      "id": 265,
+      "question": "What if the Knee Pro does not power on?",
+      "expectedAnswer": "Confirm the controller is charged and all connections are secure. Press the power button firmly to start the session.",
+      "actualAnswer": "Confirm the controller is charged and all connections are secure. Press the power button firmly to start the session.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 676
+    },
+    {
+      "id": 266,
+      "question": "What if the stimulation feels too strong?",
+      "expectedAnswer": "Lower the intensity until the sensation is mild and comfortable. Knee Pro sessions should never be painful.",
+      "actualAnswer": "Reduce intensity using the control buttons until the sensation is mild and comfortable. Sessions should never be painful.",
+      "pass": true,
+      "reason": "Matched 5/6 key terms (83%)",
+      "durationMs": 984
+    },
+    {
+      "id": 267,
+      "question": "What if the stimulation feels too weak?",
+      "expectedAnswer": "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin.",
+      "actualAnswer": "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 693
+    },
+    {
+      "id": 268,
+      "question": "How do clinics measure patient engagement with NerveSpa?",
+      "expectedAnswer": "Clinics can measure engagement through usage consistency, session completion, and patient participation over time. NerveSpa supports clinics by providing non-diagnostic usage insights that help assess adherence and engagement trends.",
+      "actualAnswer": "Clinics can measure engagement through usage consistency, session completion, and patient participation over time. NerveSpa supports clinics by providing non-diagnostic usage insights that help assess adherence and engagement trends.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1295
+    },
+    {
+      "id": 269,
+      "question": "What non-diagnostic indicators can providers monitor when using NerveSpa?",
+      "expectedAnswer": "Providers may monitor patient-reported comfort, tolerance, functional ease, and overall experience during use. These indicators are observational and experiential, not diagnostic or treatment outcomes.",
+      "actualAnswer": "Providers may monitor patient-reported comfort, tolerance, functional ease, and overall experience during use. These indicators are observational and experiential, not diagnostic or treatment outcomes.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1536
+    },
+    {
+      "id": 270,
+      "question": "How does NerveSpa support patient-reported comfort or function tracking?",
+      "expectedAnswer": "NerveSpa supports clinics by enabling consistent use routines and optional documentation of patient feedback related to comfort and daily function, as determined by the provider’s clinical workflow.",
+      "actualAnswer": "NerveSpa supports clinics by enabling consistent use routines and optional documentation of patient feedback related to comfort and daily function, as determined by the provider’s clinical workflow.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1388
+    },
+    {
+      "id": 271,
+      "question": "Can clinics document changes in patient experience over time with NerveSpa?",
+      "expectedAnswer": "Yes. Clinics may document patient-reported experiences over time using their own clinical notes or systems. NerveSpa does not diagnose or treat conditions but supports structured, repeatable use.",
+      "actualAnswer": "Yes. Clinics may document patient-reported experiences over time using their own clinical notes or systems. NerveSpa does not diagnose or treat conditions but supports structured, repeatable use.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1594
+    },
+    {
+      "id": 272,
+      "question": "Does NerveSpa provide usage or adherence data to clinics?",
+      "expectedAnswer": "NerveSpa systems may provide usage-related information such as session duration or frequency, depending on configuration. This information is intended for operational insight, not medical evaluation.",
+      "actualAnswer": "NerveSpa systems may provide usage-related information such as session duration or frequency, depending on configuration. This information is intended for operational insight, not medical evaluation.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 999
+    },
+    {
+      "id": 273,
+      "question": "How can providers discuss progress with patients without making medical claims?",
+      "expectedAnswer": "Providers should focus on patient-reported experiences, comfort, and engagement rather than outcomes or diagnoses. Discussions should emphasize support, consistency, and overall wellness experience.",
+      "actualAnswer": "Providers should focus on patient-reported experiences, comfort, and engagement rather than outcomes or diagnoses. Discussions should emphasize support, consistency, and overall wellness experience.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1641
+    },
+    {
+      "id": 274,
+      "question": "What types of patient feedback are most commonly reported with NerveSpa use?",
+      "expectedAnswer": "Feedback often relates to comfort during sessions, ease of use, relaxation, and overall experience. Individual responses vary, and feedback should be documented at the provider’s discretion.",
+      "actualAnswer": "Feedback often relates to comfort during sessions, ease of use, relaxation, and overall experience. Individual responses vary, and feedback should be documented at the provider’s discretion.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1586
+    },
+    {
+      "id": 275,
+      "question": "How should front-desk staff explain NerveSpa to patients in simple terms?",
+      "expectedAnswer": "Staff can explain NerveSpa as a clinic-guided wellness technology designed to support nerve-focused comfort and relaxation as part of a broader care plan.",
+      "actualAnswer": "Staff can explain NerveSpa as a clinic-guided wellness technology designed to support nerve-focused comfort and relaxation as part of a broader care plan.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1464
+    },
+    {
+      "id": 276,
+      "question": "What should staff say if a patient asks whether NerveSpa replaces medical treatment?",
+      "expectedAnswer": "Staff should clarify that NerveSpa does not replace medical treatment and is intended to support wellness alongside provider-directed care.",
+      "actualAnswer": "Staff should clarify that NerveSpa does not replace medical treatment and is intended to support wellness alongside provider-directed care.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1544
+    },
+    {
+      "id": 277,
+      "question": "How should staff respond if a patient asks whether NerveSpa is FDA approved?",
+      "expectedAnswer": "Staff may state that NerveSpa is produced by an FDA-registered manufacturer and used under provider guidance, without making claims about treatment or cure.",
+      "actualAnswer": "Staff may state that NerveSpa is produced by an FDA-registered manufacturer and used under provider guidance, without making claims about treatment or cure.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1415
+    },
+    {
+      "id": 278,
+      "question": "What should staff say if a patient asks about insurance coverage?",
+      "expectedAnswer": "Staff should explain that coverage varies by clinic and payer, and patients should consult the clinic directly for billing or reimbursement information.",
+      "actualAnswer": "Staff should explain that coverage varies by clinic and payer, and patients should consult the clinic directly for billing or reimbursement information.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1329
+    },
+    {
+      "id": 279,
+      "question": "How should staff explain home use versus in-clinic guidance?",
+      "expectedAnswer": "Staff can explain that some clinics may recommend guided home use, while others focus on in-clinic protocols, based on provider discretion.",
+      "actualAnswer": "Staff can explain that some clinics may recommend guided home use, while others focus on in-clinic protocols, based on provider discretion.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1493
+    },
+    {
+      "id": 280,
+      "question": "What is the best way for staff to set expectations before a patient begins using NerveSpa?",
+      "expectedAnswer": "Staff should emphasize comfort, gradual familiarization, and provider guidance, while avoiding promises of outcomes.",
+      "actualAnswer": "Staff should emphasize comfort, gradual familiarization, and provider guidance, while avoiding promises of outcomes.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1839
+    },
+    {
+      "id": 281,
+      "question": "How should staff handle common patient misconceptions about NerveSpa?",
+      "expectedAnswer": "Staff should correct misconceptions by reinforcing that NerveSpa supports wellness and comfort and is not a diagnostic or treatment device.",
+      "actualAnswer": "Staff should correct misconceptions by reinforcing that NerveSpa supports wellness and comfort and is not a diagnostic or treatment device.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1534
+    },
+    {
+      "id": 282,
+      "question": "How is NerveSpa different from consumer-grade nerve stimulation devices?",
+      "expectedAnswer": "NerveSpa is designed for clinical environments, emphasizing provider-guided use, consistency, and integration into care workflows rather than direct-to-consumer self-treatment.",
+      "actualAnswer": "NerveSpa is designed for clinical environments, emphasizing provider-guided use, consistency, and integration into care workflows rather than direct-to-consumer self-treatment.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1585
+    },
+    {
+      "id": 283,
+      "question": "What makes NerveSpa a clinic-grade system rather than a retail product?",
+      "expectedAnswer": "NerveSpa is distributed through professional channels and intended for use under clinical guidance, with systems and support designed for healthcare settings.",
+      "actualAnswer": "NerveSpa is distributed through professional channels and intended for use under clinical guidance, with systems and support designed for healthcare settings.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1554
+    },
+    {
+      "id": 284,
+      "question": "Why do clinics choose NerveSpa over generic home wellness devices?",
+      "expectedAnswer": "Clinics choose NerveSpa for its structured approach, professional support, and alignment with clinical workflows and patient education.",
+      "actualAnswer": "Clinics choose NerveSpa for its structured approach, professional support, and alignment with clinical workflows and patient education.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1114
+    },
+    {
+      "id": 285,
+      "question": "How does NerveSpa integrate into existing clinical workflows?",
+      "expectedAnswer": "NerveSpa is designed to complement existing care plans, allowing clinics to incorporate it into evaluations, education, and ongoing support routines.",
+      "actualAnswer": "NerveSpa is designed to complement existing care plans, allowing clinics to incorporate it into evaluations, education, and ongoing support routines.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1282
+    },
+    {
+      "id": 286,
+      "question": "What design principles guide the NerveSpa system?",
+      "expectedAnswer": "The system emphasizes consistency, ease of use, patient comfort, and provider oversight, supporting repeatable and reliable wellness routines.",
+      "actualAnswer": "The system emphasizes consistency, ease of use, patient comfort, and provider oversight, supporting repeatable and reliable wellness routines.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1267
+    },
+    {
+      "id": 287,
+      "question": "How does NerveSpa support consistency and repeatability in patient use?",
+      "expectedAnswer": "NerveSpa supports repeatable use through standardized protocols and clear guidance established by the clinic.",
+      "actualAnswer": "NerveSpa supports repeatable use through standardized protocols and clear guidance established by the clinic.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1177
+    },
+    {
+      "id": 288,
+      "question": "When should clinics pause or discontinue use of NerveSpa?",
+      "expectedAnswer": "Clinics should pause use if a patient reports discomfort, unexpected reactions, or if clinical judgment indicates reassessment is appropriate.",
+      "actualAnswer": "Clinics should pause use if a patient reports discomfort, unexpected reactions, or if clinical judgment indicates reassessment is appropriate.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1006
+    },
+    {
+      "id": 289,
+      "question": "What should providers do if a patient reports discomfort during use?",
+      "expectedAnswer": "Providers should stop the session, assess the situation, and determine next steps based on professional judgment and clinic protocols.",
+      "actualAnswer": "Providers should stop the session, assess the situation, and determine next steps based on professional judgment and clinic protocols.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1288
+    },
+    {
+      "id": 290,
+      "question": "When should a clinic contact NerveSpa support versus handling an issue internally?",
+      "expectedAnswer": "Clinics should contact NerveSpa support for device-related questions or technical issues, while clinical decisions remain the responsibility of the provider.",
+      "actualAnswer": "Clinics should contact NerveSpa support for device-related questions or technical issues, while clinical decisions remain the responsibility of the provider.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1052
+    },
+    {
+      "id": 291,
+      "question": "What situations require clinical judgment before continuing NerveSpa use?",
+      "expectedAnswer": "Any changes in patient tolerance, reported discomfort, or clinical context should prompt provider review before continuing use.",
+      "actualAnswer": "Any changes in patient tolerance, reported discomfort, or clinical context should prompt provider review before continuing use.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1468
+    },
+    {
+      "id": 292,
+      "question": "Are there any patient scenarios where NerveSpa may not be appropriate?",
+      "expectedAnswer": "Appropriateness is determined by the provider based on individual patient circumstances and clinical discretion.",
+      "actualAnswer": "Appropriateness is determined by the provider based on individual patient circumstances and clinical discretion.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1469
+    },
+    {
+      "id": 293,
+      "question": "How does NerveSpa support safe use alongside other clinical modalities?",
+      "expectedAnswer": "NerveSpa is designed to complement other modalities, with integration determined by provider judgment and clinic protocols.",
+      "actualAnswer": "NerveSpa is designed to complement other modalities, with integration determined by provider judgment and clinic protocols.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 974
+    },
+    {
+      "id": 294,
+      "question": "Is NerveSpa available outside the United States?",
+      "expectedAnswer": "Availability may vary by region. Clinics outside the U.S. may contact NerveSpa to inquire about current options.",
+      "actualAnswer": "Availability may vary by region. Clinics outside the U.S. may contact NerveSpa to inquire about current options.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1118
+    },
+    {
+      "id": 295,
+      "question": "Are international certifications or markets planned for NerveSpa?",
+      "expectedAnswer": "NerveSpa evaluates expansion opportunities based on regulatory requirements, clinical demand, and operational readiness.",
+      "actualAnswer": "NerveSpa evaluates expansion opportunities based on regulatory requirements, clinical demand, and operational readiness.",
+      "pass": true,
+      "reason": "Matched 6/6 key terms (100%)",
+      "durationMs": 1348
+    },
+    {
+      "id": 296,
+      "question": "Can clinics outside the U.S. request information or express interest?",
+      "expectedAnswer": "Yes. Clinics may contact NerveSpa to request information and discuss potential availability in their region.",
+      "actualAnswer": "Yes. Clinics may contact NerveSpa to request information and discuss potential availability in their region.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1325
+    },
+    {
+      "id": 297,
+      "question": "How does NerveSpa evaluate expansion into new regions or care settings?",
+      "expectedAnswer": "Expansion is evaluated based on regulatory compliance, clinical alignment, and the ability to support providers effectively.",
+      "actualAnswer": "Expansion is evaluated based on regulatory compliance, clinical alignment, and the ability to support providers effectively.",
+      "pass": true,
+      "reason": "Matched 5/5 key terms (100%)",
+      "durationMs": 1583
+    }
+  ]
+}

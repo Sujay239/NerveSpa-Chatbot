@@ -1,0 +1,103 @@
+{
+  "timestamp": "2026-02-14T09:47:49.049Z",
+  "mode": "api",
+  "totalDurationMs": 38590,
+  "summary": {
+    "total": 10,
+    "passed": 7,
+    "failed": 3,
+    "passRate": 70
+  },
+  "results": [
+    {
+      "id": 1,
+      "question": "What is NerveSpa?",
+      "expectedAnswer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+      "actualAnswer": "NerveSpa is a clinical-grade program with clinical grade modalities that specializes in neuropathy, joint pain, and metabolic supplementation. It combines aquatic nerve stimulation, high powered LED wraps, cold lasers, vibration therapy, supplements, and topicals. Products are manufactured in FDA-registered facilities and provided through licensed clinicians. [How do providers prescribe or implement NerveSpa?][What conditions and symptoms can NerveSpa support?][How can my clinic order NerveSpa or get a demo?]",
+      "pass": true,
+      "reason": "Matched 10/10 key terms (100%)",
+      "durationMs": 737
+    },
+    {
+      "id": 2,
+      "question": "Who owns NerveSpa?",
+      "expectedAnswer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com",
+      "actualAnswer": "Sorry, I couldn't find a relevant answer for your question. Please try different question or contact support directly at support@nervespa.com. [How do clinics contact NerveSpa for support?][Who do I contact for technical support?][Do I need a prescription for NerveSpa?]",
+      "pass": false,
+      "reason": "Only 1/7 key terms found (14%). Missing: pain management technologies, pmt, fda, fda-registered, establishment...",
+      "durationMs": 5606
+    },
+    {
+      "id": 3,
+      "question": "How do providers implement NerveSpa?",
+      "expectedAnswer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
+      "actualAnswer": "NerveSpa does not require a medical prescription. It is typically recommended and distributed by licensed providers such as chiropractors, who guide patients on use and may include supplements or consumables as part of a treatment plan. [Who should not use NerveSpa Creams and Roll-Ons?][How do patients receive consumables or supplements?][Does NerveSpa replace medical treatment?]",
+      "pass": true,
+      "reason": "Matched 3/6 key terms (50%)",
+      "durationMs": 4851
+    },
+    {
+      "id": 4,
+      "question": "What conditions can NerveSpa support?",
+      "expectedAnswer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
+      "actualAnswer": "NerveSpa is designed to support symptoms related to peripheral neuropathy and other nerve conditions. [What conditions and symptoms can NerveSpa support?][How does the Blood Flow Super Formula support neuropathy and circulation?][How does the Nerve Rebuilder support nerve health and regeneration?]",
+      "pass": true,
+      "reason": "Matched 4/8 key terms (50%)",
+      "durationMs": 3068
+    },
+    {
+      "id": 5,
+      "question": "How can clinics order NerveSpa or request a demo?",
+      "expectedAnswer": "Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels.",
+      "actualAnswer": "Clinics interested in ordering NerveSpa or scheduling a demo can contact our sales team directly at sales@nervespa.com or by calling 1-800-793-6523. [Can NerveSpa devices be used in clinics or only at home?][How can my clinic order NerveSpa or get a demo?][How do clinics contact NerveSpa support?]",
+      "pass": false,
+      "reason": "Only 1/6 key terms found (17%). Missing: accessories, available, provider, products, patients",
+      "durationMs": 3318
+    },
+    {
+      "id": 6,
+      "question": "What are NerveSpa’s pricing options?",
+      "expectedAnswer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan.",
+      "actualAnswer": "Nerve Spa is sold through clinics and doctors offices. Pricing includes wholesale rates for providers (with options for bundles and starter kits) and retail pricing for patients on consumables only, such as salts, garments, and lead wires. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan. [Are bundles available for patients?]",
+      "pass": true,
+      "reason": "Matched 7/8 key terms (88%)",
+      "durationMs": 120
+    },
+    {
+      "id": 7,
+      "question": "Is NerveSpa FDA-registered?",
+      "expectedAnswer": "Yes. NerveSpa devices are FDA-registered and manufactured in FDA-registered facilities. Registration confirms establishment and product listing; it does not represent FDA approval of medical claims.",
+      "actualAnswer": "NerveSpa products are FDA registered and/or cleared, and manufactured in FDA-registered facilities and distributed by PMT, an FDA-registered establishment. FDA registration confirms establishment and product listing; it is not an FDA clearance or approval of specific claims. [Is NerveSpa covered by insurance?][Where can FDA listings be verified?][What certifications does PMT hold?]",
+      "pass": true,
+      "reason": "Matched 7/7 key terms (100%)",
+      "durationMs": 123
+    },
+    {
+      "id": 8,
+      "question": "Is NerveSpa covered by insurance?",
+      "expectedAnswer": "Coverage varies by plan. Some clinics bill eligible components under neuropathy programs, while others use cash-pay, HSA/FSA, or membership models. Patients should verify with their insurer.",
+      "actualAnswer": "Coverage varies by plan. Some providers bill eligible treatments under neuropathy programs; others use cash-pay, HSA/FSA, or memberships. Patients should check benefits with their insurer; clinic billing policies vary. [What is HCPCS code E0720?][Does insurance cover consumables like salts or garments?][How do providers bill insurance for NerveSpa?]",
+      "pass": true,
+      "reason": "Matched 6/7 key terms (86%)",
+      "durationMs": 285
+    },
+    {
+      "id": 9,
+      "question": "What warranty and return policy does NerveSpa offer?",
+      "expectedAnswer": "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
+      "actualAnswer": "Devices include a limited warranty against defects for one year. Returns are accepted within 30 days if undamaged; buyers are responsible for shipping and a restocking fee. Contact your seller for RMA instructions. [What is the NerveSpa return policy?][Who should patients contact for technical issues?][How quickly are products shipped?]",
+      "pass": true,
+      "reason": "Matched 3/6 key terms (50%)",
+      "durationMs": 110
+    },
+    {
+      "id": 10,
+      "question": "Where is NerveSpa manufactured?",
+      "expectedAnswer": "NerveSpa devices are manufactured in FDA-registered facilities from all over the world, with final distribution handled through PMT in Akron, Ohio.",
+      "actualAnswer": "NerveSpa is manufactured in the USA. [What is the NerveSpa QuakePlate?][What is the NerveSpa KneePro?][What is the NerveSpa ShoulderPro?]",
+      "pass": false,
+      "reason": "Only 2/7 key terms found (29%). Missing: fda, pmt, fda-registered, distribution, facilities",
+      "durationMs": 2310
+    }
+  ]
+}

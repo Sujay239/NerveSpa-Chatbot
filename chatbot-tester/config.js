@@ -53,7 +53,7 @@ module.exports = {
 
   // ─── Test Data ────────────────────────────────────────────────
   // Path to CSV file with test cases
-  csvPath: "./tests/questions.csv",
+  csvPath: "./tests/paraphrased_questions.csv",
 
   // CSV column names
   csvColumns: {
@@ -79,9 +79,9 @@ module.exports = {
   // ─── Output ───────────────────────────────────────────────────
   // Save detailed results to JSON file
   saveResultsJson: true,
-  resultsJsonPath: "./results/results-questions.json",
+  resultsJsonPath: "./results/results-paraphrased.json",
 
   // Generate HTML report
   saveResultsHtml: false,
-  resultsHtmlPath: "./results/report-questions.html",
+  resultsHtmlPath: "./results/report-paraphrased.html",
 };
