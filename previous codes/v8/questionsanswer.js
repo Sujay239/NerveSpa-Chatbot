@@ -1305,16 +1305,6 @@ const synonyms = {
   purchase: "pricing",
   buy: "pricing",
   amount: "pricing",
-  clinics: "clinic",
-  providers: "clinic",
-  provider: "clinic",
-  practice: "clinic",
-  medical: "clinic",
-  offering: "start",
-  begin: "start",
-  setup: "set",
-  starting: "start",
-  ordering: "order",
 };
 
 // Helper function to normalize text for comparison
@@ -1364,75 +1354,141 @@ function levenshteinDistance(s, t) {
   return arr[t.length][s.length];
 }
 
-const stopWords = new Set([
-  "a",
-  "an",
-  "and",
-  "are",
-  "as",
-  "at",
-  "be",
-  "but",
-  "by",
-  "for",
-  "if",
-  "in",
-  "into",
-  "is",
-  "it",
-  "no",
-  "of",
-  "on",
-  "or",
-  "such",
-  "that",
-  "the",
-  "their",
-  "then",
-  "there",
-  "these",
-  "they",
-  "this",
-  "to",
-  "was",
-  "will",
-  "with",
-  "do",
-  "does",
-  "did",
-  "can",
-  "could",
-  "should",
-  "would",
-  "i",
-  "you",
-  "he",
-  "she",
-  "we",
-  "my",
-  "your",
-  "his",
-  "her",
-  "our",
-  "how",
-  "what",
-  "why",
-  "where",
-  "when",
-  "who",
-  "has",
-  "been",
-  "hold",
-  "us",
-  "u",
-  "s",
-]);
+// Calculate semantic/token matching score using Sorensen-Dice coefficient
+function getSemanticScore(input, target) {
+  const stopWords = new Set([
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "but",
+    "by",
+    "for",
+    "if",
+    "in",
+    "into",
+    "is",
+    "it",
+    "no",
+    "of",
+    "on",
+    "or",
+    "such",
+    "that",
+    "the",
+    "their",
+    "then",
+    "there",
+    "these",
+    "they",
+    "this",
+    "to",
+    "was",
+    "will",
+    "with",
+    "do",
+    "does",
+    "did",
+    "can",
+    "could",
+    "should",
+    "would",
+    "i",
+    "you",
+    "he",
+    "she",
+    "we",
+    "my",
+    "your",
+    "his",
+    "her",
+    "our",
+    "how",
+    "what",
+    "why",
+    "where",
+    "when",
+    "who",
+    "has",
+    "been",
+    "hold",
+    "us",
+    "u",
+    "s",
+  ]);
 
-const getTokens = (str) =>
-  normalize(str)
-    .split(" ")
-    .filter((w) => w.length > 0 && !stopWords.has(w))
-    .map(stem);
+  const getTokens = (str) =>
+    normalize(str)
+      .split(" ")
+      .filter((w) => w.length > 0 && !stopWords.has(w))
+      .map(stem);
+
+  const tokens1 = getTokens(input);
+  const tokens2 = getTokens(target);
+
+  if (tokens1.length === 0 || tokens2.length === 0) return 0;
+
+  let intersection = 0;
+  const matched2 = new Set();
+
+  for (let i = 0; i < tokens1.length; i++) {
+    let bestMatchScore = 0;
+    let bestMatchIdx = -1;
+    let w1 = tokens1[i];
+
+    for (let j = 0; j < tokens2.length; j++) {
+      if (matched2.has(j)) continue;
+
+      let w2 = tokens2[j];
+
+      if (w1 === w2) {
+        bestMatchScore = 1;
+        bestMatchIdx = j;
+        break; // perfect match
+      } else if (w1.length >= 3 && w2.length >= 3) {
+        // Check substring match
+        if (w1.includes(w2) || w2.includes(w1)) {
+          bestMatchScore = Math.max(bestMatchScore, 0.8);
+          bestMatchIdx = j;
+        } else {
+          // Check levenshtein distance for slight typos
+          let dist = levenshteinDistance(w1, w2);
+          let maxLen = Math.max(w1.length, w2.length);
+          let similarity = 1 - dist / maxLen;
+          if (similarity >= 0.7) {
+            // 70% similar word
+            bestMatchScore = Math.max(bestMatchScore, similarity);
+            bestMatchIdx = j;
+          }
+        }
+      }
+    }
+
+    if (bestMatchIdx !== -1) {
+      intersection += bestMatchScore;
+      matched2.add(bestMatchIdx);
+    }
+  }
+
+  // We want to reward coverage of the input query heavily
+  let inputCoverage = intersection / tokens1.length;
+  let targetCoverage = intersection / tokens2.length;
+
+  // Weighted combination: input coverage is more important than target coverage
+  let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
+
+  return finalScore;
+}
+
+// Normalize the incoming question once
+const cleanIncoming = normalize(incomingQuestion);
+const thresholdLev = Math.max(3, Math.floor(cleanIncoming.length * 0.15));
+
+let bestMatch = null;
+let bestScore = -1;
 
 // Injecting new products dynamically
 qaPairs.push(
@@ -1669,94 +1725,6 @@ qaPairs.push(
     },
   ],
 );
-
-// PRE-CALCULATE IDF WEIGHTS
-const docCount = qaPairs.length;
-const freqMap = {};
-qaPairs.forEach((pair) => {
-  const tokens = new Set(getTokens(pair.question));
-  tokens.forEach((t) => {
-    freqMap[t] = (freqMap[t] || 0) + 1;
-  });
-});
-
-// IDF = log(N / df)
-const idfWeights = {};
-Object.keys(freqMap).forEach((t) => {
-  idfWeights[t] = Math.log(docCount / freqMap[t]) + 1.0;
-});
-
-function getSemanticScore(input, target) {
-  const tokens1 = getTokens(input);
-  const tokens2 = getTokens(target);
-
-  if (tokens1.length === 0 || tokens2.length === 0) return 0;
-
-  let weightedIntersection = 0;
-  let totalInputWeight = 0;
-  let totalTargetWeight = 0;
-
-  // Calculate total weights for normalization
-  tokens1.forEach((t) => (totalInputWeight += idfWeights[t] || 1.0));
-  tokens2.forEach((t) => (totalTargetWeight += idfWeights[t] || 1.0));
-
-  const matched2 = new Set();
-
-  for (let i = 0; i < tokens1.length; i++) {
-    let bestMatchScore = 0;
-    let bestMatchIdx = -1;
-    let w1 = tokens1[i];
-    let w1Weight = idfWeights[w1] || 1.0;
-
-    for (let j = 0; j < tokens2.length; j++) {
-      if (matched2.has(j)) continue;
-
-      let w2 = tokens2[j];
-
-      if (w1 === w2) {
-        bestMatchScore = 1;
-        bestMatchIdx = j;
-        break;
-      } else if (w1.length >= 4 && w2.length >= 4) {
-        let dist = levenshteinDistance(w1, w2);
-        let maxLen = Math.max(w1.length, w2.length);
-        let similarity = 1 - dist / maxLen;
-
-        if (similarity >= 0.75) {
-          bestMatchScore = Math.max(bestMatchScore, similarity);
-          bestMatchIdx = j;
-        } else if (w1.includes(w2) || w2.includes(w1)) {
-          bestMatchScore = Math.max(bestMatchScore, 0.6);
-          bestMatchIdx = j;
-        }
-      }
-    }
-
-    if (bestMatchIdx !== -1) {
-      weightedIntersection += bestMatchScore * w1Weight;
-      matched2.add(bestMatchIdx);
-    }
-  }
-
-  let inputCoverage = weightedIntersection / totalInputWeight;
-  let targetCoverage = weightedIntersection / totalTargetWeight;
-
-  let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
-
-  // Penalize weak matches on generic queries
-  if (tokens1.length >= 4 && weightedIntersection < 2.5) {
-    finalScore *= 0.5;
-  }
-
-  return finalScore;
-}
-
-// Normalize the incoming question once
-const cleanIncoming = normalize(incomingQuestion);
-const thresholdLev = Math.max(3, Math.floor(cleanIncoming.length * 0.15));
-
-let bestMatch = null;
-let bestScore = -1;
 
 // Loop through Q&A and find the closest match
 for (let i = 0; i < qaPairs.length; i++) {

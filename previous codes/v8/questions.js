@@ -340,16 +340,6 @@ const synonyms = {
   purchase: "pricing",
   buy: "pricing",
   amount: "pricing",
-  clinics: "clinic",
-  providers: "clinic",
-  provider: "clinic",
-  practice: "clinic",
-  medical: "clinic",
-  offering: "start",
-  begin: "start",
-  setup: "set",
-  starting: "start",
-  ordering: "order",
 };
 
 // Helper function to normalize text
@@ -399,113 +389,89 @@ function levenshteinDistance(s, t) {
   return arr[t.length][s.length];
 }
 
-const stopWords = new Set([
-  "a",
-  "an",
-  "and",
-  "are",
-  "as",
-  "at",
-  "be",
-  "but",
-  "by",
-  "for",
-  "if",
-  "in",
-  "into",
-  "is",
-  "it",
-  "no",
-  "of",
-  "on",
-  "or",
-  "such",
-  "that",
-  "the",
-  "their",
-  "then",
-  "there",
-  "these",
-  "they",
-  "this",
-  "to",
-  "was",
-  "will",
-  "with",
-  "do",
-  "does",
-  "did",
-  "can",
-  "could",
-  "should",
-  "would",
-  "i",
-  "you",
-  "he",
-  "she",
-  "we",
-  "my",
-  "your",
-  "his",
-  "her",
-  "our",
-  "how",
-  "what",
-  "why",
-  "where",
-  "when",
-  "who",
-  "has",
-  "been",
-  "hold",
-  "us",
-  "u",
-  "s",
-]);
-
-const getTokens = (str) =>
-  normalize(str)
-    .split(" ")
-    .filter((w) => w.length > 0 && !stopWords.has(w))
-    .map(stem);
-
-// PRE-CALCULATE IDF WEIGHTS
-const docCount = predefinedQuestions.length;
-const freqMap = {};
-predefinedQuestions.forEach((q) => {
-  const tokens = new Set(getTokens(q));
-  tokens.forEach((t) => {
-    freqMap[t] = (freqMap[t] || 0) + 1;
-  });
-});
-
-// IDF = log(N / df)
-const idfWeights = {};
-Object.keys(freqMap).forEach((t) => {
-  idfWeights[t] = Math.log(docCount / freqMap[t]) + 1.0;
-});
-
 function getSemanticScore(input, target) {
+  const stopWords = new Set([
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "but",
+    "by",
+    "for",
+    "if",
+    "in",
+    "into",
+    "is",
+    "it",
+    "no",
+    "of",
+    "on",
+    "or",
+    "such",
+    "that",
+    "the",
+    "their",
+    "then",
+    "there",
+    "these",
+    "they",
+    "this",
+    "to",
+    "was",
+    "will",
+    "with",
+    "do",
+    "does",
+    "did",
+    "can",
+    "could",
+    "should",
+    "would",
+    "i",
+    "you",
+    "he",
+    "she",
+    "we",
+    "my",
+    "your",
+    "his",
+    "her",
+    "our",
+    "how",
+    "what",
+    "why",
+    "where",
+    "when",
+    "who",
+    "has",
+    "been",
+    "hold",
+    "us",
+    "u",
+    "s",
+  ]);
+
+  const getTokens = (str) =>
+    normalize(str)
+      .split(" ")
+      .filter((w) => w.length > 0 && !stopWords.has(w))
+      .map(stem);
+
   const tokens1 = getTokens(input);
   const tokens2 = getTokens(target);
 
   if (tokens1.length === 0 || tokens2.length === 0) return 0;
 
-  let weightedIntersection = 0;
-  let totalInputWeight = 0;
-  let totalTargetWeight = 0;
-
-  // Calculate total weights for normalization
-  tokens1.forEach((t) => (totalInputWeight += idfWeights[t] || 1.0));
-  tokens2.forEach((t) => (totalTargetWeight += idfWeights[t] || 1.0));
-
+  let intersection = 0;
   const matched2 = new Set();
 
   for (let i = 0; i < tokens1.length; i++) {
     let bestMatchScore = 0;
     let bestMatchIdx = -1;
     let w1 = tokens1[i];
-    let w1Weight = idfWeights[w1] || 1.0;
 
     for (let j = 0; j < tokens2.length; j++) {
       if (matched2.has(j)) continue;
@@ -515,16 +481,19 @@ function getSemanticScore(input, target) {
       if (w1 === w2) {
         bestMatchScore = 1;
         bestMatchIdx = j;
-        break;
+        break; // perfect match
       } else if (w1.length >= 4 && w2.length >= 4) {
+        // String distance for slight typos
         let dist = levenshteinDistance(w1, w2);
         let maxLen = Math.max(w1.length, w2.length);
         let similarity = 1 - dist / maxLen;
 
         if (similarity >= 0.75) {
+          // High similarity required for words (e.g. 1 letter off)
           bestMatchScore = Math.max(bestMatchScore, similarity);
           bestMatchIdx = j;
         } else if (w1.includes(w2) || w2.includes(w1)) {
+          // If it's a prefix/suffix match but not that close, give it a lower score
           bestMatchScore = Math.max(bestMatchScore, 0.6);
           bestMatchIdx = j;
         }
@@ -532,18 +501,22 @@ function getSemanticScore(input, target) {
     }
 
     if (bestMatchIdx !== -1) {
-      weightedIntersection += bestMatchScore * w1Weight;
+      intersection += bestMatchScore;
       matched2.add(bestMatchIdx);
     }
   }
 
-  let inputCoverage = weightedIntersection / totalInputWeight;
-  let targetCoverage = weightedIntersection / totalTargetWeight;
+  // We want to reward coverage of the input query heavily
+  let inputCoverage = intersection / tokens1.length;
+  let targetCoverage = intersection / tokens2.length;
 
-  let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
+  // Weighted combination: input coverage is more important than target coverage
+  // But we only count if it actually had real matched words!
+  let finalScore = inputCoverage * 0.6 + targetCoverage * 0.4;
 
-  // Penalize weak matches on generic queries
-  if (tokens1.length >= 4 && weightedIntersection < 2.5) {
+  // If the query is very long and has very few overlapping words, penalize it heavily
+  // to avoid matching just because "NerveSpa" matched.
+  if (tokens1.length >= 4 && intersection < 2) {
     finalScore *= 0.5;
   }
 
