@@ -3,7 +3,6 @@ const incomingQuestion = $input.first().json.query.chatInput;
 
 // Define your predefined questions
 const predefinedQuestions = [
-
   "youtube",
   "What is NerveSpa?",
   "What conditions and symptoms can NerveSpa support?",
@@ -705,7 +704,6 @@ function levenshteinDistance(s, t) {
   return arr[t.length][s.length];
 }
 
-// Calculate semantic/token matching score using Sorensen-Dice coefficient
 function getSemanticScore(input, target) {
   const stopWords = new Set([
     "a",
@@ -770,6 +768,7 @@ function getSemanticScore(input, target) {
     "u",
     "s",
   ]);
+
   const getTokens = (str) =>
     normalize(str)
       .split(" ")
@@ -797,19 +796,21 @@ function getSemanticScore(input, target) {
       if (w1 === w2) {
         bestMatchScore = 1;
         bestMatchIdx = j;
-        break;
-      } else if (w1.length >= 2 && w2.length >= 2) {
+        break; // perfect match
+      } else if (w1.length >= 4 && w2.length >= 4) {
+        // String distance for slight typos
         let dist = levenshteinDistance(w1, w2);
-        if (dist <= 1) {
-          if (0.8 > bestMatchScore) {
-            bestMatchScore = 0.8;
-            bestMatchIdx = j;
-          }
+        let maxLen = Math.max(w1.length, w2.length);
+        let similarity = 1 - dist / maxLen;
+
+        if (similarity >= 0.75) {
+          // High similarity required for words (e.g. 1 letter off)
+          bestMatchScore = Math.max(bestMatchScore, similarity);
+          bestMatchIdx = j;
         } else if (w1.includes(w2) || w2.includes(w1)) {
-          if (0.6 > bestMatchScore) {
-            bestMatchScore = 0.6;
-            bestMatchIdx = j;
-          }
+          // If it's a prefix/suffix match but not that close, give it a lower score
+          bestMatchScore = Math.max(bestMatchScore, 0.6);
+          bestMatchIdx = j;
         }
       }
     }
@@ -820,13 +821,18 @@ function getSemanticScore(input, target) {
     }
   }
 
-  let baseScore = (2 * intersection) / (tokens1.length + tokens2.length);
-
+  // We want to reward coverage of the input query heavily
   let inputCoverage = intersection / tokens1.length;
-  let finalScore = baseScore;
+  let targetCoverage = intersection / tokens2.length;
 
-  if (tokens1.length >= 2 && inputCoverage <= 0.5) {
-    finalScore *= 0.3; // Penalty
+  // Weighted combination: input coverage is more important than target coverage
+  // But we only count if it actually had real matched words!
+  let finalScore = inputCoverage * 0.6 + targetCoverage * 0.4;
+
+  // If the query is very long and has very few overlapping words, penalize it heavily
+  // to avoid matching just because "NerveSpa" matched.
+  if (tokens1.length >= 4 && intersection < 2) {
+    finalScore *= 0.5;
   }
 
   return finalScore;
@@ -837,25 +843,34 @@ const cleanIncoming = normalize(incomingQuestion);
 const thresholdLev = Math.max(3, Math.floor(cleanIncoming.length * 0.15));
 
 let isMatch = false;
+let bestMatchStr = "";
+let bestScoreFound = 0;
 
 for (const q of predefinedQuestions) {
   const qNorm = normalize(q);
   const dist = levenshteinDistance(cleanIncoming, qNorm);
   const semanticScore = getSemanticScore(incomingQuestion, q);
 
-  if (dist <= thresholdLev || semanticScore >= 0.45) {
+  if (semanticScore > bestScoreFound) {
+    bestScoreFound = semanticScore;
+    bestMatchStr = q;
+  }
+
+  if (dist <= thresholdLev || semanticScore >= 0.55) {
     isMatch = true;
-    break;
+    // We do not break immediately so we can find the absolute best semantic match
   }
 }
 
 let outputValue = isMatch ? "0" : "1";
+let finalQuestion = isMatch ? bestMatchStr : incomingQuestion;
 
 // Return the output in n8n format
 return [
   {
     json: {
       result: outputValue,
+      chatInput: finalQuestion,
     },
   },
 ];

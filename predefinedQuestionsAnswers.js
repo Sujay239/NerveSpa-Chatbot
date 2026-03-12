@@ -2531,7 +2531,8 @@ const qaPairs = [
   },
   {
     question: "What if the stimulation feels too weak?",
-    answer :   "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin."
+    answer:
+      "Increase intensity gradually until a comfortable sensation is felt. Check strap fit and skin.",
   },
   {
     question: "What if stimulation feels too weak?",
@@ -3161,6 +3162,7 @@ function getSemanticScore(input, target) {
     "u",
     "s",
   ]);
+
   const getTokens = (str) =>
     normalize(str)
       .split(" ")
@@ -3188,17 +3190,20 @@ function getSemanticScore(input, target) {
       if (w1 === w2) {
         bestMatchScore = 1;
         bestMatchIdx = j;
-        break;
-      } else if (w1.length >= 2 && w2.length >= 2) {
-        let dist = levenshteinDistance(w1, w2);
-        if (dist <= 1) {
-          if (0.8 > bestMatchScore) {
-            bestMatchScore = 0.8;
-            bestMatchIdx = j;
-          }
-        } else if (w1.includes(w2) || w2.includes(w1)) {
-          if (0.6 > bestMatchScore) {
-            bestMatchScore = 0.6;
+        break; // perfect match
+      } else if (w1.length >= 3 && w2.length >= 3) {
+        // Check substring match
+        if (w1.includes(w2) || w2.includes(w1)) {
+          bestMatchScore = Math.max(bestMatchScore, 0.8);
+          bestMatchIdx = j;
+        } else {
+          // Check levenshtein distance for slight typos
+          let dist = levenshteinDistance(w1, w2);
+          let maxLen = Math.max(w1.length, w2.length);
+          let similarity = 1 - dist / maxLen;
+          if (similarity >= 0.7) {
+            // 70% similar word
+            bestMatchScore = Math.max(bestMatchScore, similarity);
             bestMatchIdx = j;
           }
         }
@@ -3211,14 +3216,12 @@ function getSemanticScore(input, target) {
     }
   }
 
-  let baseScore = (2 * intersection) / (tokens1.length + tokens2.length);
-
+  // We want to reward coverage of the input query heavily
   let inputCoverage = intersection / tokens1.length;
-  let finalScore = baseScore;
+  let targetCoverage = intersection / tokens2.length;
 
-  if (tokens1.length >= 2 && inputCoverage <= 0.5) {
-    finalScore *= 0.3; // Penalty
-  }
+  // Weighted combination: input coverage is more important than target coverage
+  let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
 
   return finalScore;
 }

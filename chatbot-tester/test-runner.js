@@ -44,7 +44,9 @@ function loadTestCases(csvPath) {
   const fullPath = path.resolve(csvPath);
   if (!fs.existsSync(fullPath)) {
     console.error(`\n  CSV file not found: ${fullPath}`);
-    console.error(`  Create it with columns: ${config.csvColumns.question},${config.csvColumns.expectedAnswer}\n`);
+    console.error(
+      `  Create it with columns: ${config.csvColumns.question},${config.csvColumns.expectedAnswer}\n`,
+    );
     process.exit(1);
   }
 
@@ -60,7 +62,7 @@ function loadTestCases(csvPath) {
   const aCol = config.csvColumns.expectedAnswer;
 
   const tests = records
-    .filter(r => r[qCol] && r[qCol].trim())
+    .filter((r) => r[qCol] && r[qCol].trim())
     .map((r, i) => ({
       id: i + 1,
       question: r[qCol].trim(),
@@ -94,27 +96,141 @@ function normalize(text) {
  */
 function extractKeyTerms(text) {
   const stopWords = new Set([
-    "a", "an", "the", "is", "are", "was", "were", "be", "been", "being",
-    "have", "has", "had", "do", "does", "did", "will", "would", "could",
-    "should", "may", "might", "shall", "can", "need", "must",
-    "i", "me", "my", "we", "our", "you", "your", "he", "she", "it", "its",
-    "they", "them", "their", "this", "that", "these", "those",
-    "and", "or", "but", "if", "of", "at", "by", "for", "with", "about",
-    "to", "from", "in", "on", "into", "through", "during", "before",
-    "after", "above", "below", "between", "under", "not", "no", "nor",
-    "as", "so", "than", "too", "very", "just", "also", "then", "when",
-    "how", "what", "which", "who", "whom", "where", "why",
-    "all", "each", "every", "both", "few", "more", "most", "other",
-    "some", "any", "such", "only", "own", "same", "here", "there",
-    "again", "once", "further", "while", "because", "until", "although",
-    "including", "used", "use", "using", "based", "part", "well",
-    "designed", "intended", "provided", "may", "also", "often", "many",
-    "help", "helps", "support", "supports", "include", "includes",
+    "a",
+    "an",
+    "the",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be",
+    "been",
+    "being",
+    "have",
+    "has",
+    "had",
+    "do",
+    "does",
+    "did",
+    "will",
+    "would",
+    "could",
+    "should",
+    "may",
+    "might",
+    "shall",
+    "can",
+    "need",
+    "must",
+    "i",
+    "me",
+    "my",
+    "we",
+    "our",
+    "you",
+    "your",
+    "he",
+    "she",
+    "it",
+    "its",
+    "they",
+    "them",
+    "their",
+    "this",
+    "that",
+    "these",
+    "those",
+    "and",
+    "or",
+    "but",
+    "if",
+    "of",
+    "at",
+    "by",
+    "for",
+    "with",
+    "about",
+    "to",
+    "from",
+    "in",
+    "on",
+    "into",
+    "through",
+    "during",
+    "before",
+    "after",
+    "above",
+    "below",
+    "between",
+    "under",
+    "not",
+    "no",
+    "nor",
+    "as",
+    "so",
+    "than",
+    "too",
+    "very",
+    "just",
+    "also",
+    "then",
+    "when",
+    "how",
+    "what",
+    "which",
+    "who",
+    "whom",
+    "where",
+    "why",
+    "all",
+    "each",
+    "every",
+    "both",
+    "few",
+    "more",
+    "most",
+    "other",
+    "some",
+    "any",
+    "such",
+    "only",
+    "own",
+    "same",
+    "here",
+    "there",
+    "again",
+    "once",
+    "further",
+    "while",
+    "because",
+    "until",
+    "although",
+    "including",
+    "used",
+    "use",
+    "using",
+    "based",
+    "part",
+    "well",
+    "designed",
+    "intended",
+    "provided",
+    "may",
+    "also",
+    "often",
+    "many",
+    "help",
+    "helps",
+    "support",
+    "supports",
+    "include",
+    "includes",
   ]);
 
   // Extract multi-word proper nouns and product names first
   const properNouns = [];
-  const properNounPattern = /\b(?:NerveSpa|Nerve Bath|Quake Plate|NerveBeam|Cold Laser|Knee Pro|Shoulder Pro|PowerWrap|NerveWave|Vibe|LED Wrap|Super Flex|Nerve Rebuilder|Nerve Regeneration|Blood Flow Super Formula|Pain Management Technologies|PMT|FDA|HCPCS|E0720|HSA|FSA|OA|RA|DME)\b/gi;
+  const properNounPattern =
+    /\b(?:NerveSpa|Nerve Bath|Quake Plate|NerveBeam|Cold Laser|Knee Pro|Shoulder Pro|PowerWrap|NerveWave|Vibe|LED Wrap|Super Flex|Nerve Rebuilder|Nerve Regeneration|Blood Flow Super Formula|Pain Management Technologies|PMT|FDA|HCPCS|E0720|HSA|FSA|OA|RA|DME)\b/gi;
   let match;
   while ((match = properNounPattern.exec(text)) !== null) {
     properNouns.push(match[0].toLowerCase());
@@ -122,7 +238,8 @@ function extractKeyTerms(text) {
 
   // Extract numbers, percentages, time durations
   const numbers = [];
-  const numberPattern = /\b\d+[\-–]?\d*\s*(?:minutes?|hours?|days?|weeks?|months?|years?|sessions?|uses?|%|mW|mg)?\b/gi;
+  const numberPattern =
+    /\b\d+[\-–]?\d*\s*(?:minutes?|hours?|days?|weeks?|months?|years?|sessions?|uses?|%|mW|mg)?\b/gi;
   while ((match = numberPattern.exec(text)) !== null) {
     numbers.push(match[0].toLowerCase().trim());
   }
@@ -133,7 +250,7 @@ function extractKeyTerms(text) {
     .replace(/https?:\/\/[^\s,)]+/g, "") // remove URLs
     .replace(/[^a-z0-9\s\-]/g, " ")
     .split(/\s+/)
-    .filter(w => w.length >= 3 && !stopWords.has(w));
+    .filter((w) => w.length >= 3 && !stopWords.has(w));
 
   // Count word frequency, keep meaningful ones
   const freq = {};
@@ -145,11 +262,15 @@ function extractKeyTerms(text) {
   const allTerms = new Set([...properNouns]);
 
   // Add top significant words (sorted by frequency, then length)
-  const sorted = Object.entries(freq)
-    .sort((a, b) => b[1] - a[1] || b[0].length - a[0].length);
+  const sorted = Object.entries(freq).sort(
+    (a, b) => b[1] - a[1] || b[0].length - a[0].length,
+  );
 
   // Take key terms — aim for ~5-10 terms from the expected answer
-  const targetCount = Math.min(Math.max(5, Math.ceil(sorted.length * 0.25)), 12);
+  const targetCount = Math.min(
+    Math.max(5, Math.ceil(sorted.length * 0.25)),
+    12,
+  );
   for (let i = 0; i < Math.min(targetCount, sorted.length); i++) {
     allTerms.add(sorted[i][0]);
   }
@@ -163,7 +284,8 @@ function extractKeyTerms(text) {
 }
 
 function validateAnswer(actual, expected, mode) {
-  if (!expected) return { pass: true, reason: "No expected answer — skipped validation" };
+  if (!expected)
+    return { pass: true, reason: "No expected answer — skipped validation" };
 
   const a = normalize(actual).toLowerCase();
   const e = normalize(expected).toLowerCase();
@@ -178,17 +300,23 @@ function validateAnswer(actual, expected, mode) {
     case "contains":
       return {
         pass: a.includes(e),
-        reason: a.includes(e) ? "Contains expected text" : `Response does not contain: "${expected}"`,
+        reason: a.includes(e)
+          ? "Contains expected text"
+          : `Response does not contain: "${expected}"`,
       };
 
     case "keywords": {
-      const keywords = e.split(",").map(k => k.trim()).filter(Boolean);
-      const missing = keywords.filter(k => !a.includes(k));
+      const keywords = e
+        .split(",")
+        .map((k) => k.trim())
+        .filter(Boolean);
+      const missing = keywords.filter((k) => !a.includes(k));
       return {
         pass: missing.length === 0,
-        reason: missing.length === 0
-          ? "All keywords found"
-          : `Missing keywords: ${missing.join(", ")}`,
+        reason:
+          missing.length === 0
+            ? "All keywords found"
+            : `Missing keywords: ${missing.join(", ")}`,
       };
     }
 
@@ -200,8 +328,8 @@ function validateAnswer(actual, expected, mode) {
         return { pass: true, reason: "No key terms to validate" };
       }
 
-      const found = keyTerms.filter(term => a.includes(term));
-      const missing = keyTerms.filter(term => !a.includes(term));
+      const found = keyTerms.filter((term) => a.includes(term));
+      const missing = keyTerms.filter((term) => !a.includes(term));
       const matchRatio = found.length / keyTerms.length;
 
       // Require at least 60% of key terms to be present
@@ -255,9 +383,15 @@ async function runApiTest(testCase, sessionId) {
     }
 
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), config.responseTimeout);
+    const timeout = setTimeout(
+      () => controller.abort(),
+      config.responseTimeout,
+    );
 
-    const response = await fetch(url, { ...options, signal: controller.signal });
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    });
     clearTimeout(timeout);
 
     if (!response.ok) {
@@ -274,7 +408,8 @@ async function runApiTest(testCase, sessionId) {
 
     // Extract answer using the configured path
     const answer = extractByPath(data, config.apiResponsePath);
-    const actualAnswer = typeof answer === "string" ? answer : JSON.stringify(answer);
+    const actualAnswer =
+      typeof answer === "string" ? answer : JSON.stringify(answer);
 
     const validation = validateAnswer(actualAnswer, testCase.expectedAnswer);
 
@@ -290,9 +425,10 @@ async function runApiTest(testCase, sessionId) {
       ...testCase,
       actualAnswer: "",
       pass: false,
-      reason: err.name === "AbortError"
-        ? `Timeout after ${config.responseTimeout}ms`
-        : `Error: ${err.message}`,
+      reason:
+        err.name === "AbortError"
+          ? `Timeout after ${config.responseTimeout}ms`
+          : `Error: ${err.message}`,
       durationMs: Date.now() - startTime,
     };
   }
@@ -343,11 +479,15 @@ async function runBrowserTests(testCases) {
 
   for (const testCase of testCases) {
     const startTime = Date.now();
-    console.log(`\n  [${testCase.id}/${testCases.length}] Sending: "${testCase.question}"`);
+    console.log(
+      `\n  [${testCase.id}/${testCases.length}] Sending: "${testCase.question}"`,
+    );
 
     try {
       // Count existing bot messages before sending
-      const beforeCount = await page.locator(config.selectors.botMessage).count();
+      const beforeCount = await page
+        .locator(config.selectors.botMessage)
+        .count();
 
       // Clear the input and type the question
       const input = page.locator(config.selectors.chatInput);
@@ -360,7 +500,9 @@ async function runBrowserTests(testCases) {
 
       // Wait for typing indicator to appear, then disappear
       try {
-        await page.waitForSelector(config.selectors.typingIndicator, { timeout: 5000 });
+        await page.waitForSelector(config.selectors.typingIndicator, {
+          timeout: 5000,
+        });
         await page.waitForSelector(config.selectors.typingIndicator, {
           state: "detached",
           timeout: config.responseTimeout,
@@ -377,7 +519,7 @@ async function runBrowserTests(testCases) {
         },
         { timeout: config.responseTimeout },
         config.selectors.botMessage,
-        beforeCount
+        beforeCount,
       );
 
       // Get the latest bot message text
@@ -417,8 +559,8 @@ async function runBrowserTests(testCases) {
 // ─── Console output ──────────────────────────────────────────────────
 
 function printResults(results, mode, durationMs) {
-  const passed = results.filter(r => r.pass).length;
-  const failed = results.filter(r => !r.pass).length;
+  const passed = results.filter((r) => r.pass).length;
+  const failed = results.filter((r) => !r.pass).length;
   const total = results.length;
 
   console.log("\n" + "=".repeat(70));
@@ -434,7 +576,9 @@ function printResults(results, mode, durationMs) {
     if (r.expectedAnswer) {
       console.log(`         Expected: ${truncate(r.expectedAnswer, 80)}`);
     }
-    console.log(`         Actual:   ${truncate(r.actualAnswer || "(empty)", 80)}`);
+    console.log(
+      `         Actual:   ${truncate(r.actualAnswer || "(empty)", 80)}`,
+    );
     if (!r.pass) {
       console.log(`         Reason:   ${r.reason}`);
     }
@@ -443,7 +587,9 @@ function printResults(results, mode, durationMs) {
 
   console.log("\n" + "-".repeat(70));
   console.log(`  SUMMARY: ${passed} passed, ${failed} failed, ${total} total`);
-  console.log(`  Pass rate: ${total > 0 ? Math.round((passed / total) * 100) : 0}%`);
+  console.log(
+    `  Pass rate: ${total > 0 ? Math.round((passed / total) * 100) : 0}%`,
+  );
   console.log(`  Total time: ${(durationMs / 1000).toFixed(1)}s`);
   console.log("-".repeat(70) + "\n");
 }
@@ -463,11 +609,14 @@ function saveResults(results, mode, durationMs) {
       totalDurationMs: durationMs,
       summary: {
         total: results.length,
-        passed: results.filter(r => r.pass).length,
-        failed: results.filter(r => !r.pass).length,
-        passRate: results.length > 0
-          ? Math.round((results.filter(r => r.pass).length / results.length) * 100)
-          : 0,
+        passed: results.filter((r) => r.pass).length,
+        failed: results.filter((r) => !r.pass).length,
+        passRate:
+          results.length > 0
+            ? Math.round(
+                (results.filter((r) => r.pass).length / results.length) * 100,
+              )
+            : 0,
       },
       results,
     };
@@ -478,12 +627,14 @@ function saveResults(results, mode, durationMs) {
 }
 
 function saveHtmlReport(results, mode, durationMs) {
-  const passed = results.filter(r => r.pass).length;
-  const failed = results.filter(r => !r.pass).length;
+  const passed = results.filter((r) => r.pass).length;
+  const failed = results.filter((r) => !r.pass).length;
   const total = results.length;
   const passRate = total > 0 ? Math.round((passed / total) * 100) : 0;
 
-  const rows = results.map(r => `
+  const rows = results
+    .map(
+      (r) => `
     <tr class="${r.pass ? "pass" : "fail"}">
       <td>${r.id}</td>
       <td>${escapeHtml(r.question)}</td>
@@ -493,7 +644,9 @@ function saveHtmlReport(results, mode, durationMs) {
       <td>${r.reason}</td>
       <td>${r.durationMs}ms</td>
     </tr>
-  `).join("");
+  `,
+    )
+    .join("");
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -539,7 +692,11 @@ function saveHtmlReport(results, mode, durationMs) {
 }
 
 function escapeHtml(str) {
-  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 // ─── Main ────────────────────────────────────────────────────────────
@@ -568,7 +725,9 @@ async function main() {
     results = [];
 
     for (const testCase of testCases) {
-      process.stdout.write(`  [${testCase.id}/${testCases.length}] Testing: "${truncate(testCase.question, 50)}" ...`);
+      process.stdout.write(
+        `  [${testCase.id}/${testCases.length}] Testing: "${truncate(testCase.question, 50)}" ...`,
+      );
       const result = await runApiTest(testCase, sessionId);
       results.push(result);
 
@@ -577,7 +736,9 @@ async function main() {
 
       // Delay between questions
       if (testCase.id < testCases.length) {
-        await new Promise(resolve => setTimeout(resolve, config.delayBetweenQuestions));
+        await new Promise((resolve) =>
+          setTimeout(resolve, config.delayBetweenQuestions),
+        );
       }
     }
   }
@@ -595,11 +756,11 @@ async function main() {
   }
 
   // Exit with non-zero if any tests failed
-  const failCount = results.filter(r => !r.pass).length;
+  const failCount = results.filter((r) => !r.pass).length;
   process.exit(failCount > 0 ? 1 : 0);
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error("\n  Fatal error:", err.message);
   process.exit(1);
 });
