@@ -5,6 +5,7 @@ const incomingQuestion = $input.first().json.query.chatInput;
 const predefinedQuestions = [
   "What is NerveSpa?",
   "Can you explain what NerveSpa?",
+  "Can you explain what the NerveSpa system actually is?",
   "Could you describe what NerveSpa?",
   "Tell me about NerveSpa",
   "Explain NerveSpa to me",
@@ -12,7 +13,7 @@ const predefinedQuestions = [
   "How do providers implement NerveSpa?",
   "What conditions can NerveSpa support?",
   "How can clinics order NerveSpa or request a demo?",
-  "What are NerveSpa\u2019s pricing options?",
+  "What are NerveSpa’s pricing options?",
   "Is NerveSpa FDA-registered?",
   "Is NerveSpa covered by insurance?",
   "What warranty and return policy does NerveSpa offer?",
@@ -22,6 +23,8 @@ const predefinedQuestions = [
   "What certifications does PMT hold?",
   "Does NerveSpa replace medical care?",
   "Who decides if NerveSpa is appropriate?",
+  "Do I need a prescription for NerveSpa?",
+  "Is NerveSpa a US based company?",
   "Can NerveSpa be used with other treatments?",
   "How does NerveSpa compare to other nerve therapy systems?",
   "What makes NerveSpa unique?",
@@ -127,7 +130,7 @@ const predefinedQuestions = [
   "Can Shoulder Pro be used with other joint therapies?",
   "What should patients feel during Shoulder Pro therapy?",
   "What joint supplements are commonly used in the Joint & Mobility Program?",
-  "When should Super Flex Joint Formula \u2013 Rebuild + Maintain be used?",
+  "When should Super Flex Joint Formula – Rebuild + Maintain be used?",
   "When should OA & RA Relief Cream be used?",
   "When should Nerve Target Roll-On be used?",
   "How do joint supplements fit into the Joint & Mobility Program?",
@@ -158,7 +161,7 @@ const predefinedQuestions = [
   "Which treatment mode should I use on the LED Wrap?",
   "What should I avoid doing with the LED Wrap?",
   "How do I power the Knee Pro on/off and change modes?",
-  "What if I\u2019m having issues with stimulation on Knee Pro?",
+  "What if I’m having issues with stimulation on Knee Pro?",
   "What should I know before using the Quake Plate?",
   "What if the Quake Plate makes a loud grinding noise?",
   "What if the Quake Plate remote does not work?",
@@ -173,7 +176,7 @@ const predefinedQuestions = [
   "What should I do if the LED Wrap powers down early?",
   "How do I clean the LED Wrap?",
   "What should I do if the PowerWrap does not turn on?",
-  "What should I do if my skin feels too sensitive after PowerWrap use?",
+  "What if my skin feels too sensitive after PowerWrap use?",
   "What if the PowerWrap remote does not respond?",
   "What should I do if NerveWave does not power on?",
   "What if I feel no sensation during NerveWave use?",
@@ -191,7 +194,7 @@ const predefinedQuestions = [
   "What if stimulation feels weak on Shoulder Pro?",
   "How do I change Shoulder Pro modes?",
   "What if I feel little or no sensation during a Nerve Bath session?",
-  "What should I do if the Nerve Bath unit does not turn on?",
+  "What if the Nerve Bath unit does not turn on?",
   "Is tingling or warmth normal during a Nerve Bath session?",
   "What if the LED wrap does not turn on?",
   "What should I feel during LED wrap therapy?",
@@ -229,7 +232,7 @@ const predefinedQuestions = [
   "What if the Knee Pro strap feels too tight or loose?",
   "What if the Shoulder Pro feels uncomfortable during use?",
   "What if the Shoulder Pro does not power on?",
-  "What if I don\u2019t feel stimulation in the water?",
+  "What if I don’t feel stimulation in the water?",
   "What if stimulation feels uneven between feet or hands?",
   "What if the unit shuts off during a session?",
   "What if the Cold Laser does not emit light?",
@@ -345,11 +348,17 @@ const synonyms = {
   provider: "clinic",
   practice: "clinic",
   medical: "clinic",
+  doctor: "clinic",
+  physician: "clinic",
   offering: "start",
   begin: "start",
   setup: "set",
   starting: "start",
   ordering: "order",
+  usa: "us",
+  america: "us",
+  united: "us",
+  states: "us",
 };
 
 // Helper function to normalize text
@@ -400,67 +409,7 @@ function levenshteinDistance(s, t) {
 }
 
 const stopWords = new Set([
-  "a",
-  "an",
-  "and",
-  "are",
-  "as",
-  "at",
-  "be",
-  "but",
-  "by",
-  "for",
-  "if",
-  "in",
-  "into",
-  "is",
-  "it",
-  "no",
-  "of",
-  "on",
-  "or",
-  "such",
-  "that",
-  "the",
-  "their",
-  "then",
-  "there",
-  "these",
-  "they",
-  "this",
-  "to",
-  "was",
-  "will",
-  "with",
-  "do",
-  "does",
-  "did",
-  "can",
-  "could",
-  "should",
-  "would",
-  "i",
-  "you",
-  "he",
-  "she",
-  "we",
-  "my",
-  "your",
-  "his",
-  "her",
-  "our",
-  "how",
-  "what",
-  "why",
-  "where",
-  "when",
-  "who",
-  "has",
-  "been",
-  "hold",
-  "us",
-  "u",
-  "s",
+  "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with", "do", "does", "did", "can", "could", "should", "would", "i", "you", "he", "she", "we", "my", "your", "his", "her", "our", "how", "what", "why", "where", "when", "who", "has", "been", "hold",
 ]);
 
 const getTokens = (str) =>
@@ -554,28 +503,44 @@ function getSemanticScore(input, target) {
 const cleanIncoming = normalize(incomingQuestion);
 const thresholdLev = Math.max(3, Math.floor(cleanIncoming.length * 0.15));
 
-let isMatch = false;
-let bestMatchStr = "";
+let finalQuestion = incomingQuestion;
+let bestMatchQuestion = "";
 let bestScoreFound = 0;
+let isMatch = false;
 
 for (const q of predefinedQuestions) {
   const qNorm = normalize(q);
   const dist = levenshteinDistance(cleanIncoming, qNorm);
   const semanticScore = getSemanticScore(incomingQuestion, q);
 
-  if (semanticScore > bestScoreFound) {
-    bestScoreFound = semanticScore;
-    bestMatchStr = q;
+  // Combined heuristic for picking the best candidate
+  const currentHeuristic = (dist <= thresholdLev ? 1.0 : 0) + semanticScore;
+
+  if (currentHeuristic > bestScoreFound) {
+    bestScoreFound = currentHeuristic;
+    bestMatchQuestion = q;
   }
 
-  if (dist <= thresholdLev || semanticScore >= 0.55) {
+  // Match threshold (lower 0.6) to decide if we use predefined Q&A
+  if (dist <= thresholdLev || semanticScore >= 0.6) {
     isMatch = true;
-    // We do not break immediately so we can find the absolute best semantic match
+  }
+}
+
+if (isMatch && bestMatchQuestion) {
+  // Re-calculate semantic score for the best match to decide on standardization
+  const finalSemantic = getSemanticScore(incomingQuestion, bestMatchQuestion);
+  
+  // Standardization threshold (higher 0.85)
+  // Only replace the input question with the predefined one if we are very confident
+  if (finalSemantic >= 0.85) {
+    finalQuestion = bestMatchQuestion;
+  } else {
+    finalQuestion = incomingQuestion;
   }
 }
 
 let outputValue = isMatch ? "0" : "1";
-let finalQuestion = isMatch ? bestMatchStr : incomingQuestion;
 
 // Return the output in n8n format
 return [

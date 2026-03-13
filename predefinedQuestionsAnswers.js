@@ -1,4 +1,4 @@
-const incomingQuestion = $("Webhook").first().json.query.chatInput;
+const incomingQuestion = $input.first().json.chatInput || $("Webhook").first().json.query.chatInput;
 
 // JSON Q&A pairs
 const qaPairs = [
@@ -82,6 +82,14 @@ const qaPairs = [
     question: "Can NerveSpa be used with other treatments?",
     answer: "Yes. Clinics commonly pair NerveSpa with chiropractic care, PT, metabolic programs, red light therapy, or other supportive modalities as part of a broader treatment plan."
   },
+   {
+     question: "Do I need a prescription for NerveSpa?",
+     answer: "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans."
+   },
+   {
+     question: "Is NerveSpa a US based company?",
+     answer: "Yes. NerveSpa appears to be U.S.-based. Its official contact page lists a mailing address in Akron, Ohio, and the site identifies the brand as “NerveSpa by PMT.” NerveSpa’s legal pages also name Pain Management Technologies, Inc. d/b/a NerveSpa at 1760 Wadsworth Road, Akron, Ohio 44320."
+   },
   {
     question: "How does NerveSpa compare to other nerve therapy systems?",
     answer: "NerveSpa integrates multiple clinical-grade modalities\u2014water-based stimulation, LED therapy, cold laser, vibration therapy, and supplementation\u2014creating broader coverage than single-modality systems."
@@ -441,6 +449,10 @@ const qaPairs = [
   {
     question: "How do supplements support the Neuropathy Program?",
     answer: "Supplements are used to support nerve health, circulation, and metabolic pathways that influence nerve function. They are intended to work alongside device-based therapies rather than replace them, under provider direction."
+  },
+  {
+    question: "Can supplements be used alone without devices?",
+    answer: "Supplements may be used independently in some cases, but many providers recommend combining them with device-based therapies for a more comprehensive approach. The appropriate combination depends on individual clinical assessment."
   },
   {
     question: "What is the NerveSpa Joint & Mobility Program?",
@@ -1315,6 +1327,10 @@ const synonyms = {
   setup: "set",
   starting: "start",
   ordering: "order",
+  usa: "us",
+  america: "us",
+  united: "us",
+  states: "us",
 };
 
 // Helper function to normalize text for comparison
@@ -1781,7 +1797,7 @@ for (let i = 0; i < qaPairs.length; i++) {
   const matchScore = (dist <= thresholdLev ? 1.0 : 0) + semanticScore;
 
   if (
-    (dist <= thresholdLev || semanticScore >= 0.45) &&
+    (dist <= thresholdLev || semanticScore >= 0.6) &&
     matchScore > bestScore
   ) {
     bestScore = matchScore;
