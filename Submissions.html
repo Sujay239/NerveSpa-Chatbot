@@ -82,7 +82,9 @@
         line-height: 1.4;
         transition: background 0.18s;
       }
-      .msg-view-btn svg { flex-shrink: 0; }
+      .msg-view-btn svg {
+        flex-shrink: 0;
+      }
       .msg-view-btn:hover {
         background: #4f46e5;
       }
@@ -532,7 +534,8 @@
                 ? new Date(row.created_at).toLocaleString()
                 : "";
               const msg = row.message || "";
-              const msgPreview = msg.length > 60 ? msg.substring(0, 60) + "…" : msg;
+              const msgPreview =
+                msg.length > 60 ? msg.substring(0, 60) + "…" : msg;
               const msgCell = `<span class="msg-preview">${msgPreview}</span><button class="msg-view-btn" onclick="openMsgModal(this)" data-msg="${msg.replace(/"/g, "&quot;").replace(/\n/g, "&#10;")}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</button>`;
               table += `<tr>
                         <td>${row.session_id || ""}</td>
@@ -750,7 +753,8 @@
               ? new Date(row.created_at).toLocaleString()
               : "";
             const msg = row.message || "";
-            const msgPreview = msg.length > 60 ? msg.substring(0, 60) + "…" : msg;
+            const msgPreview =
+              msg.length > 60 ? msg.substring(0, 60) + "…" : msg;
             const msgCell = `<span class="msg-preview">${msgPreview}</span><button class="msg-view-btn" onclick="openMsgModal(this)" data-msg="${msg.replace(/"/g, "&quot;").replace(/\n/g, "&#10;")}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>`;
             table += `<tr>
                     <td>${row.session_id || ""}</td>

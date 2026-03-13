@@ -82,6 +82,6 @@ module.exports = {
   resultsJsonPath: "./results/results-failed.json",
 
   // Generate HTML report
-  saveResultsHtml: false,
+  saveResultsHtml: true,
   resultsHtmlPath: "./results/report-failed.html",
 };

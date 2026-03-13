@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-12T12:31:27.548Z",
+  "timestamp": "2026-03-13T05:43:57.610Z",
   "mode": "api",
-  "totalDurationMs": 98263,
+  "totalDurationMs": 84444,
   "summary": {
     "total": 20,
-    "passed": 13,
-    "failed": 7,
-    "passRate": 65
+    "passed": 12,
+    "failed": 8,
+    "passRate": 60
   },
   "results": [
     {
@@ -16,25 +16,25 @@
       "actualAnswer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
       "pass": true,
       "reason": "Matched 3/5 key terms (60%)",
-      "durationMs": 1500
+      "durationMs": 1520
     },
     {
       "id": 2,
       "question": "Which types of health issues do clinics usually address with NerveSpa technology?",
       "expectedAnswer": "Clinics commonly use NerveSpa for concerns such as peripheral neuropathy symptoms, joint stiffness, circulation issues, and nerve-related discomfort.",
-      "actualAnswer": "Clinics often use NerveSpa technology to help address neuropathy, joint pain, poor circulation, and muscle discomfort. Patients may find relief from burning, tingling, numbness, or pain in their hands and feet, as well as improvement in mobility and comfort. https://www.youtube.com/watch?v=GgvYnLvrEQE You might also be interested in: [What is the Hand & Foot Neuropathy System?][How does NerveSpa promote circulation?][What kind of outcomes can patients expect?][What is the NerveSpa Joint & Mobility Program?][How often should patients use the Knee Pro?][How often should patients use the Shoulder Pro?]",
+      "actualAnswer": "Clinics may use NerveSpa technology as part of wellness management for patients presenting with symptoms such as chronic pain, muscle tightness, nerve-related discomfort, leg cramps, or poor circulation. The specific clinical use will depend on provider evaluation and may vary from one practice to another. [What improvements do patients report with the NerveSpa Nerve Bath?][What consumables does the NerveSpa Nerve Bath use?][How is NerveSpa different from consumer-grade nerve stimulation devices?]",
       "pass": true,
       "reason": "Matched 4/6 key terms (67%)",
-      "durationMs": 5617
+      "durationMs": 3776
     },
     {
       "id": 3,
       "question": "How would a medical practice begin offering NerveSpa services to their patients?",
       "expectedAnswer": "Clinics typically open a provider account with Pain Management Technologies and can request starter kits, demos, and onboarding support.",
-      "actualAnswer": "A medical practice can begin offering NerveSpa services by reaching out to NerveSpa for training, clinical support, and system setup guidance. The company provides onboarding resources and support to integrate the technology into your clinic’s workflow. Staff receive training on patient selection, usage, and best practices to maximize benefits for patients. You might also be interested in: [What support does NerveSpa offer to providers?][Can NerveSpa be used in physical therapy clinics?][How does staff training work for new providers?][Does NerveSpa offer training for clinics?][What should staff say if a patient asks whether NerveSpa replaces medical treatment?][What is the best way for staff to set expectations before a patient begins using NerveSpa?]",
+      "actualAnswer": "Medical practices interested in offering NerveSpa services can begin by reaching out to our team for more information about our partnership options and device programs. We provide onboarding, device training, marketing support, and all necessary resources to successfully offer NerveSpa treatments in your clinic. Introductory calls, product demonstrations, and detailed walkthroughs of integration steps are available to ensure a seamless onboarding experience for you and your staff. [Does NerveSpa offer training for clinics?][Can NerveSpa be combined with in-clinic treatments?][What should staff say if a patient asks whether NerveSpa replaces medical treatment?]",
       "pass": false,
-      "reason": "Only 2/6 key terms found (33%). Missing: pain management technologies, technologies, management, typically",
-      "durationMs": 3819
+      "reason": "Only 1/6 key terms found (17%). Missing: pain management technologies, technologies, management, typically, provider",
+      "durationMs": 3272
     },
     {
       "id": 4,
@@ -43,7 +43,7 @@
       "actualAnswer": "NerveSpa devices are manufactured in FDA-registered facilities from all over the world, with final distribution handled through PMT in Akron, Ohio.",
       "pass": true,
       "reason": "Matched 6/9 key terms (67%)",
-      "durationMs": 1065
+      "durationMs": 938
     },
     {
       "id": 5,
@@ -52,25 +52,25 @@
       "actualAnswer": "Staff may state that NerveSpa is produced by an FDA-registered manufacturer and used under provider guidance, without making claims about treatment or cure.",
       "pass": true,
       "reason": "Matched 3/6 key terms (50%)",
-      "durationMs": 1109
+      "durationMs": 938
     },
     {
       "id": 6,
       "question": "How long do most patients typically follow a NerveSpa care routine?",
       "expectedAnswer": "Many NerveSpa protocols follow structured use over about 60–90 sessions depending on provider guidance and the condition being addressed.",
-      "actualAnswer": "Most patients typically follow a NerveSpa care routine for about 60–90 days to see significant improvement. Consistency during this period is key for optimal outcomes, though some may need ongoing maintenance sessions depending on their condition. You might also be interested in: [What outcomes are expected from the Hand & Foot Neuropathy System?][Can NerveSpa therapy be used long-term?][How soon do patients notice relief?][How are the NerveSpa conductive foot pads and gloves used in therapy?][Is NerveSpa safe for most patients?][What outcomes are expected with LED wrap therapy?]",
-      "pass": true,
-      "reason": "Matched 3/7 key terms (43%)",
-      "durationMs": 3916
+      "actualAnswer": "Most patients typically follow the NerveSpa care routine for a recommended period of 8-12 weeks. Some individuals may continue with maintenance sessions based on their provider’s guidance and personal wellness goals. [Is NerveSpa safe for most patients?][Does NerveSpa replace medical care?][Can patients purchase NerveSpa directly?]",
+      "pass": false,
+      "reason": "Only 1/7 key terms found (14%). Missing: structured, protocols, depending, condition, addressed...",
+      "durationMs": 2470
     },
     {
       "id": 7,
       "question": "What exactly happens during a NerveSpa foot or hand bath session?",
       "expectedAnswer": "The NerveSpa Nerve Bath delivers low‑frequency stimulation through warm water to the hands or feet to support circulation and nerve activity.",
-      "actualAnswer": "During a NerveSpa foot or hand bath session, you place your hands or feet in warm water with Epsom salt and an effervescent tablet in each side. The system delivers comfortable, low-frequency stimulation through the water, distributing current evenly for thorough nerve engagement. The device runs a pre-programmed program to support circulation and nerve health, and you adjust intensity until you feel a mild, pleasant tingle. For a complete step-by-step overview, see the Quick Guide: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing You might also be interested in: [How does the NerveSpa system support nerve health?][What results do patients usually notice after NerveSpa therapy?][How should you set up the NerveSpa bath at home?][What should patients feel during a Nerve Bath session?][How should the NerveSpa Nerve Bath be set up?][Why water-based therapy for the NerveSpa Nerve Bath?]",
+      "actualAnswer": "During a NerveSpa foot or hand bath session, the patient places their feet or hands in the treatment basin lined with a fresh single-use liner and filled with clean, room-temperature water. NerveSpa devices are used in conjunction, applying targeted therapy as directed by the provider. Each session is non-invasive and typically lasts about 30 minutes. The process is comfortable and does not involve any needles or medications. After the session, the liner and water are disposed of for proper hygiene. [Why water-based therapy for the NerveSpa Nerve Bath?][How are the NerveSpa conductive foot pads and gloves used in therapy?][What if there is no sensation during a NerveSpa Nerve Bath session?]",
       "pass": true,
-      "reason": "Matched 6/6 key terms (100%)",
-      "durationMs": 7835
+      "reason": "Matched 3/6 key terms (50%)",
+      "durationMs": 3830
     },
     {
       "id": 8,
@@ -79,43 +79,43 @@
       "actualAnswer": "Warm water allows full circumferential contact around the hands or feet, so current is distributed evenly rather than just through small pad areas. This helps improve comfort, consistency of stimulation, and engagement of more nerve endings compared to pad-only approaches.",
       "pass": false,
       "reason": "Only 1/5 key terms found (20%). Missing: effervescent, conductivity, generally, sessions",
-      "durationMs": 1194
+      "durationMs": 1015
     },
     {
       "id": 9,
       "question": "How does the vibration platform used in NerveSpa programs help patients?",
       "expectedAnswer": "The Quake Plate provides gentle vibration that can support circulation and relaxation of the muscles and nerves in the lower extremities.",
-      "actualAnswer": "The vibration platform in NerveSpa programs stimulates circulation and muscle activity, helping improve blood flow and aid relaxation. This physical stimulation supports nerve health and may reduce discomfort in feet and legs. https://www.youtube.com/watch?v=GZT58LDOT2o You might also be interested in: [What conditions benefit most from vibration therapy?][Can the vibration platform be used with neuropathy?][Is vibration therapy safe for seniors?][How is NerveSpa different from consumer-grade nerve stimulation devices?][How does NerveSpa compare to other nerve therapy systems?][Is NerveSpa safe for most patients?]",
+      "actualAnswer": "The vibration platform in the NerveSpa program is designed to promote relaxation, stimulate circulation, and complement the effects of other device therapies. The platform delivers gentle, low-frequency vibrations that can enhance comfort during the session. Individual responses may vary. [What if there is no sensation during a NerveSpa Nerve Bath session?][Can NerveSpa be used with other treatments?][How does NerveSpa compare to other nerve therapy systems?]",
       "pass": true,
       "reason": "Matched 3/6 key terms (50%)",
-      "durationMs": 3374
+      "durationMs": 2568
     },
     {
       "id": 10,
       "question": "What type of therapy is delivered through the red and infrared wrap devices?",
       "expectedAnswer": "The LED wrap uses red and infrared light therapy to support circulation, tissue comfort, and mobility in targeted areas.",
-      "actualAnswer": "The red and infrared wrap devices deliver photobiomodulation therapy, also known as low-level light therapy (LLLT). This therapy uses specific wavelengths of red and near-infrared light to help enhance circulation, reduce inflammation, and support tissue healing by energizing cells at a mitochondrial level. Patients may experience less pain, decreased swelling, and improved mobility as a result. You might also be interested in: [How does photobiomodulation work for nerve pain?][Are red and infrared wraps safe for daily use?][What results can patients expect from light therapy?][What is the NerveBeam LED Light Therapy Wrap?][What should patients feel during LED Wrap therapy?][How is NerveSpa different from consumer-grade nerve stimulation devices?]",
+      "actualAnswer": "The red and infrared wrap devices deliver light therapy, also known as photobiomodulation or low-level light therapy. These wraps use specific wavelengths of red and near-infrared light believed to support circulation and provide soothing relief during the session. [What is the NerveBeam LED Light Therapy Wrap?][What should patients feel during LED Wrap therapy?][What if the LED Wrap lights flicker during use?]",
       "pass": true,
-      "reason": "Matched 5/6 key terms (83%)",
-      "durationMs": 3886
+      "reason": "Matched 4/6 key terms (67%)",
+      "durationMs": 2686
     },
     {
       "id": 11,
       "question": "In what way is the cold laser tool typically applied during a session?",
       "expectedAnswer": "The handheld cold laser device is placed directly over the target area for a provider‑recommended time to deliver red and infrared light therapy.",
-      "actualAnswer": "The cold laser tool is gently applied directly over the areas of pain, numbness, or inflammation during a session. It delivers low-level laser energy to targeted nerves and tissues, aiming to support cellular repair, reduce inflammation, and promote healing without generating heat. Treatments are comfortable and usually last just a few minutes per area. You might also be interested in: [What are the benefits of cold laser therapy?][Is cold laser treatment safe for neuropathy?][How often should cold laser sessions be used?][How often should the NerveBeam Cold Laser be used?][How should the Cold Laser be positioned during treatment?][What should patients feel during Cold Laser therapy?]",
+      "actualAnswer": "The cold laser tool is gently placed over targeted areas of the skin during a session to deliver low-level laser energy as part of the intended therapy. The procedure is non-invasive and generally does not produce discomfort. [What should patients feel during Cold Laser therapy?][What should I feel during Cold Laser therapy?][Who should not use the NerveBeam Cold Laser?]",
       "pass": false,
-      "reason": "Only 2/6 key terms found (33%). Missing: recommended, handheld, provider, infrared",
-      "durationMs": 3960
+      "reason": "Only 1/6 key terms found (17%). Missing: recommended, handheld, directly, provider, infrared",
+      "durationMs": 2607
     },
     {
       "id": 12,
       "question": "How does the specialized knee therapy device fit into joint programs?",
       "expectedAnswer": "The Knee Pro provides targeted stimulation around the knee joint during extended sessions to support mobility and comfort.",
-      "actualAnswer": "The specialized knee therapy device is integrated into joint programs to target knee discomfort and enhance mobility. It uses targeted low-level light and gentle stimulation to reduce inflammation and support joint healing for those with knee pain or stiffness. This device is typically used as part of a broader joint health protocol to help patients regain function and decrease pain. https://www.youtube.com/watch?v=86sgHv-asNw You might also be interested in: [Can the knee device help with arthritis?][Is the therapy safe for post-surgical knees?][How often should the device be used in joint programs?][What devices are used in the Joint & Mobility Program?][How often should patients use the Knee Pro?][Can Knee Pro be used with other joint therapies?]",
+      "actualAnswer": "The specialized knee therapy device is offered as an add-on therapy option for joint programs. It is designed to deliver targeted therapy to the knee area, supporting comfort and range of motion for patients receiving joint-focused care. Therapy protocols are developed by the provider. [What should patients feel during Knee Pro therapy?][What should patients feel during Quake Plate therapy?][What should patients feel during LED Wrap therapy?]",
       "pass": true,
-      "reason": "Matched 4/6 key terms (67%)",
-      "durationMs": 3622
+      "reason": "Matched 3/6 key terms (50%)",
+      "durationMs": 3061
     },
     {
       "id": 13,
@@ -124,25 +124,25 @@
       "actualAnswer": "NerveSpa integrates multiple clinical-grade modalities—water-based stimulation, LED therapy, cold laser, vibration therapy, and supplementation—creating broader coverage than single-modality systems.",
       "pass": false,
       "reason": "Only 1/6 key terms found (17%). Missing: shoulder pro, shoulder, function, provider, sessions",
-      "durationMs": 1067
+      "durationMs": 1136
     },
     {
       "id": 14,
       "question": "Are the different NerveSpa therapies meant to be used individually or together?",
       "expectedAnswer": "Providers often combine multiple NerveSpa modalities such as stimulation, vibration, and light therapy within a coordinated program.",
-      "actualAnswer": "NerveSpa therapies are designed to work both individually and as a combined program. While each modality—like photobiomodulation, vibration, or the foot & hand bath—can be effective on its own, using them together may provide enhanced results for patients by targeting symptoms from multiple approaches within one coordinated care plan. You might also be interested in: [What is the benefit of combining NerveSpa therapies?][How are programs customized for each patient?][Can patients use therapies at home and in-clinic?][How does the NerveSpa family of products work together?][Can NerveSpa be combined with in-clinic treatments?][How does the NerveSpa Nerve Bath work?]",
-      "pass": true,
-      "reason": "Matched 3/6 key terms (50%)",
-      "durationMs": 4075
+      "actualAnswer": "NerveSpa therapies can be used individually or together as part of a comprehensive care program. Providers may tailor the combination and sequence of therapies to address each patient’s goals, needs, and unique response to treatment. [What should staff say if a patient asks whether NerveSpa replaces medical treatment?][Are there any patient scenarios where NerveSpa may not be appropriate?][How do providers implement NerveSpa?]",
+      "pass": false,
+      "reason": "Only 2/6 key terms found (33%). Missing: stimulation, coordinated, modalities, vibration",
+      "durationMs": 2755
     },
     {
       "id": 15,
       "question": "Do patients need a doctor’s prescription before using NerveSpa devices?",
       "expectedAnswer": "Most NerveSpa devices do not require a prescription, but they are typically distributed through licensed providers who guide use.",
-      "actualAnswer": "No, a doctor’s prescription is not required for patients to use NerveSpa devices. However, clinics often recommend patients undergo evaluation and supervision by qualified staff to ensure the best care and outcomes. You might also be interested in: [Can patients use NerveSpa at home?][Are NerveSpa therapies safe for everyone?][What qualifications are needed to oversee NerveSpa sessions?][Why do clinics choose NerveSpa over generic home wellness devices?][Is NerveSpa safe for most patients?][Can patients travel with NerveSpa devices?]",
+      "actualAnswer": "Patients do not require a doctor’s prescription to use NerveSpa devices. However, all device sessions are administered in a clinical environment under the guidance or supervision of a qualified healthcare provider. [What situations require clinical judgment before continuing NerveSpa use?][Can patients travel with NerveSpa devices?][Who should not use NerveSpa conductive garments?]",
       "pass": true,
       "reason": "Matched 2/5 key terms (40%)",
-      "durationMs": 3372
+      "durationMs": 2680
     },
     {
       "id": 16,
@@ -151,7 +151,7 @@
       "actualAnswer": "Many patients report reduced tingling, burning, numbness, coldness, and stiffness in their feet or hands, along with improved circulation, comfort, and sleep over time. Results vary by individual, condition severity, and how consistently the program is followed.",
       "pass": true,
       "reason": "Matched 4/5 key terms (80%)",
-      "durationMs": 1030
+      "durationMs": 1124
     },
     {
       "id": 17,
@@ -160,7 +160,7 @@
       "actualAnswer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com",
       "pass": true,
       "reason": "Matched 2/5 key terms (40%)",
-      "durationMs": 865
+      "durationMs": 808
     },
     {
       "id": 18,
@@ -169,25 +169,25 @@
       "actualAnswer": "Yes. Clinics receive onboarding support, device training, and access to guides, protocols, and provider resources. Additional training is available as needed.",
       "pass": false,
       "reason": "Only 2/6 key terms found (33%). Missing: nervespa, implementing, typically, materials",
-      "durationMs": 1003
+      "durationMs": 934
     },
     {
       "id": 19,
       "question": "What safety considerations should patients keep in mind before using NerveSpa devices?",
       "expectedAnswer": "Providers screen for contraindications such as pacemakers, pregnancy, or certain medical conditions before recommending use.",
-      "actualAnswer": "Patients should consult with a healthcare provider before starting NerveSpa therapy, especially if they have electronic implants like pacemakers, are pregnant, or have open wounds near the treatment area. It is important to follow all instructions for use, avoid broken skin contact, and report any unusual sensations to staff immediately. You might also be interested in: [Are NerveSpa devices FDA-cleared?][Who should avoid NerveSpa therapy?][Can patients with diabetes use NerveSpa safely?][Can patients travel with NerveSpa devices?][What improvements do patients report with the NerveSpa Nerve Bath?][Do patients need all the devices in the Neuropathy Program?]",
-      "pass": false,
-      "reason": "Only 1/5 key terms found (20%). Missing: contraindications, recommending, conditions, providers",
-      "durationMs": 4627
+      "actualAnswer": "NerveSpa devices are intended for use under provider supervision. Patients should always inform their clinic team of any medical conditions, implanted electronic devices (such as pacemakers), allergies, or sensitivity to light-based therapies prior to use. Individual suitability and protocols are determined by the healthcare provider. [Can patients travel with NerveSpa devices?][What conditions can NerveSpa support?][Does NerveSpa replace medical care?]",
+      "pass": true,
+      "reason": "Matched 2/5 key terms (40%)",
+      "durationMs": 4567
     },
     {
       "id": 20,
       "question": "How do NerveSpa programs maintain consistency in patient participation?",
       "expectedAnswer": "Programs emphasize repeatable sessions and structured routines to support consistent patient engagement.",
-      "actualAnswer": "NerveSpa programs maintain consistency in patient participation through structured protocols, regular follow-ups, and tracking patient progress. Customized care plans and provider support help patients stay engaged and motivated throughout their therapy, maximizing adherence and outcomes. You might also be interested in: [How often do patients come in for NerveSpa sessions?][What tools help track patient progress?][How does NerveSpa support long-term results?][How does NerveSpa support patient-reported comfort or function tracking?][How does NerveSpa support consistency and repeatability in patient use?][What conditions can NerveSpa support?]",
+      "actualAnswer": "NerveSpa programs maintain consistency in patient participation through flexible scheduling, engaging session experiences, and ongoing provider follow-up. Many clinics customize the care plan and offer convenient appointment options to accommodate patient needs and encourage adherence. [Does NerveSpa offer training for clinics?][How do clinics measure patient engagement with NerveSpa?][Can clinics document changes in patient experience over time with NerveSpa?]",
       "pass": false,
-      "reason": "Only 1/5 key terms found (20%). Missing: repeatable, consistent, engagement, emphasize",
-      "durationMs": 3141
+      "reason": "Only 1/5 key terms found (20%). Missing: repeatable, structured, consistent, emphasize",
+      "durationMs": 3607
     }
   ]
 }
