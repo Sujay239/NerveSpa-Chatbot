@@ -72,7 +72,12 @@ module.exports = (data) => `
             border-color: var(--accent);
         }
 
+        .stat-card.pass { border-color: #00ff88; }
+        .stat-card.fail { border-color: #ff4d4d; }
+
         .stat-card .value { font-size: 28px; font-weight: 700; color: var(--accent); display: block; margin-bottom: 4px; }
+        .stat-card.pass .value { color: #00ff88; }
+        .stat-card.fail .value { color: #ff4d4d; }
         .stat-card .label { color: var(--text-secondary); font-size: 12px; text-transform: uppercase; font-weight: 600; }
 
         .search-container { margin-bottom: 30px; position: relative; }
@@ -101,18 +106,42 @@ module.exports = (data) => `
             transition: background 0.3s ease;
         }
 
-        .response-card::before {
+        .response-card.status-pass::before {
             content: '';
             position: absolute;
             left: 0; top: 0; bottom: 0;
             width: 4px;
-            background: var(--accent);
-            opacity: 0.6;
+            background: #00ff88;
+            opacity: 0.8;
+        }
+
+        .response-card.status-fail::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: #ff4d4d;
+            opacity: 0.8;
         }
 
         .response-card:hover { background: rgba(20, 25, 40, 0.9); }
 
-        .q-section { margin-bottom: 16px; }
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-pass { background: rgba(0, 255, 136, 0.1); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.2); }
+        .badge-fail { background: rgba(255, 77, 77, 0.1); color: #ff4d4d; border: 1px solid rgba(255, 77, 77, 0.2); }
+
+        .q-section { margin-bottom: 16px; padding-right: 80px; }
         .q-label { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 4px; }
         .question-text { font-size: 18px; font-weight: 600; color: #fff; }
 
@@ -151,16 +180,24 @@ module.exports = (data) => `
 
         <div class="stats-grid">
             <div class="stat-card">
-                <span class="value">${data.results.length}</span>
-                <span class="label">Questions Tested</span>
+                <span class="value">${data.stats.total}</span>
+                <span class="label">Questions</span>
+            </div>
+            <div class="stat-card pass">
+                <span class="value">${data.stats.passed}</span>
+                <span class="label">Passed</span>
+            </div>
+            <div class="stat-card fail">
+                <span class="value">${data.stats.failed}</span>
+                <span class="label">Failed</span>
             </div>
             <div class="stat-card">
-                <span class="value">${data.avgResponseTime}ms</span>
+                <span class="value">${data.stats.passRate}%</span>
+                <span class="label">Success Rate</span>
+            </div>
+            <div class="stat-card">
+                <span class="value">${data.stats.avgResponseTime}ms</span>
                 <span class="label">Avg. Latency</span>
-            </div>
-            <div class="stat-card">
-                <span class="value">${data.clientName}</span>
-                <span class="label">Target Client</span>
             </div>
         </div>
 
@@ -170,7 +207,10 @@ module.exports = (data) => `
 
         <div class="response-list" id="responseList">
             ${data.results.map((res, i) => `
-                <div class="response-card" data-index="${i}">
+                <div class="response-card status-${res.pass ? 'pass' : 'fail'}" data-index="${i}">
+                    <div class="status-badge badge-${res.pass ? 'pass' : 'fail'}">
+                        ${res.pass ? 'PASSED' : 'FAILED'}
+                    </div>
                     <div class="q-section">
                         <span class="q-label">Question #${i+1}</span>
                         <div class="question-text">${res.question}</div>

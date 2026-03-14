@@ -1298,6 +1298,94 @@ const qaPairs = [
     question: "email id",
     answer: "Email \u2013 support@nervespa.com"
   },
+  {
+    question: "Where can I read your privacy policy?",
+    answer: "You can read our Privacy Policy here: https://nervespa.com/privacy-policy"
+  },
+  {
+    question: "Where can I read your terms and conditions?",
+    answer: "Our Terms of Service can be found here: https://nervespa.com/terms-of-service"
+  },
+  {
+    question: "Do you have an FAQ page I can browse?",
+    answer: "Yes, you can find our Frequently Asked Questions here: https://nervespa.com/faq"
+  },
+  {
+    question: "How will my items be shipped?",
+    answer: "Domestic (continental US): shipped via UPS Ground or USPS depending on order and location. International: must ship UPS due to the battery in the unit. Tracking information is emailed once the order is processed by the shipping department."
+  },
+  {
+    question: "When will my order arrive?",
+    answer: "Domestic: processed in 1–2 business days; transit typically 2–5 days depending on distance from the Ohio warehouse. Canada: a freight forward picks up 1–2 times/week; tracking becomes available 7–10 days after you receive tracking info; delivery is generally 2–3 weeks. International: duties are unpaid; transit can range 5–90 days depending on location; USPS tracking may not update after leaving the US until the destination country posts an update."
+  },
+  {
+    question: "How do I pay for my order?",
+    answer: "Payments are encrypted using SSL. NerveSpa accepts PayPal and credit cards: American Express, Discover, Mastercard, and Visa. We do not accept cash or credit vouchers."
+  },
+  {
+    question: "Why did my order fail?",
+    answer: "Verify card number, expiration date, security code, and that billing name/address exactly match your credit card statement. Authorization requires the billing address on file with the credit card company to match the billing address provided to NerveSpa. If multiple failed orders occur, funds may be placed on hold by your bank but should not clear."
+  },
+  {
+    question: "Do you charge sales tax?",
+    answer: "Sales tax is collected on orders shipped within Ohio. International taxes are not prepaid; any taxes on international shipments must be paid by the receiver."
+  },
+  {
+    question: "Is my product under warranty?",
+    answer: "The NerveSpa device has a one-year warranty against manufacturer defects. It does not cover damage from drops, falls, misuse, or accidents. If an identical replacement isn’t available, a comparable color/style may be provided."
+  },
+  {
+    question: "How do I file a warranty claim?",
+    answer: "Complete the warranty submission form at https://nervespa.com/info. You may be asked to return the device for inspection at: NerveSpa, ATTN: Warranty Returns, 1760 Wadsworth Road, Akron, OH 44320. Include the defect explanation, phone number, address, and email."
+  },
+  {
+    question: "I don't want this product, can I return my order?",
+    answer: "Yes, we offer a 30-day money-back guarantee for purchases from NerveSpa.com. Refund is the amount minus shipping costs. Items must be in original packaging and in new or lightly used condition. Credits are issued to the original payment card."
+  },
+  {
+    question: "How do I return my order?",
+    answer: "Call or email customer service to obtain a return authorization number. Ship via a traceable method to: NerveSpa, ATTN: Returns, 1760 Wadsworth Road, Akron, OH 44320. Include your name, phone, address, email, and the RMA number."
+  },
+  {
+    question: "How long to charge and how to maintain the battery?",
+    answer: "Charge for 16 hours on the first charge, then typically 8–10 hours thereafter. Never let the Li-ion battery go to zero, and charge periodically even if not used. Batteries typically last 4–5 years with good maintenance."
+  },
+  {
+    question: "How much water to add?",
+    answer: "Typically fill the unit about halfway with warm water so that the water is around or above your ankle when your feet are added."
+  },
+  {
+    question: "Do the carbon rubber pads need replaced?",
+    answer: "Typically no, the carbon rubber pads do not need to be replaced."
+  },
+  {
+    question: "How often should I use the NerveSpa?",
+    answer: "Use consistently for the first 60–90 days (1x daily, 5–6 days per week) to see targeted results. After 90 days, you can reduce to a maintenance schedule or use as needed."
+  },
+  {
+    question: "What do the modes do?",
+    answer: "Classic models have modes A and B; Pro models have A, B, and C. A mode: micro/TENS (pain relief + therapeutic). B and C modes: micro/galvanic (therapeutic). Programs auto-run and shut off after 30 minutes. You can skip A and use B/C for greater therapeutic outcome if not treating immediate symptomatic pain."
+  },
+  {
+    question: "Why is it recommended to rotate the pads from treatment to treatment?",
+    answer: "Rotating pads alternates the entry/exit pathway of the monophasic waveform so each foot is treated equally. The program also changes to biphasic at the halfway point to offload charge buildup. Pads should be submerged in water (they do not need to touch the foot)."
+  },
+  {
+    question: "Which light therapy device should I purchase?",
+    answer: "The LED therapy wrap is recommended for broad surface coverage of the whole foot. For chronic/intense pain or a specific joint spot (knee/back), the laser is more effective."
+  },
+  {
+    question: "Can I use two LED therapy wraps at the same time?",
+    answer: "Yes. The therapy wrap is designed to use a link cable so you can treat both feet at the same time without needing another outlet."
+  },
+  {
+    question: "Will my insurance cover the NerveSpa?",
+    answer: "Some insurance plans cover TENS devices. Check with your insurance provider or healthcare professional to confirm coverage for HCPCS code E0720."
+  },
+  {
+    question: "What is the HCPCS code for the NerveSpa?",
+    answer: "The billing code (HCPCS code) is E0720"
+  },  
 ];
 
 // Default output
@@ -1331,6 +1419,34 @@ const synonyms = {
   america: "us",
   united: "us",
   states: "us",
+  vibration: "quake plate",
+  platform: "quake plate",
+  vibrational: "quake plate",
+  knee: "knee pro",
+  shoulder: "shoulder pro",
+  laser: "cold laser",
+  led: "led wrap",
+  socks: "diabetic socks",
+  garments: "conductive garments",
+  bath: "nerve bath",
+  aquatic: "nerve bath",
+  water: "nerve bath",
+  participation: "consistency",
+  engagement: "consistency",
+  consistency: "repeatability",
+  participation: "repeatability",
+  issues: "conditions",
+  concerns: "conditions",
+  problems: "conditions",
+  address: "support",
+  manage: "support",
+  supplies: "consumables",
+  materials: "consumables",
+  items: "consumables",
+  canada: "international",
+  faq: "faq",
+  bulk: "bulk pricing",
+  wholesale: "bulk pricing",
 };
 
 // Helper function to normalize text for comparison

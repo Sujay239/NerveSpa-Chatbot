@@ -21,12 +21,12 @@
 </head>
 <body>
   <h1>Chatbot Test Report</h1>
-  <div class="meta">Mode: API | Date: 3/13/2026, 8:13:19 PM | Duration: 107.4s</div>
+  <div class="meta">Mode: API | Date: 3/14/2026, 5:35:38 PM | Duration: 75.7s</div>
   <div class="summary">
     <div class="stat"><div class="number">20</div><div class="label">Total Tests</div></div>
-    <div class="stat pass"><div class="number">14</div><div class="label">Passed</div></div>
-    <div class="stat fail"><div class="number">6</div><div class="label">Failed</div></div>
-    <div class="stat"><div class="number">70%</div><div class="label">Pass Rate</div></div>
+    <div class="stat pass"><div class="number">9</div><div class="label">Passed</div></div>
+    <div class="stat fail"><div class="number">11</div><div class="label">Failed</div></div>
+    <div class="stat"><div class="number">45%</div><div class="label">Pass Rate</div></div>
   </div>
   <table>
     <thead><tr><th>#</th><th>Question</th><th>Expected</th><th>Actual</th><th>Status</th><th>Reason</th><th>Time</th></tr></thead>
@@ -38,27 +38,27 @@
       <td>NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration...</td>
       <td class="status">PASS</td>
       <td>Matched 3/5 key terms (60%)</td>
-      <td>1603ms</td>
+      <td>1662ms</td>
     </tr>
   
     <tr class="pass">
       <td>2</td>
       <td>Which types of health issues do clinics usually address with NerveSpa technology?</td>
       <td>Clinics commonly use NerveSpa for concerns such as peripheral neuropathy symptoms, joint stiffness, circulation issues, and nerve-related discomfort.</td>
-      <td>Many clinics layer NerveSpa with chiropractic, PT, neuropathy care, and joint mobility programs to support outcomes between visits. Patients often report reduced tingling, burning, and numbness; impro...</td>
+      <td>NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffne...</td>
       <td class="status">PASS</td>
-      <td>Matched 3/6 key terms (50%)</td>
-      <td>7627ms</td>
+      <td>Matched 5/6 key terms (83%)</td>
+      <td>1286ms</td>
     </tr>
   
-    <tr class="pass">
+    <tr class="fail">
       <td>3</td>
       <td>How would a medical practice begin offering NerveSpa services to their patients?</td>
       <td>Clinics typically open a provider account with Pain Management Technologies and can request starter kits, demos, and onboarding support.</td>
-      <td>To begin offering NerveSpa services to patients, medical practices can partner directly with NerveSpa as a provider. The process typically involves signing up with NerveSpa, receiving training/materia...</td>
-      <td class="status">PASS</td>
-      <td>Matched 3/6 key terms (50%)</td>
-      <td>3711ms</td>
+      <td>Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and a...</td>
+      <td class="status">FAIL</td>
+      <td>Only 1/6 key terms found (17%). Missing: pain management technologies, technologies, management, onboarding, typically</td>
+      <td>7863ms</td>
     </tr>
   
     <tr class="pass">
@@ -68,37 +68,37 @@
       <td>NerveSpa devices are manufactured in FDA-registered facilities from all over the world, with final distribution handled through PMT in Akron, Ohio.</td>
       <td class="status">PASS</td>
       <td>Matched 6/9 key terms (67%)</td>
-      <td>906ms</td>
+      <td>782ms</td>
     </tr>
   
     <tr class="pass">
       <td>5</td>
       <td>Is the NerveSpa equipment considered FDA approved or something different?</td>
       <td>NerveSpa devices are manufactured in FDA‑registered facilities and listed with the FDA, but registration does not mean FDA approval of medical claims.</td>
-      <td>NerveSpa devices are registered with the FDA as Class II medical devices. This means they have been reviewed for safety and performance but are not the same as being &quot;FDA approved.&quot; Instead, they are ...</td>
+      <td>Staff may state that NerveSpa is produced by an FDA-registered manufacturer and used under provider guidance, without making claims about treatment or cure.</td>
       <td class="status">PASS</td>
       <td>Matched 3/6 key terms (50%)</td>
-      <td>3563ms</td>
+      <td>1025ms</td>
     </tr>
   
     <tr class="fail">
       <td>6</td>
       <td>How long do most patients typically follow a NerveSpa care routine?</td>
       <td>Many NerveSpa protocols follow structured use over about 60–90 sessions depending on provider guidance and the condition being addressed.</td>
-      <td>Typical NerveSpa programs range from 4–12 weeks, but duration varies by individual needs and provider recommendations. Some patients may use the technology longer for ongoing wellness or maintenance p...</td>
+      <td>Most pathways follow a structured 60–90 day program with additional maintenance options depending on patient outcomes and provider guidance.</td>
       <td class="status">FAIL</td>
-      <td>Only 1/7 key terms found (14%). Missing: structured, protocols, depending, condition, addressed...</td>
-      <td>3077ms</td>
+      <td>Only 2/7 key terms found (29%). Missing: nervespa, protocols, condition, addressed, 60–90 sessions</td>
+      <td>1068ms</td>
     </tr>
   
-    <tr class="pass">
+    <tr class="fail">
       <td>7</td>
       <td>What exactly happens during a NerveSpa foot or hand bath session?</td>
       <td>The NerveSpa Nerve Bath delivers low‑frequency stimulation through warm water to the hands or feet to support circulation and nerve activity.</td>
-      <td>During a NerveSpa foot or hand bath session, the patient immerses their feet or hands in a specially designed basin filled with warm water. The device delivers gentle electrical stimulation through th...</td>
-      <td class="status">PASS</td>
-      <td>Matched 5/6 key terms (83%)</td>
-      <td>5537ms</td>
+      <td>Check that lead wires are connected properly, salts and tablets are added, and intensity is increased gradually until a mild sensation is felt.</td>
+      <td class="status">FAIL</td>
+      <td>Only 0/6 key terms found (0%). Missing: nervespa, nerve bath, nerve, stimulation, circulation...</td>
+      <td>1049ms</td>
     </tr>
   
     <tr class="fail">
@@ -108,47 +108,47 @@
       <td>Warm water allows full circumferential contact around the hands or feet, so current is distributed evenly rather than just through small pad areas. This helps improve comfort, consistency of stimulati...</td>
       <td class="status">FAIL</td>
       <td>Only 1/5 key terms found (20%). Missing: effervescent, conductivity, generally, sessions</td>
-      <td>992ms</td>
+      <td>1171ms</td>
     </tr>
   
     <tr class="pass">
       <td>9</td>
       <td>How does the vibration platform used in NerveSpa programs help patients?</td>
       <td>The Quake Plate provides gentle vibration that can support circulation and relaxation of the muscles and nerves in the lower extremities.</td>
-      <td>The vibration platform used in NerveSpa programs is designed to stimulate nerves and support circulation in the feet and legs. Patients stand on the platform, which provides gentle vibrations. This ca...</td>
+      <td>The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax...</td>
       <td class="status">PASS</td>
-      <td>Matched 3/6 key terms (50%)</td>
-      <td>4526ms</td>
+      <td>Matched 5/6 key terms (83%)</td>
+      <td>1005ms</td>
     </tr>
   
     <tr class="pass">
       <td>10</td>
       <td>What type of therapy is delivered through the red and infrared wrap devices?</td>
       <td>The LED wrap uses red and infrared light therapy to support circulation, tissue comfort, and mobility in targeted areas.</td>
-      <td>The red and infrared wrap devices used in NerveSpa programs deliver photobiomodulation therapy, often called red and near-infrared light therapy. This therapy is designed to support circulation, reduc...</td>
+      <td>NerveBeam LED Light Therapy Wrap delivers red light therapy and infrared light therapy. [What is the NerveBeam LED Light Therapy Wrap?][How is the NerveBeam LED Wrap used?][Who should not use the Nerv...</td>
       <td class="status">PASS</td>
-      <td>Matched 4/6 key terms (67%)</td>
-      <td>5982ms</td>
+      <td>Matched 3/6 key terms (50%)</td>
+      <td>3875ms</td>
     </tr>
   
     <tr class="fail">
       <td>11</td>
       <td>In what way is the cold laser tool typically applied during a session?</td>
       <td>The handheld cold laser device is placed directly over the target area for a provider‑recommended time to deliver red and infrared light therapy.</td>
-      <td>During a session, the cold laser tool is typically applied directly to the skin over the area of discomfort or concern. The device emits low-level laser energy designed to penetrate tissue and support...</td>
+      <td>A typical Cold Laser session is guided by the provider and is performed per treatment area. Follow your clinic’s instructions for duration, placement, and total coverage for the session.</td>
       <td class="status">FAIL</td>
-      <td>Only 2/6 key terms found (33%). Missing: recommended, handheld, provider, infrared</td>
-      <td>4339ms</td>
+      <td>Only 2/6 key terms found (33%). Missing: recommended, handheld, directly, infrared</td>
+      <td>908ms</td>
     </tr>
   
-    <tr class="pass">
+    <tr class="fail">
       <td>12</td>
       <td>How does the specialized knee therapy device fit into joint programs?</td>
       <td>The Knee Pro provides targeted stimulation around the knee joint during extended sessions to support mobility and comfort.</td>
-      <td>The specialized knee therapy device is designed to deliver targeted stimulation and support to the knee joint as part of a NerveSpa joint program. It is typically used to help reduce stiffness, suppor...</td>
-      <td class="status">PASS</td>
-      <td>Matched 3/6 key terms (50%)</td>
-      <td>4834ms</td>
+      <td>NerveSpa Knee Pro is designed for knee joint mobility and recovery, and is intended for use in clinical joint health programs. [Who should not use the Knee Pro?][What is the NerveSpa Joint &amp; Mobility ...</td>
+      <td class="status">FAIL</td>
+      <td>Only 2/6 key terms found (33%). Missing: stimulation, provides, targeted, extended</td>
+      <td>3041ms</td>
     </tr>
   
     <tr class="fail">
@@ -158,27 +158,27 @@
       <td>NerveSpa integrates multiple clinical-grade modalities—water-based stimulation, LED therapy, cold laser, vibration therapy, and supplementation—creating broader coverage than single-modality systems.</td>
       <td class="status">FAIL</td>
       <td>Only 1/6 key terms found (17%). Missing: shoulder pro, shoulder, function, provider, sessions</td>
-      <td>986ms</td>
+      <td>1103ms</td>
     </tr>
   
-    <tr class="pass">
+    <tr class="fail">
       <td>14</td>
       <td>Are the different NerveSpa therapies meant to be used individually or together?</td>
       <td>Providers often combine multiple NerveSpa modalities such as stimulation, vibration, and light therapy within a coordinated program.</td>
-      <td>NerveSpa therapies can be used individually or in combination, depending on the patient’s needs and the provider’s care plan. Many clinics integrate multiple NerveSpa modalities—such as foot/hand bath...</td>
-      <td class="status">PASS</td>
-      <td>Matched 3/6 key terms (50%)</td>
-      <td>3721ms</td>
+      <td>NerveSpa therapies are designed to be used either independently or in combination, depending on clinic protocol and patient needs. [Can NerveSpa be used with other treatments?][Who determines if a pat...</td>
+      <td class="status">FAIL</td>
+      <td>Only 1/6 key terms found (17%). Missing: stimulation, coordinated, modalities, providers, vibration</td>
+      <td>2400ms</td>
     </tr>
   
     <tr class="pass">
       <td>15</td>
       <td>Do patients need a doctor’s prescription before using NerveSpa devices?</td>
       <td>Most NerveSpa devices do not require a prescription, but they are typically distributed through licensed providers who guide use.</td>
-      <td>NerveSpa devices are typically provided under the supervision or recommendation of a licensed healthcare provider in a clinical setting. Requirements for a doctor’s prescription may vary depending on ...</td>
+      <td>NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.</td>
       <td class="status">PASS</td>
-      <td>Matched 3/5 key terms (60%)</td>
-      <td>3431ms</td>
+      <td>Matched 2/5 key terms (40%)</td>
+      <td>934ms</td>
     </tr>
   
     <tr class="pass">
@@ -188,17 +188,17 @@
       <td>Many patients report reduced tingling, burning, numbness, coldness, and stiffness in their feet or hands, along with improved circulation, comfort, and sleep over time. Results vary by individual, con...</td>
       <td class="status">PASS</td>
       <td>Matched 4/5 key terms (80%)</td>
-      <td>965ms</td>
+      <td>1154ms</td>
     </tr>
   
     <tr class="pass">
       <td>17</td>
       <td>Can patients purchase NerveSpa systems on their own online?</td>
       <td>Therapeutic NerveSpa devices are normally distributed through clinics rather than sold directly to patients.</td>
-      <td>NerveSpa systems are generally not sold directly to consumers online. They are distributed through authorized healthcare providers and clinics, ensuring proper assessment, supervision, and integration...</td>
+      <td>NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product...</td>
       <td class="status">PASS</td>
-      <td>Matched 3/5 key terms (60%)</td>
-      <td>3442ms</td>
+      <td>Matched 2/5 key terms (40%)</td>
+      <td>842ms</td>
     </tr>
   
     <tr class="fail">
@@ -208,27 +208,27 @@
       <td>Yes. Clinics receive onboarding support, device training, and access to guides, protocols, and provider resources. Additional training is available as needed.</td>
       <td class="status">FAIL</td>
       <td>Only 2/6 key terms found (33%). Missing: nervespa, implementing, typically, materials</td>
-      <td>891ms</td>
+      <td>966ms</td>
     </tr>
   
-    <tr class="pass">
+    <tr class="fail">
       <td>19</td>
       <td>What safety considerations should patients keep in mind before using NerveSpa devices?</td>
       <td>Providers screen for contraindications such as pacemakers, pregnancy, or certain medical conditions before recommending use.</td>
-      <td>Patients should always use NerveSpa devices under the supervision or guidance of a trained healthcare provider. It is important to inform the provider of any medical conditions, implanted devices (suc...</td>
-      <td class="status">PASS</td>
-      <td>Matched 2/5 key terms (40%)</td>
-      <td>5498ms</td>
+      <td>NerveSpa devices are contraindicated for individuals with pacemakers, implanted defibrillators, or other implanted metallic or electronic devices. They should also not be used by pregnant women. Alway...</td>
+      <td class="status">FAIL</td>
+      <td>Only 1/5 key terms found (20%). Missing: contraindications, recommending, conditions, providers</td>
+      <td>4277ms</td>
     </tr>
   
     <tr class="fail">
       <td>20</td>
       <td>How do NerveSpa programs maintain consistency in patient participation?</td>
       <td>Programs emphasize repeatable sessions and structured routines to support consistent patient engagement.</td>
-      <td>NerveSpa programs promote consistency in patient participation through scheduled appointments, routine follow-up, and clear communication regarding the care plan. Providers typically offer support, ed...</td>
+      <td>NerveSpa supports repeatable use through standardized protocols and clear guidance established by the clinic.</td>
       <td class="status">FAIL</td>
-      <td>Only 1/5 key terms found (20%). Missing: repeatable, consistent, engagement, emphasize</td>
-      <td>3591ms</td>
+      <td>Only 1/5 key terms found (20%). Missing: structured, consistent, engagement, emphasize</td>
+      <td>1063ms</td>
     </tr>
   </tbody>
   </table>

@@ -70,18 +70,29 @@ async function main() {
     const results = [];
     let totalDuration = 0;
 
+    const FALLBACK_MESSAGE = "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at support@nervespa.com\n\n[How do clinics contact NerveSpa for support?][When should I contact NerveSpa support?][When should a clinic contact NerveSpa support versus handling an issue internally?]";
+
     for (let i = 0; i < questions.length; i++) {
         const question = questions[i];
         process.stdout.write(`[${i + 1}/${questions.length}] Collecting: "${question.substring(0, 40)}..." `);
 
         try {
             const { answer, duration } = await fetchResponse(question, sessionId);
-            results.push({ question, answer, duration });
+            // Check if answer contains the fallback message (case-insensitive or exact)
+            const isFallback = answer.includes("Sorry, I couldn't find a relevant answer") || 
+                               answer.includes("[How do clinics contact NerveSpa for support?]");
+            
+            results.push({ 
+                question, 
+                answer, 
+                duration,
+                pass: !isFallback 
+            });
             totalDuration += duration;
-            console.log(`✅ (${duration}ms)`);
+            console.log(`${isFallback ? '❌ FALLBACK' : '✅'} (${duration}ms)`);
         } catch (err) {
             console.log(`❌ Error: ${err.message}`);
-            results.push({ question, answer: `Failed to collect: ${err.message}`, duration: 0 });
+            results.push({ question, answer: `Failed to collect: ${err.message}`, duration: 0, pass: false });
         }
 
         // Delay to prevent rate limiting
@@ -91,6 +102,10 @@ async function main() {
     }
 
     // Calculate Summary Data
+    const passedCount = results.filter(r => r.pass).length;
+    const failedCount = results.length - passedCount;
+    const passRate = ((passedCount / (results.length || 1)) * 100).toFixed(1);
+
     const summary = {
         title: config.reportTitle,
         clientName: config.clientName,
@@ -98,7 +113,13 @@ async function main() {
         timestamp: new Date().toISOString(),
         sessionId: sessionId,
         results: results,
-        avgResponseTime: Math.round(totalDuration / (results.length || 1))
+        stats: {
+            total: results.length,
+            passed: passedCount,
+            failed: failedCount,
+            passRate: passRate,
+            avgResponseTime: Math.round(totalDuration / (results.length || 1))
+        }
     };
 
     // Save JSON Results
