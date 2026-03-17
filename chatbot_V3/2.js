@@ -12,6 +12,11 @@ const qaPairs = [
       "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
+    question: "Is NerveSpa a medical company?",
+    answer:
+      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+  },
+  {
     question: "Can you explain what NerveSpa?",
     answer:
       "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",

@@ -1,5 +1,5 @@
 {
-  "name": "Main chatbot",
+  "name": "Main Chatbot",
   "nodes": [
     {
       "parameters": {
@@ -24,10 +24,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -768,
-        192
+        -592,
+        -160
       ],
-      "id": "a8aa4c28-0291-4070-a1f3-2a661b3c6f8d",
+      "id": "6af183ac-1311-4923-b152-2a79ee547cf1",
       "name": "Webhook",
       "webhookId": "196d6c86-a740-46ec-bbfe-b1c77a7193ee"
     },
@@ -40,10 +40,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        0,
-        448
+        176,
+        96
       ],
-      "id": "cfbf3a32-61ae-4b3e-b223-d85b77264471",
+      "id": "6988d191-304c-4198-8a42-17a4d0b68d13",
       "name": "Edit Fields"
     },
     {
@@ -69,10 +69,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        224,
-        448
+        480,
+        -16
       ],
-      "id": "4714a078-7068-4504-86c3-01bc9c4af769",
+      "id": "b215cc0a-b495-4577-b7d2-73550326e0c4",
       "name": "HTTP Request",
       "credentials": {
         "openAiApi": {
@@ -109,10 +109,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -272,
-        192
+        -96,
+        -160
       ],
-      "id": "564e352c-e845-4368-95b6-fc6860ec8c39",
+      "id": "29a39519-64a5-4b0f-998a-99fc718f52da",
       "name": "If"
     },
     {
@@ -122,10 +122,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -528,
-        192
+        -352,
+        -160
       ],
-      "id": "b42f81e1-12f3-405c-8469-a3e466586b11",
+      "id": "18ab9b23-6735-42dc-9162-75525ddfa207",
       "name": "Predefined questions"
     },
     {
@@ -135,10 +135,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        624,
-        -128
+        800,
+        -480
       ],
-      "id": "5626457e-a789-4bbc-a722-d9c6fda99979",
+      "id": "9a2ad066-d083-42c1-8830-d8fd6303623d",
       "name": "Code"
     },
     {
@@ -163,10 +163,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        1744,
-        128
+        2448,
+        -320
       ],
-      "id": "13ed12f6-5d45-4085-b282-f19274fb173c",
+      "id": "3cbca0f6-c863-4a61-bca5-522c4a08e6e7",
       "name": "Respond to Webhook"
     },
     {
@@ -186,16 +186,16 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{\n{\n  \"query_embedding\": $json.data[0].embedding,\n  \"match_threshold\": 0.75,\n  \"match_count\": 3\n}\n}}",
+        "jsonBody": "={{\n{\n  \"query_embedding\": $json.data[0].embedding,\n  \"match_threshold\": 0.50,\n  \"match_count\": 5\n}\n}}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        432,
-        332
+        816,
+        -128
       ],
-      "id": "bb87f9e9-83a6-428d-853a-58923f7318dd",
+      "id": "41b8dcda-f216-475b-bcdb-986c8122e505",
       "name": "Supabase search (Predefined)",
       "alwaysOutputData": true,
       "credentials": {
@@ -214,24 +214,24 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2400,
-        48
+        2560,
+        -544
       ],
-      "id": "6eb77524-cd24-42bc-81bf-239f5662e6ef",
+      "id": "d5731379-1479-4d58-bc94-aee4554c85c7",
       "name": "Edit Fields1",
       "disabled": true
     },
     {
       "parameters": {
-        "jsCode": "const context = $json.answer;\n\nreturn [\n  {\n    json: {\n      context: context,\n      question: $json.question,\n      history: $json.history || \"\",\n      sessionId: $json.sessionId\n    }\n  }\n];"
+        "jsCode": "const context = $json.context || $json.answer || \"\";\n\nreturn [\n  {\n    json: {\n      context: context,\n      question: $json.question,\n      history: $json.history || \"\",\n      sessionId: $json.sessionId\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1088,
-        464
+        1712,
+        128
       ],
-      "id": "123d2861-2183-40f8-bfc6-af105131717c",
+      "id": "22196059-96d3-4aa3-9d6c-244b7f1695f5",
       "name": "Code1"
     },
     {
@@ -250,10 +250,10 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        1408,
-        464
+        1968,
+        -80
       ],
-      "id": "2ae1fd97-6521-4e50-8bb0-51cba1dbc3fd",
+      "id": "c4761f7f-3344-411a-abd3-b9b5fe7763f2",
       "name": "Basic LLM Chain"
     },
     {
@@ -269,10 +269,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        1504,
-        672
+        2128,
+        256
       ],
-      "id": "cd5bf400-7ddb-499d-8256-8277140d9c90",
+      "id": "0a0b65a5-2d2b-41d8-8efb-5de8727d3b0d",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
@@ -304,10 +304,10 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        256,
-        640
+        432,
+        352
       ],
-      "id": "7dcd5803-c71b-4800-86d5-84e3be6c2890",
+      "id": "63796fbb-e1a5-4d75-a3b5-84768dce857c",
       "name": "Create a row",
       "credentials": {
         "supabaseApi": {
@@ -335,10 +335,10 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        416,
-        640
+        672,
+        352
       ],
-      "id": "8df04254-7cef-417d-b4ba-5d39b7340c5b",
+      "id": "1fd1836a-97ad-476c-8722-cfbdfd1c5c7a",
       "name": "Get many rows",
       "credentials": {
         "supabaseApi": {
@@ -354,10 +354,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        576,
-        640
+        944,
+        352
       ],
-      "id": "a0013e33-660e-4bf6-a3f9-28672155b4bf",
+      "id": "c754dc70-047b-46ca-950b-39bcb2b50393",
       "name": "Code2"
     },
     {
@@ -367,24 +367,11 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        752,
-        640
+        1184,
+        352
       ],
-      "id": "36755140-147d-4778-8f91-955dd4a119ff",
+      "id": "03ef4220-310e-4884-93f0-0bcedaf1c47d",
       "name": "Code3"
-    },
-    {
-      "parameters": {
-        "jsCode": "const items = $input.all();\nlet combinedAnswer = items.map((item, index) => {\n  const text = item.json.answer || item.json.content || item.json.text || \"\";\n  if (!text.trim()) return null;\n  return `[${index + 1}] ${text}`;\n}).filter(t => t !== null).join(\"\\n\\n\");\n\nlet userQuestion = \"\";\ntry {\n  userQuestion = $('Edit Fields').first().json.question;\n} catch (e) {\n  // If editing fails, maybe the node is named differently\n}\n\nreturn [\n  {\n    json: {\n      question: userQuestion,\n      context: combinedAnswer\n    }\n  }\n];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        624,
-        448
-      ],
-      "id": "558a46ce-da3b-46a6-b3cb-a1db5b4843e0",
-      "name": "Combine Context"
     },
     {
       "parameters": {
@@ -395,10 +382,10 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        912,
-        464
+        1552,
+        80
       ],
-      "id": "56ab6096-02ab-4859-b86a-6a9ad19e959b",
+      "id": "7f32b90f-70d4-4ca2-b308-f93f422a0a74",
       "name": "Merge"
     },
     {
@@ -418,16 +405,16 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{\n{\n  \"query_embedding\": $json.data[0].embedding,\n  \"match_threshold\": 0.75,\n  \"match_count\": 3\n}\n}}",
+        "jsonBody": "={{\n{\n  \"query_embedding\": $json.data[0].embedding,\n  \"match_threshold\": 0.50,\n  \"match_count\": 5\n}\n}}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        432,
-        564
+        816,
+        128
       ],
-      "id": "650f7d5f-b943-4573-a841-e4908f6c4e76",
+      "id": "092eab77-9ab9-460a-881a-ff108c56d61e",
       "name": "Supabase search (Knowledge Base)",
       "alwaysOutputData": true,
       "credentials": {
@@ -439,17 +426,29 @@
     },
     {
       "parameters": {
-        "mode": "append",
-        "options": {}
+        "mode": "append"
       },
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        620,
-        448
+        1040,
+        32
       ],
-      "id": "c8ca86a2-d8b3-4a46-a58c-977cbbe63703",
+      "id": "889178fe-ab3f-4998-babb-311c852c4f1c",
       "name": "Merge Knowledge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nlet combinedAnswer = items.map((item, index) => {\n  const text = item.json.answer || item.json.content || item.json.text || \"\";\n  if (!text.trim()) return null;\n  return `[${index + 1}] ${text}`;\n}).filter(t => t !== null).join(\"\\n\\n\");\n\nlet userQuestion = \"\";\ntry {\n  userQuestion = $('Edit Fields').first().json.question;\n} catch (e) {\n  // Gracefully fallback if Edit Fields is not available\n  userQuestion = items[0]?.json?.question || \"\";\n}\n\nreturn [\n  {\n    json: {\n      question: userQuestion,\n      context: combinedAnswer\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1264,
+        32
+      ],
+      "id": "4858f6c1-d3a4-4e53-bca9-c755030de957",
+      "name": "Code4"
     }
   ],
   "pinData": {},
@@ -535,16 +534,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "Edit Fields1": {
-      "main": [
-        []
-      ]
-    },
-    "Respond to Webhook": {
-      "main": [
-        []
       ]
     },
     "OpenAI Chat Model": {
@@ -661,14 +650,14 @@
       "main": [
         [
           {
-            "node": "Combine Context",
+            "node": "Code4",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Combine Context": {
+    "Code4": {
       "main": [
         [
           {
@@ -684,11 +673,10 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "d94f94ec-9b30-4402-a3e7-e176283f029b",
+  "versionId": "2ad173ae-af55-4e22-be7e-e8493fce89ab",
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "031309915a0a453d6414710542858fed4833fec1142fbf035e6ed4b2fb5d0711"
   },
-  "id": "C49QFdMO20X8KMaE",
+  "id": "770gbeEgCmGzGb92",
   "tags": []
 }
