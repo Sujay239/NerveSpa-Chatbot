@@ -23,8 +23,8 @@ function fetchResponse(query, sessionId) {
                 const duration = Date.now() - start;
                 try {
                     const json = JSON.parse(data);
-                    // Extract answer from [0].output as configured in old tester
-                    const answer = (json && json[0] && json[0].output) || 'No output found';
+                    // Extract answer from json.text or json[0].output as configured in old tester
+                    const answer = (json && json.text) || (json && json[0] && json[0].output) || 'No output found';
                     resolve({ answer, duration });
                 } catch (e) {
                     resolve({ answer: 'Error parsing JSON response', duration });
@@ -80,7 +80,7 @@ async function main() {
             const { answer, duration } = await fetchResponse(question, sessionId);
             // Check if answer contains the fallback message (case-insensitive or exact)
             const isFallback = answer.includes("Sorry, I couldn't find a relevant answer") || 
-                               answer.includes("[How do clinics contact NerveSpa for support?]");
+                               answer.includes("I apologize, but I don't have information on that specific topic");
             
             results.push({ 
                 question, 

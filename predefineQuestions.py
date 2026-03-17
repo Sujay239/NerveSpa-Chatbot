@@ -1,14 +1,20 @@
+import math
 import re
+import difflib
 
-# === Candidate questions (plain ASCII quotes) ===
-CANDIDATE_QUESTIONS = [
-    "youtube",
+# === 1. Predefined Questions List ===
+PREDEFINED_QUESTIONS = [
     "What is NerveSpa?",
+    "Can you explain what NerveSpa?",
+    "Can you explain what the NerveSpa system actually is?",
+    "Could you describe what NerveSpa?",
+    "Tell me about NerveSpa",
+    "Explain NerveSpa to me",
     "Who owns NerveSpa?",
     "How do providers implement NerveSpa?",
     "What conditions can NerveSpa support?",
     "How can clinics order NerveSpa or request a demo?",
-    "What are NerveSpa\u2019s pricing options?",
+    "What are NerveSpa’s pricing options?",
     "Is NerveSpa FDA-registered?",
     "Is NerveSpa covered by insurance?",
     "What warranty and return policy does NerveSpa offer?",
@@ -18,6 +24,8 @@ CANDIDATE_QUESTIONS = [
     "What certifications does PMT hold?",
     "Does NerveSpa replace medical care?",
     "Who decides if NerveSpa is appropriate?",
+    "Do I need a prescription for NerveSpa?",
+    "Is NerveSpa a US based company?",
     "Can NerveSpa be used with other treatments?",
     "How does NerveSpa compare to other nerve therapy systems?",
     "What makes NerveSpa unique?",
@@ -123,7 +131,7 @@ CANDIDATE_QUESTIONS = [
     "Can Shoulder Pro be used with other joint therapies?",
     "What should patients feel during Shoulder Pro therapy?",
     "What joint supplements are commonly used in the Joint & Mobility Program?",
-    "When should Super Flex Joint Formula \u2013 Rebuild + Maintain be used?",
+    "When should Super Flex Joint Formula – Rebuild + Maintain be used?",
     "When should OA & RA Relief Cream be used?",
     "When should Nerve Target Roll-On be used?",
     "How do joint supplements fit into the Joint & Mobility Program?",
@@ -154,7 +162,7 @@ CANDIDATE_QUESTIONS = [
     "Which treatment mode should I use on the LED Wrap?",
     "What should I avoid doing with the LED Wrap?",
     "How do I power the Knee Pro on/off and change modes?",
-    "What if I\u2019m having issues with stimulation on Knee Pro?",
+    "What if I’m having issues with stimulation on Knee Pro?",
     "What should I know before using the Quake Plate?",
     "What if the Quake Plate makes a loud grinding noise?",
     "What if the Quake Plate remote does not work?",
@@ -169,7 +177,7 @@ CANDIDATE_QUESTIONS = [
     "What should I do if the LED Wrap powers down early?",
     "How do I clean the LED Wrap?",
     "What should I do if the PowerWrap does not turn on?",
-    "What should I do if my skin feels too sensitive after PowerWrap use?",
+    "What if my skin feels too sensitive after PowerWrap use?",
     "What if the PowerWrap remote does not respond?",
     "What should I do if NerveWave does not power on?",
     "What if I feel no sensation during NerveWave use?",
@@ -187,7 +195,7 @@ CANDIDATE_QUESTIONS = [
     "What if stimulation feels weak on Shoulder Pro?",
     "How do I change Shoulder Pro modes?",
     "What if I feel little or no sensation during a Nerve Bath session?",
-    "What should I do if the Nerve Bath unit does not turn on?",
+    "What if the Nerve Bath unit does not turn on?",
     "Is tingling or warmth normal during a Nerve Bath session?",
     "What if the LED wrap does not turn on?",
     "What should I feel during LED wrap therapy?",
@@ -225,7 +233,7 @@ CANDIDATE_QUESTIONS = [
     "What if the Knee Pro strap feels too tight or loose?",
     "What if the Shoulder Pro feels uncomfortable during use?",
     "What if the Shoulder Pro does not power on?",
-    "What if I don\u2019t feel stimulation in the water?",
+    "What if I don’t feel stimulation in the water?",
     "What if stimulation feels uneven between feet or hands?",
     "What if the unit shuts off during a session?",
     "What if the Cold Laser does not emit light?",
@@ -308,6 +316,25 @@ CANDIDATE_QUESTIONS = [
     "Show me a demo for QuakePlate",
     "Show me a demo for Knee Pro",
     "Show me a demo for Shoulder Pro",
+    "Where do I download the user manual?",
+    "Where do I download the user manual for all devices?",
+    "Where do I download the user manual for Footbath?",
+    "Where do I download the user manual for Conductive Garments?",
+    "Where do I download the user manual for LED Wrap?",
+    "Where do I download the user manual for Power Wrap?",
+    "Where do I download the user manual for QuakePlate?",
+    "Where do I download the user manual for Knee Pro?",
+    "Where do I download the user manual for Shoulder Pro?",
+    "all",
+    "quick-start guide",
+    "guide",
+    "Footbath",
+    "Conductive Garments",
+    "LED Wrap",
+    "Power Wrap",
+    "QuakePlate",
+    "Knee Pro",
+    "Shoulder Pro",
     "Troubleshoot Knee Pro",
     "Troubleshoot Shoulder Pro",
     "How do I clean and store Knee Pro?",
@@ -321,6 +348,9 @@ CANDIDATE_QUESTIONS = [
     "contact info",
     "phone number",
     "email id",
+    "Where can I read your privacy policy?",
+    "Where can I read your terms and conditions?",
+    "Do you have an FAQ page I can browse?",
     "How will my items be shipped?",
     "When will my order arrive?",
     "How do I pay for my order?",
@@ -340,180 +370,239 @@ CANDIDATE_QUESTIONS = [
     "Can I use two LED therapy wraps at the same time?",
     "Will my insurance cover the NerveSpa?",
     "What is the HCPCS code for the NerveSpa?",
+    "Do you ship internationally?",
+    "Do you ship to Canada?"
 ]
 
-# === Helpers ===
-def to_python(value):
-    """Convert JsProxy-like objects to native Python when possible."""
-    try:
-        return value.to_py()
-    except Exception:
-        return value
+# === 2. Configuration & Helpers ===
+SYNONYMS = {
+    "made": "manufactured", "produced": "manufactured", "created": "manufactured", "built": "manufactured", "origin": "manufactured",
+    "cost": "pricing", "pay": "pricing", "price": "pricing", "purchase": "pricing", "buy": "pricing", "amount": "pricing",
+    "clinics": "clinic", "providers": "clinic", "provider": "clinic", "practice": "clinic", "medical": "clinic", "doctor": "clinic", "physician": "clinic",
+    "offering": "start", "begin": "start", "setup": "set", "starting": "start", "ordering": "order",
+    "usa": "us", "america": "us", "united": "us", "states": "us",
+    "vibration": "quake plate", "platform": "quake plate", "vibrational": "quake plate",
+    "knee": "knee pro", "shoulder": "shoulder pro",
+    "laser": "cold laser", "led": "led wrap",
+    "socks": "diabetic socks", "garments": "conductive garments",
+    "bath": "nerve bath", "aquatic": "nerve bath", "water": "nerve bath", "footbath": "nerve bath",
+    "participation": "consistency", "engagement": "consistency", "consistency": "repeatability",
+    "issues": "conditions", "concerns": "conditions", "problems": "conditions", "symptoms": "conditions",
+    "address": "support", "manage": "support", "help": "support",
+    "supplies": "consumables", "materials": "consumables", "items": "consumables", "parts": "consumables",
+    "canada": "internationally", "uk": "internationally", "europe": "internationally", "overseas": "internationally", "global": "internationally", "international": "internationally",
+    "faq": "faq", "blog": "faq", "education": "faq", "newsletter": "faq",
+    "bulk": "bulk pricing", "wholesale": "bulk pricing", "discount": "pricing", "coupon": "pricing", "veteran": "pricing", "senior": "pricing", "lease": "pricing",
+    "hsa": "insurance", "fsa": "insurance",
+    "paypal": "pay", "apple": "pay", "credit": "pay",
+    "ship": "shipped", "shipping": "shipped", "track": "shipped", "tracking": "shipped", "arrive": "shipped", "delivery": "shipped", "po box": "shipped",
+    "return": "return my order", "exchange": "return my order", "refund": "return my order", "cancel": "return my order",
+    "damage": "warranty", "broken": "warranty", "repair": "warranty", "lifespan": "warranty",
+    "video": "demo", "videos": "demo", "guide": "manuals", "manual": "manuals", "setup": "manuals",
+    "locator": "contact", "chat": "contact", "human": "contact", "sales": "contact", "book": "contact", "callback": "contact", "person": "contact",
+    "onboarding": "implement", "marketing": "implement", "multi-location": "clinic",
+    "certification": "training", "credits": "training", "staff": "training",
+    "schedule": "often", "morning": "often", "evening": "often", "exercise": "often", "tv": "often",
+    "lotion": "pad", "intensity": "strong", "beginner": "strong",
+    "both": "same", "household": "share", "sanitize": "clean", "store": "clean",
+    "diagnose": "medical", "medication": "medical", "sore": "condition", "swelling": "condition", "blood": "condition", "cancer": "condition", "kidney": "condition", "allergy": "condition", "emergency": "medical", "plan": "program", "clinician": "medical",
+    "tens": "compare", "gabapentin": "compare", "pregabalin": "compare", "physical": "compare", "massage": "compare", "acupuncture": "compare",
+    "evidence": "certified", "research": "certified", "data": "certified", "outcome": "certified",
+    "password": "login", "account": "login"
+}
 
-_word_regex = re.compile(r"\b[\w']+\b", re.UNICODE)
+STOP_WORDS = {
+    "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it",
+    "no", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this",
+    "to", "was", "will", "with", "do", "does", "did", "can", "could", "should", "would",
+    "i", "you", "he", "she", "we", "my", "your", "his", "her", "our",
+    "how", "what", "why", "where", "when", "who", "has", "been", "hold", "just", "really", "very"
+}
 
-_stop_words = {"a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "no", "of", "on", "or", "such", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with", "do", "does", "did", "can", "could", "should", "would", "i", "you", "he", "she", "we", "my", "your", "his", "her", "our", "how", "what", "why", "where", "when", "who", "has", "been", "hold", "us", "u", "s"}
-
-def words_set(s):
-    """Return normalized set of words from a string (lowercase, alnum + apostrophe), excluding stopwords."""
-    if not s:
-        return set()
-    s = str(s).lower()
-    return {w for w in _word_regex.findall(s) if len(w) > 0 and w not in _stop_words}
-
-def normalize_text_for_compare(s):
-    """Lowercase and strip surrounding punctuation/whitespace for simple comparisons."""
-    if s is None:
+def normalize_text(text):
+    if not text:
         return ""
-    s = str(s).strip().lower()
-    s = re.sub(r'^[\W_]+|[\W_]+$', '', s)
-    return s
+    # split camel case
+    base = re.sub(r'([a-z])([A-Z])', r'\1 \2', str(text)).lower()
+    # remove non-alphanumeric
+    base = re.sub(r'[^a-z0-9\s]', ' ', base)
+    # replace multiple spaces
+    base = re.sub(r'\s+', ' ', base).strip()
+    
+    words = base.split(" ")
+    words = [SYNONYMS.get(w, w) for w in words]
+    return " ".join(words)
 
-def existing_bracketed_questions(text):
-    """Return a set of existing bracketed questions normalized for duplicate checking."""
-    if text is None:
-        return set()
-    found = re.findall(r'\[([^\]]+)\]', str(text))
-    return {normalize_text_for_compare(q) for q in found}
+def stem(word):
+    if len(word) <= 3:
+        return word
+    # simple stemming to catch plurals and common suffixes consistently
+    return re.sub(r'(ing|ly|ed|er|es|s|ion)$', '', word)
 
-def score_candidate(candidate_q, incoming_words):
-    cand_words = words_set(candidate_q)
-    overlap = cand_words & incoming_words
-    return len(overlap), overlap
+def get_tokens(text):
+    norm = normalize_text(text)
+    words = norm.split(" ")
+    return [stem(w) for w in words if w and w not in STOP_WORDS]
 
-# === Get chatInput from the FIRST input item explicitly ===
-chat_input_global = None
-try:
-    first_item = items[0] if items and isinstance(items, list) else {}
-    chat_input_global = to_python(first_item.get("json", {}) .get("query", {}) .get("chatInput"))
-except Exception:
-    chat_input_global = None
+# === 3. TF-IDF Pre-calculation ===
+doc_count = len(PREDEFINED_QUESTIONS)
+freq_map = {}
 
-# Normalized forms of chat_input for robust matching
-chat_input_words = words_set(chat_input_global)
-chat_input_norm = normalize_text_for_compare(chat_input_global) if chat_input_global else None
+# Compute document frequencies
+for q in PREDEFINED_QUESTIONS:
+    tokens = set(get_tokens(q))
+    for t in tokens:
+        freq_map[t] = freq_map.get(t, 0) + 1
 
-# If chat_input exactly matches any candidate by word-set equality, exclude that candidate
-excluded_by_chat_input = set()
-if chat_input_words:
-    for c in CANDIDATE_QUESTIONS:
-        if words_set(c) == chat_input_words or normalize_text_for_compare(c) == chat_input_norm:
-            excluded_by_chat_input.add(normalize_text_for_compare(c))
+# Compute IDF
+idf_weights = {}
+for t, freq in freq_map.items():
+    idf_weights[t] = math.log(doc_count / freq) + 1.0
 
-# === Main processing ===
-output_items = []
-
-for item in items:
-    incoming_json = to_python(item.get("json", {}) or {})
-
-    # current output text
-    raw_output = to_python(incoming_json.get("output", ""))
-
-    # Remove chatInput occurrences from working_text ONLY if it exactly matched a candidate (to avoid bias).
-    working_text = str(raw_output) if raw_output is not None else ""
-    if chat_input_global and normalize_text_for_compare(chat_input_global) in excluded_by_chat_input:
-        try:
-            escaped = re.escape(str(chat_input_global))
-            working_text = re.sub(escaped, "", working_text, flags=re.IGNORECASE)
-        except Exception:
-            working_text = working_text.replace(str(chat_input_global), "")
-
-    # Prepare sets for matching and duplicate avoidance
-    incoming_words = words_set(working_text)
-    existing_qs_norm = existing_bracketed_questions(raw_output)
-
-    # Score candidates while skipping existing/excluded ones
-    scored = []
-    for q in CANDIDATE_QUESTIONS:
-        q_norm = normalize_text_for_compare(q)
-        if q_norm in existing_qs_norm:
-            continue
-        if q_norm in excluded_by_chat_input:
-            continue
-        s, overlap = score_candidate(q, incoming_words)
-        scored.append((s, q, overlap))
-
-    # Select up to 4 with score >= 3 first (priority)
-    high_match = [(s, q, ov) for s, q, ov in scored if s >= 3]
-    high_match.sort(key=lambda x: (-x[0], CANDIDATE_QUESTIONS.index(x[1])))
-    selected = []
-    selected_norm = set()
-    for s, q, ov in high_match:
-        if len(selected) >= 3:
-            break
-        qn = normalize_text_for_compare(q)
-        if qn in selected_norm:
-            continue
-        # Extra safety: never select if it matches chat_input by either measure
-        if chat_input_global and (words_set(q) == chat_input_words or qn == chat_input_norm):
-            continue
-        selected.append(q)
-        selected_norm.add(qn)
-
-    # Fill remaining slots from remaining candidates by highest score (even if < 3)
-    if len(selected) < 3:
-        remaining = [(s, q, ov) for s, q, ov in scored if normalize_text_for_compare(q) not in selected_norm]
-        remaining.sort(key=lambda x: (-x[0], CANDIDATE_QUESTIONS.index(x[1])))
-        for s, q, ov in remaining:
-            if len(selected) >= 3:
+# === 4. Semantic Similarity Engine ===
+def get_semantic_score(input_text, target_text):
+    tokens_input = get_tokens(input_text)
+    tokens_target = get_tokens(target_text)
+    
+    if not tokens_input or not tokens_target:
+        return 0.0
+        
+    weighted_intersection = 0.0
+    total_input_weight = sum(idf_weights.get(t, 1.0) for t in tokens_input)
+    total_target_weight = sum(idf_weights.get(t, 1.0) for t in tokens_target)
+    
+    matched_target_indices = set()
+    
+    for w1 in tokens_input:
+        best_match_score = 0
+        best_match_idx = -1
+        w1_weight = idf_weights.get(w1, 1.0)
+        
+        for j, w2 in enumerate(tokens_target):
+            if j in matched_target_indices:
+                continue
+                
+            if w1 == w2:
+                best_match_score = 1.0
+                best_match_idx = j
                 break
-            qn = normalize_text_for_compare(q)
-            if qn in selected_norm:
-                continue
-            if chat_input_global and (words_set(q) == chat_input_words or qn == chat_input_norm):
-                continue
-            selected.append(q)
-            selected_norm.add(qn)
+            elif len(w1) >= 4 and len(w2) >= 4:
+                # Use difflib for string similarity
+                similarity = difflib.SequenceMatcher(None, w1, w2).ratio()
+                if similarity >= 0.75:
+                    if similarity > best_match_score:
+                        best_match_score = similarity
+                        best_match_idx = j
+                elif w1 in w2 or w2 in w1:
+                    if 0.6 > best_match_score:
+                        best_match_score = 0.6
+                        best_match_idx = j
+                        
+        if best_match_idx != -1:
+            weighted_intersection += best_match_score * w1_weight
+            matched_target_indices.add(best_match_idx)
+            
+    input_coverage = weighted_intersection / total_input_weight if total_input_weight else 0
+    target_coverage = weighted_intersection / total_target_weight if total_target_weight else 0
+    
+    final_score = (input_coverage * 0.7) + (target_coverage * 0.3)
+    
+    # Penalize weak matches on long queries
+    if len(tokens_input) >= 4 and weighted_intersection < 2.5:
+        final_score *= 0.5
+        
+    return final_score
 
-    # Final fallback: fill from full candidate list (avoid existing/excluded/duplicates)
-    if len(selected) < 3:
-        for q in CANDIDATE_QUESTIONS:
-            qn = normalize_text_for_compare(q)
-            if qn in existing_qs_norm or qn in excluded_by_chat_input or qn in selected_norm:
-                continue
-            if chat_input_global and (words_set(q) == chat_input_words or qn == chat_input_norm):
-                continue
-            selected.append(q)
-            selected_norm.add(qn)
-            if len(selected) >= 3:
-                break
+def get_levenshtein_distance(s1, s2):
+    if len(s1) > len(s2):
+        s1, s2 = s2, s1
+    distances = range(len(s1) + 1)
+    for index2, char2 in enumerate(s2):
+        new_distances = [index2 + 1]
+        for index1, char1 in enumerate(s1):
+            if char1 == char2:
+                new_distances.append(distances[index1])
+            else:
+                new_distances.append(1 + min((distances[index1], distances[index1+1], new_distances[-1])))
+        distances = new_distances
+    return distances[-1]
 
-    # Build bracketed strings ensuring we don't duplicate existing ones and not include excluded candidate
-    to_append = []
-    for q in selected:
-        qn = normalize_text_for_compare(q)
-        if qn in existing_qs_norm:
-            continue
-        if chat_input_global and (words_set(q) == chat_input_words or qn == chat_input_norm):
-            continue
-        to_append.append("[" + q + "]")
+# === 5. Main Execution within n8n Context ===
+def main():
+    try:
+        # n8n provides variables like "items" or we use a defined input mechanism
+        # Simulating n8n Python node retrieval
+        # Accessing the first item's chatInput
+        first_item = items[0] if 'items' in globals() and items else {}
+        incoming_question = ""
+        
+        # Check standard n8n nested locations
+        if "json" in first_item:
+            if "query" in first_item["json"] and "chatInput" in first_item["json"]["query"]:
+                incoming_question = first_item["json"]["query"]["chatInput"]
+            elif "chatInput" in first_item["json"]:
+                incoming_question = first_item["json"]["chatInput"]
+                
+        if not incoming_question:
+            # Fallback if chatInput is missing to prevent crash
+            incoming_question = ""
 
-    to_append = to_append[:3]  # now append 4 questions
+        # Normalize the incoming input
+        clean_incoming = normalize_text(incoming_question)
+        threshold_lev = max(3, int(len(clean_incoming) * 0.15))
+        
+        final_question = incoming_question
+        best_match_question = ""
+        best_score_found = 0
+        is_match = False
+        
+        for q in PREDEFINED_QUESTIONS:
+            q_norm = normalize_text(q)
+            dist = get_levenshtein_distance(clean_incoming, q_norm)
+            semantic_score = get_semantic_score(incoming_question, q)
+            
+            # Form heuristic
+            current_heuristic = (1.0 if dist <= threshold_lev else 0) + semantic_score
+            
+            if current_heuristic > best_score_found:
+                best_score_found = current_heuristic
+                best_match_question = q
+                
+            # Decision threshold
+            if dist <= threshold_lev or semantic_score >= 0.6:
+                is_match = True
+                
+        if is_match and best_match_question:
+            final_semantic = get_semantic_score(incoming_question, best_match_question)
+            
+            # Only snap if we are very confident
+            if final_semantic >= 0.85:
+                final_question = best_match_question
+            else:
+                final_question = incoming_question
 
-    # Append them to original text preserving format
-    original_text = str(raw_output).rstrip()
-    if not to_append:
-        new_text = original_text
-    else:
-        trailing_brackets_match = re.search(r'(\s*(\[[^\]]+\]\s*)+)\s*$', original_text, re.DOTALL)
-        if trailing_brackets_match:
-            new_text = original_text + ''.join(to_append)
-        else:
-            new_text = original_text + "\n\n" + ''.join(to_append)
+        output_value = "0" if is_match else "1"
+        
+        return [
+            {
+                "json": {
+                    "result": output_value,
+                    "chatInput": final_question
+                }
+            }
+        ]
+        
+    except Exception as e:
+        # Fallback to pure pass-through upon error
+        return [
+            {
+                "json": {
+                    "result": "1",
+                    "chatInput": incoming_question if "incoming_question" in locals() else "",
+                    "error": str(e)
+                }
+            }
+        ]
 
-    # Build pure-Python json for return
-    new_json = {}
-    for k, v in incoming_json.items():
-        new_json[k] = to_python(v)
-    new_json["output"] = new_text
-
-    # Optional debug metadata (uncomment to include in returned item for testing)
-    # new_json["_chat_input_global"] = chat_input_global
-    # new_json["_excluded_by_chat_input"] = list(excluded_by_chat_input)
-    # new_json["_selected_questions"] = selected
-
-    output_items.append({"json": new_json})
-
-# REQUIRED by n8n: return list of dicts
-return output_items
-return output_items
+# n8n Python nodes require the output to be returned
+return main()

@@ -159,6 +159,48 @@ module.exports = (data) => `
             color: var(--text-secondary);
         }
 
+        .filters-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--bg-deep);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--glow);
+        }
+
+        .filter-btn.active.btn-pass {
+            background: #00ff88;
+            border-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .filter-btn.active.btn-fail {
+            background: #ff4d4d;
+            border-color: #ff4d4d;
+            box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
+        }
+
         @media (max-width: 600px) {
             header { flex-direction: column; text-align: center; gap: 15px; }
             .stats-grid { grid-template-columns: 1fr; }
@@ -202,7 +244,13 @@ module.exports = (data) => `
         </div>
 
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search within questions and answers..." onkeyup="filterResults()">
+            <input type="text" id="searchInput" placeholder="Search within questions and answers..." oninput="updateFilters()">
+        </div>
+
+        <div class="filters-group">
+            <button class="filter-btn active" onclick="setFilter('all', this)">All Results</button>
+            <button class="filter-btn btn-pass" onclick="setFilter('pass', this)">Passed Only</button>
+            <button class="filter-btn btn-fail" onclick="setFilter('fail', this)">Failed Only</button>
         </div>
 
         <div class="response-list" id="responseList">
@@ -229,17 +277,38 @@ module.exports = (data) => `
     </div>
 
     <script>
-        function filterResults() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
+        let currentFilter = 'all';
+
+        function setFilter(type, btn) {
+            currentFilter = type;
+            
+            // Update UI
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            updateFilters();
+        }
+
+        function updateFilters() {
+            const searchText = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.getElementsByClassName('response-card');
 
             for (let i = 0; i < cards.length; i++) {
-                const text = cards[i].innerText.toLowerCase();
-                if (text.includes(filter)) {
-                    cards[i].style.display = "";
+                const card = cards[i];
+                const content = card.innerText.toLowerCase();
+                const isPass = card.classList.contains('status-pass');
+                
+                let matchesSearch = content.includes(searchText);
+                let matchesFilter = true;
+
+                if (currentFilter === 'pass') matchesFilter = isPass;
+                if (currentFilter === 'fail') matchesFilter = !isPass;
+
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = "";
                 } else {
-                    cards[i].style.display = "none";
+                    card.style.display = "none";
                 }
             }
         }

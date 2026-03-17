@@ -1,0 +1,75 @@
+Node: HTTP Request
+{
+  "parameters": {
+    "method": "POST",
+    "url": "https://api.openai.com/v1/embeddings",
+    "authentication": "predefinedCredentialType",
+    "nodeCredentialType": "openAiApi",
+    "sendHeaders": true,
+    "headerParameters": {
+      "parameters": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "{\n \"model\": \"text-embedding-3-small\",\n \"input\": \"{{$json.question}}\"\n}",
+    "options": {}
+  },
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.2,
+  "position": [
+    224,
+    448
+  ],
+  "id": "4714a078-7068-4504-86c3-01bc9c4af769",
+  "name": "HTTP Request",
+  "credentials": {
+    "openAiApi": {
+      "id": "Ax3CRAMMEsTeuDhR",
+      "name": "OpenAi account"
+    }
+  }
+}
+----------------------------------------
+Node: Supabase searching
+{
+  "parameters": {
+    "method": "POST",
+    "url": "https://mlpkluihwiamempmoshs.supabase.co/rest/v1/rpc/match_predefined_questions",
+    "authentication": "predefinedCredentialType",
+    "nodeCredentialType": "supabaseApi",
+    "sendHeaders": true,
+    "headerParameters": {
+      "parameters": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{\n{\n  \"query_embedding\": $json.data[0].embedding,\n  \"match_threshold\": 0.75,\n  \"match_count\": 3\n}\n}}",
+    "options": {}
+  },
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.2,
+  "position": [
+    432,
+    448
+  ],
+  "id": "bb87f9e9-83a6-428d-853a-58923f7318dd",
+  "name": "Supabase searching",
+  "alwaysOutputData": true,
+  "credentials": {
+    "supabaseApi": {
+      "id": "0Iv7yGYfqwPvni8P",
+      "name": "Supabase account 3"
+    }
+  }
+}
+----------------------------------------

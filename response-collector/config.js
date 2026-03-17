@@ -3,14 +3,14 @@
  */
 module.exports = {
   // n8n Webhook URL
-  apiEndpoint: "https://n8n.srv917960.hstgr.cloud/webhook/nervespa",
+    apiEndpoint: 'https://n8n.srv917960.hstgr.cloud/webhook/nervespa-chatbot',
 
   // Input CSV path (relative to project root)
-  csvPath: "sample_copy.csv",
+  csvPath: "sample-failed.csv",
 
   // Output paths
-  resultsJsonPath: "./results_copy.json",
-  reportHtmlPath: "./report_copy.html",
+  resultsJsonPath: "./results-failed.json",
+  reportHtmlPath: "./report-failed.html",
 
   // Timing
   delayBetweenRequests: 1500, // ms

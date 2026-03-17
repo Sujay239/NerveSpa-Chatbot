@@ -1,0 +1,352 @@
+{
+  "title": "AI Response Collector Report",
+  "clientName": "NerveSpa",
+  "reportTitle": "AI Response Collector Report",
+  "timestamp": "2026-03-17T08:04:51.408Z",
+  "sessionId": "sess-a88a0c6ve-1773734409374",
+  "results": [
+    {
+      "question": "Is NerveSpa a medical company?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. \nPlease try a different question or contact support directly at support@nervespa.com",
+      "duration": 1595,
+      "pass": false
+    },
+    {
+      "question": "Will this work for plantar fasciitis too?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3983,
+      "pass": false
+    },
+    {
+      "question": "What therapies are included in NerveSpa?",
+      "answer": "NerveSpa specializes in Aquatic Nerve Stimulation Therapy and provides clinical-grade, protocol-based systems built for clinics. The entire system is designed for Turnkey Integration, making it easy for providers to implement and proven to keep patients on track with measurable outcomes. Targeted Protocols NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: 1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function. 2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint. 3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support.",
+      "duration": 4948,
+      "pass": true
+    },
+    {
+      "question": "Why is water used in the treatment?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2769,
+      "pass": false
+    },
+    {
+      "question": "How often do people use these therapies?",
+      "answer": "The NerveSpa 90-Day Program is a comprehensive program designed for delivering consistent results, with clear treatments and ongoing check-ins to help patients complete the full program. This suggests that therapies are typically used regularly over a 90-day period to maintain compliance and achieve measurable outcomes.",
+      "duration": 2851,
+      "pass": true
+    },
+    {
+      "question": "How soon do people notice results?",
+      "answer": "? 90-Day Program: A comprehensive program designed for delivering consistent results. ? 95% Patients Improved: A high percentage of patients report less pain and better function. ? 98% Clinic Satisfaction: High satisfaction driven by positive patient outcomes. ? Adoption: Trusted by 500+ Clinics across the U.S. and has treated 15,000+ patients.? Retention: Boasts a Less Than 1% Return Rate, which NerveSpa states proves the results.",
+      "duration": 3696,
+      "pass": true
+    },
+    {
+      "question": "Do I have to use all parts of the program together?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2648,
+      "pass": false
+    },
+    {
+      "question": "Can I use just one NerveSpa device instead of the full program?",
+      "answer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan. NerveSpa website content NerveSpa specializes in Aquatic Nerve Stimulation Therapy and provides clinical-grade, protocol-based systems built for clinics. The entire system is designed for Turnkey Integration, making it easy for providers to implement and proven to keep patients on track with measurable outcomes. Targeted Protocols NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: 1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function. 2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint. 3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support. Clinical Results and Adoption The company highlights its success through strong metrics that underscore patient outcomes and clinic satisfaction: ? 90-Day Program: A comprehensive program designed for delivering consistent results. ? 95% Patients Improved: A high percentage of patients report less pain and better function. ? 98% Clinic Satisfaction: High satisfaction driven by positive patient outcomes. ? Adoption: Trusted by 500+ Clinics across the U.S. and has treated 15,000+ patients.? Retention: Boasts a Less Than 1% Return Rate, which NerveSpa states proves the results. Benefits for Clinical Integration NerveSpa is designed to grow with clinics by simplifying the operational aspects of treatment delivery.? Easy Launch: Guided onboarding and product training ensure seamless integration into existing clinical programs.? Scalability: Allows clinics to add new patients without increasing pressure on staff and systems.? High Compliance: Clear treatments and ongoing check-ins help patients complete the full 90-day program.? Tracking: Provides Device Usage Tracking to view data for each device, ensuring patient compliance and supporting results.",
+      "duration": 11319,
+      "pass": true
+    },
+    {
+      "question": "Is the treatment painful?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3036,
+      "pass": false
+    },
+    {
+      "question": "Can I overuse the therapy?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3479,
+      "pass": false
+    },
+    {
+      "question": "What happens if I miss a session?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3008,
+      "pass": false
+    },
+    {
+      "question": "Are there any side effects?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3299,
+      "pass": false
+    },
+    {
+      "question": "Is it safe for seniors?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3137,
+      "pass": false
+    },
+    {
+      "question": "Is it safe if I have a pacemaker?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3182,
+      "pass": false
+    },
+    {
+      "question": "Is this safe after surgery?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3006,
+      "pass": false
+    },
+    {
+      "question": "Can I use NerveSpa if I’m pregnant?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3960,
+      "pass": false
+    },
+    {
+      "question": "Should I ask my doctor before starting?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3789,
+      "pass": false
+    },
+    {
+      "question": "What is the difference between the PowerWrap and the QuakePlate?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3070,
+      "pass": false
+    },
+    {
+      "question": "What are the conductive foot pads?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2769,
+      "pass": false
+    },
+    {
+      "question": "How long do the foot pads last?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2926,
+      "pass": false
+    },
+    {
+      "question": "Do I need to replace socks, gloves, or pads?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2790,
+      "pass": false
+    },
+    {
+      "question": "Are there supplements included in the NerveSpa program?",
+      "answer": "NerveSpa offers a Supplement Kits protocol that provides custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support.",
+      "duration": 2857,
+      "pass": true
+    },
+    {
+      "question": "Are there topical products too?",
+      "answer": "NerveSpa's Joint & Mobility product line offers a targeted approach to support and treat joint conditions such as Osteoarthritis (OA) and Rheumatoid Arthritis (RA). For topical relief, NerveSpa provides an Osteoarthritis and Rheumatoid Arthritis Cream and a Roll On Pain Relief containing Arnica, Menthol.",
+      "duration": 3532,
+      "pass": true
+    },
+    {
+      "question": "How do I know if I’m using the device correctly?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3069,
+      "pass": false
+    },
+    {
+      "question": "What happens if a product stops working?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2670,
+      "pass": false
+    },
+    {
+      "question": "How should I charge the controller?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2928,
+      "pass": false
+    },
+    {
+      "question": "What if I accidentally skip part of the treatment plan?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2969,
+      "pass": false
+    },
+    {
+      "question": "Do you sell directly to patients?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2669,
+      "pass": false
+    },
+    {
+      "question": "How do providers order NerveSpa products?",
+      "answer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan. NerveSpa website content NerveSpa specializes in Aquatic Nerve Stimulation Therapy and provides clinical-grade, protocol-based systems built for clinics. The entire system is designed for Turnkey Integration, making it easy for providers to implement and proven to keep patients on track with measurable outcomes. Targeted Protocols NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: 1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function. 2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint. 3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support. Clinical Results and Adoption The company highlights its success through strong metrics that underscore patient outcomes and clinic satisfaction: ? 90-Day Program: A comprehensive program designed for delivering consistent results. ? 95% Patients Improved: A high percentage of patients report less pain and better function. ? 98% Clinic Satisfaction: High satisfaction driven by positive patient outcomes. ? Adoption: Trusted by 500+ Clinics across the U.S. and has treated 15,000+ patients.? Retention: Boasts a Less Than 1% Return Rate, which NerveSpa states proves the results. Benefits for Clinical Integration NerveSpa is designed to grow with clinics by simplifying the operational aspects of treatment delivery.? Easy Launch: Guided onboarding and product training ensure seamless integration into existing clinical programs.? Scalability: Allows clinics to add new patients without increasing pressure on staff and systems.? High Compliance: Clear treatments and ongoing check-ins help patients complete the full 90-day program.? Tracking: Provides Device Usage Tracking to view data for each device, ensuring patient compliance and supporting results.",
+      "duration": 10486,
+      "pass": true
+    },
+    {
+      "question": "Can international clinics order NerveSpa?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 4026,
+      "pass": false
+    },
+    {
+      "question": "How much does NerveSpa cost?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2806,
+      "pass": false
+    },
+    {
+      "question": "Do you offer financing?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3551,
+      "pass": false
+    },
+    {
+      "question": "Is insurance accepted?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3295,
+      "pass": false
+    },
+    {
+      "question": "Is NerveSpa FDA approved?",
+      "answer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. The parent company is registered with the FDA, as indicated by the FDA Establishment Registration Database - PMT (RID: 43437), with links to their FDA Product Listings also provided.",
+      "duration": 3682,
+      "pass": true
+    },
+    {
+      "question": "Are your products made in FDA-registered facilities?",
+      "answer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com",
+      "duration": 3529,
+      "pass": true
+    },
+    {
+      "question": "Is there any clinical evidence behind NerveSpa?",
+      "answer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. The company is registered with the FDA, as indicated by the FDA Establishment Registration Database - PMT (RID: 43437), with links to their FDA Product Listings also provided.",
+      "duration": 4100,
+      "pass": true
+    },
+    {
+      "question": "Has this helped real patients?",
+      "answer": "NerveSpa highlights its success through strong metrics that underscore patient outcomes and clinic satisfaction: \n? 90-Day Program: A comprehensive program designed for delivering consistent results. \n? 95% Patients Improved: A high percentage of patients report less pain and better function. \n? 98% Clinic Satisfaction: High satisfaction driven by positive patient outcomes. \n? Adoption: Trusted by 500+ Clinics across the U.S. and has treated 15,000+ patients. \n? Retention: Boasts a Less Than 1% Return Rate, which NerveSpa states proves the results.",
+      "duration": 4390,
+      "pass": true
+    },
+    {
+      "question": "How long has NerveSpa been around?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3339,
+      "pass": false
+    },
+    {
+      "question": "Are licensed clinicians involved in the process?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3658,
+      "pass": false
+    },
+    {
+      "question": "How do I find a provider near me?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2741,
+      "pass": false
+    },
+    {
+      "question": "I’m confused. Which NerveSpa product is best for me?",
+      "answer": "NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption:\n\n1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function.\n2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint.\n3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support.",
+      "duration": 3865,
+      "pass": true
+    },
+    {
+      "question": "Do I need the full system or just one device?",
+      "answer": "NerveSpa specializes in Aquatic Nerve Stimulation Therapy and provides clinical-grade, protocol-based systems built for clinics. The entire system is designed for Turnkey Integration, making it easy for providers to implement and proven to keep patients on track with measurable outcomes. NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: Peripheral Neuropathy, Joint & Mobility, and Supplement Kits. The company provides various advanced treatment devices and accessories tailored to specific needs. Clinics can add new patients without increasing pressure on staff and systems, and clear treatments and ongoing check-ins help patients complete the full 90-day program. Device Usage Tracking is available to view data for each device, ensuring patient compliance and supporting results.",
+      "duration": 4979,
+      "pass": true
+    },
+    {
+      "question": "Can this actually reverse neuropathy, or just manage symptoms?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3410,
+      "pass": false
+    },
+    {
+      "question": "Will I need to keep using it forever?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2735,
+      "pass": false
+    },
+    {
+      "question": "Is this easy for an older person to use alone?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3006,
+      "pass": false
+    },
+    {
+      "question": "Can you compare aquatic stimulation, cold laser, and vibration therapy?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3421,
+      "pass": false
+    },
+    {
+      "question": "Which products are best for feet versus hands?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3193,
+      "pass": false
+    },
+    {
+      "question": "What should I avoid while using NerveSpa?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 4680,
+      "pass": false
+    },
+    {
+      "question": "Can I combine NerveSpa with my current treatment plan?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3421,
+      "pass": false
+    },
+    {
+      "question": "What results are realistic, and how long can they take?",
+      "answer": "NerveSpa highlights its success through strong metrics that underscore patient outcomes and clinic satisfaction: \n• 90-Day Program: A comprehensive program designed for delivering consistent results. \n• 95% Patients Improved: A high percentage of patients report less pain and better function. \n• 98% Clinic Satisfaction: High satisfaction driven by positive patient outcomes. \nThe company has treated 15,000+ patients, proving the results with a Less Than 1% Return Rate.",
+      "duration": 4018,
+      "pass": true
+    },
+    {
+      "question": "What questions should I ask my provider before starting?",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2939,
+      "pass": false
+    },
+    {
+      "question": "do i need perscription",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2755,
+      "pass": false
+    },
+    {
+      "question": "how much this cost",
+      "answer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan.",
+      "duration": 2532,
+      "pass": true
+    },
+    {
+      "question": "just tell me if this works or not",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2612,
+      "pass": false
+    },
+    {
+      "question": "stop explaining and tell me the best option",
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 2547,
+      "pass": false
+    },
+    {
+      "question": "I only want the price",
+      "answer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan.",
+      "duration": 3390,
+      "pass": true
+    }
+  ],
+  "stats": {
+    "total": 56,
+    "passed": 16,
+    "failed": 40,
+    "passRate": "28.6",
+    "avgResponseTime": 3555
+  }
+}

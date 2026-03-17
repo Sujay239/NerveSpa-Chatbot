@@ -1,7 +1,8 @@
-// Get the incoming question from the chat trigger
-const incomingQuestion = $input.first().json.query.chatInput;
+// ================= INPUT =================
+const userQuestion = $json.query?.chatInput || $input.first()?.json?.query?.chatInput || "";
+const sessionId = $json.query?.sessionId || $input.first()?.json?.query?.sessionId || "";
 
-// Define your predefined questions
+// ================= PREDEFINED QUESTIONS =================
 const predefinedQuestions = [
   "What is NerveSpa?",
   "Can you explain what NerveSpa?",
@@ -41,6 +42,7 @@ const predefinedQuestions = [
   "Does NerveSpa support insurance reimbursement?",
   "What is HCPCS code E0720?",
   "How quickly are products shipped?",
+  "Can Cold Laser be combined with other neuropathy modalities?",
   "Can NerveSpa be combined with in-clinic treatments?",
   "What outcomes do patients commonly report?",
   "Can patients travel with NerveSpa devices?",
@@ -110,7 +112,6 @@ const predefinedQuestions = [
   "How should the Cold Laser be positioned during treatment?",
   "What should patients feel during Cold Laser therapy?",
   "Who should not use the Cold Laser?",
-  "Can Cold Laser be combined with other neuropathy modalities?",
   "What supplements are commonly used in the Neuropathy Program?",
   "When should Nerve Rebuilder be taken?",
   "When should Nerve Regeneration be taken?",
@@ -370,10 +371,14 @@ const predefinedQuestions = [
   "Will my insurance cover the NerveSpa?",
   "What is the HCPCS code for the NerveSpa?",
   "Do you ship internationally?",
-  "Do you ship to Canada?",
+  "Do you ship to Canada?"
+,
+  "What should I do if my skin feels too sensitive after PowerWrap use?",
+  "What should I do if the Nerve Bath unit does not turn on?",
+  "Where do I download the user manual for Shoulder Pro?"
 ];
 
-// Synonym map for common variants
+// ================= SYNONYMS =================
 const synonyms = {
   made: "manufactured",
   produced: "manufactured",
@@ -395,7 +400,6 @@ const synonyms = {
   physician: "clinic",
   offering: "start",
   begin: "start",
-  setup: "set",
   starting: "start",
   ordering: "order",
   usa: "us",
@@ -457,7 +461,6 @@ const synonyms = {
   tracking: "shipped",
   arrive: "shipped",
   delivery: "shipped",
-  "po box": "shipped",
   return: "return my order",
   exchange: "return my order",
   refund: "return my order",
@@ -470,7 +473,6 @@ const synonyms = {
   videos: "demo",
   guide: "manuals",
   manual: "manuals",
-  setup: "manuals",
   locator: "contact",
   chat: "contact",
   human: "contact",
@@ -521,9 +523,19 @@ const synonyms = {
   account: "login",
 };
 
-// Helper function to normalize text
+// ================= STOPWORDS =================
+const stopWords = new Set([
+  "a","an","and","are","as","at","be","but","by","for","if","in","into","is","it",
+  "no","of","on","or","such","that","the","their","then","there","these","they",
+  "this","to","was","will","with","do","does","did","can","could","should","would",
+  "i","you","he","she","we","my","your","his","her","our","how","what","why","where",
+  "when","who","has","been","hold"
+]);
+
+// ================= NORMALIZE =================
 function normalize(text) {
   if (!text) return "";
+
   let base = text
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     .toLowerCase()
@@ -531,240 +543,202 @@ function normalize(text) {
     .replace(/\s+/g, " ")
     .trim();
 
-  // Replace synonyms
   let words = base.split(" ");
   for (let i = 0; i < words.length; i++) {
     if (synonyms[words[i]]) {
       words[i] = synonyms[words[i]];
     }
   }
-  return words.join(" ");
+
+  return words.join(" ").trim();
 }
 
-// Simple stemmer
-function stem(w) {
-  if (w.length <= 3) return w;
-  return w.replace(/(ing|ly|ed|er|es|s|ion)$/, "");
+// ================= STEM =================
+function stem(word) {
+  if (!word || word.length <= 3) return word;
+  return word.replace(/(ing|ly|ed|er|es|s|ion)$/, "");
 }
 
-// Calculate Levenshtein Distance to allow minor typos
-function levenshteinDistance(s, t) {
-  if (!s.length) return t.length;
-  if (!t.length) return s.length;
-  const arr = [];
-  for (let i = 0; i <= t.length; i++) {
-    arr[i] = [i];
-    for (let j = 1; j <= s.length; j++) {
-      arr[i][j] =
-        i === 0
-          ? j
-          : Math.min(
-              arr[i - 1][j] + 1,
-              arr[i][j - 1] + 1,
-              arr[i - 1][j - 1] + (s[j - 1] === t[i - 1] ? 0 : 1),
-            );
+// ================= TOKENIZE =================
+function getTokens(text) {
+  return normalize(text)
+    .split(" ")
+    .filter((w) => w && !stopWords.has(w))
+    .map(stem);
+}
+
+// ================= LEVENSHTEIN =================
+function levenshteinDistance(a, b) {
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+
+  const matrix = Array.from({ length: b.length + 1 }, () => []);
+
+  for (let i = 0; i <= b.length; i++) matrix[i][0] = i;
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      matrix[i][j] = b[i - 1] === a[j - 1]
+        ? matrix[i - 1][j - 1]
+        : Math.min(
+            matrix[i - 1][j] + 1,
+            matrix[i][j - 1] + 1,
+            matrix[i - 1][j - 1] + 1
+          );
     }
   }
-  return arr[t.length][s.length];
+
+  return matrix[b.length][a.length];
 }
 
-const stopWords = new Set([
-  "a",
-  "an",
-  "and",
-  "are",
-  "as",
-  "at",
-  "be",
-  "but",
-  "by",
-  "for",
-  "if",
-  "in",
-  "into",
-  "is",
-  "it",
-  "no",
-  "of",
-  "on",
-  "or",
-  "such",
-  "that",
-  "the",
-  "their",
-  "then",
-  "there",
-  "these",
-  "they",
-  "this",
-  "to",
-  "was",
-  "will",
-  "with",
-  "do",
-  "does",
-  "did",
-  "can",
-  "could",
-  "should",
-  "would",
-  "i",
-  "you",
-  "he",
-  "she",
-  "we",
-  "my",
-  "your",
-  "his",
-  "her",
-  "our",
-  "how",
-  "what",
-  "why",
-  "where",
-  "when",
-  "who",
-  "has",
-  "been",
-  "hold",
-]);
+// ================= JACCARD =================
+function jaccardScore(a, b) {
+  const setA = new Set(getTokens(a));
+  const setB = new Set(getTokens(b));
 
-const getTokens = (str) =>
-  normalize(str)
-    .split(" ")
-    .filter((w) => w.length > 0 && !stopWords.has(w))
-    .map(stem);
+  const union = new Set([...setA, ...setB]).size;
+  if (union === 0) return 0;
 
-// PRE-CALCULATE IDF WEIGHTS
+  let intersection = 0;
+  for (const token of setA) {
+    if (setB.has(token)) intersection++;
+  }
+
+  return intersection / union;
+}
+
+// ================= IDF PRECALC =================
 const docCount = predefinedQuestions.length;
 const freqMap = {};
+
 predefinedQuestions.forEach((q) => {
-  const tokens = new Set(getTokens(q));
-  tokens.forEach((t) => {
+  const uniqueTokens = new Set(getTokens(q));
+  uniqueTokens.forEach((t) => {
     freqMap[t] = (freqMap[t] || 0) + 1;
   });
 });
 
-// IDF = log(N / df)
 const idfWeights = {};
 Object.keys(freqMap).forEach((t) => {
   idfWeights[t] = Math.log(docCount / freqMap[t]) + 1.0;
 });
 
+// ================= SEMANTIC SCORE =================
 function getSemanticScore(input, target) {
   const tokens1 = getTokens(input);
   const tokens2 = getTokens(target);
 
-  if (tokens1.length === 0 || tokens2.length === 0) return 0;
+  if (!tokens1.length || !tokens2.length) return 0;
 
   let weightedIntersection = 0;
   let totalInputWeight = 0;
   let totalTargetWeight = 0;
 
-  // Calculate total weights for normalization
-  tokens1.forEach((t) => (totalInputWeight += idfWeights[t] || 1.0));
-  tokens2.forEach((t) => (totalTargetWeight += idfWeights[t] || 1.0));
+  tokens1.forEach((t) => totalInputWeight += (idfWeights[t] || 1.0));
+  tokens2.forEach((t) => totalTargetWeight += (idfWeights[t] || 1.0));
 
   const matched2 = new Set();
 
   for (let i = 0; i < tokens1.length; i++) {
+    const w1 = tokens1[i];
+    const w1Weight = idfWeights[w1] || 1.0;
+
     let bestMatchScore = 0;
-    let bestMatchIdx = -1;
-    let w1 = tokens1[i];
-    let w1Weight = idfWeights[w1] || 1.0;
+    let bestMatchIndex = -1;
 
     for (let j = 0; j < tokens2.length; j++) {
       if (matched2.has(j)) continue;
 
-      let w2 = tokens2[j];
+      const w2 = tokens2[j];
 
       if (w1 === w2) {
         bestMatchScore = 1;
-        bestMatchIdx = j;
+        bestMatchIndex = j;
         break;
-      } else if (w1.length >= 4 && w2.length >= 4) {
-        let dist = levenshteinDistance(w1, w2);
-        let maxLen = Math.max(w1.length, w2.length);
-        let similarity = 1 - dist / maxLen;
+      }
 
-        if (similarity >= 0.75) {
-          bestMatchScore = Math.max(bestMatchScore, similarity);
-          bestMatchIdx = j;
-        } else if (w1.includes(w2) || w2.includes(w1)) {
-          bestMatchScore = Math.max(bestMatchScore, 0.6);
-          bestMatchIdx = j;
+      if (w1.length >= 4 && w2.length >= 4) {
+        const dist = levenshteinDistance(w1, w2);
+        const maxLen = Math.max(w1.length, w2.length);
+        const similarity = 1 - dist / maxLen;
+
+        if (similarity >= 0.75 && similarity > bestMatchScore) {
+          bestMatchScore = similarity;
+          bestMatchIndex = j;
+        } else if ((w1.includes(w2) || w2.includes(w1)) && 0.6 > bestMatchScore) {
+          bestMatchScore = 0.6;
+          bestMatchIndex = j;
         }
       }
     }
 
-    if (bestMatchIdx !== -1) {
+    if (bestMatchIndex !== -1) {
       weightedIntersection += bestMatchScore * w1Weight;
-      matched2.add(bestMatchIdx);
+      matched2.add(bestMatchIndex);
     }
   }
 
-  let inputCoverage = weightedIntersection / totalInputWeight;
-  let targetCoverage = weightedIntersection / totalTargetWeight;
+  const inputCoverage = totalInputWeight ? weightedIntersection / totalInputWeight : 0;
+  const targetCoverage = totalTargetWeight ? weightedIntersection / totalTargetWeight : 0;
 
   let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
 
-  // Penalize weak matches on generic queries
   if (tokens1.length >= 4 && weightedIntersection < 2.5) {
     finalScore *= 0.5;
   }
 
-  return finalScore;
+  return Math.max(0, Math.min(1, finalScore));
 }
 
-// Normalize the incoming input
-const cleanIncoming = normalize(incomingQuestion);
-const thresholdLev = Math.max(3, Math.floor(cleanIncoming.length * 0.15));
+// ================= FINAL COMBINED SCORE =================
+function combinedScore(input, target) {
+  const normInput = normalize(input);
+  const normTarget = normalize(target);
 
-let finalQuestion = incomingQuestion;
-let bestMatchQuestion = "";
-let bestScoreFound = 0;
-let isMatch = false;
+  const charDist = levenshteinDistance(normInput, normTarget);
+  const maxLen = Math.max(normInput.length, normTarget.length, 1);
+  const charSimilarity = 1 - charDist / maxLen;
 
-for (const q of predefinedQuestions) {
-  const qNorm = normalize(q);
-  const dist = levenshteinDistance(cleanIncoming, qNorm);
-  const semanticScore = getSemanticScore(incomingQuestion, q);
+  const semantic = getSemanticScore(input, target);
+  const jaccard = jaccardScore(input, target);
 
-  // Combined heuristic for picking the best candidate
-  const currentHeuristic = (dist <= thresholdLev ? 1.0 : 0) + semanticScore;
-
-  if (currentHeuristic > bestScoreFound) {
-    bestScoreFound = currentHeuristic;
-    bestMatchQuestion = q;
-  }
-
-  // Match threshold (lower 0.6) to decide if we use predefined Q&A
-  if (dist <= thresholdLev || semanticScore >= 0.6) {
-    isMatch = true;
-  }
+  // Weighted final score
+  return (
+    semantic * 0.55 +
+    jaccard * 0.25 +
+    charSimilarity * 0.20
+  );
 }
 
-if (isMatch && bestMatchQuestion) {
-  // Re-calculate semantic score for the best match to decide on standardization
-  const finalSemantic = getSemanticScore(incomingQuestion, bestMatchQuestion);
+// ================= MATCH FINDING =================
+let bestScore = 0;
+let bestIndex = -1;
 
-  // Standardization threshold (higher 0.85)
-  // Only replace the input question with the predefined one if we are very confident
-  if (finalSemantic >= 0.85) {
-    finalQuestion = bestMatchQuestion;
-  } else {
-    finalQuestion = incomingQuestion;
+for (let i = 0; i < predefinedQuestions.length; i++) {
+  const q = predefinedQuestions[i];
+  const score = combinedScore(userQuestion, q);
+
+  if (score > bestScore) {
+    bestScore = score;
+    bestIndex = i;
   }
 }
 
-let outputValue = isMatch ? "0" : "1";
+// ================= THRESHOLD =================
+// You can tune this between 0.60 and 0.75 depending on strictness
+const threshold = 0.65;
+const matchFound = bestScore >= threshold;
 
-// Return the output in n8n format
+// ================= OUTPUT =================
 return [
   {
     json: {
-      result: outputValue,
-      chatInput: finalQuestion,
+      match: matchFound,
+      matchIndex: matchFound ? bestIndex : -1,
+      normalizedQuestion: normalize(userQuestion),
+      similarityScore: Number(bestScore.toFixed(4)),
+      sessionId: sessionId
     },
   },
 ];

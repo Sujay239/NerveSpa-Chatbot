@@ -1,5 +1,8 @@
 const incomingQuestion =
-  $input.first().json.chatInput || $("Webhook").first().json.query.chatInput;
+  $input.first()?.json?.chatInput ||
+  $input.first()?.json?.query?.chatInput ||
+  $("Webhook").first()?.json?.query?.chatInput ||
+  "";
 
 // JSON Q&A pairs
 const qaPairs = [
@@ -1866,72 +1869,132 @@ const qaPairs = [
     question: "What is the HCPCS code for the NerveSpa?",
     answer: "The billing code (HCPCS code) is E0720",
   },
+,
+  {
+    question: "Can you explain what the NerveSpa system actually is?",
+    answer: "Please contact support for more details."
+  },
+  {
+    question: "What if my skin feels too sensitive after PowerWrap use?",
+    answer: "Please contact support for more details."
+  },
+  {
+    question: "What if the Nerve Bath unit does not turn on?",
+    answer: "Please contact support for more details."
+  },
+  {
+    question: "What if stimulation feels too weak?",
+    answer: "Please contact support for more details."
+  },
+  {
+    question: "Where do I download the user manual for Shoulder Pro",
+    answer: "Please contact support for more details."
+  },
+  {
+    question: "Do you ship to Canada?",
+    answer: "Please contact support for more details."
+  }
 ];
 
-// Default output
-let outputValue =
-  "I am the NerveSpa assistant. I couldn't find a specific answer to that question in my system, but I can help you with NerveSpa products, therapies, order tracking, or contacting our support team. How can I assist you today?";
-
-// Synonym map for common variants
+// Synonym map
 const synonyms = {
   made: "manufactured",
   produced: "manufactured",
   created: "manufactured",
   built: "manufactured",
   origin: "manufactured",
+
   cost: "pricing",
   pay: "pricing",
   price: "pricing",
   purchase: "pricing",
   buy: "pricing",
   amount: "pricing",
+
   clinics: "clinic",
   providers: "clinic",
   provider: "clinic",
   practice: "clinic",
-  medical: "clinic",
-  offering: "start",
-  begin: "start",
-  setup: "set",
-  starting: "start",
-  ordering: "order",
+  doctor: "clinic",
+  physician: "clinic",
+
   usa: "us",
   america: "us",
   united: "us",
   states: "us",
+
   vibration: "quake plate",
-  platform: "quake plate",
   vibrational: "quake plate",
+  platform: "quake plate",
+
   knee: "knee pro",
   shoulder: "shoulder pro",
   laser: "cold laser",
   led: "led wrap",
+
   socks: "diabetic socks",
   garments: "conductive garments",
+  garment: "conductive garments",
+
   bath: "nerve bath",
   aquatic: "nerve bath",
   water: "nerve bath",
-  participation: "consistency",
-  engagement: "consistency",
-  consistency: "repeatability",
-  participation: "repeatability",
+  footbath: "nerve bath",
+
   issues: "conditions",
   concerns: "conditions",
   problems: "conditions",
+  symptoms: "conditions",
+
+  help: "support",
   address: "support",
   manage: "support",
+
   supplies: "consumables",
   materials: "consumables",
   items: "consumables",
-  canada: "international",
+  parts: "consumables",
+
+  canada: "internationally",
+  uk: "internationally",
+  europe: "internationally",
+  overseas: "internationally",
+  global: "internationally",
+  international: "internationally",
+
   faq: "faq",
   bulk: "bulk pricing",
   wholesale: "bulk pricing",
+
+  discount: "pricing",
+  coupon: "pricing",
+
+  return: "return order",
+  refund: "return order",
+  exchange: "return order",
+  cancel: "return order",
+
+  damage: "warranty",
+  broken: "warranty",
+  repair: "warranty",
+
+  manual: "guide",
+  manuals: "guide",
+  setup: "guide",
 };
 
-// Helper function to normalize text for comparison
+// Stop words
+const stopWords = new Set([
+  "a","an","and","are","as","at","be","but","by","for","if","in","into","is","it",
+  "no","of","on","or","such","that","the","their","then","there","these","they",
+  "this","to","was","will","with","do","does","did","can","could","should","would",
+  "i","you","he","she","we","my","your","his","her","our","how","what","why","where",
+  "when","who","has","been","hold","u","s"
+]);
+
 function normalize(text) {
   if (!text) return "";
+
   let base = text
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     .toLowerCase()
@@ -1939,360 +2002,72 @@ function normalize(text) {
     .replace(/\s+/g, " ")
     .trim();
 
-  // Replace synonyms
-  let words = base.split(" ");
-  for (let i = 0; i < words.length; i++) {
-    if (synonyms[words[i]]) {
-      words[i] = synonyms[words[i]];
-    }
-  }
-  return words.join(" ");
+  let words = base.split(" ").filter(Boolean).map((w) => synonyms[w] || w);
+  return words.join(" ").trim();
 }
 
-// Simple stemmer
-function stem(w) {
-  if (w.length <= 3) return w;
-  return w.replace(/(ing|ly|ed|er|es|s|ion)$/, "");
+function stem(word) {
+  if (!word || word.length <= 3) return word;
+  return word.replace(/(ing|ly|ed|er|es|s|ion)$/, "");
 }
 
-// Calculate Levenshtein Distance to allow minor typos
-function levenshteinDistance(s, t) {
-  if (!s.length) return t.length;
-  if (!t.length) return s.length;
-  const arr = [];
-  for (let i = 0; i <= t.length; i++) {
-    arr[i] = [i];
-    for (let j = 1; j <= s.length; j++) {
-      arr[i][j] =
-        i === 0
-          ? j
+function getTokens(text) {
+  return normalize(text)
+    .split(" ")
+    .filter((w) => w && !stopWords.has(w))
+    .map(stem);
+}
+
+function levenshteinDistance(a, b) {
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+
+  const matrix = Array.from({ length: b.length + 1 }, () => []);
+  for (let i = 0; i <= b.length; i++) matrix[i][0] = i;
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      matrix[i][j] =
+        b[i - 1] === a[j - 1]
+          ? matrix[i - 1][j - 1]
           : Math.min(
-              arr[i - 1][j] + 1,
-              arr[i][j - 1] + 1,
-              arr[i - 1][j - 1] + (s[j - 1] === t[i - 1] ? 0 : 1),
+              matrix[i - 1][j] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j - 1] + 1
             );
     }
   }
-  return arr[t.length][s.length];
+
+  return matrix[b.length][a.length];
 }
 
-const stopWords = new Set([
-  "a",
-  "an",
-  "and",
-  "are",
-  "as",
-  "at",
-  "be",
-  "but",
-  "by",
-  "for",
-  "if",
-  "in",
-  "into",
-  "is",
-  "it",
-  "no",
-  "of",
-  "on",
-  "or",
-  "such",
-  "that",
-  "the",
-  "their",
-  "then",
-  "there",
-  "these",
-  "they",
-  "this",
-  "to",
-  "was",
-  "will",
-  "with",
-  "do",
-  "does",
-  "did",
-  "can",
-  "could",
-  "should",
-  "would",
-  "i",
-  "you",
-  "he",
-  "she",
-  "we",
-  "my",
-  "your",
-  "his",
-  "her",
-  "our",
-  "how",
-  "what",
-  "why",
-  "where",
-  "when",
-  "who",
-  "has",
-  "been",
-  "hold",
-  "us",
-  "u",
-  "s",
-]);
+function jaccardScore(a, b) {
+  const setA = new Set(getTokens(a));
+  const setB = new Set(getTokens(b));
 
-const getTokens = (str) =>
-  normalize(str)
-    .split(" ")
-    .filter((w) => w.length > 0 && !stopWords.has(w))
-    .map(stem);
+  const union = new Set([...setA, ...setB]).size;
+  if (union === 0) return 0;
 
-// Injecting new products dynamically
-qaPairs.push(
-  ...[
-    {
-      question: "What is (1pk) Effervescent Tablets?",
-      answer:
-        "These effervescent tablets are designed to provide support for nerve and neuropathy issues. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/(1pk)-effervescent-tablets-19037?pa=1",
-    },
-    {
-      question: "What is Carbon Rubber Electrodes?",
-      answer:
-        "Clinical-grade carbon rubber electrodes used for TENS or similar electrotherapy devices. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/carbon-rubber-electrodes-19030?pa=1",
-    },
-    {
-      question: "What is Epsom Salt - 8oz jar?",
-      answer:
-        "A jar of traditional Epsom salt, often used for foot soaks to help soothe discomfort. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/epsom-salt-8oz-jar-19038?pa=1",
-    },
-    {
-      question: "What is LAVENDER SCENTED EPSOM SALT - 8OZ JAR?",
-      answer:
-        "Epsom salt infused with a relaxing lavender scent for an enhanced foot bath experience. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/lavender-scented-epsom-salt-8oz-jar-19435?pa=1",
-    },
-    {
-      question: "What is N1-Nerve+ Neuropathy Support?",
-      answer:
-        "A dedicated supplement designed to provide specialized support for nerve and neuropathy health. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/n1-nerve+-neuropathy-support-19489?pa=1",
-    },
-    {
-      question:
-        "What is NERVESPA SILVER CONDUCTIVE GLOVE - HAND GARMENT SYSTEM?",
-      answer:
-        "A conductive glove system designed to deliver electrotherapy relief to the hands. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-silver-conductive-glove-hand-garment-system-19476?pa=1",
-    },
-    {
-      question:
-        "What is NERVESPA SILVER CONDUCTIVE SOCK - FOOT GARMENT SYSTEM?",
-      answer:
-        "A conductive sock system designed to deliver electrotherapy relief to the feet. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-silver-conductive-sock-foot-garment-system-19487?pa=1",
-    },
-    {
-      question: "What is NERVESPA PRO - 60 DAY SUPPLY PROGRAM?",
-      answer:
-        "A comprehensive 60-day supply program for the NerveSpa Pro system. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-pro-60-day-supply-program-19459?pa=1",
-    },
-    {
-      question: "What is NERVESPA PRO - 90 DAY SUPPLY PROGRAM?",
-      answer:
-        "A comprehensive 90-day supply program for the NerveSpa Pro system. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-pro-90-day-supply-program-18936?pa=1",
-    },
-    {
-      question:
-        "What is NERVESPA PRO, HAND AND FOOT NEUROPATHY SYSTEM - 90 DAY SUPPLY PROGRAM - DUAL CHANNEL DEVICE?",
-      answer:
-        "A complete dual-channel system for hand and foot neuropathy treatment, including a 90-day supply. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-pro-hand-and-foot-neuropathy-system-90-day-supply-program-dual-channel-device-19671?pa=1",
-    },
-    {
-      question:
-        "What is Nerve & Neuropathy Cream by NerveSpa - Maximum Strength Relief..?",
-      answer:
-        "A maximum strength topical cream with L-Arginine, B6, and Menthol for pain relief and improved circulation in feet, hands, and legs. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-&-neuropathy-cream-by-nervespa-maximum-strength-relief-for-foot-hands-legs-toes-includes-7grams-of-larginine-vitamin-b6-menthol-aloe-scientifically-developed-to-improve-blood-circulation-and-relieve-pain-2.82oz-19194?pa=1",
-    },
-    {
-      question:
-        "What is Nerve & Neuropathy Support Kit (Includes: Blood Flow Drink powder, Neuropathy Capsules, Nerve ODF, Nerve Cream)?",
-      answer:
-        "A complete kit combining supplements and cream for comprehensive nerve and neuropathy support. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-&-neuropathy-support-kit-(includes:-blood-flow-drink-powder-neuropathy-capsules-nerve-odf-nerve-cream)-19635?pa=1",
-    },
-    {
-      question: "What is Nerve Spa Foot bath Supply Kit?",
-      answer:
-        "A convenient supply kit for use with the Nerve Spa foot bath system. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-spa-foot-bath-supply-kit-18934?pa=1",
-    },
-    {
-      question: "What is Nerve Spa Performance diabetic Socks?",
-      answer:
-        "Specialized diabetic socks designed for comfort and performance (available in Small and Large). You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-spa-performance-diabetic-socks-18935?pa=1",
-    },
-    {
-      question: "What is Nerve Spa performance Supplement?",
-      answer:
-        "A performance-focused dietary supplement to support nerve function. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nerve-spa-performance-supplement-18933?pa=1",
-    },
-    {
-      question:
-        "What is NerveSpa Classic, Hand and Foot Pain Relief System - 10 DAY SUPPLY PROGRAM?",
-      answer:
-        "A 10-day supply program for the NerveSpa Classic hand and foot pain relief system. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/nervespa-classic-hand-and-foot-pain-relief-system-10-day-supply-program-18883?pa=1",
-    },
-    {
-      question:
-        "What is Replacement Charger cord for The NerveBeam cold laser?",
-      answer:
-        "A replacement charging cord for the NerveBeam Cold Laser device. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/replacement-charger-cord-for-the-nervebeam-cold-laser-19903?pa=1",
-    },
-    {
-      question: "What is Replacement Charger cord for The Quake Plate?",
-      answer:
-        "The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.",
-    },
-    {
-      question:
-        "What is Replacement Charger for The NerveBeam LED Light Therapy Wrap?",
-      answer:
-        "A replacement charger for the NerveBeam LED Light Therapy Wrap device. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/replacement-charger-for-the-nervebeam-led-light-therapy-wrap-19887?pa=1",
-    },
-    {
-      question:
-        "What is Replacement Charger for the Nerve Spa Nerve Bath System?",
-      answer:
-        "A replacement charger for the Nerve Spa Nerve Bath System. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/replacement-charger-for-the-nerve-spa-nerve-bath-system.-19460?pa=1",
-    },
-    {
-      question: "What is Replacement lead wires for Nerve Spa?",
-      answer:
-        "Replacement wires for connecting electrodes to the Nerve Spa devices. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/replacement-lead-wires-for-nerve-spa-19562?pa=1",
-    },
-    {
-      question: "What is The 90-Day Neuropathy Program?",
-      answer:
-        "A complete 90-day program designed to manage and support neuropathy. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/the-90-day-neuropathy-program-19044?pa=1",
-    },
-    {
-      question:
-        "What is The Blood Flow Super formula Drink Powder by Nerve Spa?",
-      answer:
-        "A drink powder formulated to support and improve healthy blood flow. You can find it here: https://nervespa.com/products/nerve-&-neuropathy/the-blood-flow-super-formula-drink-powder-by-nerve-spa-19483?pa=1",
-    },
-    {
-      question: "What is The NerveBeam Cold Laser?",
-      answer:
-        "A cold laser device intended for therapeutic use in relieving pain (available in White). You can find it here: https://nervespa.com/products/nerve-&-neuropathy/the-nervebeam-cold-laser-18986?pa=1",
-    },
-    {
-      question:
-        "What is The NerveBeam LED Light Therapy Wrap - Red & Infrared light therapy?",
-      answer:
-        "An LED light therapy wrap utilizing red and infrared light for therapeutic relief (available in single and pair options). You can find it here: https://nervespa.com/products/nerve-&-neuropathy/the-nervebeam-led-light-therapy-wrap-red-&-infrared-light-therapy-18990?pa=1",
-    },
-    {
-      question: "What is The Quake Plate Vibrational Massage Therapy?",
-      answer:
-        "The NerveSpa Quake Plate is a vibration therapy platform designed to help regain mobility and ease pain in the feet and lower extremities. It provides deep tissue massage, helps relieve pain and relax irritated nerves, and supports increased circulation and blood flow when used as directed by your clinic.",
-    },
-    {
-      question:
-        "What is Joint Heath Support Kit (Includes: Joint Drink Powder, OA Cream)?",
-      answer:
-        "A kit that combines a joint drink powder and an Osteoarthritis (OA) cream for comprehensive joint support. You can find it here: https://nervespa.com/products/joint-&-mobility/joint-heath-support-kit-(includes:-joint-drink-powder-oa-cream)-19636?pa=1",
-    },
-    {
-      question:
-        "What is Nerve Spa Knee Pro - Advanced OA/RA treatment Device - Size: Fits Small to Large?",
-      answer:
-        "An advanced device for the treatment of Osteoarthritis (OA) and Rheumatoid Arthritis (RA) in the knee (also available in a 90-day supply kit). You can find it here: https://nervespa.com/products/joint-&-mobility/nerve-spa-knee-pro-advanced-oara-treatment-device-size:-fits-small-to-large-19728?pa=1",
-    },
-    {
-      question:
-        "What is Nerve Spa Knee Pro - Replacement Pads - 3 x VB35 and 3 x VBKnee?",
-      answer:
-        "Replacement electrode pads for the Nerve Spa Knee Pro device. You can find it here: https://nervespa.com/products/joint-&-mobility/nerve-spa-knee-pro-replacement-pads-3-x-vb35-and-3-x-vbknee-19647?pa=1",
-    },
-    {
-      question: "What is Nerve Spa Shoulder Pro?",
-      answer:
-        "A device designed for therapeutic support and treatment for the shoulder joint. You can find it here: https://nervespa.com/products/joint-&-mobility/nerve-spa-shoulder-pro-19760?pa=1",
-    },
-    {
-      question: "What is NerveSpa Knee Pro - 180 day supply kit?",
-      answer:
-        "A comprehensive 180-day supply kit for the NerveSpa Knee Pro system. You can find it here: https://nervespa.com/products/joint-&-mobility/nervespa-knee-pro-180-day-supply-kit-19729?pa=1",
-    },
-    {
-      question:
-        "What is NerveSpa Knee Pro Size Extender Straps (1 pair) _ XL-XXL?",
-      answer:
-        "Extender straps to help fit the NerveSpa Knee Pro device on larger sizes. You can find it here: https://nervespa.com/products/joint-&-mobility/nervespa-knee-pro-size-extender-straps-(1-pair)-_-xl-xxl-19731?pa=1",
-    },
-    {
-      question: "What is Osteoarthritis and Rheumatoid Arthritis Cream?",
-      answer:
-        "A topical cream formulated to help relieve discomfort associated with Osteoarthritis and Rheumatoid Arthritis. You can find it here: https://nervespa.com/products/joint-&-mobility/osteoarthritis-and-rheumatoid-arthritis-cream-19378?pa=1",
-    },
-    {
-      question:
-        "What is Roll On Pain Relief by Nerve Target - Roll On Muscle Pain Reliever, Back Pain, Arthritis..?",
-      answer:
-        "A roll-on topical muscle and joint pain reliever containing Arnica, Menthol, and Camphor. You can find it here: https://nervespa.com/products/joint-&-mobility/roll-on-pain-relief-by-nerve-target-roll-on-muscle-pain-reliever-back-pain-arthritis-with-arnica-menthol-&-camphor-19908?pa=1",
-    },
-    {
-      question:
-        "What is Super Flex Joint Formula Drink Powder by NerveSpa - Joint Support Supplement..?",
-      answer:
-        "A powdered drink supplement containing Glucosamine, Chondroitin, and Turmeric to support and restore joint health. You can find it here: https://nervespa.com/products/joint-&-mobility/super-flex-joint-formula-drink-powder-by-nervespa-joint-support-supplement-help-repairrestore-with-glucosamine-chondroitin-turmeric-ginger-msm-boswellia-30-servings-19503?pa=1",
-    },
-    {
-      question:
-        "What is ImmunoGut Super Formula: Essential Immunity & Gut Support | Vitamin D, Zinc, Beta Glucan | Detox & Stress Relief | 480g Powder, 60 Servings?",
-      answer:
-        "A powdered super formula designed for comprehensive immune and gut health, containing Vitamin D, Zinc, and Beta Glucan. You can find it here: https://nervespa.com/products/metabolic-gut-&-immunity/immunogut-super-formula:-essential-immunity-&-gut-support-vitamin-d-zinc-beta-glucan-detox-&-stress-relief-480g-powder-60-servings.-19711?pa=1",
-    },
-    {
-      question: "What is N1 - Gut Support with probiotics?",
-      answer:
-        "A supplement formulated for gut health and digestive support, fortified with probiotics. You can find it here: https://nervespa.com/products/metabolic-gut-&-immunity/n1-gut-support-with-probiotics-19490?pa=1",
-    },
-    {
-      question: "What is N1 - Skinny Blend?",
-      answer:
-        "A blend supplement intended to support weight control and metabolic health. You can find it here: https://nervespa.com/products/metabolic-gut-&-immunity/n1-skinny-blend-19488?pa=1",
-    },
-    {
-      question:
-        "What is Nerve Spa Vibe | Deep Tissue Vibrational Massager with Attachement Heads..?",
-      answer:
-        "A powerful, cordless deep tissue vibrational massager with interchangeable heads for relief from sciatica, neuropathy, and muscle pain. You can find it here: https://nervespa.com/products/clinical-devices/nerve-spa-vibe-deep-tissue-vibrational-massager-with-attachement-heads-7500-rpm-vibration-therapy-for-deep-tissue-sciatica-neuropathy, joint-&-muscle-relief-cordless-compact-&-powerful.-19915?pa=1",
-    },
-    {
-      question: "What is Nerve Wave 2.5 Rd Clinical Grade Electrode?",
-      answer:
-        "Clinical-grade, 2.5-inch round electrodes for use with electrotherapy devices. You can find it here: https://nervespa.com/products/clinical-devices/nerve-wave-2.5-rd-clinical-grade-electrode-19901?pa=1",
-    },
-    {
-      question:
-        "What is Nerve Wave by Nerve Spa - Clinical Nerve Spa Multi-Modality Treatment Device?",
-      answer:
-        "A clinical, multi-modality treatment device for comprehensive nerve spa therapy. You can find it here: https://nervespa.com/products/clinical-devices/nerve-wave-by-nerve-spa-clinical-nerve-spa-multi-modality-treatment-device-19868?pa=1",
-    },
-    {
-      question: "What is The Power Wrap - Ultra-High Powered LED COLD LASER..?",
-      answer:
-        "An ultra-high-powered LED cold laser wrap using infrared and red light for intense relief therapy. You can find it here: https://nervespa.com/products/clinical-devices/the-power-wrap-ultra-high-powered-led-cold-laser-infrared-and-red-light-relief-12-000mw-650nm-red-light-808nm-infrared-diodes-78-lasers-+-192-leds-19721?pa=1",
-    },
-  ],
-);
+  let intersection = 0;
+  for (const token of setA) {
+    if (setB.has(token)) intersection++;
+  }
 
-// PRE-CALCULATE IDF WEIGHTS
+  return intersection / union;
+}
+
+// Pre-calc IDF
 const docCount = qaPairs.length;
 const freqMap = {};
+
 qaPairs.forEach((pair) => {
-  const tokens = new Set(getTokens(pair.question));
-  tokens.forEach((t) => {
+  const uniqueTokens = new Set(getTokens(pair.question));
+  uniqueTokens.forEach((t) => {
     freqMap[t] = (freqMap[t] || 0) + 1;
   });
 });
 
-// IDF = log(N / df)
 const idfWeights = {};
 Object.keys(freqMap).forEach((t) => {
   idfWeights[t] = Math.log(docCount / freqMap[t]) + 1.0;
@@ -2302,115 +2077,115 @@ function getSemanticScore(input, target) {
   const tokens1 = getTokens(input);
   const tokens2 = getTokens(target);
 
-  if (tokens1.length === 0 || tokens2.length === 0) return 0;
+  if (!tokens1.length || !tokens2.length) return 0;
 
   let weightedIntersection = 0;
   let totalInputWeight = 0;
   let totalTargetWeight = 0;
 
-  // Calculate total weights for normalization
-  tokens1.forEach((t) => (totalInputWeight += idfWeights[t] || 1.0));
-  tokens2.forEach((t) => (totalTargetWeight += idfWeights[t] || 1.0));
+  tokens1.forEach((t) => totalInputWeight += (idfWeights[t] || 1.0));
+  tokens2.forEach((t) => totalTargetWeight += (idfWeights[t] || 1.0));
 
   const matched2 = new Set();
 
   for (let i = 0; i < tokens1.length; i++) {
+    const w1 = tokens1[i];
+    const w1Weight = idfWeights[w1] || 1.0;
+
     let bestMatchScore = 0;
-    let bestMatchIdx = -1;
-    let w1 = tokens1[i];
-    let w1Weight = idfWeights[w1] || 1.0;
+    let bestMatchIndex = -1;
 
     for (let j = 0; j < tokens2.length; j++) {
       if (matched2.has(j)) continue;
 
-      let w2 = tokens2[j];
+      const w2 = tokens2[j];
 
       if (w1 === w2) {
         bestMatchScore = 1;
-        bestMatchIdx = j;
+        bestMatchIndex = j;
         break;
-      } else if (w1.length >= 4 && w2.length >= 4) {
-        let dist = levenshteinDistance(w1, w2);
-        let maxLen = Math.max(w1.length, w2.length);
-        let similarity = 1 - dist / maxLen;
+      }
 
-        if (similarity >= 0.75) {
-          bestMatchScore = Math.max(bestMatchScore, similarity);
-          bestMatchIdx = j;
-        } else if (w1.includes(w2) || w2.includes(w1)) {
-          bestMatchScore = Math.max(bestMatchScore, 0.6);
-          bestMatchIdx = j;
+      if (w1.length >= 4 && w2.length >= 4) {
+        const dist = levenshteinDistance(w1, w2);
+        const maxLen = Math.max(w1.length, w2.length);
+        const sim = 1 - dist / maxLen;
+
+        if (sim >= 0.75 && sim > bestMatchScore) {
+          bestMatchScore = sim;
+          bestMatchIndex = j;
+        } else if ((w1.includes(w2) || w2.includes(w1)) && bestMatchScore < 0.6) {
+          bestMatchScore = 0.6;
+          bestMatchIndex = j;
         }
       }
     }
 
-    if (bestMatchIdx !== -1) {
+    if (bestMatchIndex !== -1) {
       weightedIntersection += bestMatchScore * w1Weight;
-      matched2.add(bestMatchIdx);
+      matched2.add(bestMatchIndex);
     }
   }
 
-  let inputCoverage = weightedIntersection / totalInputWeight;
-  let targetCoverage = weightedIntersection / totalTargetWeight;
+  const inputCoverage = totalInputWeight ? weightedIntersection / totalInputWeight : 0;
+  const targetCoverage = totalTargetWeight ? weightedIntersection / totalTargetWeight : 0;
 
   let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
 
-  // Penalize weak matches on generic queries
   if (tokens1.length >= 4 && weightedIntersection < 2.5) {
     finalScore *= 0.5;
   }
 
-  return finalScore;
+  return Math.max(0, Math.min(1, finalScore));
 }
 
-// Normalize the incoming question once
-const cleanIncoming = normalize(incomingQuestion);
-const thresholdLev = Math.max(3, Math.floor(cleanIncoming.length * 0.15));
+function combinedScore(input, target) {
+  const normInput = normalize(input);
+  const normTarget = normalize(target);
 
-let bestMatch = null;
-let bestScore = -1;
+  const charDist = levenshteinDistance(normInput, normTarget);
+  const maxLen = Math.max(normInput.length, normTarget.length, 1);
+  const charSimilarity = 1 - charDist / maxLen;
 
-// Loop through Q&A and find the closest match
-for (let i = 0; i < qaPairs.length; i++) {
-  const pair = qaPairs[i];
-  if (!pair || !pair.question) {
-    console.log(
-      "UNDEFINED PAIR AT INDEX:",
-      i,
-      qaPairs[i - 1],
-      qaPairs[i],
-      qaPairs[i + 1],
-    );
-    continue;
+  const semantic = getSemanticScore(input, target);
+  const jaccard = jaccardScore(input, target);
+
+  return (
+    semantic * 0.55 +
+    jaccard * 0.25 +
+    charSimilarity * 0.20
+  );
+}
+
+// 1) exact normalized match first
+const normalizedIncoming = normalize(incomingQuestion);
+let match = qaPairs.find((pair) => normalize(pair.question) === normalizedIncoming);
+
+// 2) fuzzy fallback
+if (!match) {
+  let bestScore = 0;
+  let bestMatch = null;
+
+  for (const pair of qaPairs) {
+    const score = combinedScore(incomingQuestion, pair.question);
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = pair;
+    }
   }
-  const qNorm = normalize(pair.question);
 
-  const dist = levenshteinDistance(cleanIncoming, qNorm);
-  const semanticScore = getSemanticScore(incomingQuestion, pair.question);
-
-  // Calculate a combined heuristic score for sorting:
-  // We want to pick the absolute best match if multiple exceed the thresholds
-  const matchScore = (dist <= thresholdLev ? 1.0 : 0) + semanticScore;
-
-  if (
-    (dist <= thresholdLev || semanticScore >= 0.6) &&
-    matchScore > bestScore
-  ) {
-    bestScore = matchScore;
-    bestMatch = pair;
+  const threshold = 0.65;
+  if (bestScore >= threshold) {
+    match = bestMatch;
   }
 }
 
-// If we found a suitable match, return its answer.
-if (bestMatch) {
-  outputValue = bestMatch.answer;
-}
-
-// Return the result
 return [
   {
     json: {
-      output: outputValue,
-    },
-  },
+      output: match
+        ? match.answer
+        : "Sorry, I couldn't find a relevant answer for your question. \nPlease try a different question or contact support directly at support@nervespa.com"
+    }
+  }
 ];

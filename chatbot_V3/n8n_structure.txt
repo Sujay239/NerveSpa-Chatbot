@@ -1,0 +1,44 @@
+Nodes:
+  0. Webhook (n8n-nodes-base.webhook) [a8aa4c28-0291-4070-a1f3-2a661b3c6f8d]
+  1. Edit Fields (n8n-nodes-base.set) [cfbf3a32-61ae-4b3e-b223-d85b77264471]
+  2. HTTP Request (n8n-nodes-base.httpRequest) [4714a078-7068-4504-86c3-01bc9c4af769]
+  3. If (n8n-nodes-base.if) [564e352c-e845-4368-95b6-fc6860ec8c39]
+  4. Predefined questions (n8n-nodes-base.code) [b42f81e1-12f3-405c-8469-a3e466586b11]
+  5. Code (n8n-nodes-base.code) [5626457e-a789-4bbc-a722-d9c6fda99979]
+  6. Respond to Webhook (n8n-nodes-base.respondToWebhook) [13ed12f6-5d45-4085-b282-f19274fb173c]
+  7. Supabase search (Predefined) (n8n-nodes-base.httpRequest) [bb87f9e9-83a6-428d-853a-58923f7318dd]
+  8. Edit Fields1 (n8n-nodes-base.set) [6eb77524-cd24-42bc-81bf-239f5662e6ef]
+  9. Code1 (n8n-nodes-base.code) [123d2861-2183-40f8-bfc6-af105131717c]
+  10. Basic LLM Chain (@n8n/n8n-nodes-langchain.chainLlm) [2ae1fd97-6521-4e50-8bb0-51cba1dbc3fd]
+  11. OpenAI Chat Model (@n8n/n8n-nodes-langchain.lmChatOpenAi) [cd5bf400-7ddb-499d-8256-8277140d9c90]
+  12. Create a row (n8n-nodes-base.supabase) [7dcd5803-c71b-4800-86d5-84e3be6c2890]
+  13. Get many rows (n8n-nodes-base.supabase) [8df04254-7cef-417d-b4ba-5d39b7340c5b]
+  14. Code2 (n8n-nodes-base.code) [a0013e33-660e-4bf6-a3f9-28672155b4bf]
+  15. Code3 (n8n-nodes-base.code) [36755140-147d-4778-8f91-955dd4a119ff]
+  16. Limit (n8n-nodes-base.limit) [558a46ce-da3b-46a6-b3cb-a1db5b4843e0]
+  17. Merge (n8n-nodes-base.merge) [56ab6096-02ab-4859-b86a-6a9ad19e959b]
+  18. Supabase search (Knowledge Base) (n8n-nodes-base.httpRequest) [650f7d5f-b943-4573-a841-e4908f6c4e76]
+  19. Merge Knowledge (n8n-nodes-base.merge) [c8ca86a2-d8b3-4a46-a58c-977cbbe63703]
+
+Connections:
+  Webhook --[main][0]--> Predefined questions
+  Edit Fields --[main][0]--> Create a row
+  Edit Fields --[main][0]--> HTTP Request
+  Predefined questions --[main][0]--> If
+  If --[main][0]--> Code
+  If --[main][1]--> Edit Fields
+  Code --[main][0]--> Respond to Webhook
+  HTTP Request --[main][0]--> Supabase search (Predefined)
+  HTTP Request --[main][0]--> Supabase search (Knowledge Base)
+  OpenAI Chat Model --[ai_languageModel][0]--> Basic LLM Chain
+  Code1 --[main][0]--> Basic LLM Chain
+  Create a row --[main][0]--> Get many rows
+  Get many rows --[main][0]--> Code2
+  Code2 --[main][0]--> Code3
+  Code3 --[main][0]--> Merge
+  Basic LLM Chain --[main][0]--> Respond to Webhook
+  Limit --[main][0]--> Merge
+  Merge --[main][0]--> Code1
+  Supabase search (Predefined) --[main][0]--> Merge Knowledge
+  Supabase search (Knowledge Base) --[main][0]--> Merge Knowledge
+  Merge Knowledge --[main][0]--> Limit
