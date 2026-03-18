@@ -277,7 +277,8 @@ const qaPairs = [
       "Warm water allows full circumferential contact around the hands or feet, so current is distributed evenly rather than just through small pad areas. This helps improve comfort, consistency of stimulation, and engagement of more nerve endings compared to pad-only approaches.",
   },
   {
-    question: "What improvements do patients report with the NerveSpa Nerve Bath?",
+    question:
+      "What improvements do patients report with the NerveSpa Nerve Bath?",
     answer:
       "Many patients report reduced tingling, burning, numbness, coldness, and stiffness in their feet or hands, along with improved circulation, comfort, and sleep over time. Results vary by individual, condition severity, and how consistently the program is followed.",
   },
@@ -287,7 +288,8 @@ const qaPairs = [
       "Each session uses warm water plus Epsom salt and one effervescent tablet per side. These consumables are replaced as needed. The Quick Guide also lists the required consumables for each session: https://drive.google.com/file/d/1ABWl8aU_hrvUSoRkmb3GoHl-rhbhTXIb/view?usp=sharing",
   },
   {
-    question: "How are the NerveSpa conductive foot pads and gloves used in therapy?",
+    question:
+      "How are the NerveSpa conductive foot pads and gloves used in therapy?",
     answer:
       "Patients wear the conductive pads or gloves over the targeted area, moisten them slightly, and connect them to the NerveSpa unit. Providers guide placement and settings to help ensure safe and effective stimulation as part of the overall program.",
   },
@@ -672,12 +674,14 @@ const qaPairs = [
       "Patients may feel gentle stimulation or compression around the shoulder. Sensations should be comfortable and adjustable. Pain or discomfort should be discussed with the provider.",
   },
   {
-    question: "What joint supplements are commonly used in the Joint & Mobility Program?",
+    question:
+      "What joint supplements are commonly used in the Joint & Mobility Program?",
     answer:
       "Depending on provider guidance, joint supplementation may include Super Flex Joint Formula \u2013 Rebuild + Maintain, OA & RA Relief Cream, and Nerve Target Roll-On. These products are used to support joint comfort and mobility alongside device-based therapies.",
   },
   {
-    question: "When should Super Flex Joint Formula \u2013 Rebuild + Maintain be used?",
+    question:
+      "When should Super Flex Joint Formula \u2013 Rebuild + Maintain be used?",
     answer:
       "Super Flex Joint Formula is typically taken daily as directed by the provider. It is intended to support joint structure and comfort as part of the overall Joint & Mobility Program.",
   },
@@ -752,7 +756,8 @@ const qaPairs = [
       "The Quick Start Guide states intensity should **always feel comfortable to mild\u2014never strong**.",
   },
   {
-    question: "What is the recommended schedule for NerveWave regenerative pain control?",
+    question:
+      "What is the recommended schedule for NerveWave regenerative pain control?",
     answer:
       "The Quick Start Guide lists **Regenerative Pain Control** usage guidance as **4\u20135x/week over the course of 26 weeks**, including use for degenerative joint conditions (such as OA/RA of the knee, hand, shoulder) and intractable back pain, under provider guidance.",
   },
@@ -762,7 +767,8 @@ const qaPairs = [
       "The Quick Start Guide lists **Neuropathy** usage guidance as **5x/week over 60\u201390 days**. It also notes: for the first **60\u201390 uses**, use the **Primary and Secondary phases**, ideally **two treatments per day** (1 primary + 1 secondary). After the initial uses, it notes a **maintenance phase** schedule such as **2\u20133 times/week for 6 weeks**, and repeating consistency **about 1x/year** (per provider guidance).",
   },
   {
-    question: "What is the recommended schedule for NerveWave restorative recovery?",
+    question:
+      "What is the recommended schedule for NerveWave restorative recovery?",
     answer:
       "The Quick Start Guide lists **Restorative Recovery** usage guidance as **4\u20135x/week over the course of 13\u201320 weeks**, including use for post-surgical or post-injury pain and muscle rehabilitation (Rehabilitative Relief) and for muscular-derived pain conditions (Muscle Activation), under provider guidance.",
   },
@@ -777,7 +783,8 @@ const qaPairs = [
       "Yes. The Quick Start Guide includes accessory guidance such as a **scraper tool (gua sha scraper)**, **earlobe clips** (for vagus nerve stimulation\u2014both clips on the **same ear**, not one on each ear), **pre-gelled electrodes** (keep pads **1\u20136 inches apart**), **carbon rubber pads**, and **foot pads** (sold separately).",
   },
   {
-    question: "What is the recommended schedule for NerveWave vagus nerve therapy?",
+    question:
+      "What is the recommended schedule for NerveWave vagus nerve therapy?",
     answer:
       "The Quick Start Guide lists **Vagus Nerve Therapy** usage guidance as **10 minutes, 1\u20132x daily as needed**, and notes that longer durations may be used when guided by the timer and provider direction.",
   },
@@ -797,7 +804,8 @@ const qaPairs = [
       "1) Confirm the lock/unlock icon at the top of the screen is set to unlocked. 2) Confirm lead wires are plugged in, carbon rubber pads are connected (one in each water bay), and feet are inserted\u2014intensity won\u2019t engage until the user is engaged. 3) Make sure hands are not wet when touching the touch screen. 4) Use a light tap\u2014don\u2019t press the buttons too hard. 5) Confirm the device was not dropped in water. 6) Shut down the device, charge for 24 hours, and restart.",
   },
   {
-    question: "What if there is no stimulation or weak stimulation in the Nerve Bath?",
+    question:
+      "What if there is no stimulation or weak stimulation in the Nerve Bath?",
     answer:
       "1) Confirm lead wires are plugged in, carbon rubber pads are connected (one in each water bay), and feet are inserted\u2014intensity won\u2019t engage until the user is engaged. 2) If neuropathy is late stage, you may have reduced sensation\u2014test by inserting your hands into the bays with the intensity up (don\u2019t over-stimulate your feet by turning it up too high). 3) Add more salt to the water. 4) Replace lead wires if the device is over 6 months old.",
   },
@@ -807,12 +815,13 @@ const qaPairs = [
       "1) Charge the device for 24 hours. 2) Hold down the power button on the side of the device for 3\u20135 seconds.",
   },
   {
-    question: "What if stimulation stops or the program ends short of 30 minutes?",
-    answer:
-      "Charge the device for 24 hours.",
+    question:
+      "What if stimulation stops or the program ends short of 30 minutes?",
+    answer: "Charge the device for 24 hours.",
   },
   {
-    question: "What should I do if the LED Wrap lights are flickering or powering down early?",
+    question:
+      "What should I do if the LED Wrap lights are flickering or powering down early?",
     answer:
       "Make sure the cord is firmly connected to the wall and into the power brick.",
   },
@@ -838,8 +847,7 @@ const qaPairs = [
   },
   {
     question: "What should I know before using the Quake Plate?",
-    answer:
-      "Do not stand on the Quake Plate.",
+    answer: "Do not stand on the Quake Plate.",
   },
   {
     question: "What if the Quake Plate makes a loud grinding noise?",
@@ -857,7 +865,8 @@ const qaPairs = [
       "The Quake Plate remote uses a standard coin-style battery. Replace the battery if the remote becomes unresponsive.",
   },
   {
-    question: "What should I do if stimulation feels weak with conductive socks or gloves?",
+    question:
+      "What should I do if stimulation feels weak with conductive socks or gloves?",
     answer:
       "Lightly moisten the conductive garments before use and confirm proper leadwire connection. Weak stimulation is often related to dryness or loose connections.",
   },
@@ -902,7 +911,8 @@ const qaPairs = [
       "Ensure the device is charged and the power button is pressed firmly. If it still does not turn on, discontinue use and contact support.",
   },
   {
-    question: "What should I do if my skin feels too sensitive after PowerWrap use?",
+    question:
+      "What should I do if my skin feels too sensitive after PowerWrap use?",
     answer:
       "Stop treatment and allow the skin to return to normal before resuming. Reduce power level or frequency as directed by your provider.",
   },
@@ -987,7 +997,8 @@ const qaPairs = [
       "Press the power button to cycle through the preset modes. The device will automatically advance through its programmed sequence.",
   },
   {
-    question: "What if I feel little or no sensation during a Nerve Bath session?",
+    question:
+      "What if I feel little or no sensation during a Nerve Bath session?",
     answer:
       "Check water level, electrode placement, and connection cables. Sensation may vary and should be guided by provider instructions.",
   },
@@ -1217,7 +1228,8 @@ const qaPairs = [
       "Lightly moisten the conductive garments with water before starting the session. Proper moisture helps ensure consistent stimulation.",
   },
   {
-    question: "What if stimulation cuts in and out when using conductive garments?",
+    question:
+      "What if stimulation cuts in and out when using conductive garments?",
     answer:
       "Check lead wire connections and ensure the garments are evenly moistened. Inconsistent stimulation is often related to connection or moisture issues.",
   },
@@ -1307,7 +1319,8 @@ const qaPairs = [
       "Contact support if troubleshooting steps do not resolve the issue or if the device does not function as expected.",
   },
   {
-    question: "What if there is no sensation during a NerveSpa Nerve Bath session?",
+    question:
+      "What if there is no sensation during a NerveSpa Nerve Bath session?",
     answer:
       "Check that lead wires are connected properly, salts and tablets are added, and intensity is increased gradually until a mild sensation is felt.",
   },
@@ -1402,17 +1415,20 @@ const qaPairs = [
       "Clinics can measure engagement through usage consistency, session completion, and patient participation over time. NerveSpa supports clinics by providing non-diagnostic usage insights that help assess adherence and engagement trends.",
   },
   {
-    question: "What non-diagnostic indicators can providers monitor when using NerveSpa?",
+    question:
+      "What non-diagnostic indicators can providers monitor when using NerveSpa?",
     answer:
       "Providers may monitor patient-reported comfort, tolerance, functional ease, and overall experience during use. These indicators are observational and experiential, not diagnostic or treatment outcomes.",
   },
   {
-    question: "How does NerveSpa support patient-reported comfort or function tracking?",
+    question:
+      "How does NerveSpa support patient-reported comfort or function tracking?",
     answer:
       "NerveSpa supports clinics by enabling consistent use routines and optional documentation of patient feedback related to comfort and daily function, as determined by the provider\u2019s clinical workflow.",
   },
   {
-    question: "Can clinics document changes in patient experience over time with NerveSpa?",
+    question:
+      "Can clinics document changes in patient experience over time with NerveSpa?",
     answer:
       "Yes. Clinics may document patient-reported experiences over time using their own clinical notes or systems. NerveSpa does not diagnose or treat conditions but supports structured, repeatable use.",
   },
@@ -1422,32 +1438,38 @@ const qaPairs = [
       "NerveSpa systems may provide usage-related information such as session duration or frequency, depending on configuration. This information is intended for operational insight, not medical evaluation.",
   },
   {
-    question: "How can providers discuss progress with patients without making medical claims?",
+    question:
+      "How can providers discuss progress with patients without making medical claims?",
     answer:
       "Providers should focus on patient-reported experiences, comfort, and engagement rather than outcomes or diagnoses. Discussions should emphasize support, consistency, and overall wellness experience.",
   },
   {
-    question: "What types of patient feedback are most commonly reported with NerveSpa use?",
+    question:
+      "What types of patient feedback are most commonly reported with NerveSpa use?",
     answer:
       "Feedback often relates to comfort during sessions, ease of use, relaxation, and overall experience. Individual responses vary, and feedback should be documented at the provider\u2019s discretion.",
   },
   {
-    question: "How should front-desk staff explain NerveSpa to patients in simple terms?",
+    question:
+      "How should front-desk staff explain NerveSpa to patients in simple terms?",
     answer:
       "Staff can explain NerveSpa as a clinic-guided wellness technology designed to support nerve-focused comfort and relaxation as part of a broader care plan.",
   },
   {
-    question: "What should staff say if a patient asks whether NerveSpa replaces medical treatment?",
+    question:
+      "What should staff say if a patient asks whether NerveSpa replaces medical treatment?",
     answer:
       "Staff should clarify that NerveSpa does not replace medical treatment and is intended to support wellness alongside provider-directed care.",
   },
   {
-    question: "How should staff respond if a patient asks whether NerveSpa is FDA approved?",
+    question:
+      "How should staff respond if a patient asks whether NerveSpa is FDA approved?",
     answer:
       "Staff may state that NerveSpa is produced by an FDA-registered manufacturer and used under provider guidance, without making claims about treatment or cure.",
   },
   {
-    question: "What should staff say if a patient asks about insurance coverage?",
+    question:
+      "What should staff say if a patient asks about insurance coverage?",
     answer:
       "Staff should explain that coverage varies by clinic and payer, and patients should consult the clinic directly for billing or reimbursement information.",
   },
@@ -1457,27 +1479,32 @@ const qaPairs = [
       "Staff can explain that some clinics may recommend guided home use, while others focus on in-clinic protocols, based on provider discretion.",
   },
   {
-    question: "What is the best way for staff to set expectations before a patient begins using NerveSpa?",
+    question:
+      "What is the best way for staff to set expectations before a patient begins using NerveSpa?",
     answer:
       "Staff should emphasize comfort, gradual familiarization, and provider guidance, while avoiding promises of outcomes.",
   },
   {
-    question: "How should staff handle common patient misconceptions about NerveSpa?",
+    question:
+      "How should staff handle common patient misconceptions about NerveSpa?",
     answer:
       "Staff should correct misconceptions by reinforcing that NerveSpa supports wellness and comfort and is not a diagnostic or treatment device.",
   },
   {
-    question: "How is NerveSpa different from consumer-grade nerve stimulation devices?",
+    question:
+      "How is NerveSpa different from consumer-grade nerve stimulation devices?",
     answer:
       "NerveSpa is designed for clinical environments, emphasizing provider-guided use, consistency, and integration into care workflows rather than direct-to-consumer self-treatment.",
   },
   {
-    question: "What makes NerveSpa a clinic-grade system rather than a retail product?",
+    question:
+      "What makes NerveSpa a clinic-grade system rather than a retail product?",
     answer:
       "NerveSpa is distributed through professional channels and intended for use under clinical guidance, with systems and support designed for healthcare settings.",
   },
   {
-    question: "Why do clinics choose NerveSpa over generic home wellness devices?",
+    question:
+      "Why do clinics choose NerveSpa over generic home wellness devices?",
     answer:
       "Clinics choose NerveSpa for its structured approach, professional support, and alignment with clinical workflows and patient education.",
   },
@@ -1492,7 +1519,8 @@ const qaPairs = [
       "The system emphasizes consistency, ease of use, patient comfort, and provider oversight, supporting repeatable and reliable wellness routines.",
   },
   {
-    question: "How does NerveSpa support consistency and repeatability in patient use?",
+    question:
+      "How does NerveSpa support consistency and repeatability in patient use?",
     answer:
       "NerveSpa supports repeatable use through standardized protocols and clear guidance established by the clinic.",
   },
@@ -1502,27 +1530,32 @@ const qaPairs = [
       "Clinics should pause use if a patient reports discomfort, unexpected reactions, or if clinical judgment indicates reassessment is appropriate.",
   },
   {
-    question: "What should providers do if a patient reports discomfort during use?",
+    question:
+      "What should providers do if a patient reports discomfort during use?",
     answer:
       "Providers should stop the session, assess the situation, and determine next steps based on professional judgment and clinic protocols.",
   },
   {
-    question: "When should a clinic contact NerveSpa support versus handling an issue internally?",
+    question:
+      "When should a clinic contact NerveSpa support versus handling an issue internally?",
     answer:
       "Clinics should contact NerveSpa support for device-related questions or technical issues, while clinical decisions remain the responsibility of the provider.",
   },
   {
-    question: "What situations require clinical judgment before continuing NerveSpa use?",
+    question:
+      "What situations require clinical judgment before continuing NerveSpa use?",
     answer:
       "Any changes in patient tolerance, reported discomfort, or clinical context should prompt provider review before continuing use.",
   },
   {
-    question: "Are there any patient scenarios where NerveSpa may not be appropriate?",
+    question:
+      "Are there any patient scenarios where NerveSpa may not be appropriate?",
     answer:
       "Appropriateness is determined by the provider based on individual patient circumstances and clinical discretion.",
   },
   {
-    question: "How does NerveSpa support safe use alongside other clinical modalities?",
+    question:
+      "How does NerveSpa support safe use alongside other clinical modalities?",
     answer:
       "NerveSpa is designed to complement other modalities, with integration determined by provider judgment and clinic protocols.",
   },
@@ -1532,17 +1565,20 @@ const qaPairs = [
       "Availability may vary by region. Clinics outside the U.S. may contact NerveSpa to inquire about current options.",
   },
   {
-    question: "Are international certifications or markets planned for NerveSpa?",
+    question:
+      "Are international certifications or markets planned for NerveSpa?",
     answer:
       "NerveSpa evaluates expansion opportunities based on regulatory requirements, clinical demand, and operational readiness.",
   },
   {
-    question: "Can clinics outside the U.S. request information or express interest?",
+    question:
+      "Can clinics outside the U.S. request information or express interest?",
     answer:
       "Yes. Clinics may contact NerveSpa to request information and discuss potential availability in their region.",
   },
   {
-    question: "How does NerveSpa evaluate expansion into new regions or care settings?",
+    question:
+      "How does NerveSpa evaluate expansion into new regions or care settings?",
     answer:
       "Expansion is evaluated based on regulatory compliance, clinical alignment, and the ability to support providers effectively.",
   },
@@ -1748,13 +1784,11 @@ const qaPairs = [
   },
   {
     question: "phone number",
-    answer:
-      "Phone \u2013 1-800-239-7880 (available during business hours)",
+    answer: "Phone \u2013 1-800-239-7880 (available during business hours)",
   },
   {
     question: "email id",
-    answer:
-      "Email \u2013 support@nervespa.com",
+    answer: "Email \u2013 support@nervespa.com",
   },
   {
     question: "Where can I read your privacy policy?",
@@ -1823,8 +1857,7 @@ const qaPairs = [
   },
   {
     question: "Do the carbon rubber pads need replaced?",
-    answer:
-      "Typically no, the carbon rubber pads do not need to be replaced.",
+    answer: "Typically no, the carbon rubber pads do not need to be replaced.",
   },
   {
     question: "How often should I use the NerveSpa?",
@@ -1837,7 +1870,8 @@ const qaPairs = [
       "Classic models have modes A and B; Pro models have A, B, and C. A mode: micro/TENS (pain relief + therapeutic). B and C modes: micro/galvanic (therapeutic). Programs auto-run and shut off after 30 minutes. You can skip A and use B/C for greater therapeutic outcome if not treating immediate symptomatic pain.",
   },
   {
-    question: "Why is it recommended to rotate the pads from treatment to treatment?",
+    question:
+      "Why is it recommended to rotate the pads from treatment to treatment?",
     answer:
       "Rotating pads alternates the entry/exit pathway of the monophasic waveform so each foot is treated equally. The program also changes to biphasic at the halfway point to offload charge buildup. Pads should be submerged in water (they do not need to touch the foot).",
   },
@@ -1858,38 +1892,31 @@ const qaPairs = [
   },
   {
     question: "What is the HCPCS code for the NerveSpa?",
-    answer:
-      "The billing code (HCPCS code) is E0720",
+    answer: "The billing code (HCPCS code) is E0720",
   },
   {
     question: "Can you explain what the NerveSpa system actually is?",
-    answer:
-      "Please contact support for more details.",
+    answer: "Please contact support for more details.",
   },
   {
     question: "What if my skin feels too sensitive after PowerWrap use?",
-    answer:
-      "Please contact support for more details.",
+    answer: "Please contact support for more details.",
   },
   {
     question: "What if the Nerve Bath unit does not turn on?",
-    answer:
-      "Please contact support for more details.",
+    answer: "Please contact support for more details.",
   },
   {
     question: "What if stimulation feels too weak?",
-    answer:
-      "Please contact support for more details.",
+    answer: "Please contact support for more details.",
   },
   {
     question: "Where do I download the user manual for Shoulder Pro",
-    answer:
-      "Please contact support for more details.",
+    answer: "Please contact support for more details.",
   },
   {
     question: "Do you ship to Canada?",
-    answer:
-      "Please contact support for more details.",
+    answer: "Please contact support for more details.",
   },
   {
     question: "Can you suggest me products?",
@@ -1936,11 +1963,32 @@ const qaPairs = [
     answer:
       "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
   },
+
   {
     question: "Which NerveSpa product is right for me?",
     answer:
       "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  }
+  },
+  {
+    question: "Who are the doctors or clinicians associated with NerveSpa?",
+    answer:
+      "NerveSpa is part of Pain Management Technologies (PMT) and is positioned as a provider-guided therapeutic platform used by clinics nationwide. The website features testimonials and clinic-use references from clinicians including Dr. James P. Perkins, DC, Dr. Corey Brumbaugh, DC, Dr. Alyse Duffer, DC, Dr. Clint Freeman, DC, and others who integrate NerveSpa into patient care plans.",
+  },
+  {
+    question: "What NerveSpa products are recommended for knee joint pain?",
+    answer:
+      "NerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.",
+  },
+  {
+    question: "What NerveSpa products are recommended for shoulder joint pain?",
+    answer:
+      "NerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.",
+  },
+  {
+    question: "What NerveSpa products are recommended for general joint pain like arms or other joints?",
+    answer:
+      "Super Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.",
+  },
 ];
 
 // Synonym map
@@ -2043,11 +2091,66 @@ const synonyms = {
 
 // Stop words
 const stopWords = new Set([
-  "a","an","and","are","as","at","be","but","by","for","if","in","into","is","it",
-  "no","of","on","or","such","that","the","their","then","there","these","they",
-  "this","to","was","will","with","do","does","did","can","could","should","would",
-  "i","you","he","she","we","my","your","his","her","our","how","what","why","where",
-  "when","who","has","been","hold","u","s"
+  "a",
+  "an",
+  "and",
+  "are",
+  "as",
+  "at",
+  "be",
+  "but",
+  "by",
+  "for",
+  "if",
+  "in",
+  "into",
+  "is",
+  "it",
+  "no",
+  "of",
+  "on",
+  "or",
+  "such",
+  "that",
+  "the",
+  "their",
+  "then",
+  "there",
+  "these",
+  "they",
+  "this",
+  "to",
+  "was",
+  "will",
+  "with",
+  "do",
+  "does",
+  "did",
+  "can",
+  "could",
+  "should",
+  "would",
+  "i",
+  "you",
+  "he",
+  "she",
+  "we",
+  "my",
+  "your",
+  "his",
+  "her",
+  "our",
+  "how",
+  "what",
+  "why",
+  "where",
+  "when",
+  "who",
+  "has",
+  "been",
+  "hold",
+  "u",
+  "s",
 ]);
 
 function normalize(text) {
@@ -2060,7 +2163,10 @@ function normalize(text) {
     .replace(/\s+/g, " ")
     .trim();
 
-  let words = base.split(" ").filter(Boolean).map((w) => synonyms[w] || w);
+  let words = base
+    .split(" ")
+    .filter(Boolean)
+    .map((w) => synonyms[w] || w);
   return words.join(" ").trim();
 }
 
@@ -2092,7 +2198,7 @@ function levenshteinDistance(a, b) {
           : Math.min(
               matrix[i - 1][j] + 1,
               matrix[i][j - 1] + 1,
-              matrix[i - 1][j - 1] + 1
+              matrix[i - 1][j - 1] + 1,
             );
     }
   }
@@ -2141,8 +2247,8 @@ function getSemanticScore(input, target) {
   let totalInputWeight = 0;
   let totalTargetWeight = 0;
 
-  tokens1.forEach((t) => totalInputWeight += (idfWeights[t] || 1.0));
-  tokens2.forEach((t) => totalTargetWeight += (idfWeights[t] || 1.0));
+  tokens1.forEach((t) => (totalInputWeight += idfWeights[t] || 1.0));
+  tokens2.forEach((t) => (totalTargetWeight += idfWeights[t] || 1.0));
 
   const matched2 = new Set();
 
@@ -2172,7 +2278,10 @@ function getSemanticScore(input, target) {
         if (sim >= 0.75 && sim > bestMatchScore) {
           bestMatchScore = sim;
           bestMatchIndex = j;
-        } else if ((w1.includes(w2) || w2.includes(w1)) && bestMatchScore < 0.6) {
+        } else if (
+          (w1.includes(w2) || w2.includes(w1)) &&
+          bestMatchScore < 0.6
+        ) {
           bestMatchScore = 0.6;
           bestMatchIndex = j;
         }
@@ -2185,8 +2294,12 @@ function getSemanticScore(input, target) {
     }
   }
 
-  const inputCoverage = totalInputWeight ? weightedIntersection / totalInputWeight : 0;
-  const targetCoverage = totalTargetWeight ? weightedIntersection / totalTargetWeight : 0;
+  const inputCoverage = totalInputWeight
+    ? weightedIntersection / totalInputWeight
+    : 0;
+  const targetCoverage = totalTargetWeight
+    ? weightedIntersection / totalTargetWeight
+    : 0;
 
   let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
 
@@ -2208,16 +2321,14 @@ function combinedScore(input, target) {
   const semantic = getSemanticScore(input, target);
   const jaccard = jaccardScore(input, target);
 
-  return (
-    semantic * 0.55 +
-    jaccard * 0.25 +
-    charSimilarity * 0.20
-  );
+  return semantic * 0.55 + jaccard * 0.25 + charSimilarity * 0.2;
 }
 
 // 1) exact normalized match first
 const normalizedIncoming = normalize(incomingQuestion);
-let match = qaPairs.find((pair) => normalize(pair.question) === normalizedIncoming);
+let match = qaPairs.find(
+  (pair) => normalize(pair.question) === normalizedIncoming,
+);
 
 // 2) fuzzy fallback
 if (!match) {
@@ -2243,7 +2354,7 @@ return [
     json: {
       output: match
         ? match.answer
-        : "Sorry, I couldn't find a relevant answer for your question. \nPlease try a different question or contact support directly at support@nervespa.com"
-    }
-  }
+        : "Sorry, I couldn't find a relevant answer for your question. \nPlease try a different question or contact support directly at support@nervespa.com",
+    },
+  },
 ];

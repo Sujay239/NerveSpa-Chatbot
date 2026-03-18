@@ -1,6 +1,8 @@
 // ================= INPUT =================
-const userQuestion = $json.query?.chatInput || $input.first()?.json?.query?.chatInput || "";
-const sessionId = $json.query?.sessionId || $input.first()?.json?.query?.sessionId || "";
+const userQuestion =
+  $json.query?.chatInput || $input.first()?.json?.query?.chatInput || "";
+const sessionId =
+  $json.query?.sessionId || $input.first()?.json?.query?.sessionId || "";
 
 // ================= PREDEFINED QUESTIONS =================
 const predefinedQuestions = [
@@ -393,7 +395,11 @@ const predefinedQuestions = [
   "Suggest products for shoulder pain",
   "What should I buy for arthritis?",
   "Help me choose the right product",
-  "Which NerveSpa product is right for me?"
+  "Which NerveSpa product is right for me?",
+  "Who are the doctors or clinicians associated with NerveSpa?",
+  "What NerveSpa products are recommended for knee joint pain?",
+  "What NerveSpa products are recommended for shoulder joint pain?",
+  "What NerveSpa products are recommended for general joint pain like arms or other joints?",
 ];
 
 // ================= SYNONYMS =================
@@ -553,11 +559,64 @@ const synonyms = {
 
 // ================= STOPWORDS =================
 const stopWords = new Set([
-  "a","an","and","are","as","at","be","but","by","for","if","in","into","is","it",
-  "no","of","on","or","such","that","the","their","then","there","these","they",
-  "this","to","was","will","with","do","does","did","can","could","should","would",
-  "i","you","he","she","we","my","your","his","her","our","how","what","why","where",
-  "when","who","has","been","hold"
+  "a",
+  "an",
+  "and",
+  "are",
+  "as",
+  "at",
+  "be",
+  "but",
+  "by",
+  "for",
+  "if",
+  "in",
+  "into",
+  "is",
+  "it",
+  "no",
+  "of",
+  "on",
+  "or",
+  "such",
+  "that",
+  "the",
+  "their",
+  "then",
+  "there",
+  "these",
+  "they",
+  "this",
+  "to",
+  "was",
+  "will",
+  "with",
+  "do",
+  "does",
+  "did",
+  "can",
+  "could",
+  "should",
+  "would",
+  "i",
+  "you",
+  "he",
+  "she",
+  "we",
+  "my",
+  "your",
+  "his",
+  "her",
+  "our",
+  "how",
+  "what",
+  "why",
+  "where",
+  "when",
+  "who",
+  "has",
+  "been",
+  "hold",
 ]);
 
 // ================= NORMALIZE =================
@@ -607,13 +666,14 @@ function levenshteinDistance(a, b) {
 
   for (let i = 1; i <= b.length; i++) {
     for (let j = 1; j <= a.length; j++) {
-      matrix[i][j] = b[i - 1] === a[j - 1]
-        ? matrix[i - 1][j - 1]
-        : Math.min(
-            matrix[i - 1][j] + 1,
-            matrix[i][j - 1] + 1,
-            matrix[i - 1][j - 1] + 1
-          );
+      matrix[i][j] =
+        b[i - 1] === a[j - 1]
+          ? matrix[i - 1][j - 1]
+          : Math.min(
+              matrix[i - 1][j] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j - 1] + 1,
+            );
     }
   }
 
@@ -663,8 +723,8 @@ function getSemanticScore(input, target) {
   let totalInputWeight = 0;
   let totalTargetWeight = 0;
 
-  tokens1.forEach((t) => totalInputWeight += (idfWeights[t] || 1.0));
-  tokens2.forEach((t) => totalTargetWeight += (idfWeights[t] || 1.0));
+  tokens1.forEach((t) => (totalInputWeight += idfWeights[t] || 1.0));
+  tokens2.forEach((t) => (totalTargetWeight += idfWeights[t] || 1.0));
 
   const matched2 = new Set();
 
@@ -694,7 +754,10 @@ function getSemanticScore(input, target) {
         if (similarity >= 0.75 && similarity > bestMatchScore) {
           bestMatchScore = similarity;
           bestMatchIndex = j;
-        } else if ((w1.includes(w2) || w2.includes(w1)) && 0.6 > bestMatchScore) {
+        } else if (
+          (w1.includes(w2) || w2.includes(w1)) &&
+          0.6 > bestMatchScore
+        ) {
           bestMatchScore = 0.6;
           bestMatchIndex = j;
         }
@@ -707,8 +770,12 @@ function getSemanticScore(input, target) {
     }
   }
 
-  const inputCoverage = totalInputWeight ? weightedIntersection / totalInputWeight : 0;
-  const targetCoverage = totalTargetWeight ? weightedIntersection / totalTargetWeight : 0;
+  const inputCoverage = totalInputWeight
+    ? weightedIntersection / totalInputWeight
+    : 0;
+  const targetCoverage = totalTargetWeight
+    ? weightedIntersection / totalTargetWeight
+    : 0;
 
   let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
 
@@ -732,11 +799,7 @@ function combinedScore(input, target) {
   const jaccard = jaccardScore(input, target);
 
   // Weighted final score
-  return (
-    semantic * 0.55 +
-    jaccard * 0.25 +
-    charSimilarity * 0.20
-  );
+  return semantic * 0.55 + jaccard * 0.25 + charSimilarity * 0.2;
 }
 
 // ================= MATCH FINDING =================
@@ -766,7 +829,7 @@ return [
       matchIndex: matchFound ? bestIndex : -1,
       normalizedQuestion: normalize(userQuestion),
       similarityScore: Number(bestScore.toFixed(4)),
-      sessionId: sessionId
+      sessionId: sessionId,
     },
   },
 ];
