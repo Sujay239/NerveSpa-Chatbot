@@ -383,7 +383,17 @@ const predefinedQuestions = [
   "What if the Nerve Bath unit does not turn on?",
   "What if stimulation feels too weak?",
   "Where do I download the user manual for Shoulder Pro",
-  "Do you ship to Canada?"
+  "Do you ship to Canada?",
+  "Can you suggest me products?",
+  "What products do you recommend?",
+  "Which product should I use for joint pain?",
+  "Recommend me some products",
+  "What product is best for my pain?",
+  "Suggest products for knee pain",
+  "Suggest products for shoulder pain",
+  "What should I buy for arthritis?",
+  "Help me choose the right product",
+  "Which NerveSpa product is right for me?"
 ];
 
 // ================= SYNONYMS =================
@@ -529,6 +539,16 @@ const synonyms = {
   outcome: "certified",
   password: "login",
   account: "login",
+  suggest: "recommend",
+  suggestion: "recommend",
+  suggestions: "recommend",
+  recommended: "recommend",
+  recommendation: "recommend",
+  recommendations: "recommend",
+  advice: "recommend",
+  pick: "choose",
+  select: "choose",
+  best: "right",
 };
 
 // ================= STOPWORDS =================
