@@ -572,14 +572,30 @@
   }
 
   function formatBotMessage(text) {
-    // Escape HTML first, then apply markdown-like formatting
     let safe = escapeHtml(text);
-    // Convert markdown links
-    safe = safe.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    // Bold
+    
+    // 1. Protect markdown links: [text](url)
+    const placeholders = [];
+    safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (match, p1, p2) => {
+      const placeholder = `__LINK_${placeholders.length}__`;
+      placeholders.push(`<a href="${p2}" target="_blank" rel="noopener" class="link-btn">${p1}</a>`);
+      return placeholder;
+    });
+
+    // 2. Convert remaining raw URLs
+    const urlRegex = /(https?:\/\/[^\s<]+[^.,\s<])/g;
+    safe = safe.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener" class="link-btn">$1</a>');
+
+    // 3. Restore markdown links
+    placeholders.forEach((html, i) => {
+      safe = safe.replace(`__LINK_${i}__`, html);
+    });
+
+    // 4. Bold
     safe = safe.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    // Line breaks
+    // 5. Line breaks
     safe = safe.replace(/\n/g, '<br>');
+    
     return safe;
   }
 

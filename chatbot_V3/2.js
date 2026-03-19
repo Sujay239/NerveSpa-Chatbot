@@ -137,7 +137,13 @@ const qaPairs = [
       "No. NerveSpa does not replace medical diagnosis or treatment. Providers determine appropriate use, recommend protocols, and guide patients throughout care.",
   },
   {
-    question: "Who decides if NerveSpa is appropriate?",
+    question: "Who decides if NerveSpa is appropriate or right for me?",
+    answer:
+      "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient\u2019s condition, safety factors, and treatment goals.",
+  },
+  {
+    question:
+      "Am I a good candidate for NerveSpa? Is it suitable for my condition?",
     answer:
       "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient\u2019s condition, safety factors, and treatment goals.",
   },
@@ -1896,7 +1902,8 @@ const qaPairs = [
   },
   {
     question: "Can you explain what the NerveSpa system actually is?",
-    answer: "Please contact support for more details.",
+    answer:
+      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
     question: "What if my skin feels too sensitive after PowerWrap use?",
@@ -1920,11 +1927,6 @@ const qaPairs = [
   },
   {
     question: "Can you suggest me products?",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-  {
-    question: "What products do you recommend?",
     answer:
       "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
   },
@@ -1974,21 +1976,6 @@ const qaPairs = [
     answer:
       "NerveSpa is part of Pain Management Technologies (PMT) and is positioned as a provider-guided therapeutic platform used by clinics nationwide. The website features testimonials and clinic-use references from clinicians including Dr. James P. Perkins, DC, Dr. Corey Brumbaugh, DC, Dr. Alyse Duffer, DC, Dr. Clint Freeman, DC, and others who integrate NerveSpa into patient care plans.",
   },
-  {
-    question: "What NerveSpa products are recommended for knee joint pain?",
-    answer:
-      "NerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.",
-  },
-  {
-    question: "What NerveSpa products are recommended for shoulder joint pain?",
-    answer:
-      "NerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.",
-  },
-  {
-    question: "What NerveSpa products are recommended for general joint pain like arms or other joints?",
-    answer:
-      "Super Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.",
-  },
 ];
 
 // Synonym map
@@ -2012,6 +1999,27 @@ const synonyms = {
   practice: "clinic",
   doctor: "clinic",
   physician: "clinic",
+
+  best: "recommend",
+  choose: "recommend",
+  pick: "recommend",
+  select: "recommend",
+  suggestion: "recommend",
+  suggest: "recommend",
+
+  appropriate: "suitable",
+  candidate: "suitable",
+  fit: "suitable",
+  right: "suitable",
+  eligibility: "suitable",
+  eligible: "suitable",
+
+  decide: "determine",
+  decides: "determine",
+  determine: "determine",
+  determines: "determine",
+  know: "determine",
+  tell: "determine",
 
   usa: "us",
   america: "us",
@@ -2040,10 +2048,27 @@ const synonyms = {
   concerns: "conditions",
   problems: "conditions",
   symptoms: "conditions",
-
-  help: "support",
-  address: "support",
-  manage: "support",
+  impacted: "replace",
+  impacts: "replace",
+  interfere: "replace",
+  interference: "replace",
+  treatment: "medical",
+  care: "medical",
+  ship: "shipped",
+  shipping: "shipped",
+  product: "nervespa",
+  products: "nervespa",
+  device: "nervespa",
+  devices: "nervespa",
+  approved: "registered",
+  approval: "registered",
+  listings: "registered",
+  legality: "registered",
+  certified: "registered",
+  certification: "registered",
+  authorized: "registered",
+  fda: "registered",
+  track: "shipped",
 
   supplies: "consumables",
   materials: "consumables",
@@ -2064,10 +2089,10 @@ const synonyms = {
   discount: "pricing",
   coupon: "pricing",
 
-  return: "return order",
-  refund: "return order",
-  exchange: "return order",
-  cancel: "return order",
+  return: "return",
+  refund: "return",
+  exchange: "return",
+  cancel: "return",
 
   damage: "warranty",
   broken: "warranty",
@@ -2087,6 +2112,8 @@ const synonyms = {
   pick: "choose",
   select: "choose",
   best: "right",
+
+  help: "support",
 };
 
 // Stop words
@@ -2151,6 +2178,8 @@ const stopWords = new Set([
   "hold",
   "u",
   "s",
+  "current",
+  "go",
 ]);
 
 function normalize(text) {
@@ -2176,10 +2205,11 @@ function stem(word) {
 }
 
 function getTokens(text) {
-  return normalize(text)
+  const tokens = normalize(text)
     .split(" ")
     .filter((w) => w && !stopWords.has(w))
     .map(stem);
+  return [...new Set(tokens)];
 }
 
 function levenshteinDistance(a, b) {
@@ -2303,8 +2333,8 @@ function getSemanticScore(input, target) {
 
   let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
 
-  if (tokens1.length >= 4 && weightedIntersection < 2.5) {
-    finalScore *= 0.5;
+  if (tokens1.length >= 5 && weightedIntersection < 2.0) {
+    finalScore *= 0.7;
   }
 
   return Math.max(0, Math.min(1, finalScore));
@@ -2343,7 +2373,7 @@ if (!match) {
     }
   }
 
-  const threshold = 0.65;
+  const threshold = 0.55;
   if (bestScore >= threshold) {
     match = bestMatch;
   }
@@ -2354,7 +2384,7 @@ return [
     json: {
       output: match
         ? match.answer
-        : "Sorry, I couldn't find a relevant answer for your question. \nPlease try a different question or contact support directly at support@nervespa.com",
+        : "Sorry, I couldn't find a relevant answer for your question.🤔 \nPlease try a different question or contact support directly at support@nervespa.com",
     },
   },
 ];

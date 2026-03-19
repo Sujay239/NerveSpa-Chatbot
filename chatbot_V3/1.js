@@ -32,9 +32,8 @@ const predefinedQuestions = [
   "Where can FDA listings be verified?",
   "What certifications does PMT hold?",
   "Does NerveSpa replace medical care?",
-  "Who decides if NerveSpa is appropriate?",
-  "Can NerveSpa be used with other treatments?",
-  "Do I need a prescription for NerveSpa?",
+  "Who decides if NerveSpa is appropriate or right for me?",
+  "Am I a good candidate for NerveSpa? Is it suitable for my condition?",
   "Is NerveSpa a US based company?",
   "How does NerveSpa compare to other nerve therapy systems?",
   "What makes NerveSpa unique?",
@@ -386,20 +385,7 @@ const predefinedQuestions = [
   "What if stimulation feels too weak?",
   "Where do I download the user manual for Shoulder Pro",
   "Do you ship to Canada?",
-  "Can you suggest me products?",
-  "What products do you recommend?",
-  "Which product should I use for joint pain?",
-  "Recommend me some products",
-  "What product is best for my pain?",
-  "Suggest products for knee pain",
-  "Suggest products for shoulder pain",
-  "What should I buy for arthritis?",
-  "Help me choose the right product",
-  "Which NerveSpa product is right for me?",
   "Who are the doctors or clinicians associated with NerveSpa?",
-  "What NerveSpa products are recommended for knee joint pain?",
-  "What NerveSpa products are recommended for shoulder joint pain?",
-  "What NerveSpa products are recommended for general joint pain like arms or other joints?",
 ];
 
 // ================= SYNONYMS =================
@@ -453,6 +439,12 @@ const synonyms = {
   address: "support",
   manage: "support",
   help: "support",
+  impacted: "replace",
+  impacts: "replace",
+  interfere: "replace",
+  interference: "replace",
+  treatment: "medical",
+  care: "medical",
   supplies: "consumables",
   materials: "consumables",
   items: "consumables",
@@ -481,14 +473,47 @@ const synonyms = {
   credit: "pay",
   ship: "shipped",
   shipping: "shipped",
+  product: "nervespa",
+  products: "nervespa",
+  device: "nervespa",
+  devices: "nervespa",
+  approved: "registered",
+  approval: "registered",
+  listings: "registered",
+  legality: "registered",
+  certified: "registered",
+  certification: "registered",
+  authorized: "registered",
+  best: "recommend",
+  choose: "recommend",
+  pick: "recommend",
+  select: "recommend",
+  suggestion: "recommend",
+  suggest: "recommend",
+
+  appropriate: "suitable",
+  candidate: "suitable",
+  fit: "suitable",
+  right: "suitable",
+  eligibility: "suitable",
+  eligible: "suitable",
+
+  decide: "determine",
+  decides: "determine",
+  determine: "determine",
+  determines: "determine",
+  know: "determine",
+  tell: "determine",
+
+  fda: "registered",
   track: "shipped",
   tracking: "shipped",
   arrive: "shipped",
   delivery: "shipped",
-  return: "return my order",
-  exchange: "return my order",
-  refund: "return my order",
-  cancel: "return my order",
+  return: "return",
+  exchange: "return",
+  refund: "return",
+  cancel: "return",
   damage: "warranty",
   broken: "warranty",
   repair: "warranty",
@@ -614,9 +639,10 @@ const stopWords = new Set([
   "where",
   "when",
   "who",
-  "has",
   "been",
   "hold",
+  "current",
+  "go",
 ]);
 
 // ================= NORMALIZE =================
@@ -648,10 +674,11 @@ function stem(word) {
 
 // ================= TOKENIZE =================
 function getTokens(text) {
-  return normalize(text)
+  const tokens = normalize(text)
     .split(" ")
     .filter((w) => w && !stopWords.has(w))
     .map(stem);
+  return [...new Set(tokens)];
 }
 
 // ================= LEVENSHTEIN =================
@@ -779,8 +806,8 @@ function getSemanticScore(input, target) {
 
   let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
 
-  if (tokens1.length >= 4 && weightedIntersection < 2.5) {
-    finalScore *= 0.5;
+  if (tokens1.length >= 5 && weightedIntersection < 2.0) {
+    finalScore *= 0.7;
   }
 
   return Math.max(0, Math.min(1, finalScore));
@@ -818,7 +845,7 @@ for (let i = 0; i < predefinedQuestions.length; i++) {
 
 // ================= THRESHOLD =================
 // You can tune this between 0.60 and 0.75 depending on strictness
-const threshold = 0.65;
+const threshold = 0.55;
 const matchFound = bestScore >= threshold;
 
 // ================= OUTPUT =================

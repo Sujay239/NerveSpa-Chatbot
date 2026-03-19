@@ -2721,19 +2721,14 @@
       "NerveSpa is part of Pain Management Technologies (PMT) and is positioned as a provider-guided therapeutic platform used by clinics nationwide. The website features testimonials and clinic-use references from clinicians including Dr. James P. Perkins, DC, Dr. Corey Brumbaugh, DC, Dr. Alyse Duffer, DC, Dr. Clint Freeman, DC, and others who integrate NerveSpa into patient care plans.",
   },
   {
-    "question": "What NerveSpa products are recommended for knee joint pain?",
+    "question": "Who decides if NerveSpa is appropriate or right for me?",
     "answer":
-      "NerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program."
+      "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient\u2019s condition, safety factors, and treatment goals.",
   },
   {
-    "question": "What NerveSpa products are recommended for shoulder joint pain?",
+    "question": "Am I a good candidate for NerveSpa? Is it suitable for my condition?",
     "answer":
-      "NerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function."
-  },
-  {
-    "question": "What NerveSpa products are recommended for general joint pain like arms or other joints?",
-    "answer":
-      "Super Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement."
+      "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient\u2019s condition, safety factors, and treatment goals.",
   }
   ]
 }

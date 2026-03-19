@@ -76,6 +76,9 @@ Knowledge base matched data:
 User question:
 {{$json.question}}
 
+Question metadata & intent:
+{{$json.metadata}}
+
 Classify the user input:
 
 A. Contact request → apply Step 1
