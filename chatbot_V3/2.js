@@ -127,28 +127,6 @@ const qaPairs = [
     answer: "NerveSpa includes multiple clinical-grade modalities: aquatic nerve stimulation (Nerve Bath), high-powered LED light therapy (NerveBeam LED Wrap), concentrated cold laser therapy (NerveBeam Cold Laser), and vibrational massage therapy (Quake Plate). These are complemented by advanced supplementation and topical formulas to provide comprehensive support for nerve and joint health.",
   },
   {
-    question: "What are NerveSpa's clinical products and offerings?",
-    answer: "NerveSpa offers a comprehensive family of clinical-grade products designed to support neuropathy, joint pain, and metabolic health. Our key offerings include:\n\n" +
-            "• **Nerve Bath**: An aquatic nerve stimulation system for hands and feet.\n" +
-            "• **NerveBeam LED Wrap**: High-powered red/infrared light therapy for broad area support.\n" +
-            "• **NerveBeam Cold Laser**: Targeted, deep-tissue laser therapy for localized pain.\n" +
-            "• **Quake Plate**: Advanced vibration therapy to support circulation and mobility.\n" +
-            "• **Knee Pro & Shoulder Pro**: Specialized multi-modal devices for joint-specific care.\n" +
-            "• **Advanced Supplementation**: Targeted formulas like Nerve Rebuilder and Blood Flow Super Formula.\n\n" +
-            "These products are distributed through licensed clinics to ensure professional guidance for every patient."
-  },
-  {
-    question: "What products do you offer for neuropathy and joint pain?",
-    answer: "NerveSpa offers a comprehensive family of clinical-grade products designed to support neuropathy, joint pain, and metabolic health. Our key offerings include:\n\n" +
-            "• **Nerve Bath**: An aquatic nerve stimulation system for hands and feet.\n" +
-            "• **NerveBeam LED Wrap**: High-powered red/infrared light therapy for broad area support.\n" +
-            "• **NerveBeam Cold Laser**: Targeted, deep-tissue laser therapy for localized pain.\n" +
-            "• **Quake Plate**: Advanced vibration therapy to support circulation and mobility.\n" +
-            "• **Knee Pro & Shoulder Pro**: Specialized multi-modal devices for joint-specific care.\n" +
-            "• **Advanced Supplementation**: Targeted formulas like Nerve Rebuilder and Blood Flow Super Formula.\n\n" +
-            "These products are distributed through licensed clinics to ensure professional guidance for every patient."
-  },
-  {
     question: "Is NerveSpa a clinic, a product, or a treatment program?",
     answer: "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It is not a clinic itself; rather, our products and programs are distributed through a network of licensed clinics and healthcare providers who guide patients through their personalized treatment plans.",
   },

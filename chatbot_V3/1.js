@@ -418,9 +418,7 @@ const predefinedQuestions = [
   "Why is water used in the treatment?",
   "Do you offer financing?",
   "How do I find a provider near me?",
-  "Do I need a prescription?",
-  "What are NerveSpa's clinical products and offerings?",
-  "What products do you offer for neuropathy and joint pain?"
+  "Do I need a prescription?"
 ];
 
 // ================= SYNONYMS =================
