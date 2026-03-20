@@ -112,6 +112,21 @@ const qaPairs = [
       "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
   },
   {
+    question: "Tell me about the NerveSpa return policy",
+    answer:
+      "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
+  },
+  {
+    question: "What is the return policy for NerveSpa devices?",
+    answer:
+      "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
+  },
+  {
+    question: "Can I return a used product to NerveSpa?",
+    answer:
+      "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
+  },
+  {
     question: "Where is NerveSpa manufactured?",
     answer:
       "NerveSpa devices are manufactured in FDA-registered facilities from all over the world, with final distribution handled through PMT in Akron, Ohio.",
@@ -142,8 +157,7 @@ const qaPairs = [
       "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient\u2019s condition, safety factors, and treatment goals.",
   },
   {
-    question:
-      "Am I a good candidate for NerveSpa? Is it suitable for my condition?",
+    question: "Am I a good candidate for NerveSpa? Is it suitable for my condition?",
     answer:
       "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient\u2019s condition, safety factors, and treatment goals.",
   },
@@ -1901,75 +1915,8 @@ const qaPairs = [
     answer: "The billing code (HCPCS code) is E0720",
   },
   {
-    question: "Can you explain what the NerveSpa system actually is?",
-    answer:
-      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-  },
-  {
-    question: "What if my skin feels too sensitive after PowerWrap use?",
-    answer: "Please contact support for more details.",
-  },
-  {
-    question: "What if the Nerve Bath unit does not turn on?",
-    answer: "Please contact support for more details.",
-  },
-  {
-    question: "What if stimulation feels too weak?",
-    answer: "Please contact support for more details.",
-  },
-  {
-    question: "Where do I download the user manual for Shoulder Pro",
-    answer: "Please contact support for more details.",
-  },
-  {
     question: "Do you ship to Canada?",
-    answer: "Please contact support for more details.",
-  },
-  {
-    question: "Can you suggest me products?",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-  {
-    question: "Which product should I use for joint pain?",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-  {
-    question: "Recommend me some products",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-  {
-    question: "What product is best for my pain?",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-  {
-    question: "Suggest products for knee pain",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-  {
-    question: "Suggest products for shoulder pain",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-  {
-    question: "What should I buy for arthritis?",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-  {
-    question: "Help me choose the right product",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
-  },
-
-  {
-    question: "Which NerveSpa product is right for me?",
-    answer:
-      "Here is a quick guide based on where your discomfort is:\n\n**For knee joint pain:**\nNerveSpa Knee Pro is the main knee-focused option. It is a non-invasive device for symptoms related to osteoarthritis and rheumatoid arthritis of the knee. The 180-day kit is positioned as a longer-use program.\n\n**For shoulder joint pain:**\nNerveSpa Shoulder Pro is the better fit if your pain is mainly in the shoulder. It is listed for conditions such as arthritis, tendonitis, and bursitis and is meant to help reduce pain and improve function.\n\n**For more general joint support:**\nSuper Flex Joint Formula Drink Powder and the OA/RA Cream are the two broad joint-support products. The drink powder includes ingredients like glucosamine, chondroitin, MSM, turmeric, boswellia, and hyaluronic acid, while the cream is described as topical support for joint comfort and movement.\n\n**My practical take:**\nIf your pain is mostly in the knees, start by looking at Knee Pro. If it is shoulder-specific, look at Shoulder Pro. If you want a non-device add-on or more general support, look at the Super Flex Joint Formula and OA/RA Cream. NerveSpa also groups these under its Joint & Mobility category.\n\n**One caution:** NerveSpa presents these as support products, but the right choice depends on which joint hurts, whether there is swelling/injury, and whether you already have a diagnosis like osteoarthritis or rheumatoid arthritis. Persistent, severe, red-hot, or suddenly swollen joints should be checked by a clinician.",
+    answer: "Domestic: Orders within the continental United States are shipped either UPS Ground or USPS, depending on your order and location.\n International: Items shipping to a location outside of the United States must ship UPS due to the battery contained in the unit. \nCanada: To keep our cost low, we use a freight forward who picks up from our warehouse 1-2 times a week. Once you receive the tracking info in your email, tracking will be available in 7 to 10 days on http://frontierscs.com/tracking. Delivery time to Canada is generally 2 - 3 weeks",
   },
   {
     question: "Who are the doctors or clinicians associated with NerveSpa?",
@@ -2020,6 +1967,13 @@ const synonyms = {
   determines: "determine",
   know: "determine",
   tell: "determine",
+
+  length: "long",
+  duration: "long",
+  time: "long",
+  info: "about",
+  information: "about",
+  details: "about",
 
   usa: "us",
   america: "us",
@@ -2178,6 +2132,18 @@ const stopWords = new Set([
   "hold",
   "u",
   "s",
+  "tell",
+  "me",
+  "about",
+  "some",
+  "more",
+  "much",
+  "very",
+  "give",
+  "show",
+  "get",
+  "please",
+  "nervespa",
   "current",
   "go",
 ]);
@@ -2379,12 +2345,29 @@ if (!match) {
   }
 }
 
+let resultOutput = "";
+
+if (match) {
+  const matchedQuestion = match.question.toLowerCase();
+  const inputTokens = getTokens(incomingQuestion);
+  const inputHasProgram = inputTokens.includes("program") || incomingQuestion.toLowerCase().includes("program");
+
+  const programQualifiers = ["neuropathy", "joint", "mobility", "clinical", "vagus", "regenerative", "restorative", "pain", "metabolic", "nervespa"];
+  const inputHasQualifier = programQualifiers.some(q => inputTokens.includes(q) || incomingQuestion.toLowerCase().includes(q));
+
+  if (inputHasProgram && !inputHasQualifier && matchedQuestion.includes("program")) {
+    resultOutput = "It sounds like you're asking about one of our programs. To give you the most accurate info, which program are you referring to? (e.g., Neuropathy Program, Joint & Mobility Program, or the NerveSpa system in general?)";
+  } else {
+    resultOutput = match.answer;
+  }
+} else {
+  resultOutput = "Sorry, I couldn't find a relevant answer for your question.🤔 \nPlease try a different question or contact support directly at support@nervespa.com";
+}
+
 return [
   {
     json: {
-      output: match
-        ? match.answer
-        : "Sorry, I couldn't find a relevant answer for your question.🤔 \nPlease try a different question or contact support directly at support@nervespa.com",
+      output: resultOutput,
     },
   },
 ];

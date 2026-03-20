@@ -335,6 +335,45 @@
       30% { transform: translateY(-6px); opacity: 1; }
     }
 
+    /* ====== CHAT OPTION BUTTONS (FOR CATEGORIES) ====== */
+    .chat-option-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      margin: 4px 0;
+      background: #f8fafc;
+      border: 1px solid var(--accent-mid);
+      border-radius: var(--radius-md);
+      color: var(--accent-mid);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .chat-option-btn:hover {
+      background: var(--accent-mid);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(8, 145, 178, 0.2);
+    }
+    .msg-bubble .chat-option-btn:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Message bubble adjustment */
+    .msg-bubble {
+      max-width: 80%;
+      padding: 12px 16px 12px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      line-height: 1.6;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      position: relative;
+    }
+
     /* ====== SUGGESTIONS ====== */
     .nerva-suggestions {
       display: flex;
@@ -591,13 +630,27 @@
       safe = safe.replace(`__LINK_${i}__`, html);
     });
 
-    // 4. Bold
+    // 4. Convert bullet points to interactive buttons for product categories
+    if (safe.includes('specif') && safe.includes('category')) {
+      // Consumes the trailing newline (?:\n|$) and scrubs any leaked quotes
+      safe = safe.replace(/•\s*([^<\n]+)(?:\n|$)/g, (match, p1) => {
+        const category = p1.trim().replace(/['"]/g, '');
+        return `<button class="chat-option-btn" onclick="sendChatOption('${category}')">${category}</button>`;
+      });
+    }
+
+    // 5. Bold
     safe = safe.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    // 5. Line breaks
+    // 6. Line breaks
     safe = safe.replace(/\n/g, '<br>');
     
     return safe;
   }
+
+  // Global helper for interactive buttons
+  window.sendChatOption = function(category) {
+    sendMessage(`suggests me some products of ${category}?`);
+  };
 
   // ====== ADD MESSAGE ======
   function addMessage(text, sender) {

@@ -27,6 +27,9 @@ const predefinedQuestions = [
   "Is NerveSpa FDA-registered?",
   "Is NerveSpa covered by insurance?",
   "What warranty and return policy does NerveSpa offer?",
+  "Tell me about the NerveSpa return policy",
+  "What is the return policy for NerveSpa devices?",
+  "Can I return a used product to NerveSpa?",
   "Where is NerveSpa manufactured?",
   "How long has PMT been in business?",
   "Where can FDA listings be verified?",
@@ -379,7 +382,6 @@ const predefinedQuestions = [
   "Can I use two LED therapy wraps at the same time?",
   "Will my insurance cover the NerveSpa?",
   "What is the HCPCS code for the NerveSpa?",
-  "Can you explain what the NerveSpa system actually is?",
   "What if my skin feels too sensitive after PowerWrap use?",
   "What if the Nerve Bath unit does not turn on?",
   "What if stimulation feels too weak?",
@@ -505,6 +507,13 @@ const synonyms = {
   know: "determine",
   tell: "determine",
 
+  length: "long",
+  duration: "long",
+  time: "long",
+  info: "about",
+  information: "about",
+  details: "about",
+
   fda: "registered",
   track: "shipped",
   tracking: "shipped",
@@ -514,6 +523,10 @@ const synonyms = {
   exchange: "return",
   refund: "return",
   cancel: "return",
+  policy: "return",
+  used: "return",
+  opened: "return",
+  unboxed: "return",
   damage: "warranty",
   broken: "warranty",
   repair: "warranty",
@@ -641,6 +654,18 @@ const stopWords = new Set([
   "who",
   "been",
   "hold",
+  "tell",
+  "me",
+  "about",
+  "some",
+  "more",
+  "much",
+  "very",
+  "give",
+  "show",
+  "get",
+  "please",
+  "nervespa",
   "current",
   "go",
 ]);
@@ -849,6 +874,26 @@ const threshold = 0.55;
 const matchFound = bestScore >= threshold;
 
 // ================= OUTPUT =================
+let resultOutput = "";
+let bestMatch = "";
+
+if (matchFound) {
+  bestMatch = predefinedQuestions[bestIndex];
+  const inputTokens = getTokens(userQuestion);
+  const inputHasProgram = inputTokens.includes("program") || userQuestion.toLowerCase().includes("program");
+  
+  const programQualifiers = ["neuropathy", "joint", "mobility", "clinical", "vagus", "regenerative", "restorative", "pain", "metabolic", "nervespa"];
+  const inputHasQualifier = programQualifiers.some(q => inputTokens.includes(q) || userQuestion.toLowerCase().includes(q));
+
+  if (inputHasProgram && !inputHasQualifier && bestMatch.toLowerCase().includes("program")) {
+    resultOutput = "It sounds like you're asking about one of our programs. To give you the most accurate info, which program are you referring to? (e.g., Neuropathy Program, Joint & Mobility Program, or the NerveSpa system in general?)";
+  } else {
+    resultOutput = "Matched with defined questions. Please see the details below";
+  }
+} else {
+  resultOutput = "None of the defined questions matched.";
+}
+
 return [
   {
     json: {
@@ -857,6 +902,9 @@ return [
       normalizedQuestion: normalize(userQuestion),
       similarityScore: Number(bestScore.toFixed(4)),
       sessionId: sessionId,
+      output: resultOutput,
+      matched_question: matchFound ? bestMatch : ""
     },
   },
 ];
+

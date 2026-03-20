@@ -2599,7 +2599,7 @@
   },
   {
     "question": "I don't want this product, can I return my order?",
-    "answer": "Yes, we offer a 30-day money-back guarantee for purchases from NerveSpa.com. Refund is the amount minus shipping costs. Items must be in original packaging and in new or lightly used condition. Credits are issued to the original payment card."
+    "answer": "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions."
   },
   {
     "question": "How do I return my order?",
@@ -2644,26 +2644,6 @@
   {
     "question": "What is the HCPCS code for the NerveSpa?",
     "answer": "The billing code (HCPCS code) is E0720"
-  },
-  {
-    "question": "Can you explain what the NerveSpa system actually is?",
-    "answer": "Please contact support for more details."
-  },
-  {
-    "question": "What if my skin feels too sensitive after PowerWrap use?",
-    "answer": "Please contact support for more details."
-  },
-  {
-    "question": "What if the Nerve Bath unit does not turn on?",
-    "answer": "Please contact support for more details."
-  },
-  {
-    "question": "Where do I download the user manual for Shoulder Pro",
-    "answer": "Please contact support for more details."
-  },
-  {
-    "question": "Do you ship to Canada?",
-    "answer": "Please contact support for more details."
   },
   {
     "question": "Can you suggest me products?",
@@ -2729,6 +2709,21 @@
     "question": "Am I a good candidate for NerveSpa? Is it suitable for my condition?",
     "answer":
       "Licensed providers determine whether NerveSpa devices or supplements are suitable based on the patient\u2019s condition, safety factors, and treatment goals.",
+  },
+  {
+    "question": "Tell me about the NerveSpa return policy",
+    "answer":
+      "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
+  },
+  {
+    "question": "What is the return policy for NerveSpa devices?",
+    "answer":
+      "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
+  },
+  {
+    "question": "Can I return a used product to NerveSpa?",
+    "answer":
+      "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
   }
   ]
 }
