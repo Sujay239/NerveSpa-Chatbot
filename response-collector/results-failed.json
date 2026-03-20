@@ -2,825 +2,213 @@
   "title": "AI Response Collector Report",
   "clientName": "NerveSpa",
   "reportTitle": "AI Response Collector Report",
-  "timestamp": "2026-03-17T10:54:10.255Z",
-  "sessionId": "sess-tmpym476j-1773744272567",
+  "timestamp": "2026-03-20T09:00:09.529Z",
+  "sessionId": "sess-8hs896jp3-1773997031487",
   "results": [
     {
-      "question": "What is NerveSpa exactly?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 1353,
-      "pass": true
-    },
-    {
-      "question": "What does NerveSpa help with?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 725,
-      "pass": true
-    },
-    {
       "question": "Is NerveSpa a clinic, a product, or a treatment program?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 3924,
-      "pass": true
-    },
-    {
-      "question": "Who owns NerveSpa?",
-      "answer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com",
-      "duration": 467,
-      "pass": true
-    },
-    {
-      "question": "Is NerveSpa a medical company?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 523,
-      "pass": true
-    },
-    {
-      "question": "How is NerveSpa different from other neuropathy products?",
-      "answer": "NerveSpa specializes in Aquatic Nerve Stimulation Therapy and provides clinical-grade, protocol-based systems built for clinics. The entire system is designed for Turnkey Integration, making it easy for providers to implement and proven to keep patients on track with measurable outcomes. Targeted Protocols NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: 1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function. 2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint. 3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support. Clinical Results and Adoption The company highlights its success through strong metrics that underscore patient outcomes and clinic satisfaction: ? 90-Day Program: A comprehensive program designed for delivering consistent results. ? 95% Patients Improved: A high percentage of patients report less pain and better function. ? 98% Clinic Satisfaction: High satisfaction driven by positive patient outcomes. ? Adoption: Trusted by 500+ Clinics across the U.S. and has treated 15,000+ patients.? Retention: Boasts a Less Than 1% Return Rate, which NerveSpa states proves the results. Benefits for Clinical Integration NerveSpa is des",
-      "duration": 7118,
-      "pass": true
-    },
-    {
-      "question": "Is NerveSpa only for neuropathy?",
-      "answer": "The NerveSpa Neuropathy Program is a structured, multi-modal protocol designed to support peripheral nerve health, circulation, and comfort. It combines nerve stimulation, light-based therapies, vibration, targeted topicals, and supplementation to support nerve function when used consistently under provider guidance.",
-      "duration": 726,
+      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It is not a clinic itself; rather, our products and programs are distributed through a network of licensed clinics and healthcare providers who guide patients through their personalized treatment plans.",
+      "duration": 1478,
       "pass": true
     },
     {
       "question": "What kind of patients usually use NerveSpa?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3667,
-      "pass": true
-    },
-    {
-      "question": "Is this something I can use at home?",
-      "answer": "Yes. Several practitioners appreciate that the products, including the NerveSpa, Nerve Beam wrap, and Quake Plate, are effective, easy to use at home, allowing neuropathy patients to have an option that doesn't involve weekly in-office treatments. Results observed include a 50% improvement in 90 days for home-use neuropathy cases. Patient Stories Patients share their experiences of recovery, relief, and a renewed quality of life: ? Immediate and Long-Term Relief: Many patients, such as Betsy D., reported a remarkable reduction in symptoms after only one use. Lindy Dare, who had been struggling with severe pain for years, reported that 95% of my pain is gone after about a week of use, enabling her to be active again. ? Improved Sleep: The system is frequently credited with resolving sleepless nights caused by neuropathy. Debbi S. and Diana & Dave Spence both reported finally being able to sleep thru the night for the first time in years. ? Functional Improvement: Patients experienced noticeable functional gains. Carol K.'s husband felt like he could feel his feet for a long time on the first use, with better balance, to the point he felt he didn't need his cane. Gerhard W. noticed a remarkable decrease in the swelling of my feet after just one application. In summary, the testimonials highlight the products' efficacy in providing sustainable relief for conditions like neuropathy and arthritis, making them a valued tool for both clinics and patients",
-      "duration": 5589,
-      "pass": true
-    },
-    {
-      "question": "Do I need to go through a provider to use NerveSpa?",
-      "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
-      "duration": 2719,
-      "pass": true
-    },
-    {
-      "question": "Can NerveSpa help with peripheral neuropathy?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3610,
-      "pass": true
-    },
-    {
-      "question": "Does this work for diabetic neuropathy?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3908,
-      "pass": true
-    },
-    {
-      "question": "Can it help with numb feet?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3210,
-      "pass": true
-    },
-    {
-      "question": "What about burning pain in my feet?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2876,
-      "pass": true
-    },
-    {
-      "question": "Can NerveSpa help with tingling in my toes?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2800,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 4287,
+      "pass": false
     },
     {
       "question": "Will this help with balance issues caused by neuropathy?",
       "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 4262,
-      "pass": true
-    },
-    {
-      "question": "Can NerveSpa help with leg cramps?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2739,
-      "pass": true
-    },
-    {
-      "question": "Does it help with cold feet and poor circulation?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2966,
-      "pass": true
-    },
-    {
-      "question": "Can this help if I have nerve pain after chemotherapy?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2967,
-      "pass": true
-    },
-    {
-      "question": "Will this work for plantar fasciitis too?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2626,
-      "pass": false
-    },
-    {
-      "question": "Can it help with heel pain?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2969,
+      "duration": 4520,
       "pass": true
     },
     {
       "question": "Is NerveSpa only for foot problems, or can it help hands too?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3211,
-      "pass": true
-    },
-    {
-      "question": "Can it help with restless legs?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2906,
-      "pass": true
-    },
-    {
-      "question": "Does NerveSpa help joint pain too?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 3027,
-      "pass": true
-    },
-    {
-      "question": "How does NerveSpa treatment work?",
-      "answer": "The Peripheral Neuropathy Program Protocol is aimed at alleviating nerve pain, tingling, burning, or numbness in the hands and feet caused by nerve damage. Its goal is to reduce pain, regenerate nerves, and prevent the progression of the condition. The treatment modality provides a massage-like therapy that offers both analgesic and therapeutic effects. Consistency is required, with each modality used for 30 minutes per day, 5-6 times or more per week. The recommended duration is to achieve an aggregate milestone of 90 plus treatments from each modality, typically over 16 weeks for Laser Therapy, before tapering back to a maintenance schedule.",
-      "duration": 5844,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 4279,
+      "pass": false
     },
     {
       "question": "What therapies are included in NerveSpa?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 3015,
-      "pass": true
-    },
-    {
-      "question": "What is aquatic nerve stimulation?",
-      "answer": "1) Confirm lead wires are plugged in, carbon rubber pads are connected (one in each water bay), and feet are inserted—intensity won’t engage until the user is engaged. 2) If neuropathy is late stage, you may have reduced sensation—test by inserting your hands into the bays with the intensity up (don’t over-stimulate your feet by turning it up too high). 3) Add more salt to the water. 4) Replace lead wires if the device is over 6 months old.",
-      "duration": 722,
+      "answer": "NerveSpa includes multiple clinical-grade modalities: aquatic nerve stimulation (Nerve Bath), high-powered LED light therapy (NerveBeam LED Wrap), concentrated cold laser therapy (NerveBeam Cold Laser), and vibrational massage therapy (Quake Plate). These are complemented by advanced supplementation and topical formulas to provide comprehensive support for nerve and joint health.",
+      "duration": 556,
       "pass": true
     },
     {
       "question": "Why is water used in the treatment?",
-      "answer": "The Peripheral Neuropathy Program Protocol is aimed at alleviating nerve pain, tingling, burning, or numbness in the hands and feet caused by nerve damage. The treatment modality includes massage-like therapy that provides an analgesic and therapeutic effect. The goal is to reduce pain, regenerate nerves, and prevent the progression of the condition. Consistent use of the modalities, such as the Nerve Bath Device, for 30 minutes per day, 5-6 times or more per week is recommended to achieve significant results over time.",
-      "duration": 3513,
-      "pass": true
-    },
-    {
-      "question": "What does LED therapy do?",
-      "answer": "A gentle warmth is typical. If excessive heat or discomfort occurs, stop use and consult your provider.",
-      "duration": 644,
-      "pass": true
-    },
-    {
-      "question": "What is cold laser therapy used for?",
-      "answer": "Cold Laser therapy is typically painless. A mild warming sensation may occur, but no discomfort should be felt.",
-      "duration": 740,
-      "pass": true
-    },
-    {
-      "question": "What is the QuakePlate?",
-      "answer": "YouTube demos: https://www.youtube.com/@nervespa • Manual: https://drive.google.com/file/d/1BNgb7jAoSEezTWMbTTh5R7rr5xXs1b_n/view?usp=sharing",
-      "duration": 606,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3562,
+      "pass": false
     },
     {
       "question": "How often do people use these therapies?",
-      "answer": "Use each modality for 30 minutes per day, 5-6 times or more per week. Recommended to achieve an aggregate milestone of 90 plus treatments from each modality (typically over 16 weeks for Laser Therapy) before tapering back to a maintenance schedule.",
-      "duration": 2788,
-      "pass": true
-    },
-    {
-      "question": "How long does each session usually take?",
-      "answer": "Use each modality for 30 minutes per day, 5-6 times or more per week.",
-      "duration": 2551,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3620,
+      "pass": false
     },
     {
       "question": "How soon do people notice results?",
-      "answer": "Patients share their experiences of recovery, relief, and a renewed quality of life: \n? Immediate and Long-Term Relief: Many patients, such as Betsy D., reported a remarkable reduction in symptoms after only one use. Lindy Dare, who had been struggling with severe pain for years, reported that 95% of my pain is gone after about a week of use, enabling her to be active again. \n? Improved Sleep: The system is frequently credited with resolving sleepless nights caused by neuropathy. Debbi S. and Diana & Dave Spence both reported finally being able to sleep thru the night for the first time in years. \n? Functional Improvement: Patients experienced noticeable functional gains. Carol K.'s husband felt like he could feel his feet for a long time on the first use, with better balance, to the point he felt he didn't need his cane. Gerhard W. noticed a remarkable decrease in the swelling of my feet after just one application. In summary, the testimonials highlight the products' efficacy in providing sustainable relief for conditions like neuropathy and arthritis, making them a valued tool for both clinics and patients",
-      "duration": 9634,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3600,
+      "pass": false
     },
     {
       "question": "Do I have to use all parts of the program together?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2738,
+      "duration": 4122,
       "pass": false
     },
     {
       "question": "Can I use just one NerveSpa device instead of the full program?",
-      "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
-      "duration": 3081,
-      "pass": true
-    },
-    {
-      "question": "Is the treatment painful?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2797,
+      "duration": 3776,
       "pass": false
-    },
-    {
-      "question": "What should I feel during treatment?",
-      "answer": "LED therapy may not produce a strong sensation. Consistent use as directed is important even if minimal sensation is felt.",
-      "duration": 705,
-      "pass": true
-    },
-    {
-      "question": "Can I overuse the therapy?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 3032,
-      "pass": false
-    },
-    {
-      "question": "What happens if I miss a session?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2523,
-      "pass": false
-    },
-    {
-      "question": "Is NerveSpa safe?",
-      "answer": "NerveSpa devices are generally safe when used as directed under the guidance of a licensed provider. Providers screen for contraindications such as pacemakers, open wounds, pregnancy, or certain medical conditions depending on the device.",
-      "duration": 636,
-      "pass": true
-    },
-    {
-      "question": "Are there any side effects?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2831,
-      "pass": false
-    },
-    {
-      "question": "Who should not use NerveSpa?",
-      "answer": "Patients with pacemakers, other implanted electronics, or severe skin conditions in the treatment area should not use conductive garments. Providers should screen patients for contraindications before recommending use.",
-      "duration": 623,
-      "pass": true
-    },
-    {
-      "question": "Is it safe for seniors?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2435,
-      "pass": false
-    },
-    {
-      "question": "Can diabetics use NerveSpa?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3224,
-      "pass": true
-    },
-    {
-      "question": "Is it safe if I have a pacemaker?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 3091,
-      "pass": false
-    },
-    {
-      "question": "Can I use this if I have circulation problems?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 4527,
-      "pass": true
-    },
-    {
-      "question": "Is this safe after surgery?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2494,
-      "pass": false
-    },
-    {
-      "question": "Can I use NerveSpa if I’m pregnant?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2684,
-      "pass": false
-    },
-    {
-      "question": "Should I ask my doctor before starting?",
-      "answer": "Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
-      "duration": 2421,
-      "pass": true
-    },
-    {
-      "question": "What is the NerveSpa PowerWrap?",
-      "answer": "The PowerWrap is a high-powered LED + laser wrap designed to deliver red and infrared light therapy around a joint or limb to help support circulation, reduce discomfort, and target nerve and joint pain. It contains both LEDs and lasers in a flexible wrap format and is used as part of a clinic-directed program. For full details, see the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf and the product demo: https://youtu.be/lj_1L8FRtwM?si=FK7RkRbKwKhTmnyH",
-      "duration": 682,
-      "pass": true
-    },
-    {
-      "question": "What does the PowerWrap do?",
-      "answer": "The PowerWrap is a high-powered LED + laser wrap designed to deliver red and infrared light therapy around a joint or limb to help support circulation, reduce discomfort, and target nerve and joint pain. It contains both LEDs and lasers in a flexible wrap format and is used as part of a clinic-directed program. For full details, see the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf and the product demo: https://youtu.be/lj_1L8FRtwM?si=FK7RkRbKwKhTmnyH",
-      "duration": 585,
-      "pass": true
-    },
-    {
-      "question": "How do I use the PowerWrap?",
-      "answer": "Patients with pacemakers or other implanted electronic devices, light-sensitive conditions, or cancerous lesions in the treatment area should not use the PowerWrap. It should not be used over the eyes or in any area where your provider has advised against light-based therapy. Providers must screen patients for contraindications before recommending use. For full safety guidance, consult the PowerWrap User Manual: https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/media/nervespa/pdf/usermanual/NerveBeam-Power-Wrap_UserManual-250703-lowres.pdf",
-      "duration": 631,
-      "pass": true
-    },
-    {
-      "question": "What is the difference between the PowerWrap and the QuakePlate?",
-      "answer": "The Quake Plate provides vibrational massage therapy, while the Power Wrap Laser is a device category under NerveSpa's offerings but specific details differentiating it from the Quake Plate are not explicitly provided in the available information. The Quake Plate is listed under Devices and Therapy as \"The Quake Plate Vibrational Massage Therapy,\" suggesting its use for vibration therapy, whereas the Power Wrap Laser is mentioned among products but without further specification on its mechanism or use compared to the Quake Plate.",
-      "duration": 3785,
-      "pass": true
-    },
-    {
-      "question": "What is the cold laser device for?",
-      "answer": "The Cold Laser device is part of the NerveSpa product family and is used as a clinical-grade modality providing analgesic and therapeutic effects. It is employed in protocols aimed at alleviating nerve pain, tingling, burning, or numbness in the hands and feet caused by nerve damage, such as in peripheral neuropathy. The treatment involves massage-like therapy effects intended to reduce pain, promote nerve regeneration, and prevent the progression of the condition. It is typically used consistently, for about 30 minutes per day, 5-6 times per week, over a period to achieve substantial treatment milestones before tapering to maintenance.",
-      "duration": 5975,
-      "pass": true
-    },
-    {
-      "question": "How do I use the cold laser correctly?",
-      "answer": "Patients with pacemakers or implanted electronic devices, epilepsy, or cancerous lesions should not use Cold Laser therapy unless cleared by a provider. Providers should screen for contraindications and proper use.",
-      "duration": 723,
-      "pass": true
-    },
-    {
-      "question": "What are the conductive foot pads?",
-      "answer": "NERVE SPA SILVER CONDUCTIVE SOCK - FOOT GARMENT SYSTEM",
-      "duration": 2212,
-      "pass": true
     },
     {
       "question": "How long do the foot pads last?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2411,
+      "duration": 3566,
       "pass": false
     },
     {
       "question": "Do I need to replace socks, gloves, or pads?",
-      "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels. Accessories and replacements include Nerve Spa Performance diabetic Socks, Carbon Rubber Electrodes, Replacement lead wires for Nerve Spa, Replacement Charger for the Nerve Spa Nerve Bath System, Replacement Charger cord for The Quake Plate, Replacement Charger cord for The NerveBeam cold laser, and Replacement Charger for The NerveBeam LED Light Therapy Wrap.",
-      "duration": 3334,
-      "pass": true
-    },
-    {
-      "question": "Are there supplements included in the NerveSpa program?",
-      "answer": "NerveSpa offers supplement solutions within their program. These include custom supplement kits designed to boost results, focusing on key nutrients for metabolic, gut, and immunity support. Specific products available are the Nerve & Neuropathy Support Kit (which includes Blood Flow Drink powder, Neuropathy Capsules, Nerve ODF, and Nerve Cream), as well as other supplements like the Nerve Spa performance Supplement, N1-Nerve+ Neuropathy Support, and the Blood Flow Super formula Drink Powder by Nerve Spa.",
-      "duration": 3708,
-      "pass": true
-    },
-    {
-      "question": "What do the supplements help with?",
-      "answer": "Supplements are used to support nerve health, circulation, and metabolic pathways that influence nerve function. They are intended to work alongside device-based therapies rather than replace them, under provider direction.",
-      "duration": 726,
-      "pass": true
-    },
-    {
-      "question": "Are there topical products too?",
-      "answer": "Nerve & Neuropathy Cream by NerveSpa - Maximum Strength Relief for Foot, Hands, Legs, Toes Includes 7grams of L'Arginine; Vitamin B6, Menthol, Aloe - Scientifically Developed to improve blood circulation and Relieve pain - 2.82oz",
-      "duration": 2540,
-      "pass": true
-    },
-    {
-      "question": "My device is not turning on. What should I do?",
-      "answer": "Confirm the device is charged or properly powered, then press the power button firmly. If it does not turn on, contact support.",
-      "duration": 780,
-      "pass": true
-    },
-    {
-      "question": "What should I do if the QuakePlate feels too strong?",
-      "answer": "Reduce intensity or shorten session time as directed by your provider. Stop use if discomfort occurs.",
-      "duration": 862,
-      "pass": true
-    },
-    {
-      "question": "What if I do not feel anything during cold laser therapy?",
-      "answer": "Cold Laser therapy is typically painless. A mild warming sensation may occur, but no discomfort should be felt.",
-      "duration": 993,
-      "pass": true
-    },
-    {
-      "question": "Is mild soreness normal after using the vibration plate?",
-      "answer": "Mild muscle fatigue can occur after use. If soreness persists or discomfort increases, pause use and consult your provider.",
-      "duration": 1279,
-      "pass": true
-    },
-    {
-      "question": "What if the wrap feels uncomfortable?",
-      "answer": "Stop the session and adjust placement or intensity as directed by your provider. Discomfort should not occur during normal use.",
-      "duration": 758,
-      "pass": true
-    },
-    {
-      "question": "How do I know if I’m using the device correctly?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2571,
-      "pass": false
-    },
-    {
-      "question": "What happens if a product stops working?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 3321,
-      "pass": false
-    },
-    {
-      "question": "How do I clean and maintain the equipment?",
-      "answer": "Hand-wash gloves/socks gently with mild soap; do not wring; air-dry completely before reuse. Spray inside/outside with conductive solution before each session. Store cool/dry. Manual: https://drive.google.com/file/d/18q1b0FWvLZuBscJmdrwuefhv3oEnUSlc/view?usp=sharing",
-      "duration": 736,
-      "pass": true
-    },
-    {
-      "question": "How should I charge the controller?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2376,
+      "duration": 4362,
       "pass": false
     },
     {
       "question": "What if I accidentally skip part of the treatment plan?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2615,
+      "duration": 3935,
       "pass": false
     },
     {
-      "question": "How can I buy NerveSpa?",
-      "answer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan.",
-      "duration": 666,
-      "pass": true
-    },
-    {
-      "question": "Do you sell directly to patients?",
-      "answer": "Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels. Clinics can open a provider account to order NerveSpa products or request demos.",
-      "duration": 2524,
-      "pass": true
-    },
-    {
       "question": "Do I need a prescription?",
-      "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
-      "duration": 597,
-      "pass": true
-    },
-    {
-      "question": "How can my clinic offer NerveSpa?",
-      "answer": "Yes. Clinics receive onboarding support, device training, and access to guides, protocols, and provider resources. Additional training is available as needed.",
-      "duration": 688,
-      "pass": true
-    },
-    {
-      "question": "How do providers order NerveSpa products?",
-      "answer": "Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels.",
-      "duration": 2576,
-      "pass": true
-    },
-    {
-      "question": "Can I request a demo for my clinic?",
-      "answer": "Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels.",
-      "duration": 701,
-      "pass": true
-    },
-    {
-      "question": "Do you offer training for providers?",
-      "answer": "Yes. Clinics receive onboarding support, device training, and access to guides, protocols, and provider resources. Additional training is available as needed.",
-      "duration": 653,
-      "pass": true
-    },
-    {
-      "question": "Is NerveSpa available nationwide?",
-      "answer": "Availability may vary by region. Clinics outside the U.S. may contact NerveSpa to inquire about current options.",
-      "duration": 691,
-      "pass": true
-    },
-    {
-      "question": "Can international clinics order NerveSpa?",
-      "answer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables such as salts and garments. Some devices may qualify for insurance coverage under HCPCS code E0720 depending on the plan.",
-      "duration": 2480,
-      "pass": true
-    },
-    {
-      "question": "How much does NerveSpa cost?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2491,
+      "duration": 4064,
       "pass": false
     },
     {
       "question": "Do you offer financing?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2318,
+      "duration": 4129,
       "pass": false
-    },
-    {
-      "question": "Is insurance accepted?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 4705,
-      "pass": false
-    },
-    {
-      "question": "Is NerveSpa covered by Medicare?",
-      "answer": "Coverage varies by plan. Some clinics bill eligible components under neuropathy programs, while others use cash-pay, HSA/FSA, or membership models. Patients should verify with their insurer.",
-      "duration": 745,
-      "pass": true
-    },
-    {
-      "question": "Is NerveSpa FDA approved?",
-      "answer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com",
-      "duration": 4096,
-      "pass": true
-    },
-    {
-      "question": "Are your products made in FDA-registered facilities?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 3063,
-      "pass": true
-    },
-    {
-      "question": "Is there any clinical evidence behind NerveSpa?",
-      "answer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com",
-      "duration": 2454,
-      "pass": true
-    },
-    {
-      "question": "Has this helped real patients?",
-      "answer": "Several patients have reported positive experiences with NerveSpa products. For example, Betsy D. reported a remarkable reduction in symptoms after only one use. Lindy Dare noted that 95% of her pain was gone after about a week of use, allowing her to be active again. Other patients, such as Debbi S. and Diana & Dave Spence, experienced improved sleep, finally being able to sleep through the night. Functional improvements were also reported, including better balance and reduced swelling in the feet. Overall, testimonials highlight the efficacy of NerveSpa products in providing sustainable relief for neuropathy, arthritis, and related conditions.",
-      "duration": 3215,
-      "pass": true
-    },
-    {
-      "question": "What kind of outcomes do patients report?",
-      "answer": "Patients often report reduced tingling, burning, and numbness; improved circulation; decreased stiffness; and better mobility or sleep depending on the product used. Outcomes vary by individual and consistency.",
-      "duration": 766,
-      "pass": true
-    },
-    {
-      "question": "How long has NerveSpa been around?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2451,
-      "pass": false
-    },
-    {
-      "question": "Why should I trust NerveSpa?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 628,
-      "pass": true
     },
     {
       "question": "Are licensed clinicians involved in the process?",
-      "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
-      "duration": 2482,
-      "pass": true
-    },
-    {
-      "question": "How do I contact NerveSpa support?",
-      "answer": "Contact support if troubleshooting steps do not resolve the issue or if the device does not function as expected.",
-      "duration": 763,
-      "pass": true
-    },
-    {
-      "question": "Can I speak to someone before buying?",
-      "answer": "Providers can reach out for support in the following ways:\n\n• Chatbot – Use the 'Contact Support' option directly in the chatbot.\n• Email – [support@nervespa.com](mailto:support@nervespa.com)\n\n• Phone – 1-800-239-7880 (available during business hours)\n• Provider Portal – coming soon",
-      "duration": 2860,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 4448,
+      "pass": false
     },
     {
       "question": "How do I find a provider near me?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2436,
+      "duration": 3935,
       "pass": false
-    },
-    {
-      "question": "Can I schedule a consultation?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2545,
-      "pass": false
-    },
-    {
-      "question": "Where are you located?",
-      "answer": "Providers can reach out for support in the following ways:\n\n• Chatbot – Use the 'Contact Support' option directly in the chatbot.\n• Email – [support@nervespa.com](mailto:support@nervespa.com)\n\n• Phone – 1-800-239-7880 (available during business hours)\n• Provider Portal – coming soon",
-      "duration": 2807,
-      "pass": true
-    },
-    {
-      "question": "How do I get help choosing the right product?",
-      "answer": "Providers can reach out for support in the following ways:\n\n• Chatbot – Use the 'Contact Support' option directly in the chatbot.\n• Email – [support@nervespa.com](mailto:support@nervespa.com)\n\n• Phone – 1-800-239-7880 (available during business hours)\n• Provider Portal – coming soon",
-      "duration": 3962,
-      "pass": true
-    },
-    {
-      "question": "What is the fastest way to reach your team?",
-      "answer": "Providers can reach out for support in the following ways:\n\n• Chatbot – Use the 'Contact Support' option directly in the chatbot.\n• Email – [support@nervespa.com](mailto:support@nervespa.com)\n\n• Phone – 1-800-239-7880 (available during business hours)\n• Provider Portal – coming soon",
-      "duration": 2923,
-      "pass": true
-    },
-    {
-      "question": "My feet burn at night. Would this help me?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3033,
-      "pass": true
-    },
-    {
-      "question": "I have numbness from diabetes. Where should I start?",
-      "answer": "NerveSpa offers a Peripheral Neuropathy Program Protocol aimed at alleviating nerve pain, tingling, burning, or numbness in the hands and feet caused by nerve damage. The goal is to reduce pain, regenerate nerves, and prevent the progression of the condition. The treatment involves massage-like therapy that provides analgesic and therapeutic effects. Consistency is important, with each modality recommended for use 30 minutes per day, 5-6 times or more per week. Typically, an aggregate milestone of 90 plus treatments from each modality (usually over 16 weeks for Laser Therapy) is suggested before tapering back to a maintenance schedule. Clinics commonly integrate NerveSpa with chiropractic care, physical therapy, metabolic programs, red light therapy, or other supportive modalities as part of a broader treatment plan. Many patients use NerveSpa devices at home under such guidance for neuropathy support.",
-      "duration": 5123,
-      "pass": true
     },
     {
       "question": "I’m confused. Which NerveSpa product is best for me?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians. \n\nNerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption:\n\n1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function.\n2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint.\n3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support.\n\nClinics can open a provider account to order NerveSpa products or request demos. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels. For personalized advice on which product is best suited for your condition, it is recommended to consult a licensed clinician familiar with NerveSpa products.",
-      "duration": 6223,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3521,
+      "pass": false
     },
     {
       "question": "Do I need the full system or just one device?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans. Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels. Several practitioners appreciate that the products, including the NerveSpa, Nerve Beam wrap, and Quake Plate, are effective, easy to use at home, allowing neuropathy patients to have an option that doesn't involve weekly in-office treatments. The company offers three main targeted protocols engineered for clinical-grade results and effortless adoption: peripheral neuropathy, joint & mobility, and supplement kits. The system is designed for turnkey integration, making it easy for providers to implement and proven to keep patients on track with measurable outcomes. The 90-Day Program is a comprehensive program designed for delivering consistent results. Many patients use single devices or products as part of their care plan, depending on their specific condition and guidance from licensed clinicians.",
-      "duration": 6441,
-      "pass": true
-    },
-    {
-      "question": "Is this legit or just another pain relief product?",
-      "answer": "NerveSpa specializes in Aquatic Nerve Stimulation Therapy and provides clinical-grade, protocol-based systems built for clinics. The entire system is designed for Turnkey Integration, making it easy for providers to implement and proven to keep patients on track with measurable outcomes. Targeted Protocols NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: 1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function. 2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint. 3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support. Clinical Results and Adoption The company highlights its success through strong metrics that underscore patient outcomes and clinic satisfaction: ? 90-Day Program: A comprehensive program designed for delivering consistent results. ? 95% Patients Improved: A high percentage of patients report less pain and better function. ? 98% Clinic Satisfaction: High satisfaction driven by positive patient outcomes. ? Adoption: Trusted by 500+ Clinics across the U.S. and has treated 15,000+ patients.? Retention: Boasts a Less Than 1% Return Rate, which NerveSpa states proves the results. Benefits for Clinical Integration NerveSpa is des",
-      "duration": 6385,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 4550,
+      "pass": false
     },
     {
       "question": "I’ve tried a lot already. Why would this be different?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.\n\nIts effectiveness is attributed to providing clinical-grade modalities that are physician-formulated, backed by clinical research, and utilized in a combinational or multi-modal capacity, where results stack through consistent user compliance.\n\nPatients have reported immediate and long-term relief, improved sleep, and functional improvement. The system is frequently credited with resolving symptoms such as pain, numbness, burning, and swelling, making it a valued tool for both clinics and patients. It is designed for easy use at home, providing an option that does not require weekly in-office treatments.",
-      "duration": 3966,
+      "answer": "I’m sorry to hear you’ve already been through so much trying to find relief.\n\nBecause your situation and history are unique, the best next step is to have someone walk through how NerveSpa works and whether it’s a good fit for you specifically.\n\nPlease reach out to our support team so they can review your case, explain how the NerveSpa system is designed to be used, and discuss whether it may be appropriate in your situation:\n\n- Email: support@nervespa.com  \n- Phone: 1-800-239-7880 (during business hours)\n\nThey can give you personalized, non-generic information instead of “one-size-fits-all” claims.",
+      "duration": 6656,
       "pass": true
     },
     {
       "question": "Can this actually reverse neuropathy, or just manage symptoms?",
-      "answer": "Peripheral Neuropathy Program Protocol\nThis protocol is aimed at alleviating nerve pain, tingling, burning, or numbness in the hands and feet caused by nerve damage.\n? Goal: To reduce pain, regenerate nerves, and prevent the progression of the condition.\n? Treatment Modality: Massage-like therapy that provides an analgesic and therapeutic effect.\n? Consistency Requirement: Use each modality for 30 minutes per day, 5-6 times or more per week.\n? Duration: Recommended to achieve an aggregate milestone of 90 plus treatments from each modality (typically over 16 weeks for Laser Therapy) before tapering back to a maintenance schedule.\nThe text also outlines the 6 Stages of Peripheral Neuropathy, ranging from Normal (pain-free, 100% sensation) through Early Onset (intermittent pain, tingling/burning) to Final Stage (complete loss of sensation, risk of injury/amputation).",
-      "duration": 4625,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 4476,
+      "pass": false
     },
     {
       "question": "Will I need to keep using it forever?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2741,
+      "duration": 3809,
       "pass": false
     },
     {
       "question": "Is this easy for an older person to use alone?",
-      "answer": "Several practitioners appreciate that the products, including the NerveSpa, Nerve Beam wrap, and Quake Plate, are effective, easy to use at home, allowing neuropathy patients to have an option that doesn't involve weekly in-office treatments. Results observed include a 50% improvement in 90 days for home-use neuropathy cases.",
-      "duration": 3256,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3801,
+      "pass": false
     },
     {
       "question": "I want something non-invasive. Is this a good option?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 3559,
-      "pass": true
-    },
-    {
-      "question": "My hands and feet are both affected. Can NerveSpa help both?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3285,
-      "pass": true
-    },
-    {
-      "question": "I’m a provider. How do I start offering this in my practice?",
-      "answer": "Clinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels.",
-      "duration": 2839,
+      "answer": "NerveSpa therapies are designed as non-invasive options.\n\nHowever, whether this is a good option for you personally can depend on your specific condition, medical history, and any implanted devices or other risk factors. I’m not able to give medical advice or say if it’s appropriate for your individual case.\n\nFor a personalized recommendation, please discuss NerveSpa with your healthcare provider, or contact NerveSpa support at [support@nervespa.com](mailto:support@nervespa.com) so they can help coordinate information for your provider.",
+      "duration": 4614,
       "pass": true
     },
     {
       "question": "I’m looking for something for my diabetic patients. Is this appropriate?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3256,
-      "pass": true
-    },
-    {
-      "question": "Can someone explain this in simple words?",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 2995,
-      "pass": true
-    },
-    {
-      "question": "What would you recommend for tingling, burning, and balance problems?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 3471,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3844,
+      "pass": false
     },
     {
       "question": "What’s the difference between neuropathy treatment and symptom relief in your program?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2848,
+      "duration": 4081,
       "pass": false
     },
     {
       "question": "Which NerveSpa option would be most suitable for diabetic neuropathy with balance issues?",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis. \n\nNerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: \n1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function. \n2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint. \n3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support. \n\nThe Peripheral Neuropathy Program Protocol is aimed at alleviating nerve pain, tingling, burning, or numbness in the hands and feet caused by nerve damage. It uses massage-like therapy that provides analgesic and therapeutic effects. The consistency requirement is use of each modality for 30 minutes per day, 5-6 times or more per week, for a typical duration of around 90 treatments over about 16 weeks before tapering to maintenance.\n\nGiven diabetic neuropathy with balance conditions, the Peripheral Neuropathy targeted protocol using clinical-grade devices and protocols would be the most suitable NerveSpa option.",
-      "duration": 7055,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 4191,
+      "pass": false
     },
     {
       "question": "Can you compare aquatic stimulation, cold laser, and vibration therapy?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2789,
-      "pass": false
-    },
-    {
-      "question": "Which products are best for feet versus hands?",
-      "answer": "NerveSpa offers specific products for hands and feet:\n\nFor Feet:\n- NerveSpa Classic, Hand and Foot Pain Relief System - 10 Day Supply Program\n- NERVESPA SILVER CONDUCTIVE SOCK - FOOT GARMENT SYSTEM\n- Nerve Spa Foot bath Supply Kit\n- Nerve & Neuropathy Cream by NerveSpa - relief for foot, hands, legs, toes\n- Nerve Spa Performance diabetic Socks\n\nFor Hands:\n- NERVESPA SILVER CONDUCTIVE GLOVE - HAND GARMENT SYSTEM\n- Nerve & Neuropathy Cream by NerveSpa - relief for foot, hands, legs, toes\n\nThese products include clinical-grade devices like conductive garments, baths, creams, and supplements tailored for targeting nerve and pain issues in the feet or hands.",
-      "duration": 3989,
-      "pass": true
-    },
-    {
-      "question": "If I have neuropathy and joint pain, which part of your system addresses each?",
-      "answer": "NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: 1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function. 2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint. 3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support.",
-      "duration": 3449,
-      "pass": true
-    },
-    {
-      "question": "What should I avoid while using NerveSpa?",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2786,
+      "duration": 4392,
       "pass": false
     },
     {
       "question": "Can I combine NerveSpa with my current treatment plan?",
-      "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
-      "duration": 2622,
-      "pass": true
-    },
-    {
-      "question": "What results are realistic, and how long can they take?",
-      "answer": "Effective Home-Use: Several practitioners appreciate that the products, including the NerveSpa, Nerve Beam wrap, and Quake Plate, are effective, easy to use at home, allowing neuropathy patients to have an option that doesn't involve weekly in-office treatments. Results observed include a 50% improvement in 90 days for home-use neuropathy cases. Patient Stories Patients share their experiences of recovery, relief, and a renewed quality of life: ? Immediate and Long-Term Relief: Many patients, such as Betsy D., reported a remarkable reduction in symptoms after only one use. Lindy Dare, who had been struggling with severe pain for years, reported that 95% of my pain is gone after about a week of use, enabling her to be active again. ? Improved Sleep: The system is frequently credited with resolving sleepless nights caused by neuropathy. Debbi S. and Diana & Dave Spence both reported finally being able to sleep thru the night for the first time in years. ? Functional Improvement: Patients experienced noticeable functional gains. Carol K.'s husband felt like he could feel his feet for a long time on the first use, with better balance, to the point he felt he didn't need his cane. Gerhard W. noticed a remarkable decrease in the swelling of my feet after just one application. In summary, the testimonials highlight the products' efficacy in providing sustainable relief for conditions like neuropathy and arthritis, making them a valued tool for both clinics and patients.",
-      "duration": 5025,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question.🤔 \nPlease try a different question or contact support directly at support@nervespa.com",
+      "duration": 944,
+      "pass": false
     },
     {
       "question": "What questions should I ask my provider before starting?",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2549,
+      "duration": 4290,
       "pass": false
     },
     {
       "question": "Which NerveSpa products are for clinic use and which are for home use?",
-      "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.\n\nClinics can open a provider account to order NerveSpa products or request demos. Starter kits and bundles are available. Patients cannot purchase devices directly but may obtain salts, garments, and accessories through approved channels.\n\nSeveral practitioners appreciate that the products, including the NerveSpa, Nerve Beam wrap, and Quake Plate, are effective, easy to use at home, allowing neuropathy patients to have an option that doesn't involve weekly in-office treatments. \n\nNerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
-      "duration": 4152,
-      "pass": true
-    },
-    {
-      "question": "what is nervespa used for",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2904,
-      "pass": true
-    },
-    {
-      "question": "can nervespa hlp with numb feet",
-      "answer": "The Peripheral Neuropathy Program Protocol from NerveSpa is aimed at alleviating nerve pain, tingling, burning, or numbness in the hands and feet caused by nerve damage. The goal is to reduce pain, regenerate nerves, and prevent the progression of the condition. The treatment involves massage-like therapy that provides an analgesic and therapeutic effect. It typically requires daily use of each modality for 30 minutes, 5-6 times or more per week, with a recommended duration to achieve an aggregate milestone of 90 plus treatments (typically over 16 weeks for Laser Therapy) before tapering to a maintenance schedule.",
-      "duration": 4510,
-      "pass": true
+      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
+      "duration": 3831,
+      "pass": false
     },
     {
       "question": "do i need perscription",
-      "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans.",
-      "duration": 2383,
-      "pass": true
-    },
-    {
-      "question": "is this for diabetic neropathy",
-      "answer": "NerveSpa is used for peripheral neuropathy, diabetic neuropathy, chemotherapy-related neuropathy, plantar fasciitis, heel spurs, restless legs, circulation issues, numbness, tingling, burning, stiffness, balance concerns, cramps, cold feet, and joint-related discomfort such as knee and shoulder arthritis.",
-      "duration": 2800,
-      "pass": true
-    },
-    {
-      "question": "how much this cost",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2424,
+      "duration": 4523,
       "pass": false
     },
     {
       "question": "just tell me if this works or not",
-      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.\n\nMany patients share experiences of recovery, relief, and a renewed quality of life with NerveSpa products. Reported benefits include immediate and long-term relief of symptoms, improved sleep, and noticeable functional improvements such as better balance and reduced swelling. The system is frequently credited with resolving sleepless nights caused by neuropathy, and some patients report significant pain reduction enabling greater activity.\n\nThe products are effective for home use and appreciated by practitioners for providing an option that doesn’t involve weekly in-office treatments.\n\nYou might also be interested in:\nHow long does each session usually take?  \nCan nerve spa support with peripheral neuropathy?  \nDoes this work for diabetic neuropathy?",
-      "duration": 4595,
-      "pass": true
-    },
-    {
-      "question": "stop explaining and tell me the best option",
       "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 3398,
+      "duration": 6031,
       "pass": false
-    },
-    {
-      "question": "this sounds confusing can you make it simple",
-      "answer": "NerveSpa specializes in Aquatic Nerve Stimulation Therapy and provides clinical-grade, protocol-based systems built for clinics. The entire system is designed for Turnkey Integration, making it easy for providers to implement and proven to keep patients on track with measurable outcomes. Targeted Protocols NerveSpa offers three main targeted protocols engineered for clinical-grade results and effortless adoption: 1. Peripheral Neuropathy: Utilizes clinical-grade devices and protocols to address neuropathic pain and improve nerve function. 2. Joint & Mobility: Focuses on targeted advanced stimulation and movement-based protocols to help restore range of motion and reduce arthritis in the joint. 3. Supplement Kits: Offers custom supplement solutions to boost results, focusing on key nutrients for metabolic, gut, and immunity support. Clinical Results and Adoption The company highlights its success through strong metrics that underscore patient outcomes and clinic satisfaction: ? 90-Day Program: A comprehensive program designed for delivering consistent results. ? 95% Patients Improved: A high percentage of patients report less pain and better function. ? 98% Clinic Satisfaction: High satisfaction driven by positive patient outcomes. ? Adoption: Trusted by 500+ Clinics across the U.S. and has treated 15,000+ patients.? Retention: Boasts a Less Than 1% Return Rate, which NerveSpa states proves the results. Benefits for Clinical Integration NerveSpa is des",
-      "duration": 5335,
-      "pass": true
-    },
-    {
-      "question": "I only want the price",
-      "answer": "Sorry, I couldn't find a relevant answer for your question. 🤔\nPlease try a different question or contact support directly at [support@nervespa.com](mailto:support@nervespa.com)",
-      "duration": 2630,
-      "pass": false
-    },
-    {
-      "question": "give me a direct answer",
-      "answer": "Each session usually takes about 30 minutes per modality, recommended 5-6 times or more per week, totaling typically over 16 weeks to achieve an aggregate milestone of 90 plus treatments before tapering back to maintenance.",
-      "duration": 2409,
-      "pass": true
     }
   ],
   "stats": {
-    "total": 135,
-    "passed": 106,
-    "failed": 29,
-    "passRate": "78.5",
-    "avgResponseTime": 2782
+    "total": 33,
+    "passed": 5,
+    "failed": 28,
+    "passRate": "15.2",
+    "avgResponseTime": 3933
   }
 }

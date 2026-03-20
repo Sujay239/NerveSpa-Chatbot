@@ -1,21 +1,40 @@
 const text = $json.content;
 
-// 1500 chars is roughly 300-400 words (a solid paragraph or two of context)
+// Primary strategy: split by double newlines or headers to preserve context
+// Fallback: character-based split with overlap
 const chunkSize = 1500; 
-// 300 chars ensures sentences split across boundaries are preserved
 const overlap = 200;     
 
-const chunks = [];
+let chunks = [];
 
-for (let i = 0; i < text.length; i += chunkSize - overlap) {
-  // Optional: You can add logic here to find the nearest period '.' 
-  // so you don't cut words or sentences in half, but increasing the size
-  // and overlap helps mitigate this immediately.
-  chunks.push({
-    json: {
-      content: text.substring(i, i + chunkSize)
+// Split by sections if possible
+const sections = text.split(/\n{2,}/);
+
+let currentChunk = "";
+
+for (const section of sections) {
+  if (currentChunk.length + section.length < chunkSize) {
+    currentChunk += (currentChunk ? "\n\n" : "") + section;
+  } else {
+    if (currentChunk) {
+      chunks.push({ json: { content: currentChunk.trim() } });
     }
-  });
+    // If a single section is too big, character split it
+    if (section.length > chunkSize) {
+      for (let i = 0; i < section.length; i += chunkSize - overlap) {
+        chunks.push({ json: { content: section.substring(i, i + chunkSize).trim() } });
+      }
+      currentChunk = "";
+    } else {
+      currentChunk = section;
+    }
+  }
 }
+
+if (currentChunk) {
+  chunks.push({ json: { content: currentChunk.trim() } });
+}
+
+return chunks;
 
 return chunks;

@@ -6,6 +6,28 @@ const sessionId =
 
 // ================= PREDEFINED QUESTIONS =================
 const predefinedQuestions = [
+  "Is it safe if I have a pacemaker?",
+  "Can I use NerveSpa if I’m pregnant?",
+  "Is this safe after surgery?",
+  "Is it safe for seniors?",
+  "Is the treatment painful?",
+  "Are there any side effects?",
+  "Can I overuse the therapy?",
+  "What happens if I miss a session?",
+  "Can NerveSpa help with plantar fasciitis?",
+  "plantar fasciitis treatment",
+  "How much does NerveSpa cost?",
+  "How much does it cost?",
+  "cost",
+  "How to manage discomfort or adverse sensations?",
+  "adverse sensations management",
+  "Is continuing education provided?",
+  "Does NerveSpa provide ongoing training?",
+  "Are there any side effects?",
+  "side effects",
+  "Is it safe if I have a pacemaker?",
+  "pacemaker safety",
+  "how much this cost",
   "Is there a setup guide for first-time users?",
   "Can I use it for both feet at the same time?",
   "What is the difference between the LED wrap and the laser?",
@@ -388,6 +410,17 @@ const predefinedQuestions = [
   "Where do I download the user manual for Shoulder Pro",
   "Do you ship to Canada?",
   "Who are the doctors or clinicians associated with NerveSpa?",
+  "What therapies are included in NerveSpa?",
+  "Is NerveSpa a clinic, a product, or a treatment program?",
+  "What kind of patients usually use NerveSpa?",
+  "Will this help with balance issues caused by neuropathy?",
+  "Is NerveSpa only for foot problems, or can it help hands too?",
+  "Why is water used in the treatment?",
+  "Do you offer financing?",
+  "How do I find a provider near me?",
+  "Do I need a prescription?",
+  "What are NerveSpa's clinical products and offerings?",
+  "What products do you offer for neuropathy and joint pain?"
 ];
 
 // ================= SYNONYMS =================
@@ -475,10 +508,19 @@ const synonyms = {
   credit: "pay",
   ship: "shipped",
   shipping: "shipped",
-  product: "nervespa",
-  products: "nervespa",
+  product: "products",
+  products: "products",
+  catalog: "products",
+  portfolio: "products",
+  offerings: "products",
   device: "nervespa",
   devices: "nervespa",
+  nervespa: "nerve spa",
+  powerwrap: "power wrap",
+  quakeplate: "quake plate",
+  nervewave: "nerve wave",
+  nervebath: "nerve bath",
+  nervebeam: "nerve beam",
   approved: "registered",
   approval: "registered",
   listings: "registered",
@@ -506,6 +548,10 @@ const synonyms = {
   determines: "determine",
   know: "determine",
   tell: "determine",
+  education: "training",
+  adverse: "discomfort",
+  sensations: "discomfort",
+  nervebeam: "nerve beam",
 
   length: "long",
   duration: "long",
@@ -583,9 +629,6 @@ const synonyms = {
   outcome: "certified",
   password: "login",
   account: "login",
-  suggest: "recommend",
-  suggestion: "recommend",
-  suggestions: "recommend",
   recommended: "recommend",
   recommendation: "recommend",
   recommendations: "recommend",
@@ -652,9 +695,11 @@ const stopWords = new Set([
   "where",
   "when",
   "who",
+  "has",
   "been",
   "hold",
-  "tell",
+  "u",
+  "s",
   "me",
   "about",
   "some",
@@ -662,10 +707,8 @@ const stopWords = new Set([
   "much",
   "very",
   "give",
-  "show",
   "get",
   "please",
-  "nervespa",
   "current",
   "go",
 ]);
@@ -869,8 +912,8 @@ for (let i = 0; i < predefinedQuestions.length; i++) {
 }
 
 // ================= THRESHOLD =================
-// You can tune this between 0.60 and 0.75 depending on strictness
-const threshold = 0.55;
+// You can tune this between 0.45 and 0.65 depending on strictness
+const threshold = 0.50;
 const matchFound = bestScore >= threshold;
 
 // ================= OUTPUT =================

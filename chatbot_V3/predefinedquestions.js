@@ -2724,6 +2724,131 @@
     "question": "Can I return a used product to NerveSpa?",
     "answer":
       "All devices include a one-year limited warranty covering manufacturing defects. Returns are accepted within 30 days if unused and undamaged. Providers should contact the seller for RMA instructions.",
+  },
+   {
+    "question": "Is it safe if I have a pacemaker?",
+    "answer": "Generally, patients with pacemakers or other implanted electronic devices should not use NerveSpa conductive garments, the PowerWrap, or Cold Laser therapy unless cleared by their provider. Providers must screen for contraindications before starting treatment.",
+  },
+  {
+    "question": "Can I use NerveSpa if I’m pregnant?",
+    "answer": "NerveSpa should not be used during pregnancy unless specifically cleared by your healthcare provider. Pregnant patients should be screened for contraindications before use.",
+  },
+  {
+    "question": "Is this safe after surgery?",
+    "answer": "NerveSpa use after surgery should be directed by your surgeon or primary care provider. It is important to ensure that any incisions are fully healed and that stimulation is appropriate for your recovery stage.",
+  },
+  {
+    "question": "Is it safe for seniors?",
+    "answer": "Yes, NerveSpa is safe for seniors and is frequently used to support circulation, balance, and comfort. However, providers should still screen for individual contraindications such as pacemakers or certain medical conditions.",
+  },
+  {
+    "question": "Is the treatment painful?",
+    "answer": "Treatment should not be painful. Most patients feel a gentle tingle or warmth (with LED/Laser). If you feel sharp pain or discomfort, you should reduce the intensity or stop the session and consult your provider.",
+  },
+  {
+    "question": "Are there any side effects?",
+    "answer": "NerveSpa therapies are non-invasive and generally have no significant side effects when used as directed. Some patients may experience mild, temporary muscle fatigue or skin redness, which usually resolves quickly.",
+  },
+  {
+    "question": "Can I overuse the therapy?",
+    "answer": "We recommend following the protocol of 30 minutes per day, 5-6 times per week. While extra sessions are usually not harmful, consistency over time is more important than excessive use in a single day.",
+  },
+  {
+    "question": "What happens if I miss a session?",
+    "answer": "Consistency is key for results, but missing a single session is perfectly fine. Simply resume your normal schedule the next day. The goal is to reach a total of about 90 treatments for the best outcomes.",
+  },
+  {
+    "question": "Can NerveSpa help with plantar fasciitis?",
+    "answer": "Yes. The Quake Plate vibrational therapy is highly recommended for plantar fasciitis. Additionally, aquatic nerve stimulation and LED therapy can help support circulation and reduce discomfort in the feet and heels.",
+  },
+  {
+    "question": "How much does NerveSpa cost?",
+    "answer": "NerveSpa devices are sold to clinics at wholesale pricing. Retail pricing applies to patient consumables like salts and garments. Specific costs depend on the clinic's program and your individual needs. Please contact your local provider or our support team for more details.",
+  },
+    {
+    "question": "Does NerveSpa provide ongoing training?",
+    "answer": "Yes, NerveSpa provides ongoing support and training for clinics. This includes guided onboarding, product training, and clinical resources to ensure your staff is comfortable and proficient with the systems and protocols."
+  },
+  
+  {
+    "question": "What are NerveSpa conductive foot pads, socks, and gloves?",
+    "answer": "These are specialized garments designed to deliver aquatic stimulation and electro-therapy directly to the skin. They are made with high-quality silver threads to ensure even distribution of the therapy around the feet or hands."
+  },
+  {
+    "question": "How do I clean conductive socks, gloves, or garments?",
+    "answer": "Hand wash in warm water with a mild detergent and air dry. Do not use bleach or a dryer. Proper care ensures the longevity and conductivity of the garments."
+  },
+  {
+    "question": "I don't want this product, can I return my order?",
+    "answer": "We offer a standard return policy. If you are unsatisfied, please contact our support team within the return window for instructions on how to process a return and verify your eligibility."
+  },
+  {
+    "question": "What if my skin feels too sensitive after PowerWrap use?",
+    "answer": "Stop treatment and allow the skin to return to normal before resuming. Reduce power level or frequency as directed by your provider."
+  },
+  {
+    "question": "What if the Nerve Bath unit does not turn on?",
+    "answer": "Confirm the unit is plugged in securely and the power switch is on. If it has batteries, check that they are properly charged. If the unit still does not power on, contact support."
+  },
+  {
+    "question": "What if stimulation feels too weak?",
+    "answer": "Check that your feet are properly submerged (for Nerve Bath), ensure lead wires are plugged in fully, and check the intensity settings. If you use garments, ensure they are properly dampened. If the issue remains, contact support."
+  },
+  {
+    "question": "Where do I download the user manual for Shoulder Pro",
+    "answer": "User manuals are provided by your clinic or can be accessed through official NerveSpa resources. Please check your product box or contact your provider for the Quick Start Guide."
+  },
+  {
+    "question": "What therapies are included in NerveSpa?",
+    "answer": "NerveSpa includes multiple clinical-grade modalities: aquatic nerve stimulation (Nerve Bath), high-powered LED light therapy (NerveBeam LED Wrap), concentrated cold laser therapy (NerveBeam Cold Laser), and vibrational massage therapy (Quake Plate). These are complemented by advanced supplementation and topical formulas to provide comprehensive support for nerve and joint health."
+  },
+  {
+    "question": "What are NerveSpa's clinical products and offerings?",
+    "answer": "NerveSpa offers a comprehensive family of clinical-grade products designed to support neuropathy, joint pain, and metabolic health. Our key offerings include:\n\n• **Nerve Bath**: An aquatic nerve stimulation system for hands and feet.\n• **NerveBeam LED Wrap**: High-powered red/infrared light therapy for broad area support.\n• **NerveBeam Cold Laser**: Targeted, deep-tissue laser therapy for localized pain.\n• **Quake Plate**: Advanced vibration therapy to support circulation and mobility.\n• **Knee Pro & Shoulder Pro**: Specialized multi-modal devices for joint-specific care.\n• **Advanced Supplementation**: Targeted formulas like Nerve Rebuilder and Blood Flow Super Formula.\n\nThese products are distributed through licensed clinics to ensure professional guidance for every patient."
+  },
+  {
+    "question": "What products do you offer for neuropathy and joint pain?",
+    "answer": "NerveSpa offers a comprehensive family of clinical-grade products designed to support neuropathy, joint pain, and metabolic health. Our key offerings include:\n\n• **Nerve Bath**: An aquatic nerve stimulation system for hands and feet.\n• **NerveBeam LED Wrap**: High-powered red/infrared light therapy for broad area support.\n• **NerveBeam Cold Laser**: Targeted, deep-tissue laser therapy for localized pain.\n• **Quake Plate**: Advanced vibration therapy to support circulation and mobility.\n• **Knee Pro & Shoulder Pro**: Specialized multi-modal devices for joint-specific care.\n• **Advanced Supplementation**: Targeted formulas like Nerve Rebuilder and Blood Flow Super Formula.\n\nThese products are distributed through licensed clinics to ensure professional guidance for every patient."
+  },
+  {
+    "question": "Suggest some products for my condition.",
+    "answer": "NerveSpa offers a comprehensive family of clinical-grade products designed to support neuropathy, joint pain, and metabolic health. Our key offerings include:\n\n• **Nerve Bath**: An aquatic nerve stimulation system for hands and feet.\n• **NerveBeam LED Wrap**: High-powered red/infrared light therapy for broad area support.\n• **NerveBeam Cold Laser**: Targeted, deep-tissue laser therapy for localized pain.\n• **Quake Plate**: Advanced vibration therapy to support circulation and mobility.\n• **Knee Pro & Shoulder Pro**: Specialized multi-modal devices for joint-specific care.\n• **Advanced Supplementation**: Targeted formulas like Nerve Rebuilder and Blood Flow Super Formula.\n\nThese products are distributed through licensed clinics to ensure professional guidance for every patient."
+  },
+  {
+    "question": "Can you show me your product catalog?",
+    "answer": "NerveSpa offers a comprehensive family of clinical-grade products designed to support neuropathy, joint pain, and metabolic health. Our key offerings include:\n\n• **Nerve Bath**: An aquatic nerve stimulation system for hands and feet.\n• **NerveBeam LED Wrap**: High-powered red/infrared light therapy for broad area support.\n• **NerveBeam Cold Laser**: Targeted, deep-tissue laser therapy for localized pain.\n• **Quake Plate**: Advanced vibration therapy to support circulation and mobility.\n• **Knee Pro & Shoulder Pro**: Specialized multi-modal devices for joint-specific care.\n• **Advanced Supplementation**: Targeted formulas like Nerve Rebuilder and Blood Flow Super Formula.\n\nThese products are distributed through licensed clinics to ensure professional guidance for every patient."
+  },
+  {
+    "question": "Is NerveSpa a clinic, a product, or a treatment program?",
+    "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It is not a clinic itself; rather, our products and programs are distributed through a network of licensed clinics and healthcare providers who guide patients through their personalized treatment plans."
+  },
+  {
+    "question": "What kind of patients usually use NerveSpa?",
+    "answer": "NerveSpa is intended for patients who have symptoms of peripheral neuropathy, diabetic neuropathy, chemotherapy-induced neuropathy, plantar fasciitis, balance issues, or chronic joint pain. Licensed providers determine whether or not it is suitable for each patient's condition."
+  },
+  {
+    "question": "Will this help with balance issues caused by neuropathy?",
+    "answer": "Yes, NerveSpa therapies, particularly the Quake Plate and Nerve Bath, are designed to support circulation and sensory feedback, which can assist patients with balance concerns. Always consult your provider to see if it’s the right fit for your specific balance issues."
+  },
+  {
+    "question": "Is NerveSpa only for foot problems, or can it help hands too?",
+    "answer": "NerveSpa is versatile. While the Nerve Bath is often used for feet, we also provide specialized conductive gloves and LED wraps that are designed specifically for hand therapy. It’s effective for both upper and lower extremity neuropathy support."
+  },
+  {
+    "question": "Why is water used in the treatment?",
+    "answer": "Water is an excellent conductor of electricity. In the Nerve Bath, water ensures that the stimulation is evenly distributed over the entire surface of the feet or hands, reaching all the nerve endings for more consistent and effective therapy compared to dry pads."
+  },
+  {
+    "question": "Do you offer financing?",
+    "answer": "Yes, we offer standard financing options for clinics and providers. For patients, financing availability depends on the provider's clinic or the specific payment options they offer. Please contact your local provider for details."
+  },
+  {
+    "question": "How do I find a provider near me?",
+    "answer": "You can find a local NerveSpa provider by contacting our team directly or by checking with local clinics that specialize in neuropathy and chronic pain management. We can help point you to an active provider in your area."
+  },
+   {
+    "question": "Do I need a prescription?",
+    "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans."
   }
   ]
 }

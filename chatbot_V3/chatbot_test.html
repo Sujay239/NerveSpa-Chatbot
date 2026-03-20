@@ -1,754 +1,1486 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nerva — NerveSpa AI Assistant</title>
-  <meta name="description" content="Nerva is the official AI assistant for NerveSpa, helping providers and patients with product information, troubleshooting, and support." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* ====== CSS RESET & VARIABLES ====== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg-primary: #f0f4f8;
-      --bg-secondary: #ffffff;
-      --bg-card: rgba(255, 255, 255, 0.85);
-      --bg-glass: rgba(255, 255, 255, 0.92);
-      --accent-start: #0d9488;
-      --accent-mid: #0891b2;
-      --accent-end: #0ea5e9;
-      --accent-glow: rgba(14, 165, 233, 0.2);
-      --text-primary: #1e293b;
-      --text-secondary: #475569;
-      --text-muted: #94a3b8;
-      --border-color: rgba(148, 163, 184, 0.25);
-      --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.1);
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
-      --radius-full: 9999px;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    body {
-      font-family: var(--font);
-      background: var(--bg-primary);
-      background-image: 
-        radial-gradient(ellipse at 20% 50%, rgba(13, 148, 136, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      color: var(--text-primary);
-    }
-
-    /* ====== CHAT WIDGET CONTAINER ====== */
-    .nerva-widget {
-      width: 520px;
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: var(--bg-glass);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border-color);
-      box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.08),
-        var(--shadow-glow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
-      animation: widgetSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-    }
-
-    @keyframes widgetSlideUp {
-      from { opacity: 0; transform: translateY(30px) scale(0.97); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* ====== HEADER ====== */
-    .nerva-header {
-      background: linear-gradient(135deg, #0b3d4c 0%, #0d6e6e 40%, #0891b2 100%);
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nerva-header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
-      animation: headerShimmer 8s ease-in-out infinite;
-    }
-
-    @keyframes headerShimmer {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(30%, 20%); }
-    }
-
-    .nerva-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
-    }
-
-    .nerva-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-
-    .nerva-avatar::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
-      z-index: -1;
-      opacity: 0.4;
-      animation: avatarPulse 3s ease-in-out infinite;
-    }
-
-    @keyframes avatarPulse {
-      0%, 100% { transform: scale(1); opacity: 0.4; }
-      50% { transform: scale(1.15); opacity: 0.1; }
-    }
-
-    .nerva-header-info {
-      flex: 1;
-      z-index: 1;
-    }
-
-    .nerva-header-title {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nerva-header-title .sparkle {
-      font-size: 14px;
-      animation: sparkleAnim 2s ease-in-out infinite;
-    }
-
-    @keyframes sparkleAnim {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    .nerva-header-subtitle {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-top: 2px;
-      font-weight: 400;
-    }
-
-    .nerva-status {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      z-index: 1;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #34d399;
-      box-shadow: 0 0 6px rgba(52, 211, 153, 0.5);
-      animation: statusPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes statusPulse {
-      0%, 100% { box-shadow: 0 0 6px rgba(52, 211, 153, 0.5); }
-      50% { box-shadow: 0 0 12px rgba(52, 211, 153, 0.8); }
-    }
-
-    /* ====== MESSAGES AREA ====== */
-    .nerva-messages {
-      flex: 1;
-      padding: 16px 16px 8px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-      scroll-behavior: smooth;
-    }
-
-    .nerva-messages::-webkit-scrollbar {
-      width: 4px;
-    }
-    .nerva-messages::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .nerva-messages::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
-
-    /* Bot message */
-    .msg-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      animation: msgFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .msg-row.user {
-      flex-direction: row-reverse;
-    }
-
-    @keyframes msgFadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .msg-avatar {
-      width: 60px;
-      height: 60px;
-      min-width: 60px;
-      min-height: 60px;
-      border-radius: 8px;
-      overflow: hidden;
-      flex-shrink: 0;
-      margin-top: 0;
-    }
-
-    .msg-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius: 8px;
-    }
-
-    .msg-bubble {
-      max-width: 80%;
-      padding: 12px 16px 20px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      line-height: 1.6;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-      position: relative;
-    }
-
-    .msg-row:not(.user) .msg-bubble {
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      color: var(--text-primary);
-      border-bottom-left-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    }
-
-    .msg-row.user .msg-bubble {
-      background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
-      color: #fff;
-      border-bottom-right-radius: 4px;
-      box-shadow: 0 4px 15px var(--accent-glow);
-    }
-
-    .msg-bubble a {
-      color: var(--accent-start);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .msg-row.user .msg-bubble a {
-      color: rgba(255,255,255,0.9);
-    }
-
-    .msg-time {
-      font-size: 10px;
-      color: var(--text-muted);
-      float: right;
-      margin-top: 6px;
-      margin-left: 12px;
-      line-height: 1;
-    }
-
-    .msg-row.user .msg-time {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* ====== TYPING INDICATOR ====== */
-    .typing-indicator {
-      display: none;
-      align-items: center;
-      gap: 10px;
-      padding: 0 16px 8px;
-    }
-
-    .typing-indicator.active {
-      display: flex;
-    }
-
-    .typing-dots {
-      display: flex;
-      gap: 4px;
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      padding: 10px 16px;
-      border-radius: var(--radius-md);
-      border-bottom-left-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    }
-
-    .typing-dots span {
-      width: 7px;
-      height: 7px;
-      background: var(--accent-mid);
-      border-radius: 50%;
-      animation: typingBounce 1.4s ease-in-out infinite;
-    }
-
-    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes typingBounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-      30% { transform: translateY(-6px); opacity: 1; }
-    }
-
-    /* ====== CHAT OPTION BUTTONS (FOR CATEGORIES) ====== */
-    .chat-option-btn {
-      display: block;
-      width: 100%;
-      text-align: left;
-      padding: 10px 14px;
-      margin: 4px 0;
-      background: #f8fafc;
-      border: 1px solid var(--accent-mid);
-      border-radius: var(--radius-md);
-      color: var(--accent-mid);
-      cursor: pointer;
-      transition: var(--transition);
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-    .chat-option-btn:hover {
-      background: var(--accent-mid);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(8, 145, 178, 0.2);
-    }
-    .msg-bubble .chat-option-btn:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Message bubble adjustment */
-    .msg-bubble {
-      max-width: 80%;
-      padding: 12px 16px 12px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      line-height: 1.6;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-      position: relative;
-    }
-
-    /* ====== SUGGESTIONS ====== */
-    .nerva-suggestions {
-      display: flex;
-      gap: 8px;
-      padding: 8px 16px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .nerva-suggestions::-webkit-scrollbar { display: none; }
-
-    .suggestion-chip {
-      flex-shrink: 0;
-      padding: 8px 14px;
-      border-radius: var(--radius-full);
-      background: rgba(13, 148, 136, 0.08);
-      border: 1px solid rgba(13, 148, 136, 0.2);
-      color: var(--accent-start);
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-
-    .suggestion-chip:hover {
-      background: rgba(13, 148, 136, 0.15);
-      border-color: rgba(13, 148, 136, 0.35);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.1);
-    }
-
-    /* ====== INPUT AREA ====== */
-    .nerva-input-area {
-      padding: 12px 16px 16px;
-      background: var(--bg-glass);
-      border-top: 1px solid var(--border-color);
-    }
-
-    .nerva-input-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #f8fafc;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-full);
-      padding: 4px 4px 4px 18px;
-      transition: var(--transition);
-    }
-
-    .nerva-input-wrapper:focus-within {
-      border-color: rgba(13, 148, 136, 0.5);
-      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.08);
-      background: #ffffff;
-    }
-
-    .nerva-input-wrapper input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text-primary);
-      font-size: 14px;
-      font-family: var(--font);
-      padding: 10px 0;
-    }
-
-    .nerva-input-wrapper input::placeholder {
-      color: #94a3b8;
-    }
-
-    .nerva-send-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: none;
-      background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      flex-shrink: 0;
-    }
-
-    .nerva-send-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 4px 15px var(--accent-glow);
-    }
-
-    .nerva-send-btn:active {
-      transform: scale(0.95);
-    }
-
-    .nerva-send-btn:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .nerva-send-btn svg {
-      width: 18px;
-      height: 18px;
-      transition: transform 0.2s;
-    }
-
-    .nerva-send-btn:hover svg {
-      transform: translateX(1px);
-    }
-
-    /* ====== FOOTER ====== */
-    .nerva-footer {
-      text-align: center;
-      padding: 8px 16px 12px;
-      font-size: 10px;
-      color: var(--text-muted);
-      background: var(--bg-glass);
-    }
-
-    .nerva-footer a {
-      color: var(--accent-mid);
-      text-decoration: none;
-    }
-
-    /* ====== RESPONSIVE ====== */
-    @media (max-width: 480px) {
-      body { padding: 0; }
-      .nerva-widget {
-        width: 100%;
-        height: 100vh;
-        border-radius: 0;
-        animation: none;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nerva — NerveSpa AI Assistant</title>
+    <meta
+      name="description"
+      content="Nerva is the official AI assistant for NerveSpa, helping providers and patients with product information, troubleshooting, and support."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ====== CSS RESET & VARIABLES ====== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-    }
 
-    /* ====== MARKDOWN LINKS IN BOT MESSAGES ====== */
-    .msg-bubble .link-btn {
-      display: inline;
-      color: var(--accent-mid);
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
+      :root {
+        /* Colors (Matched to Website) */
+        --accent-start: #04091a; /* Darkest Navy */
+        --accent-mid: #32b0ed; /* Brand Blue */
+        --accent-end: #22a6e9; /* Vibrant Cyan */
+        --accent-glow: rgba(34, 166, 233, 0.4);
 
-<div class="nerva-widget" id="nerva-widget">
-  <!-- Header -->
-  <div class="nerva-header">
-    <div class="nerva-avatar"><img src="nerva.png" alt="Nerva" /></div>
-    <div class="nerva-header-info">
-      <div class="nerva-header-title">
-        Nerva <span class="sparkle">✦</span>
+        --bg-glass: rgba(255, 255, 255, 0.75);
+        --bg-bot: #ffffff;
+        --bg-user: linear-gradient(
+          135deg,
+          #060C24,
+          #3858e4
+        ); /* Matching 'Become a Provider' button */
+
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --border-color: rgba(255, 255, 255, 0.4);
+
+        /* Specs */
+        --radius-full: 999px;
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.15);
+        --font: "Inter", -apple-system, sans-serif;
+      }
+
+      body {
+        font-family: var(--font);
+        background: var(--bg-primary);
+        background-image:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(13, 148, 136, 0.06) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(14, 165, 233, 0.05) 0%,
+            transparent 50%
+          );
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        color: var(--text-primary);
+      }
+
+      .nerva-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        width: 490px;
+        height: 820px;
+        max-height: calc(100vh - 40px);
+        display: flex;
+        flex-direction: column;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: var(--bg-glass);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: var(--shadow-premium);
+        z-index: 9999;
+        transform: translateY(30px) scale(0.95);
+        transform-origin: bottom right;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.4s ease,
+          transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.15),
+          /* Soft bounce */ width 0.5s ease,
+          height 0.5s ease,
+          border-radius 0.5s ease,
+          bottom 0.5s ease,
+          right 0.5s ease;
+        visibility: hidden;
+      }
+
+      .nerva-widget.active {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+        z-index: 10001; /* Higher than launcher container */
+      }
+
+      .nerva-widget.full-screen {
+        bottom: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        border-radius: 0;
+      }
+
+      /* ====== LAUNCHER ====== */
+      .nerva-launcher-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 12px;
+      }
+
+      .nerva-launcher-bubble {
+        background: white;
+        padding: 12px 18px;
+        border-radius: 18px;
+        border-bottom-right-radius: 4px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s ease;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+
+      .nerva-launcher-bubble.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nerva-launcher {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--accent-end),
+          var(--accent-mid)
+        ); /* Brighter to darker brand blue */
+        box-shadow: 0 8px 32px var(--accent-glow);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        border: 4px solid rgba(255, 255, 255, 0.8);
+        padding: 0;
+        overflow: hidden;
+        animation: launcherPulse 2.5s infinite;
+      }
+
+      @keyframes launcherPulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(34, 166, 233, 0.6);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(34, 166, 233, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(34, 166, 233, 0);
+        }
+      }
+
+      .nerva-launcher:hover {
+        transform: scale(1.05) rotate(5deg);
+        box-shadow: 0 8px 25px var(--accent-glow);
+      }
+
+      .nerva-launcher img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .nerva-launcher-close {
+        display: none;
+      }
+
+      .nerva-launcher.active {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.6) rotate(-45deg);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @keyframes widgetSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* ====== MOBILE RESPONSIVENESS ====== */
+      @media (max-width: 480px) {
+        .nerva-widget {
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          max-height: 100%;
+          border-radius: 0;
+        }
+        .nerva-launcher-container {
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+
+      /* ====== HEADER ====== */
+      .nerva-header {
+        background: linear-gradient(135deg, #081130 0%, #235ad5 100%);
+        padding: 24px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nerva-header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nerva-header-close {
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: var(--transition);
+        font-size: 18px;
+        color: white;
+        z-index: 10;
+        border: none; /* Removed default browser border */
+        outline: none;
+        padding: 0;
+      }
+
+      .nerva-header-btn {
+        cursor: pointer;
+        padding: 6px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: var(--transition);
+        font-size: 13px;
+        font-weight: 500;
+        color: white;
+        border: none; /* Using none instead of 1px solid to avoid visual artifacts */
+        z-index: 10;
+        position: relative;
+        outline: none;
+      }
+
+      .nerva-header-btn:hover,
+      .nerva-header-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .nerva-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nerva-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.03) 0%,
+          transparent 60%
+        );
+        animation: headerShimmer 8s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes headerShimmer {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(30%, 20%);
+        }
+      }
+
+      .nerva-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+      }
+
+      .nerva-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      .nerva-avatar::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 14px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-start),
+          var(--accent-end)
+        );
+        z-index: -1;
+        opacity: 0.4;
+        animation: avatarPulse 3s ease-in-out infinite;
+      }
+
+      @keyframes avatarPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.15);
+          opacity: 0.1;
+        }
+      }
+
+      .nerva-header-info {
+        flex: 1;
+        z-index: 1;
+      }
+
+      .nerva-header-title {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .nerva-header-title .sparkle {
+        font-size: 14px;
+        animation: sparkleAnim 2s ease-in-out infinite;
+      }
+
+      @keyframes sparkleAnim {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(0.8);
+        }
+      }
+
+      .nerva-header-subtitle {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 2px;
+        font-weight: 400;
+      }
+
+      .nerva-status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        z-index: 1;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #34d399;
+        box-shadow: 0 0 6px rgba(52, 211, 153, 0.5);
+        animation: statusPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes statusPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 6px rgba(52, 211, 153, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 12px rgba(52, 211, 153, 0.8);
+        }
+      }
+
+      /* ====== MESSAGES AREA ====== */
+      .nerva-messages {
+        flex: 1;
+        padding: 16px 16px 8px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+        scroll-behavior: smooth;
+      }
+
+      .nerva-messages::-webkit-scrollbar {
+        width: 4px;
+      }
+      .nerva-messages::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .nerva-messages::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+
+      /* Bot message */
+      .msg-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        animation: msgFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .msg-row.user {
+        flex-direction: row-reverse;
+      }
+
+      @keyframes msgFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .msg-avatar {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
+        border-radius: 8px;
+        overflow: hidden;
+        flex-shrink: 0;
+        margin-top: 0;
+      }
+
+      .msg-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 8px;
+      }
+
+      .msg-bubble {
+        max-width: 85%;
+        padding: 14px 18px;
+        border-radius: var(--radius-md);
+        font-size: 15px;
+        line-height: 1.55;
+        position: relative;
+        animation: bubbleSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      @keyframes bubbleSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .msg-row:not(.user) .msg-bubble {
+        background: var(--bg-bot);
+        color: var(--text-primary);
+        border-bottom-left-radius: 4px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Slightly stronger shadow */
+        border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border for definition */
+      }
+
+      .msg-row.user .msg-bubble {
+        background: var(--bg-user);
+        color: white;
+        border-bottom-right-radius: 4px;
+        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.2);
+      }
+
+      .msg-bubble a {
+        color: var(--accent-start);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .msg-row.user .msg-bubble a {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .msg-time {
+        font-size: 10px;
+        color: var(--text-muted);
+        float: right;
+        margin-top: 6px;
+        margin-left: 12px;
+        line-height: 1;
+      }
+
+      .msg-row.user .msg-time {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ====== SUPPORT FORM ====== */
+      .nerva-support-form {
+        display: none;
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+        flex: 1;
+        overflow-y: auto;
+        background: white; /* Opaque white for better contrast */
+        z-index: 100;
+      }
+
+      .nerva-support-form.active {
+        display: flex;
+      }
+
+      .support-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .support-input {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 14px 20px;
+        border-radius: var(--radius-full);
+        font-family: inherit;
+        font-size: 14px;
+        transition: var(--transition);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+      }
+
+      .error-msg {
+        color: #ef4444;
+        font-size: 11px;
+        margin-top: 4px;
+        margin-left: 18px;
+        margin-bottom: 2px;
+        display: none;
+        animation: fadeIn 0.2s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-3px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .error-msg.active {
+        display: block;
+      }
+
+      .support-input.error {
+        border-color: #fecaca;
+        background: #fffafa;
+      }
+
+      .support-input:focus {
+        outline: none;
+        border-color: #081130;
+        box-shadow: 0 0 0 4px rgba(8, 17, 48, 0.1);
+      }
+
+      .support-textarea {
+        height: 100px;
+        resize: none;
+        border-radius: var(
+          --radius-md
+        ); /* Textarea needs more space, less radius */
+      }
+
+      .support-submit {
+        margin-top: 8px;
+        background: var(--bg-user);
+        color: white;
+        border: none;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(14, 116, 144, 0.2);
+      }
+
+      .support-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.3);
+      }
+
+      .typing-indicator {
+        display: none;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+      }
+
+      .typing-indicator.active {
+        display: flex;
+      }
+
+      .typing-dots {
+        display: flex;
+        gap: 4px;
+        padding: 10px 14px;
+        background: #ffffff;
+        border-radius: 12px;
+        border-bottom-left-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .typing-dots span {
+        width: 7px;
+        height: 7px;
+        background: var(--accent-mid);
+        border-radius: 50%;
+        animation: typingBounce 1.4s ease-in-out infinite;
+      }
+
+      .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typingBounce {
+        0%,
+        60%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.4;
+        }
+        30% {
+          transform: translateY(-6px);
+          opacity: 1;
+        }
+      }
+
+      /* ====== CHAT OPTION BUTTONS (FOR CATEGORIES) ====== */
+      .chat-option-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 10px 14px;
+        margin: 4px 0;
+        background: #f8fafc;
+        border: 1px solid var(--accent-mid);
+        border-radius: var(--radius-md);
+        color: var(--accent-mid);
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      .chat-option-btn:hover {
+        background: var(--accent-mid);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.2);
+      }
+      .msg-bubble .chat-option-btn:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Message bubble adjustment */
+      .msg-bubble {
+        max-width: 80%;
+        padding: 12px 16px 12px;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        line-height: 1.6;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        position: relative;
+      }
+
+      /* ====== SUGGESTIONS ====== */
+      .nerva-suggestions {
+        display: flex;
+        gap: 8px;
+        padding: 8px 16px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .nerva-suggestions::-webkit-scrollbar {
+        display: none;
+      }
+
+      .suggestion-chip {
+        flex-shrink: 0;
+        padding: 8px 14px;
+        border-radius: var(--radius-full);
+        background: rgba(13, 35, 148, 0.18);
+        border: 1px solid rgba(13, 148, 136, 0.2);
+        color: var(--accent-start);
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        white-space: nowrap;
+      }
+
+      .suggestion-chip:hover {
+        background: rgba(13, 148, 136, 0.15);
+        border-color: rgba(13, 148, 136, 0.35);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(13, 148, 136, 0.1);
+      }
+
+      /* ====== INPUT AREA ====== */
+      .nerva-input-area {
+        padding: 12px 16px 16px;
+        background: var(--bg-glass);
+        border-top: 1px solid var(--border-color);
+      }
+
+      .nerva-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #f8fafc;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-full);
+        padding: 4px 4px 4px 18px;
+        transition: var(--transition);
+      }
+
+      .nerva-input-wrapper:focus-within {
+        border-color: #070f2a;
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.08);
+        background: #ffffff;
+      }
+
+      .nerva-input-wrapper input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--text-primary);
+        font-size: 14px;
+        font-family: var(--font);
+        padding: 10px 0;
+      }
+
+      .nerva-input-wrapper input::placeholder {
+        color: #94a3b8;
+      }
+
+      .nerva-send-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, #081130 0%, #235ad5 100%);
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        flex-shrink: 0;
+      }
+
+      .nerva-send-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 4px 15px var(--accent-glow);
+      }
+
+      .nerva-send-btn:active {
+        transform: scale(0.95);
+      }
+
+      .nerva-send-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .nerva-send-btn svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.2s;
+      }
+
+      .nerva-send-btn:hover svg {
+        transform: translateX(1px);
+      }
+
+      /* ====== FOOTER ====== */
+      .nerva-footer {
+        text-align: center;
+        padding: 8px 16px 12px;
+        font-size: 10px;
+        color: var(--text-muted);
+        background: var(--bg-glass);
+      }
+
+      .nerva-footer a {
+        color: #32b0ed;
+        text-decoration: none;
+      }
+
+      /* ====== RESPONSIVE ====== */
+      @media (max-width: 480px) {
+        body {
+          padding: 0;
+        }
+        .nerva-widget {
+          width: 100%;
+          height: 100vh;
+          border-radius: 0;
+          animation: none;
+        }
+      }
+
+      /* ====== MARKDOWN LINKS IN BOT MESSAGES ====== */
+      .msg-bubble .link-btn {
+        display: inline;
+        color: var(--accent-mid);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nerva-widget" id="nerva-widget">
+      <!-- Header -->
+      <div class="nerva-header">
+        <div class="nerva-header-left">
+          <div class="nerva-avatar"><img src="nerva.png" alt="Nerva" /></div>
+          <div class="nerva-header-info">
+            <div class="nerva-header-title">
+              Nerva <span class="sparkle">✦</span>
+            </div>
+            <div class="nerva-header-subtitle">Powered by NerveSpa</div>
+          </div>
+        </div>
+        <div class="nerva-header-actions">
+          <button
+            class="nerva-header-btn"
+            id="support-btn"
+            onclick="toggleSupport(event)"
+          >
+            <span>🎧</span> Support
+          </button>
+          <button
+            class="nerva-header-close"
+            id="fullscreen-btn"
+            onclick="toggleFullScreen(event)"
+            title="Toggle Full Screen"
+          >
+            ⤢
+          </button>
+          <div
+            class="nerva-header-close"
+            onclick="toggleChat(event)"
+            title="Close Chat"
+          >
+            ✕
+          </div>
+        </div>
       </div>
-      <div class="nerva-header-subtitle">Powered by NerveSpa</div>
-    </div>
-    <div class="nerva-status">
-      <div class="status-dot"></div>
-      Online
-    </div>
-  </div>
 
-  <!-- Messages -->
-  <div class="nerva-messages" id="nerva-messages">
-    <div class="msg-row">
-      <div class="msg-avatar"><img src="nerva.png" alt="Nerva" /></div>
-      <div class="msg-bubble">
-        Hello! I'm <strong>Nerva</strong>, your NerveSpa assistant. 👋<br>
-        How can I help you today?
+      <!-- Messages -->
+      <div class="nerva-messages" id="nerva-messages">
+        <div class="msg-row">
+          <div class="msg-avatar"><img src="nerva.png" alt="Nerva" /></div>
+          <div class="msg-bubble"> Hello! I'm <strong>Nerva</strong>,your NerveSpa assistant.👋
+            How can I help you today?
+          </div>
+        </div>
+      </div>
+
+      <!-- Support Form -->
+      <div class="nerva-support-form" id="support-form">
+        <div style="font-weight: 600; font-size: 18px; margin-bottom: 8px">
+          Contact Support
+        </div>
+        <div
+          style="
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 16px;
+          "
+        >
+          We'll get back to you as soon as possible.
+        </div>
+
+        <div class="support-field">
+          <input
+            type="text"
+            id="support-name"
+            class="support-input"
+            placeholder="Your name"
+          />
+          <div id="error-name" class="error-msg"></div>
+        </div>
+        <div class="support-field">
+          <input
+            type="email"
+            id="support-email"
+            class="support-input"
+            placeholder="Your email"
+          />
+          <div id="error-email" class="error-msg"></div>
+        </div>
+        <div class="support-field">
+          <input
+            type="tel"
+            id="support-phone"
+            class="support-input"
+            placeholder="Your phone number"
+          />
+          <div id="error-phone" class="error-msg"></div>
+        </div>
+        <div class="support-field">
+          <textarea
+            id="support-msg"
+            class="support-input support-textarea"
+            placeholder="How can we help you?"
+          ></textarea>
+          <div id="error-msg" class="error-msg"></div>
+        </div>
+
+        <button class="support-submit" id="support-submit">
+          Submit Request
+        </button>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="typing-indicator" id="typing-indicator">
+        <div
+          class="msg-avatar"
+          style="width: 24px; height: 24px; border-radius: 6px"
+        >
+          <img src="nerva.png" alt="Nerva" />
+        </div>
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+      </div>
+
+      <!-- Suggestions -->
+      <div class="nerva-suggestions" id="suggestions">
+        <button class="suggestion-chip" data-q="What is NerveSpa?">
+          What is NerveSpa?
+        </button>
+        <button
+          class="suggestion-chip"
+          data-q="How do clinics contact NerveSpa for support?"
+        >
+          Contact Support
+        </button>
+        <button
+          class="suggestion-chip"
+          data-q="What therapies are included in NerveSpa?"
+        >
+          Show Products
+        </button>
+        <button class="suggestion-chip" data-q="Is NerveSpa FDA-registered?">
+          FDA Info
+        </button>
+      </div>
+
+      <!-- Input -->
+      <div class="nerva-input-area">
+        <div class="nerva-input-wrapper">
+          <input
+            type="text"
+            id="nerva-input"
+            placeholder="Ask Nerva anything..."
+            autocomplete="off"
+          />
+          <button
+            class="nerva-send-btn"
+            id="nerva-send"
+            aria-label="Send message"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="nerva-footer">
+        Built with ❤️ by
+        <a href="https://www.paintechnology.com" target="_blank" rel="noopener"
+          >Pain Management Technologies</a
+        >
       </div>
     </div>
-  </div>
 
-  <!-- Typing Indicator -->
-  <div class="typing-indicator" id="typing-indicator">
-    <div class="msg-avatar" style="width:24px;height:24px;border-radius:6px;"><img src="nerva.png" alt="Nerva" /></div>
-    <div class="typing-dots">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-
-  <!-- Suggestions -->
-  <div class="nerva-suggestions" id="suggestions">
-    <button class="suggestion-chip" data-q="What is NerveSpa?">What is NerveSpa?</button>
-    <button class="suggestion-chip" data-q="How do clinics contact NerveSpa for support?">Contact Support</button>
-    <button class="suggestion-chip" data-q="What therapies are included in NerveSpa?">Show Products</button>
-    <button class="suggestion-chip" data-q="Is NerveSpa FDA-registered?">FDA Info</button>
-  </div>
-
-  <!-- Input -->
-  <div class="nerva-input-area">
-    <div class="nerva-input-wrapper">
-      <input type="text" id="nerva-input" placeholder="Ask Nerva anything..." autocomplete="off" />
-      <button class="nerva-send-btn" id="nerva-send" aria-label="Send message">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
+    <!-- Launcher -->
+    <div class="nerva-launcher-container">
+      <div class="nerva-launcher-bubble" id="launcher-bubble">Need help?</div>
+      <button class="nerva-launcher" id="nerva-launcher" onclick="toggleChat()">
+        <img src="nerva.png" alt="Chat" class="nerva-launcher-img" />
+        <span class="nerva-launcher-close">✕</span>
       </button>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <div class="nerva-footer">
-    Built with ❤️ by <a href="https://www.paintechnology.com" target="_blank" rel="noopener">Pain Management Technologies</a>
-  </div>
-</div>
+    <script>
+      // ====== ELEMENTS ======
+      const messagesContainer = document.getElementById("nerva-messages");
+      const inputEl = document.getElementById("nerva-input");
+      const sendBtn = document.getElementById("nerva-send");
+      const typingIndicator = document.getElementById("typing-indicator");
+      const suggestionsEl = document.getElementById("suggestions");
 
-<script>
-  // ====== ELEMENTS ======
-  const messagesContainer = document.getElementById('nerva-messages');
-  const inputEl = document.getElementById('nerva-input');
-  const sendBtn = document.getElementById('nerva-send');
-  const typingIndicator = document.getElementById('typing-indicator');
-  const suggestionsEl = document.getElementById('suggestions');
+      // ====== CONFIG ======
+      const WEBHOOK_URL =
+        "https://n8n.srv917960.hstgr.cloud/webhook/nervespa-chatbot";
+      const sessionId =
+        "ns-" + Math.random().toString(36).substr(2, 9) + "-" + Date.now();
 
-  // ====== CONFIG ======
-  const WEBHOOK_URL = 'https://n8n.srv917960.hstgr.cloud/webhook/nervespa-chatbot';
-  const sessionId = 'ns-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+      // ====== HELPERS ======
+      function getTimestamp() {
+        return new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
 
-  // ====== HELPERS ======
-  function getTimestamp() {
-    return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  }
+      // ====== FLOATING WIDGET LOGIC ======
+      const widget = document.getElementById("nerva-widget");
+      const launcher = document.getElementById("nerva-launcher");
+      const bubble = document.getElementById("launcher-bubble");
+      const messages = ["Need help?", "Have questions?", "Chat with us!"];
+      let currentMsgIndex = 0;
+      let chatIsOpen = false;
+      let isSupportActive = false;
+      let isFullScreen = false;
 
-  function parseLinks(text) {
-    // Convert markdown links [text](url) to HTML
-    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  }
+      // Define toggleSupport at the very top of script for maximum visibility
+      window.toggleSupport = function (e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        isSupportActive = !isSupportActive;
+        const supportForm = document.getElementById("support-form");
+        const msgArea = document.getElementById("nerva-messages");
+        const inputArea = document.querySelector(".nerva-input-area");
+        const suggestionsArea = document.getElementById("suggestions");
+        const supportBtn = document.getElementById("support-btn");
 
-  function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
+        if (!supportForm || !msgArea || !inputArea) return;
 
-  function formatBotMessage(text) {
-    let safe = escapeHtml(text);
-    
-    // 1. Protect markdown links: [text](url)
-    const placeholders = [];
-    safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (match, p1, p2) => {
-      const placeholder = `__LINK_${placeholders.length}__`;
-      placeholders.push(`<a href="${p2}" target="_blank" rel="noopener" class="link-btn">${p1}</a>`);
-      return placeholder;
-    });
+        if (isSupportActive) {
+          supportForm.classList.add("active");
+          msgArea.style.display = "none";
+          inputArea.style.display = "none";
+          if (suggestionsArea) suggestionsArea.style.display = "none";
+          if (supportBtn) supportBtn.innerHTML = "Back to Chat";
+        } else {
+          supportForm.classList.remove("active");
+          msgArea.style.display = "flex";
+          inputArea.style.display = "block";
+          if (suggestionsArea) suggestionsArea.style.display = "flex";
+          if (supportBtn) supportBtn.innerHTML = "<span>🎧</span> Support";
+        }
+      };
 
-    // 2. Convert remaining raw URLs
-    const urlRegex = /(https?:\/\/[^\s<]+[^.,\s<])/g;
-    safe = safe.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener" class="link-btn">$1</a>');
+      window.toggleFullScreen = function (e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        isFullScreen = !isFullScreen;
+        widget.classList.toggle("full-screen", isFullScreen);
+      };
 
-    // 3. Restore markdown links
-    placeholders.forEach((html, i) => {
-      safe = safe.replace(`__LINK_${i}__`, html);
-    });
+      window.toggleChat = function () {
+        chatIsOpen = !chatIsOpen;
+        widget.classList.toggle("active", chatIsOpen);
+        launcher.classList.toggle("active", chatIsOpen);
 
-    // 4. Convert bullet points to interactive buttons for product categories
-    if (safe.includes('specif') && safe.includes('category')) {
-      // Consumes the trailing newline (?:\n|$) and scrubs any leaked quotes
-      safe = safe.replace(/•\s*([^<\n]+)(?:\n|$)/g, (match, p1) => {
-        const category = p1.trim().replace(/['"]/g, '');
-        return `<button class="chat-option-btn" onclick="sendChatOption('${category}')">${category}</button>`;
-      });
-    }
+        if (chatIsOpen) {
+          bubble.classList.remove("visible");
+          inputEl.focus();
+        } else {
+          setTimeout(() => {
+            if (!chatIsOpen) bubble.classList.add("visible");
+          }, 3000);
+        }
+      };
 
-    // 5. Bold
-    safe = safe.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    // 6. Line breaks
-    safe = safe.replace(/\n/g, '<br>');
-    
-    return safe;
-  }
+      window.toggleFullScreen = function () {
+        isFullScreen = !isFullScreen;
+        widget.classList.toggle("full-screen", isFullScreen);
+      };
 
-  // Global helper for interactive buttons
-  window.sendChatOption = function(category) {
-    sendMessage(`suggests me some products of ${category}?`);
-  };
+      function cycleText() {
+        if (chatIsOpen) return;
 
-  // ====== ADD MESSAGE ======
-  function addMessage(text, sender) {
-    const row = document.createElement('div');
-    row.className = `msg-row ${sender}`;
+        bubble.classList.remove("visible");
+        setTimeout(() => {
+          currentMsgIndex = (currentMsgIndex + 1) % messages.length;
+          bubble.textContent = messages[currentMsgIndex];
+          if (!chatIsOpen) bubble.classList.add("visible");
+        }, 400);
+      }
 
-    if (sender === 'bot') {
-      row.innerHTML = `
+      setInterval(cycleText, 4000);
+      setTimeout(() => bubble.classList.add("visible"), 1500);
+
+      function parseLinks(text) {
+        // Convert markdown links [text](url) to HTML
+        return text.replace(
+          /\[([^\]]+)\]\(([^)]+)\)/g,
+          '<a href="$2" target="_blank" rel="noopener">$1</a>',
+        );
+      }
+
+      function escapeHtml(str) {
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function formatBotMessage(text) {
+        let safe = escapeHtml(text);
+
+        // 1. Protect markdown links: [text](url) - now supports mailto: and tel:
+        const placeholders = [];
+        safe = safe.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, p1, p2) => {
+          let url = p2;
+          // If it's the support email, redirect to Gmail compose as per user request
+          if (url.includes("mailto:support@nervespa.com")) {
+            url =
+              "https://mail.google.com/mail/?view=cm&fs=1&to=support@nervespa.com";
+          }
+
+          const placeholder = `__LINK_${placeholders.length}__`;
+          placeholders.push(
+            `<a href="${url}" target="_blank" rel="noopener" class="link-btn">${p1}</a>`,
+          );
+          return placeholder;
+        });
+
+        // 2. Convert remaining raw URLs and emails
+        const urlRegex = /(https?:\/\/[^\s<]+[^.,\s<])/g;
+        safe = safe.replace(
+          urlRegex,
+          '<a href="$1" target="_blank" rel="noopener" class="link-btn">$1</a>',
+        );
+
+        // Convert raw support email to link
+        safe = safe.replace(
+          /(support@nervespa\.com)/g,
+          '<a href="https://mail.google.com/mail/?view=cm&fs=1&to=$1" target="_blank" rel="noopener" class="link-btn">$1</a>',
+        );
+
+        // Convert raw support phone to link
+        safe = safe.replace(
+          /(1-800-239-7880)/g,
+          '<a href="tel:18002397880" class="link-btn">$1</a>',
+        );
+
+        // 3. Restore markdown links
+        placeholders.forEach((html, i) => {
+          safe = safe.replace(`__LINK_${i}__`, html);
+        });
+
+        // 4. Convert bullet points to interactive buttons for product categories
+        if (safe.includes("specif") && safe.includes("category")) {
+          // Consumes the trailing newline (?:\n|$) and scrubs any leaked quotes
+          safe = safe.replace(/•\s*([^<\n]+)(?:\n|$)/g, (match, p1) => {
+            const category = p1.trim().replace(/['"]/g, "");
+            return `<button class="chat-option-btn" onclick="sendChatOption('${category}')">${category}</button>`;
+          });
+        }
+
+        // 5. Bold
+        safe = safe.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+        // 6. Line breaks
+        safe = safe.replace(/\n/g, "<br>");
+
+        return safe;
+      }
+
+      // Global helper for interactive buttons
+      window.sendChatOption = function (category) {
+        sendMessage(`suggests me some products of ${category}?`);
+      };
+
+      // ====== ADD MESSAGE ======
+      function addMessage(text, sender) {
+        const row = document.createElement("div");
+        row.className = `msg-row ${sender}`;
+
+        if (sender === "bot") {
+          row.innerHTML = `
         <div class="msg-avatar"><img src="nerva.png" alt="Nerva" /></div>
         <div class="msg-bubble">${formatBotMessage(text)}<span class="msg-time">${getTimestamp()}</span></div>
       `;
-    } else {
-      row.innerHTML = `
+        } else {
+          row.innerHTML = `
         <div class="msg-bubble">${escapeHtml(text)}<span class="msg-time">${getTimestamp()}</span></div>
       `;
-    }
+        }
 
-    messagesContainer.appendChild(row);
+        messagesContainer.appendChild(row);
 
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
-
-  // ====== SHOW/HIDE TYPING ======
-  function showTyping() {
-    typingIndicator.classList.add('active');
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
-
-  function hideTyping() {
-    typingIndicator.classList.remove('active');
-  }
-
-  // ====== SEND MESSAGE ======
-  async function sendMessage(text) {
-    if (!text || !text.trim()) return;
-    text = text.trim();
-
-    // Hide suggestions after first message
-    suggestionsEl.style.display = 'none';
-
-    // Add user message
-    addMessage(text, 'user');
-    inputEl.value = '';
-    sendBtn.disabled = true;
-
-    // Show typing
-    showTyping();
-
-    try {
-      const url = `${WEBHOOK_URL}?chatInput=${encodeURIComponent(text)}&sessionId=${sessionId}`;
-
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-      const data = await response.json();
-      console.log('Nerva response:', data);
-
-      let answer = '';
-      if (Array.isArray(data) && data.length > 0 && data[0].output) {
-        answer = data[0].output;
-      } else if (data && data.text) {
-        answer = data.text;
-      } else {
-        answer = 'I received a response but couldn\'t parse it. Please try again.';
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
       }
 
-      hideTyping();
-      addMessage(answer, 'bot');
+      // ====== SHOW/HIDE TYPING ======
+      function showTyping() {
+        typingIndicator.classList.add("active");
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
 
-    } catch (err) {
-      console.error('Nerva error:', err);
-      hideTyping();
-      addMessage('Sorry, I\'m having trouble connecting right now. Please try again in a moment. 🔄', 'bot');
-    } finally {
-      sendBtn.disabled = false;
-      inputEl.focus();
-    }
-  }
+      function hideTyping() {
+        typingIndicator.classList.remove("active");
+      }
 
-  // ====== EVENT LISTENERS ======
-  sendBtn.addEventListener('click', () => sendMessage(inputEl.value));
+      // ====== SEND MESSAGE ======
+      async function sendMessage(text) {
+        if (!text || !text.trim()) return;
+        text = text.trim();
 
-  inputEl.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage(inputEl.value);
-  });
+        // Hide suggestions after first message
+        suggestionsEl.style.display = "none";
 
-  // Suggestion chips
-  document.querySelectorAll('.suggestion-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const q = chip.getAttribute('data-q');
-      sendMessage(q);
-    });
-  });
-</script>
+        // Add user message
+        addMessage(text, "user");
+        inputEl.value = "";
+        sendBtn.disabled = true;
 
-</body>
+        // Show typing
+        showTyping();
+
+        try {
+          const url = `${WEBHOOK_URL}?chatInput=${encodeURIComponent(text)}&sessionId=${sessionId}`;
+
+          const response = await fetch(url, {
+            method: "GET",
+            headers: { Accept: "application/json" },
+          });
+
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+          const data = await response.json();
+
+          let answer = "";
+          if (Array.isArray(data) && data.length > 0 && data[0].output) {
+            answer = data[0].output;
+          } else if (data && data.text) {
+            answer = data.text;
+          } else {
+            answer =
+              "I received a response but couldn't parse it. Please try again.";
+          }
+
+          hideTyping();
+          addMessage(answer, "bot");
+        } catch (err) {
+          console.error("Nerva error:", err);
+          hideTyping();
+          addMessage(
+            "Sorry, I'm having trouble connecting right now. Please try again in a moment. 🔄",
+            "bot",
+          );
+        } finally {
+          sendBtn.disabled = false;
+          inputEl.focus();
+        }
+      }
+
+      // ====== EVENT LISTENERS ======
+      sendBtn.addEventListener("click", () => sendMessage(inputEl.value));
+
+      inputEl.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") sendMessage(inputEl.value);
+      });
+
+      // Suggestion chips
+      document.querySelectorAll(".suggestion-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const q = chip.getAttribute("data-q");
+          sendMessage(q);
+        });
+      });
+
+      // ====== SUPPORT FORM SUBMISSION ======
+      const supportSubmitBtn = document.getElementById("support-submit");
+      const supportName = document.getElementById("support-name");
+      const supportEmail = document.getElementById("support-email");
+      const supportPhone = document.getElementById("support-phone");
+      const supportMsg = document.getElementById("support-msg");
+
+      async function submitSupportForm() {
+        const name = supportName.value.trim();
+        const email = supportEmail.value.trim();
+        const phone = supportPhone.value.trim();
+        const msg = supportMsg.value.trim();
+
+        // Clear previous errors
+        document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.support-input').forEach(el => el.classList.remove('error'));
+
+        let hasError = false;
+
+        function showError(inputId, errorId, message) {
+          const input = document.getElementById(inputId);
+          const error = document.getElementById(errorId);
+          input.classList.add("error");
+          error.innerText = message;
+          error.classList.add("active");
+        }
+
+        if (!name) {
+          showError("support-name", "error-name", "Name is required.");
+          hasError = true;
+        } else if (/\d/.test(name)) {
+          showError("support-name", "error-name", "Name cannot contain numbers.");
+          hasError = true;
+        }
+
+        if (!email) {
+          showError("support-email", "error-email", "Email is required.");
+          hasError = true;
+        } else {
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(email)) {
+            showError("support-email", "error-email", "Invalid email format.");
+            hasError = true;
+          }
+        }
+
+        if (phone && !/^[\d+]+$/.test(phone)) {
+          showError("support-phone", "error-phone", "Digits and + only please.");
+          hasError = true;
+        }
+
+        if (!msg) {
+          showError("support-msg", "error-msg", "Message is required.");
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        const originalText = supportSubmitBtn.innerText;
+        supportSubmitBtn.innerText = "Sending...";
+        supportSubmitBtn.disabled = true;
+
+        try {
+          const webhookUrl = "https://n8n.srv917960.hstgr.cloud/webhook/submit-support";
+          
+          const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+              session_id: sessionId,
+              name: name,
+              email: email,
+              phone: phone,
+              msg: msg
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`Server returned ${response.status}`);
+          }
+
+          // Success feedback
+          supportSubmitBtn.innerText = "Sent Successfully! ✅";
+          supportSubmitBtn.style.background = "#10b981"; // Success green
+
+          setTimeout(() => {
+            // Reset fields
+            supportName.value = "";
+            supportEmail.value = "";
+            supportPhone.value = "";
+            supportMsg.value = "";
+            supportSubmitBtn.innerText = originalText;
+            supportSubmitBtn.disabled = false;
+            supportSubmitBtn.style.background = "";
+            toggleSupport(); // Return to chat view
+            
+            // Add bot reply
+            setTimeout(() => {
+                addMessage("Thank you! I've successfully shared your details with our support team. One of our specialists will reach out to you shortly. ✨\n\nIs there anything else I can help you with today?", 'bot');
+            }, 500);
+          }, 2000);
+
+        } catch (err) {
+          console.error("Support form error:", err);
+          
+          // Enhanced error message for the user
+          alert(
+            "Sorry, there was an error sending your request (" + err.message + "). \n\nPlease try again or contact us directly at support@nervespa.com. \n\nTip: If you keep seeing this error, try opening the site in Incognito/Private Mode."
+          );
+          
+          supportSubmitBtn.innerText = originalText;
+          supportSubmitBtn.disabled = false;
+        }
+      }
+
+      supportSubmitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        submitSupportForm();
+      });
+    </script>
+  </body>
 </html>
