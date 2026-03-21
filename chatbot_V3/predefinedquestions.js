@@ -1,15 +1,15 @@
-{
+const predefinedQuestions = {
   "questions": [
-      {
-    "question": "What is NerveSpa?",
-    "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians."
-  },
-  {
-    "question": "Who owns NerveSpa?",
-    "answer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com"
-  },
-  {
-    "question": "How do providers implement NerveSpa?",
+    {
+      "question": "What is NerveSpa?",
+      "answer": "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians."
+    },
+    {
+      "question": "Who owns NerveSpa?",
+      "answer": "NerveSpa is owned and distributed by Pain Management Technologies (PMT), an FDA-registered medical device establishment based in Akron, Ohio. PMT manufactures and distributes the full NerveSpa product family. https://www.paintechnology.com"
+    },
+    {
+      "question": "How do providers implement NerveSpa?",
     "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans."
   },
   {

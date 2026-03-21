@@ -316,7 +316,6 @@ const predefinedQuestions = [
   "Can clinics document changes in patient experience over time with NerveSpa?",
   "Does NerveSpa provide usage or adherence data to clinics?",
   "How can providers discuss progress with patients without making medical claims?",
-  "What types of patient feedback are most commonly reported with NerveSpa use?",
   "How should front-desk staff explain NerveSpa to patients in simple terms?",
   "What should staff say if a patient asks whether NerveSpa replaces medical treatment?",
   "How should staff respond if a patient asks whether NerveSpa is FDA approved?",
@@ -418,7 +417,7 @@ const predefinedQuestions = [
   "Why is water used in the treatment?",
   "Do you offer financing?",
   "How do I find a provider near me?",
-  "Do I need a prescription?"
+  "Do I need a prescription?",
 ];
 
 // ================= SYNONYMS =================
@@ -911,7 +910,7 @@ for (let i = 0; i < predefinedQuestions.length; i++) {
 
 // ================= THRESHOLD =================
 // You can tune this between 0.45 and 0.65 depending on strictness
-const threshold = 0.50;
+const threshold = 0.5;
 const matchFound = bestScore >= threshold;
 
 // ================= OUTPUT =================
@@ -921,15 +920,36 @@ let bestMatch = "";
 if (matchFound) {
   bestMatch = predefinedQuestions[bestIndex];
   const inputTokens = getTokens(userQuestion);
-  const inputHasProgram = inputTokens.includes("program") || userQuestion.toLowerCase().includes("program");
-  
-  const programQualifiers = ["neuropathy", "joint", "mobility", "clinical", "vagus", "regenerative", "restorative", "pain", "metabolic", "nervespa"];
-  const inputHasQualifier = programQualifiers.some(q => inputTokens.includes(q) || userQuestion.toLowerCase().includes(q));
+  const inputHasProgram =
+    inputTokens.includes("program") ||
+    userQuestion.toLowerCase().includes("program");
 
-  if (inputHasProgram && !inputHasQualifier && bestMatch.toLowerCase().includes("program")) {
-    resultOutput = "It sounds like you're asking about one of our programs. To give you the most accurate info, which program are you referring to? (e.g., Neuropathy Program, Joint & Mobility Program, or the NerveSpa system in general?)";
+  const programQualifiers = [
+    "neuropathy",
+    "joint",
+    "mobility",
+    "clinical",
+    "vagus",
+    "regenerative",
+    "restorative",
+    "pain",
+    "metabolic",
+    "nervespa",
+  ];
+  const inputHasQualifier = programQualifiers.some(
+    (q) => inputTokens.includes(q) || userQuestion.toLowerCase().includes(q),
+  );
+
+  if (
+    inputHasProgram &&
+    !inputHasQualifier &&
+    bestMatch.toLowerCase().includes("program")
+  ) {
+    resultOutput =
+      "It sounds like you're asking about one of our programs. To give you the most accurate info, which program are you referring to? (e.g., Neuropathy Program, Joint & Mobility Program, or the NerveSpa system in general?)";
   } else {
-    resultOutput = "Matched with defined questions. Please see the details below";
+    resultOutput =
+      "Matched with defined questions. Please see the details below";
   }
 } else {
   resultOutput = "None of the defined questions matched.";
@@ -944,8 +964,7 @@ return [
       similarityScore: Number(bestScore.toFixed(4)),
       sessionId: sessionId,
       output: resultOutput,
-      matched_question: matchFound ? bestMatch : ""
+      matched_question: matchFound ? bestMatch : "",
     },
   },
 ];
-

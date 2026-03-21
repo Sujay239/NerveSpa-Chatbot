@@ -15,7 +15,6 @@
       rel="stylesheet"
     />
     <style>
-      /* ====== CSS RESET & VARIABLES ====== */
       *,
       *::before,
       *::after {
@@ -35,7 +34,7 @@
         --bg-bot: #ffffff;
         --bg-user: linear-gradient(
           135deg,
-          #060C24,
+          #060c24,
           #3858e4
         ); /* Matching 'Become a Provider' button */
 
@@ -611,8 +610,14 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-3px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(-3px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .error-msg.active {
@@ -936,7 +941,8 @@
       <div class="nerva-messages" id="nerva-messages">
         <div class="msg-row">
           <div class="msg-avatar"><img src="nerva.png" alt="Nerva" /></div>
-          <div class="msg-bubble"> Hello! I'm <strong>Nerva</strong>,your NerveSpa assistant.👋
+          <div class="msg-bubble">
+        Hello! I'm <strong>Nerva</strong>,your NerveSpa assistant.👋
             How can I help you today?
           </div>
         </div>
@@ -1089,8 +1095,27 @@
       // ====== CONFIG ======
       const WEBHOOK_URL =
         "https://n8n.srv917960.hstgr.cloud/webhook/nervespa-chatbot";
+      const LOG_WEBHOOK_URL =
+        "https://n8n.srv917960.hstgr.cloud/webhook/chat-messages";
       const sessionId =
         "ns-" + Math.random().toString(36).substr(2, 9) + "-" + Date.now();
+
+      // ====== LOG TO WEBHOOK ======
+      async function logToMessagesWebhook(role, message) {
+        try {
+          await fetch(LOG_WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              session_id: sessionId,
+              role: role,
+              message: message,
+            }),
+          });
+        } catch (err) {
+          console.error("Logging error:", err);
+        }
+      }
 
       // ====== HELPERS ======
       function getTimestamp() {
@@ -1265,6 +1290,9 @@
 
       // ====== ADD MESSAGE ======
       function addMessage(text, sender) {
+        // Log message to messages webhook
+        logToMessagesWebhook(sender, text);
+
         const row = document.createElement("div");
         row.className = `msg-row ${sender}`;
 
@@ -1376,8 +1404,12 @@
         const msg = supportMsg.value.trim();
 
         // Clear previous errors
-        document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.support-input').forEach(el => el.classList.remove('error'));
+        document
+          .querySelectorAll(".error-msg")
+          .forEach((el) => el.classList.remove("active"));
+        document
+          .querySelectorAll(".support-input")
+          .forEach((el) => el.classList.remove("error"));
 
         let hasError = false;
 
@@ -1393,7 +1425,11 @@
           showError("support-name", "error-name", "Name is required.");
           hasError = true;
         } else if (/\d/.test(name)) {
-          showError("support-name", "error-name", "Name cannot contain numbers.");
+          showError(
+            "support-name",
+            "error-name",
+            "Name cannot contain numbers.",
+          );
           hasError = true;
         }
 
@@ -1409,7 +1445,11 @@
         }
 
         if (phone && !/^[\d+]+$/.test(phone)) {
-          showError("support-phone", "error-phone", "Digits and + only please.");
+          showError(
+            "support-phone",
+            "error-phone",
+            "Digits and + only please.",
+          );
           hasError = true;
         }
 
@@ -1425,8 +1465,9 @@
         supportSubmitBtn.disabled = true;
 
         try {
-          const webhookUrl = "https://n8n.srv917960.hstgr.cloud/webhook/submit-support";
-          
+          const webhookUrl =
+            "https://n8n.srv917960.hstgr.cloud/webhook/submit-support";
+
           const response = await fetch(webhookUrl, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -1435,8 +1476,8 @@
               name: name,
               email: email,
               phone: phone,
-              msg: msg
-            })
+              msg: msg,
+            }),
           });
 
           if (!response.ok) {
@@ -1457,21 +1498,25 @@
             supportSubmitBtn.disabled = false;
             supportSubmitBtn.style.background = "";
             toggleSupport(); // Return to chat view
-            
+
             // Add bot reply
             setTimeout(() => {
-                addMessage("Thank you! I've successfully shared your details with our support team. One of our specialists will reach out to you shortly. ✨\n\nIs there anything else I can help you with today?", 'bot');
+              addMessage(
+                "Thank you! I've successfully shared your details with our support team. One of our specialists will reach out to you shortly. ✨\n\nIs there anything else I can help you with today?",
+                "bot",
+              );
             }, 500);
           }, 2000);
-
         } catch (err) {
           console.error("Support form error:", err);
-          
+
           // Enhanced error message for the user
           alert(
-            "Sorry, there was an error sending your request (" + err.message + "). \n\nPlease try again or contact us directly at support@nervespa.com. \n\nTip: If you keep seeing this error, try opening the site in Incognito/Private Mode."
+            "Sorry, there was an error sending your request (" +
+              err.message +
+              "). \n\nPlease try again or contact us directly at support@nervespa.com. \n\nTip: If you keep seeing this error, try opening the site in Incognito/Private Mode.",
           );
-          
+
           supportSubmitBtn.innerText = originalText;
           supportSubmitBtn.disabled = false;
         }
