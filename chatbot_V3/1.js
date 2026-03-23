@@ -911,7 +911,33 @@ for (let i = 0; i < predefinedQuestions.length; i++) {
 // ================= THRESHOLD =================
 // You can tune this between 0.45 and 0.65 depending on strictness
 const threshold = 0.5;
-const matchFound = bestScore >= threshold;
+let matchFound = bestScore >= threshold;
+
+// ================= PRODUCT OVERRIDE =================
+if (matchFound && bestScore < 0.85) {
+  const normQ = userQuestion.toLowerCase();
+  const products = [
+    "rebuilder", "builder", "regeneration", "blood flow", "super formula", "target roll", "relief cream",
+    "super flex", "quake plate", "quakeplate", "knee pro", "shoulder pro", "cold laser", 
+    "led wrap", "power wrap", "powerwrap", "nervewave", "nerve wave", "nerve bath", "nervebath",
+    "diabetic socks", "conductive", "vibe", "immunogut", "immuno gut", "skinny", "sleep",
+    "n1", "oa cream", "ra cream", "nervespa pro", "nerve spa pro", "classic", "foot bath supply"
+  ];
+  
+  const mentionedProduct = products.find(p => normQ.includes(p));
+  
+  if (mentionedProduct) {
+    const isInfoSeeking = /(tell me|what is|information|something about|details|explain|more about|more info|what are|how to use|how does it work)/.test(normQ);
+    const matchedQNorm = predefinedQuestions[bestIndex].toLowerCase();
+    const pName = mentionedProduct.replace(/\s+/g, '');
+    const matchedHasProduct = matchedQNorm.replace(/\s+/g, '').includes(pName);
+    
+    // If it's an info query, or if it incorrectly matched a question about a completely different topic
+    if (isInfoSeeking || !matchedHasProduct) {
+        matchFound = false;
+    }
+  }
+}
 
 // ================= OUTPUT =================
 let resultOutput = "";

@@ -202,18 +202,28 @@ Do not add labels like “Watch here”.
 
 ---
 
+
+---
+
 STEP 11 — PRODUCT SUGGESTIONS
 
-• **Rule Precision**: If a specific category name (Nerve & Neuropathy, Joint & Mobility, Advanced Supplementation, or Clinical Devices) is found in the user's message, ALWAYS provide the relevant products for that category, even if the user uses a broad phrase like "suggest me some products".
-• **Broad Questions**: ONLY if the user asks for product recommendations generally WITHOUT specifying any category (e.g., "suggest me some products", "what products do you have?", "show me your items"), return exactly:
-To provide the best recommendation, could you please specify which category you are interested in?
-• Nerve & Neuropathy
-• Joint & Mobility
-• Advanced Supplementation
+**RULE 1: PRODUCT RECOMMENDATIONS**
+- **IF user specifies a category** (e.g., "Nerve & Neuropathy", "Joint & Mobility", "Advanced Supplementation", "Clinical Devices" or uses phrases like "suggests me some products of..."):
+  - **IMMEDIATELY** provide the product list for that category.
+  - **DO NOT** ask them to choose a category again.
+- **IF NO category is specified** (e.g., "suggest me some products"):
+  - Return exactly:
+To provide the best recommendation, could you please specify which category you are interested in?  
+• Nerve & Neuropathy  
+• Joint & Mobility  
+• Advanced Supplementation  
 • Clinical Devices
 
-• **Specific Categories**: If a category is mentioned or selected, return the relevant phrase(s) below:
+---
 
+---
+
+**PRODUCT LISTS FOR RULE 1:**
 • **Nerve & Neuropathy**: Available products - Category: Nerve & Neuropathy | Brand: NerveSpa | Products: \n1. NerveSpa Pro, \n2. Low-level Cold Laser, \n3. LED Light Therapy, \n4. Quake Plate Vibration Therapy, \n5. Nerve Rebuilder Supplements, \n6. Nerve & Neuropathy Cream, \n7. Neuropathy Support Drink Powder, \n8. N1 Nerve & Neuropathy ODF, \n9. Device & Systems, \n10. Supplies & Accessories, \n11. NerveSpa Classic, \n12. Nerve Spa Foot Bath Supply Kit, \n13. The NerveBeam Cold Laser, \n14. Carbon Rubber Electrodes, \n15. The NerveBeam LED Light Therapy Wrap, \n16. Silver Conductive Glove/Sock Systems, \n17. The Quake Plate Vibrational Massage, \n18. Nerve Spa Performance Diabetic Socks. To see more products or detailed explanation of any specific product you can visit - https://nervespa.com/products/nerve-&-neuropathy-543
 
 • **Joint & Mobility**: Available products - Category: Joint & Mobility | Brand: NerveSpa | Products: \n1. Joint Health Support Kit (Includes: Joint Drink Powder, OA Cream), \n2. Nerve Spa Knee Pro - Replacement Pads - 3 x VB35 and 3 x VBKnee, \n3. Nerve Spa Knee Pro - Advanced OA/RA treatment Device - Size: Fits Small to Large, \n4. NerveSpa Knee Pro - 180 day supply kit, \n5. NerveSpa Knee Pro Size Extender Straps (1 pair) - XL-XXL, \n6. Nerve Spa Shoulder Pro. To see more products or detailed explanation of any specific product you can visit - https://nervespa.com/products/joint-&-mobility-662
@@ -224,7 +234,99 @@ To provide the best recommendation, could you please specify which category you 
 
 ---
 
-STEP 12 — SUGGESTED QUESTIONS
+STEP 12 A — DETAILED PRODUCT INFORMATION
+
+**CRITICAL RULE FOR PRODUCT DETAILS:**
+If the user asks for specific information, details, features, "more info about", "what is", or mentions any part of the name for any of the products listed below (even if it's a partial match, synonym, or misspelled), you **must**:
+1. Identify which product they are asking about from the lists below.
+2. Return its complete corresponding description and the URL link EXACTLY as provided here.
+3. Do NOT use internet fallback if the product is listed here. Provide the information directly from this list.
+
+**Category: Nerve & Neuropathy | Brand: NerveSpa**
+
+1.  **NerveSpa Pro** - The Nerve Spa Pro is an Advanced Nerve and Neuropathy stimulator that utilizes a hybrid of electrotherapy specifications drawing from enhanced Micro-Current, and Galvanic stim, combined with proprietary programming to specifically target the nerve to therapeutically treat early-onset and mid-stage peripheral neuropathy, as well other nerve-based pain conditions in the hands and feet. More about the product - https://nervespa.com/products/nerve-&-neuropathy/nervespa-pro-90-day-supply-program-18936?pa=1
+2.  **Low-level Cold Laser** (The Nerve Beam) - The Nerve Beam is a high powered focal diode designed for home use. The targeted and focused beam penetrates deep into the tissue to temporarily increase circulation, relieve pain and relax muscles. The Nerve Beam uses a low-intensity light to relieve stiffness and promote relaxation. More about the product - https://nervespa.com/products/nerve-&-neuropathy/the-nervebeam-cold-laser-18986?pa=1
+3.  **LED Light Therapy** (The Nerve Beam LED wrap) - The Nerve Beam LED wrap is a high-powered LED red light and infrared therapy device that delivers low-level but intense light energy into the body. LED therapy uses a broad spectrum of red light and infrared therapy to elevate tissue temperature, temporarily relieve minor muscle and joint pain, and temporarily increase local blood circulation. More about the product - https://nervespa.com/products/nerve-&-neuropathy/the-nervebeam-led-light-therapy-wrap-red-&-infrared-light-therapy-18990?pa=1
+4.  **Quake Plate Vibration Therapy** - Made of a heavy-duty metal frame and durable materials for a sturdy construction. Clinical grade quality for high power output and multiple uses. The Quake Plate is a 500-4000 RPM oscillating vibration plate that provides for a deep foot massage. More about the product - https://nervespa.com/products/nerve-&-neuropathy/the-quake-plate-vibrational-massage-therapy-18988?pa=1
+5.  **Nerve Spa Foot Bath Supply** - Nerve Spa Foot bath Supply Kit (Salt and effervescent tubes). Enhance your NerveSpa foot bath with revitalizing effervescent tablets formulated specifically for neuropathic foot care. After an Epsom salt and warm water soak — which can sometimes leave the skin feeling dry — these tablets help restore moisture balance while delivering skin-supporting nutrients directly into the water. Hydrolyzed collagen, vitamin C, aloe, and essential supportive ingredients dissolve into the bath to help rehydrate and soften the skin while refreshing tired feet. More about the product - https://nervespa.com/products/nerve-&-neuropathy/nerve-spa-foot-bath-supply-kit-18934?pa=1
+6.  **Carbon Rubber Electrodes** - Carbon Rubber Electrodes are used to deliver electrical stimulation to the body. They are made of carbon rubber and are designed to be used with the NerveSpa Pro. More about the product - https://nervespa.com/products/nerve-&-neuropathy/carbon-rubber-electrodes-19030?pa=1
+7.  **Silver Conductive Glove/Sock Systems** - The Nerve Spa Pro is an Advanced Nerve and Neuropathy stimulator that utilizes a proprietary hybrid of electrotherapy including enhanced micro-current, galvanic, and TENS formulated into a proprietary specification—coupled with a monophasic waveform to target pain associated with early-onset peripheral neuropathy, as well other nerve-based pain conditions in the hands and feet. More about the product - https://nervespa.com/products/nerve-&-neuropathy/nervespa-silver-conductive-glove-hand-garment-system-19476?pa=1
+8.  **Nerve Spa Performance Diabetic Socks** - Nerve Spa is in the business of happy, healthy feet. Proven to reduce swelling, our nonbinding knee high socks for diabetics come recommended by podiatrists and orthopedic specialists who know best. Made out of premium grade materials shown to enhance blood flow without constricting movement or leaving marks on skin, these super stretch diabetic socks are comfortable and loose fitting enough to wear all day. Wear them to work, to the gym, around the home or to bed. Padded for extra comfort and thinned out in other areas to support ventilation, the extra wide diabetic socks keep feet sweat-free and allow flexibility. More about the product - https://nervespa.com/products/nerve-&-neuropathy/nerve-spa-performance-diabetic-socks-18935?pa=1
+
+**Category: Joint & Mobility | Brand: NerveSpa**
+Products: 
+1. **Joint Health Support Kit** - Includes: Joint Drink Powder, and OA Cream. PRODUCT CODE: JHGS. To know more about this product, visit: https://nervespa.com/products/joint-&-mobility/joint-heath-support-kit-(includes:-joint-drink-powder-oa-cream)-19636?pa=1, 
+
+2. **Nerve Spa Knee Pro - Replacement Pads** - 3 packs of VB35 Thigh Pads (6 pads) and 3 packs of VBKnee Knee Pads (6 pads). PRODUCT CODE: KNEEPROPADKIT. To know more about this product, visit: https://nervespa.com/products/joint-&-mobility/nerve-spa-knee-pro-replacement-pads-3-x-vb35-and-3-x-vbknee-19647?pa=1
+
+3. **Nerve Spa Knee Pro - Advanced OA/RA Treatment Device** - Size: Fits Small to Large, The Nerve Spa Knee is based off of a clinically proven, non-invasive, non-drug treatment option for osteoarthritis (OA) of the knee. The Nerve Spa Knee system delivers a proprietary electrical signal that stimulates the joint tissue to reduce the pain and symptoms of Osteoarthritis and Rheumatoid Arthritis, and helps maintain the overall health of the knee joint.\nThe Nerve Spa Knee is a hybrid development using the technical specifications of the Nerve Spa combined with the technical specifications of the Jstim Joint stimulator.  The Jstim device is backed by over 15 years of positive results in treating the joint. To know more about this product, visit: https://nervespa.com/products/joint-&-mobility/nerve-spa-knee-pro-advanced-oara-treatment-device-size:-fits-small-to-large-19728?pa=1, 
+
+4. **NerveSpa Knee Pro - 180 Day Supply Kit**  -The Nerve Spa Knee is based off of a clinically proven, non-invasive, non-drug treatment option for osteoarthritis (OA) of the knee. The Nerve Spa Knee system delivers a proprietary electrical signal that stimulates the joint tissue to reduce the pain and symptoms of Osteoarthritis and Rheumatoid Arthritis, and helps maintain the overall health of the knee joint.\nThe Nerve Spa Knee is a hybrid development using the technical specifications of the Nerve Spa combined with the technical specifications of the Jstim Joint stimulator.  The Jstim device is backed by over 15 years of positive results in treating the joint. To know more about this product, visit: https://nervespa.com/products/joint-&-mobility/nervespa-knee-pro-180-day-supply-kit-19729?pa=1, 
+
+5. **NerveSpa Knee Pro Size Extender Straps (1 Pair) - XL-XXL** - The Nerve Spa Knee is based off of a clinically proven, non-invasive, non-drug treatment option for osteoarthritis (OA) of the knee. The Nerve Spa Knee system delivers a proprietary electrical signal that stimulates the joint tissue to reduce the pain and symptoms of Osteoarthritis and Rheumatoid Arthritis, and helps maintain the overall health of the knee joint. To know more about this product, visit: https://nervespa.com/products/joint-&-mobility/nervespa-knee-pro-size-extender-straps-(1-pair)-_-xl-xxl-19731?pa=1, 
+
+6. **Nerve Spa Shoulder Pro** - The Nerve Spa Shoulder is based on the clinically proven, non-invasive, output parameters that drive therapeutic repair and long term joint recovery. The Nerve Spa Shoulder system delivers a proprietary electrical signal that stimulates the joint tissue to repair and reduce the pain and symptoms of arthritis in the shoulder.The Nerve Spa Shoulder is a hybrid development using the technical specifications of the Nerve Spa combined with the technical specifications of the Jstim Joint stimulator. The Jstim device is backed by over 15 years of positive results in treating the joint.To know more about this product, visit: https://nervespa.com/products/joint-&-mobility/nerve-spa-shoulder-pro-19760?pa=1.
+
+
+
+**Category: Advanced Supplementation | Brand: NerveSpa**
+Products: 
+1. **Nerve Rebuilder** - eripheral nerve integrity depends on B-vitamin–dependent metabolic pathways, mitochondrial ATP production, balanced neurotransmitter signaling, and adequate microvascular nutrient delivery—physiological domains frequently influenced in neuropathy-related contexts. Clinicians managing peripheral nerve stress commonly encounter manifestations such as altered sensation, nerve signaling inefficiency, and metabolic cofactor depletion.\nThe Nerve Rebuilder Formula is a clinician-developed capsule formulation designed for daily use to reinforce these convergent biological pathways using clinically studied nutrient cofactors and metabolic substrates. To know more about this product visit - https://nervespa.com/products/advanced-supplementation/nerve-spa-performance-supplement-18933?pa=1
+
+2. **Nerve Regeneration** - eripheral nerve integrity depends on mitochondrial ATP generation, balanced redox signaling, and regulated metabolic pathways—physiological domains frequently influenced in neuropathy-related contexts. Clinicians managing peripheral nerve stress commonly encounter manifestations such as altered sensation, nerve conduction slowing, and metabolic dysregulation. The Nerve Regeneration Formula is a clinician-developed formulation designed for daily use to reinforce these convergent biological pathways using well-studied nutrient cofactors. To know more about this product visit - https://nervespa.com/products/advanced-supplementation/nerve-regeneration-formula-peripheral-neuropathy-supplement-19966?pa=1
+
+3. **Blood Flow** - Microvascular integrity depends on nitric oxide signaling, endothelial responsiveness, mitochondrial energy availability, and vascular tone regulation—physiological domains frequently influenced in peripheral nerve stress and circulation-related contexts. Clinicians managing peripheral tissue compromise commonly encounter reduced perfusion efficiency, impaired nutrient delivery, and endothelial dysfunction.\nThe Blood Flow Super Formula is a clinician-developed drink formulation designed for daily use to reinforce these convergent vascular pathways using clinically studied nitric oxide precursors, endothelial cofactors, and microcirculatory support nutrients. To know more about this product visit - https://nervespa.com/products/advanced-supplementation/the-blood-flow-super-formula-drink-powder-by-nerve-spa-19483?pa=1
+
+4. **Nerve & Neuropathy Cream** - Peripheral sensory discomfort is frequently associated with altered microvascular perfusion, inflammatory mediator signaling, and localized tissue stress. Clinicians supporting peripheral nerve discomfort commonly observe impaired nitric oxide signaling, oxidative imbalance, and reduced endothelial responsiveness at the local tissue level.\nNerve & Neuropathy Cream is a clinician-developed topical formulation designed for localized application to reinforce microvascular pathways, nitric oxide signaling, and tissue-calming mechanisms using clinically studied ingredients. To know more about this product visit - https://nervespa.com/products/advanced-supplementation/nerve-&-neuropathy-cream-by-nervespa-maximum-strength-relief-for-foot-hands-legs-toes-includes-7grams-of-larginine-vitamin-b6-menthol-aloe-scientifically-developed-to-improve-blood-circulation-and-relieve-pain-2.82oz-19194?pa=1
+
+5. **Nerve & Neuropathy ODF** - Peripheral sensory discomfort is frequently associated with endothelial dysfunction, impaired nitric oxide bioavailability, and reduced microvascular perfusion. Supporting nitric oxide signaling and endothelial responsiveness is a recognized strategy in vascular-related peripheral health research.\nN1 Nerve + Neuropathy Support is a clinician-formulated oral dissolvable film designed for rapid absorption to reinforce nitric oxide signaling pathways using standardized Red Ginseng extract. To know more about this product visit - https://nervespa.com/products/advanced-supplementation/n1-nerve+-neuropathy-support-19489?pa=1
+
+6. **ImmunoGut - Heal + Seal** - Gastrointestinal barrier integrity depends on coordinated epithelial repair, mucosal structural support, microbiome balance, and regulated inflammatory signaling— physiological domains frequently linked to altered intestinal permeability and digestive dysfunction.\n**The ImmunoGut Heal & Seal** Formula is a clinician-developed formulation designed for daily use to reinforce structural, microbial, and redox pathways involved in gut lining support. Doses are selected for daily multi-nutrient convenience within comprehensive gut-focused protocols. To know more about this product visit - https://nervespa.com/products/metabolic-gut-&-immunity/immunnogut-super-formula-heal-and-seal-drink-powder-60-servings-19950?pa=1
+
+7. **ImmunoGut - Rebuild + Maintain** - The gut mucosal barrier plays a central role in immune regulation, inflammatory signaling balance, and metabolic homeostasis. Disruption in intestinal permeability, microbial diversity, and micronutrient sufficiency can influence systemic immune responses and oxidative stress pathways.
+ImmunoGut Rebuild is a clinician-developed formulation designed to reinforce gut barrier physiology, immune signaling modulation, and cellular antioxidant pathways using extensively studied nutrient cofactors and botanical compounds. To know more about this product visit - https://nervespa.com/products/metabolic-gut-&-immunity/immunogut-super-formula:-essential-immunity-&-gut-support-vitamin-d-zinc-beta-glucan-detox-&-stress-relief-480g-powder-60-servings.-19711?pa=1
+
+8. **N1 Skinny Blend** - Metabolic homeostasis and appetite regulation depend on nutrient-sensing pathways, glycemic modulation, chromium-dependent enzymatic activity, and insulin signaling efficiency—physiological domains influenced in contexts of appetite dysregulation and metabolic stress.
+N1 Skinny Blend is a clinician-developed oral dissolvable film formulation designed for daily use to reinforce these convergent biological systems using clinically studied cofactors and botanical substrates. To know more about this product visit - https://nervespa.com/products/metabolic-gut-&-immunity/n1-skinny-blend-19488?pa=1
+
+9. **N1 - Gut Support** - Sleep physiology depends on coordinated neurotransmitter modulation, circadian rhythm signaling, and stress-response balance. Disruptions in these pathways are frequently observed in clinical contexts associated with stress, delayed sleep onset, and fragmented sleep architecture.
+N1 Sleep & Calm ODF is a clinician-developed oral dissolvable film designed for rapid absorption to support relaxation, circadian regulation, and nervous system recovery using botanicals and cofactors studied in controlled human research. To know more about this product visit - https://nervespa.com/products/advanced-supplementation/n1-gut-support-with-probiotics-19490?pa=1
+
+10. **Super Flex Joint** - Joint integrity depends on extracellular matrix synthesis, glycosaminoglycan turnover, inflammatory mediator balance, and oxidative regulation. In osteoarthritic and high-load joint environments, cartilage degradation and cytokine signaling shifts are commonly observed.
+Super Flex Joint Formula is a clinician-developed formulation designed to reinforce cartilage substrate availability and inflammatory pathway modulation using extensively studied structural and botanical cofactors. To know more about this product visit - https://nervespa.com/products/advanced-supplementation/super-flex-joint-formula-drink-powder-by-nervespa-joint-support-supplement-help-repairrestore-with-glucosamine-chondroitin-turmeric-ginger-msm-boswellia-30-servings-19503?pa=1
+
+11. **Nerve Target Roll-On** - Localized musculoskeletal discomfort is commonly associated with transient inflammatory mediator signaling, altered peripheral sensory receptor activation, and microvascular circulation shifts.
+Nerve Target Roll-On Gel is a clinician-developed topical formulation designed to support sensory receptor modulation and localized circulation using counterirritant compounds and botanical extracts evaluated in controlled human researchTo know more about this product visit - https://nervespa.com/products/advanced-supplementation/roll-on-pain-relief-by-nerve-target-roll-on-muscle-pain-reliever-back-pain-arthritis-with-arnica-menthol-&-camphor-19908?pa=1
+
+12. **OA/RA Cream** - Science-Led Topical Structural & Inflammatory Joint Support
+Degenerative and inflammatory joint conditions are associated with altered inflammatory mediator signaling, oxidative stress burden, structural cartilage degradation, and impaired localized perfusion.
+Clinicians supporting osteoarthritis and inflammatory joint presentations frequently observe:\nInflammatory cytokine activation\nMatrix degradation signaling\nReduced synovial lubrication\nCompromised microvascular responsiveness\nSensory nerve sensitization\nOsteoarthritis & Rheumatoid Arthritis Cream is a clinician-developed topical formulation designed for localized application to reinforce structural joint support pathways, inflammatory modulation, and localized perfusion mechanisms using ingredients evaluated in controlled human research. To know more about this product visit - https://nervespa.com/products/advanced-supplementation/osteoarthritis-and-rheumatoid-arthritis-cream-19378?pa=1
+
+13. **Sleep** - Restorative sleep depends on coordinated circadian rhythm signaling, neurotransmitter balance, neuromuscular relaxation, and regulated stress response. Disruption of these systems may contribute to difficulty initiating sleep, fragmented cycles, and non-restorative rest.
+Sleep Support is a clinician-developed formulation designed to reinforce physiological pathways involved in sleep onset, relaxation, and sleep stage regulation— using bioavailable nutrient forms and a rapid dissolvable delivery system.To know more about this product visit - https://nervespa.com/products/metabolic-gut-&-immunity/n1-all-natural-sleep-support-formula-odf-(oral-dissolvable-film)-19949?pa=1
+
+
+
+**Category: Clinical Devices | Brand: NerveSpa**
+Products: 
+1. **The Power Wrap - Ultra-High Powered LED Cold Laser** - Light therapy is quantified in milliwatts (mW) or Watts (W), with most Cold Lasers rated in mW. To put it into perspective, 1000 mW equals 1 Watt, and devices with 10 Watts output correspond to 10,000mW. The Power Wall, for instance, combines 78 lasers and 192 LEDs, generating a consolidated output of 10 Watts. This substantial power level facilitates quick treatments for both home and professional treatments, taking only 60 SECONDS per treatment spot. The Power Wall delivers Warm, Powerful Light Therapy with both Continuous Wave (CW) and Pulsed (PW) options.To see more details about this product please visit - https://nervespa.com/products/clinical-devices/the-power-wrap-ultra-high-powered-led-cold-laser-infrared-and-red-light-relief-12-000mw-650nm-red-light-808nm-infrared-diodes-78-lasers-+-192-leds-19721?pa=1
+ 
+2. **NerveWave Advanced Neuro-Modulating Electrotherapy System** - Using clinically studied electrotherapy specifications derived from the Jstim – Joint Stimulator; low level frequencies are coupled with high volt stimulation set to a monophasic waveform. Such specifications have been studied to promote cartilage regeneration in the joint.Interferential therapy (IFT) targets chronic intractable back pain by using intersecting medium-frequency electrical currents to penetrate deep tissue, block pain signals, reduce inflammation, and improve muscle relaxation. This technique is especially effective for pain that has not responded to other treatments due to its ability to stimulate targeted nerves and muscles beneath the skin with minimal discomfort.
+Target Indications: Treat degenerative joint conditions such as Osteoarthritis (OA) and Rheumatoid Arthritis (RA) of the knee, hand, and shoulder.\nProtocol: 4–5x per week Duration: Over the course of 26 weeks\nTo see more details about this product please visit - https://nervespa.com/products/clinical-devices/nervewave-advanced-neuro-modulating-electrotherapy-system-for-pain-relief-neuropathy-&-restorative-recovery-19868?pa=1
+
+3. **Nerve Wave 2.5" RD Clinical Grade Electrode** - Nerve Wave 2.5" Rd Clinical Grade Electrode, \nPre-wired Pigtail connection Lead wire\nHigh Grade Gel for Clinical Grade Power\nMade in Taiwan\nTo see more details about this product please visit - https://nervespa.com/products/clinical-devices/nerve-wave-2.5-rd-clinical-grade-electrode-19901?pa=1
+
+4. **Nerve Spa Vibe** - The Nerve Spa Vibe is a compact yet powerful deep tissue massager designed to deliver effective relief from muscle tension, chronic pain, and fatigue. With a high-speed vibration range of 5500–7500 RPM, it penetrates deep into soft tissues to promote circulation and ease stiffness. Its five interchangeable heads allow for personalized therapy across different muscle groups and sensitive areas, making it ideal for managing conditions like sciatica, arthritis, and plantar fasciitis. Lightweight, cordless, and easy to operate, it's perfect for both personal wellness and professional use—whether you're an athlete, therapist, or simply someone seeking daily relief.
+To see more details about this product please visit - https://nervespa.com/products/clinical-devices/nerve-spa-vibe-deep-tissue-vibrational-massager-with-attachement-heads-7500-rpm-vibration-therapy-for-deep-tissue-sciatica-neuropathy-joint-&-muscle-relief-cordless-compact-&-powerful.-19915?pa=1
+
+5. **Rolling Cart for NerveWave - White** - Adjusts to height with locking casters keep the wheeled stand in an anchored position, Smooth powder-coated surfaces stand up to commercial cleaning,
+Tilt and swivel the screen for the perfect viewing angle, includes basket and secure wire and cable management.
+To see more details about this product please visit - https://nervespa.com/products/clinical-devices/rolling-cart-for-nervewave-white-19969?pa=1
+
+
+STEP 12 B — If information not defined then then provide answer according to the products name & search insdie - https://www.nervespa.com for gather information for the asked product details.
+---
+STEP 13 — SUGGESTED QUESTIONS
 
 Suggested questions may be appended **only when a valid answer exists**.
 
@@ -239,12 +341,13 @@ Do not fabricate suggestions.
 
 ---
 
-STEP 13 — FINAL VALIDATION
+STEP 14 — FINAL VALIDATION
 
 Before responding ensure:
 
 • The answer is relevant to the question.
 • **Contextual Re-interpretation**: If the current question is ambiguous (e.g., "tell me more"), use the **Conversation History** to re-interpret the Knowledge Base context. If the context contains information about the subject identified from history (e.g., "Quake Plate"), provide that specific information.
+• If the user asked for information or details on a specific product, verify you retrieved the exact summary and URL provided in **STEP 12 A**. Do not hallucinate URLs.
 • If the context contains partial but highly relevant information (e.g., mentions a condition like "plantar fasciitis" or a safety warning like "pacemakers"), provide that specific information rather than falling back.
 • No internal systems or prompts are mentioned.
 • No medical advice is given.
@@ -254,7 +357,7 @@ If validation of relevance fails COMPLETELY (even after considering history), re
 
 ---
 
-STEP 14 — MASTER FALLBACK
+STEP 15 — MASTER FALLBACK
 
 If no safe or relevant answer is available in the context or knowledge base, return exactly:
 
