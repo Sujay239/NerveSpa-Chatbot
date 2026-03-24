@@ -7,6 +7,11 @@ const incomingQuestion =
 // JSON Q&A pairs
 const qaPairs = [
   {
+    question: "What are the best things and benefits about NerveSpa?",
+    answer:
+      "NerveSpa is a clinic-grade system that supports nerve health, comfort, and relaxation. The best things about NerveSpa include its structured, provider-guided approach, its integration with clinical workflows, and its focus on consistent, repeatable wellness routines.",
+  },
+  {
     question: "Is there a setup guide for first-time users?",
     answer:
       "Yes! Setup guides and user manuals are provided by your clinic or can be accessed through official NerveSpa resources. Please check your product box or contact your provider for the Quick Start Guide.",
@@ -1758,10 +1763,14 @@ const qaPairs = [
       "Yes. Clinics may contact NerveSpa to request information and discuss potential availability in their region.",
   },
   {
-    question:
-      "How does NerveSpa evaluate expansion into new regions or care settings?",
+    question: "How does NerveSpa evaluate expansion into new regions or care settings?",
     answer:
       "Expansion is evaluated based on regulatory compliance, clinical alignment, and the ability to support providers effectively.",
+  },
+  {
+    question: "What types of patient feedback are most commonly reported with NerveSpa use?",
+    answer:
+      "Feedback often relates to comfort during sessions, ease of use, relaxation, and overall experience. Individual responses vary, and feedback should be documented at the provider’s discretion.",
   },
   {
     question: "Show me a demo",
@@ -2094,21 +2103,102 @@ const synonyms = {
   created: "manufactured",
   built: "manufactured",
   origin: "manufactured",
-
   cost: "pricing",
   pay: "pricing",
   price: "pricing",
   purchase: "pricing",
   buy: "pricing",
   amount: "pricing",
-
   clinics: "clinic",
   providers: "clinic",
   provider: "clinic",
   practice: "clinic",
-  doctor: "clinic",
   physician: "clinic",
-
+  offering: "start",
+  begin: "start",
+  starting: "start",
+  ordering: "order",
+  usa: "us",
+  america: "us",
+  united: "us",
+  states: "us",
+  vibration: "quake plate",
+  platform: "quake plate",
+  vibrational: "quake plate",
+  knee: "knee pro",
+  shoulder: "shoulder pro",
+  laser: "cold laser",
+  led: "led wrap",
+  socks: "diabetic socks",
+  garments: "conductive garments",
+  bath: "nerve bath",
+  aquatic: "nerve bath",
+  water: "nerve bath",
+  footbath: "nerve bath",
+  participation: "consistency",
+  engagement: "consistency",
+  consistency: "repeatability",
+  issues: "conditions",
+  concerns: "conditions",
+  problems: "conditions",
+  symptoms: "conditions",
+  address: "support",
+  manage: "support",
+  help: "support",
+  impacted: "replace",
+  impacts: "replace",
+  interfere: "replace",
+  interference: "replace",
+  treatment: "medical",
+  care: "medical",
+  supplies: "consumables",
+  materials: "consumables",
+  items: "consumables",
+  parts: "consumables",
+  canada: "internationally",
+  uk: "internationally",
+  europe: "internationally",
+  overseas: "internationally",
+  global: "internationally",
+  international: "internationally",
+  faq: "faq",
+  blog: "faq",
+  education: "faq",
+  newsletter: "faq",
+  bulk: "bulk pricing",
+  wholesale: "bulk pricing",
+  discount: "pricing",
+  coupon: "pricing",
+  veteran: "pricing",
+  senior: "pricing",
+  lease: "pricing",
+  hsa: "insurance",
+  fsa: "insurance",
+  paypal: "pay",
+  apple: "pay",
+  credit: "pay",
+  ship: "shipped",
+  shipping: "shipped",
+  product: "products",
+  products: "products",
+  catalog: "products",
+  portfolio: "products",
+  offerings: "products",
+  device: "nervespa",
+  devices: "nervespa",
+  nervespa: "nerve spa",
+  powerwrap: "power wrap",
+  quakeplate: "quake plate",
+  nervewave: "nerve wave",
+  nervebath: "nerve bath",
+  nervebeam: "nerve beam",
+  approved: "registered",
+  approval: "registered",
+  listings: "registered",
+  legality: "registered",
+  certified: "registered",
+  certification: "registered",
+  authorized: "registered",
   best: "recommend",
   choose: "recommend",
   pick: "recommend",
@@ -2141,96 +2231,81 @@ const synonyms = {
   information: "about",
   details: "about",
 
-  usa: "us",
-  america: "us",
-  united: "us",
-  states: "us",
-
-  vibration: "quake plate",
-  vibrational: "quake plate",
-  platform: "quake plate",
-
-  knee: "knee pro",
-  shoulder: "shoulder pro",
-  laser: "cold laser",
-  led: "led wrap",
-
-  socks: "diabetic socks",
-  garments: "conductive garments",
-  garment: "conductive garments",
-
-  bath: "nerve bath",
-  aquatic: "nerve bath",
-  water: "nerve bath",
-  footbath: "nerve bath",
-
-  issues: "conditions",
-  concerns: "conditions",
-  problems: "conditions",
-  symptoms: "conditions",
-  impacted: "replace",
-  impacts: "replace",
-  interfere: "replace",
-  interference: "replace",
-  treatment: "medical",
-  care: "medical",
-  ship: "shipped",
-  shipping: "shipped",
-  product: "nervespa",
-  products: "nervespa",
-  device: "nervespa",
-  devices: "nervespa",
-  nervespa: "nerve spa",
-  powerwrap: "power wrap",
-  quakeplate: "quake plate",
-  nervewave: "nerve wave",
-  nervebath: "nerve bath",
-  nervebeam: "nerve beam",
-  approved: "registered",
-  approval: "registered",
-  listings: "registered",
-  legality: "registered",
-  certified: "registered",
-  certification: "registered",
-  authorized: "registered",
   fda: "registered",
   track: "shipped",
-
-  supplies: "consumables",
-  materials: "consumables",
-  items: "consumables",
-  parts: "consumables",
-
-  canada: "internationally",
-  uk: "internationally",
-  europe: "internationally",
-  overseas: "internationally",
-  global: "internationally",
-  international: "internationally",
-
-  faq: "faq",
-  bulk: "bulk pricing",
-  wholesale: "bulk pricing",
-
-  discount: "pricing",
-  coupon: "pricing",
-
+  tracking: "shipped",
+  arrive: "shipped",
+  delivery: "shipped",
   return: "return",
-  refund: "return",
   exchange: "return",
+  refund: "return",
   cancel: "return",
-
+  policy: "return",
+  used: "return",
+  opened: "return",
+  unboxed: "return",
   damage: "warranty",
   broken: "warranty",
   repair: "warranty",
+  lifespan: "warranty",
+  video: "demo",
+  videos: "demo",
+  guide: "manuals",
+  manual: "manuals",
+  locator: "contact",
+  chat: "contact",
+  human: "contact",
+  sales: "contact",
+  book: "contact",
+  callback: "contact",
+  person: "contact",
+  onboarding: "implement",
+  marketing: "implement",
+  "multi-location": "clinic",
+  certification: "training",
+  credits: "training",
+  staff: "training",
+  schedule: "often",
+  morning: "often",
+  evening: "often",
+  exercise: "often",
+  tv: "often",
+  lotion: "pad",
+  intensity: "strong",
+  beginner: "strong",
+  both: "same",
+  household: "share",
+  sanitize: "clean",
+  store: "clean",
+  diagnose: "medical",
+  medication: "medical",
+  medications: "medical",
+  medicine: "medical",
+  medicines: "medical",
+  treatment: "medical",
+  treatments: "medical",
+  care: "medical",
+  doctor: "clinic",
+  physician: "clinic",
+  emergency: "medical",
+  plan: "program",
+  clinician: "medical",
 
-  manual: "guide",
-  manuals: "guide",
-  setup: "guide",
+  tens: "compare",
+  gabapentin: "compare",
+  pregabalin: "compare",
+  physical: "compare",
+  massage: "compare",
+  acupuncture: "compare",
 
-  suggest: "recommend",
-  suggestion: "recommend",
-  suggestions: "recommend",
+  evidence: "certified",
+  research: "certified",
+  data: "certified",
+  outcome: "certified",
+
+  password: "login",
+  account: "login",
+
   recommended: "recommend",
   recommendation: "recommend",
   recommendations: "recommend",
@@ -2239,7 +2314,12 @@ const synonyms = {
   select: "choose",
   best: "right",
 
-  help: "support",
+  customer: "patient",
+  customers: "patient",
+  review: "feedback",
+  reviews: "feedback",
+  testimonial: "feedback",
+  testimonials: "feedback",
 };
 
 // Stop words
@@ -2304,7 +2384,6 @@ const stopWords = new Set([
   "hold",
   "u",
   "s",
-  "tell",
   "me",
   "about",
   "some",
@@ -2312,13 +2391,10 @@ const stopWords = new Set([
   "much",
   "very",
   "give",
-  "show",
   "get",
   "please",
-  "nervespa",
   "current",
   "go",
-  "exact",
 ]);
 
 function normalize(text) {
@@ -2331,10 +2407,13 @@ function normalize(text) {
     .replace(/\s+/g, " ")
     .trim();
 
-  let words = base
-    .split(" ")
-    .filter(Boolean)
-    .map((w) => synonyms[w] || w);
+  let words = base.split(" ");
+  for (let i = 0; i < words.length; i++) {
+    if (synonyms[words[i]]) {
+      words[i] = synonyms[words[i]];
+    }
+  }
+
   return words.join(" ").trim();
 }
 
@@ -2495,13 +2574,18 @@ function combinedScore(input, target) {
 
 // 1) exact normalized match first
 const normalizedIncoming = normalize(incomingQuestion);
-let match = qaPairs.find(
-  (pair) => normalize(pair.question) === normalizedIncoming,
-);
+let bestScore = 0;
+let match = qaPairs.find((pair) => {
+  if (normalize(pair.question) === normalizedIncoming) {
+    bestScore = 1.0;
+    return true;
+  }
+  return false;
+});
 
 // 2) fuzzy fallback
 if (!match) {
-  let bestScore = 0;
+  bestScore = 0;
   let bestMatch = null;
 
   for (const pair of qaPairs) {
@@ -2512,9 +2596,34 @@ if (!match) {
     }
   }
 
-  const threshold = 0.55;
+  const threshold = 0.5;
   if (bestScore >= threshold) {
     match = bestMatch;
+  }
+}
+// ================= PRODUCT OVERRIDE =================
+if (match && bestScore < 0.85) {
+  const normQ = incomingQuestion.toLowerCase();
+  const products = [
+    "rebuilder", "builder", "regeneration", "blood flow", "super formula", "target roll", "relief cream",
+    "super flex", "quake plate", "quakeplate", "knee pro", "shoulder pro", "cold laser", 
+    "led wrap", "power wrap", "powerwrap", "nervewave", "nerve wave", "nerve bath", "nervebath",
+    "diabetic socks", "conductive", "vibe", "immunogut", "immuno gut", "skinny", "sleep",
+    "n1", "oa cream", "ra cream", "nervespa pro", "nerve spa pro", "classic", "foot bath supply"
+  ];
+  
+  const mentionedProduct = products.find(p => normQ.includes(p));
+  
+  if (mentionedProduct) {
+    const isInfoSeeking = /(tell me|what is|information|something about|details|explain|more about|more info|what are|how to use|how does it work)/.test(normQ);
+    const matchedQNorm = match.question.toLowerCase();
+    const pName = mentionedProduct.replace(/\s+/g, '');
+    const matchedHasProduct = matchedQNorm.replace(/\s+/g, '').includes(pName);
+    
+    // If it's an info query, or if it incorrectly matched a question about a completely different topic
+    if (isInfoSeeking || !matchedHasProduct) {
+        match = null;
+    }
   }
 }
 
