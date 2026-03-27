@@ -2841,6 +2841,31 @@ const predefinedQuestions = {
    {
     "question": "Do I need a prescription?",
     "answer": "NerveSpa devices do not require a medical prescription. Licensed clinicians guide patients on correct use and integrate devices and supplements into their care plans."
-  }
+  }, 
+  {
+    "question": "Should a healthy hand be able to feel the \"tingle\" in the glove?",
+    "answer":
+      "Yes. A healthy hand should usually feel a mild, comfortable tingle when the glove is fitted correctly and the intensity is set appropriately.",
+  },
+  {
+    "question": "What is the difference between the NerveSpa Single and the NerveSpa Dual",
+    "answer":
+      "The NerveSpa Dual is designed for simultaneous bilateral treatment, allowing both hands or both feet to be treated at the same time. The NerveSpa Single treats one area at a time, such as the hands or the feet, but it does not run both at once.",
+  },
+  {
+    "question": "What is the set-up for treating both hands",
+    "answer":
+      "Place one glove on the left hand and one on the right hand, moisten the garments thoroughly with conductive spray or light moisture, connect them to the controller, and gradually increase intensity until the stimulation feels mild and comfortable. To promote even wear, alternate the gloves or leadwire positions from left to right between sessions.",
+  },
+  {
+    "question": "How do I get the best results from the NerveSpa program",
+    "answer":
+      "Best results are typically achieved by following the full NerveSpa protocol consistently and using the recommended modalities together as directed by your provider. The program is designed so each modality supports the others over the course of the 90-use regimen, followed by maintenance as needed. Full protocol: https://nervespa.com/protocol",
+  },
+  {
+    "question": "Is conductive spray required for efficacy?",
+    "answer":
+      "Conductive spray or light moisture is recommended to help ensure consistent contact and effective stimulation, especially if the sensation feels weak.",
+  },
   ]
 }

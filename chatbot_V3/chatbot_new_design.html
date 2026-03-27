@@ -1,1453 +1,1542 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>NerveSpa Support Widget — Premium Chat</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ns-header-gradient: linear-gradient(120deg,
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>NerveSpa Support Widget — Premium Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ns-header-gradient: linear-gradient(
+          120deg,
           #2563eb 0%,
           #1e3a8a 50%,
-          #020617 100%);
-      --font:
-        "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      --ns-accent: #38bdf8;
-      --ns-primary: #2563eb;
-      --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.18);
-      --shadow-2: 0 24px 80px rgba(2, 6, 23, 0.28);
-      --radius: 18px;
-      --radius-lg: 24px;
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
-      --safe-top: env(safe-area-inset-top, 0px);
-    }
-
-    :root {
-      --ns-bg: #ffffff;
-      --ns-surface: rgba(255, 255, 255, 0.94);
-      --ns-surface-2: rgba(2, 6, 23, 0.03);
-      --ns-text: #0f172a;
-      --ns-muted: rgba(15, 23, 42, 0.72);
-      --ns-dim: rgba(15, 23, 42, 0.56);
-      --border-soft: rgba(15, 23, 42, 0.08);
-      --border-strong: rgba(15, 23, 42, 0.14);
-      --input-bg: rgba(255, 255, 255, 0.98);
-      --input-border: rgba(15, 23, 42, 0.12);
-      --input-focus: rgba(56, 189, 248, 0.28);
-      --chip-bg: rgba(2, 6, 23, 0.03);
-      --chip-bg-strong: rgba(37, 99, 235, 0.08);
-      --card-bg: rgba(2, 6, 23, 0.025);
-      --card-hover: rgba(2, 6, 23, 0.05);
-      --answer-bg: rgba(2, 6, 23, 0.03);
-      --footer-bar: rgba(255, 255, 255, 0.82);
-      --assistant-bubble: rgba(2, 6, 23, 0.04);
-      --user-bubble: linear-gradient(135deg, #38bdf8, #2563eb);
-      --success-bg: rgba(34, 197, 94, 0.08);
-      --warning-bg: rgba(245, 158, 11, 0.1);
-    }
-
-    body.ns-theme-dark {
-      --ns-bg: #020617;
-      --ns-surface: rgba(15, 23, 42, 0.76);
-      --ns-surface-2: rgba(255, 255, 255, 0.03);
-      --ns-text: #f3f4f6;
-      --ns-muted: rgba(229, 231, 235, 0.78);
-      --ns-dim: rgba(229, 231, 235, 0.54);
-      --border-soft: rgba(255, 255, 255, 0.08);
-      --border-strong: rgba(255, 255, 255, 0.14);
-      --input-bg: rgba(15, 23, 42, 0.88);
-      --input-border: rgba(148, 163, 184, 0.28);
-      --input-focus: rgba(56, 189, 248, 0.3);
-      --chip-bg: rgba(255, 255, 255, 0.04);
-      --chip-bg-strong: rgba(56, 189, 248, 0.12);
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-hover: rgba(255, 255, 255, 0.06);
-      --answer-bg: rgba(255, 255, 255, 0.03);
-      --footer-bar: rgba(2, 6, 23, 0.62);
-      --assistant-bubble: rgba(255, 255, 255, 0.04);
-      --success-bg: rgba(34, 197, 94, 0.12);
-      --warning-bg: rgba(245, 158, 11, 0.14);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: var(--font);
-      background: transparent;
-      color: var(--ns-text);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    .ns-launcher {
-      position: fixed;
-      right: 18px;
-      bottom: calc(18px + var(--safe-bottom));
-      z-index: 999999;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: var(--shadow-1);
-      color: #0f172a;
-      cursor: pointer;
-      user-select: none;
-      backdrop-filter: blur(14px);
-      transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        background 0.15s ease;
-      animation: nsPulseShake 5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
-      transform-origin: center;
-    }
-
-    @keyframes nsPulseShake {
-
-      0%,
-      80%,
-      100% {
-        transform: scale(1) rotate(0deg);
+          #020617 100%
+        );
+        --font:
+          "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        --ns-accent: #38bdf8;
+        --ns-primary: #2563eb;
+        --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.18);
+        --shadow-2: 0 24px 80px rgba(2, 6, 23, 0.28);
+        --radius: 18px;
+        --radius-lg: 24px;
+        --safe-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-top: env(safe-area-inset-top, 0px);
       }
 
-      82% {
-        transform: scale(1.05) rotate(4deg);
+      :root {
+        --ns-bg: #ffffff;
+        --ns-surface: rgba(255, 255, 255, 0.94);
+        --ns-surface-2: rgba(2, 6, 23, 0.03);
+        --ns-text: #0f172a;
+        --ns-muted: rgba(15, 23, 42, 0.72);
+        --ns-dim: rgba(15, 23, 42, 0.56);
+        --border-soft: rgba(15, 23, 42, 0.08);
+        --border-strong: rgba(15, 23, 42, 0.14);
+        --input-bg: rgba(255, 255, 255, 0.98);
+        --input-border: rgba(15, 23, 42, 0.12);
+        --input-focus: rgba(56, 189, 248, 0.28);
+        --chip-bg: rgba(2, 6, 23, 0.03);
+        --chip-bg-strong: rgba(37, 99, 235, 0.08);
+        --card-bg: rgba(2, 6, 23, 0.025);
+        --card-hover: rgba(2, 6, 23, 0.05);
+        --answer-bg: rgba(2, 6, 23, 0.03);
+        --footer-bar: rgba(255, 255, 255, 0.82);
+        --assistant-bubble: rgba(2, 6, 23, 0.04);
+        --user-bubble: linear-gradient(135deg, #38bdf8, #2563eb);
+        --success-bg: rgba(34, 197, 94, 0.08);
+        --warning-bg: rgba(245, 158, 11, 0.1);
       }
 
-      84% {
-        transform: scale(1.05) rotate(-4deg);
+      body.ns-theme-dark {
+        --ns-bg: #020617;
+        --ns-surface: rgba(15, 23, 42, 0.76);
+        --ns-surface-2: rgba(255, 255, 255, 0.03);
+        --ns-text: #f3f4f6;
+        --ns-muted: rgba(229, 231, 235, 0.78);
+        --ns-dim: rgba(229, 231, 235, 0.54);
+        --border-soft: rgba(255, 255, 255, 0.08);
+        --border-strong: rgba(255, 255, 255, 0.14);
+        --input-bg: rgba(15, 23, 42, 0.88);
+        --input-border: rgba(148, 163, 184, 0.28);
+        --input-focus: rgba(56, 189, 248, 0.3);
+        --chip-bg: rgba(255, 255, 255, 0.04);
+        --chip-bg-strong: rgba(56, 189, 248, 0.12);
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-hover: rgba(255, 255, 255, 0.06);
+        --answer-bg: rgba(255, 255, 255, 0.03);
+        --footer-bar: rgba(2, 6, 23, 0.62);
+        --assistant-bubble: rgba(255, 255, 255, 0.04);
+        --success-bg: rgba(34, 197, 94, 0.12);
+        --warning-bg: rgba(245, 158, 11, 0.14);
       }
 
-      86% {
-        transform: scale(1.05) rotate(4deg);
+      * {
+        box-sizing: border-box;
       }
 
-      88% {
-        transform: scale(1.05) rotate(-4deg);
+      html,
+      body {
+        margin: 0;
+        padding: 0;
       }
 
-      90% {
-        transform: scale(1) rotate(0deg);
-      }
-    }
-
-    body.ns-theme-dark .ns-launcher {
-      border-color: rgba(255, 255, 255, 0.1);
-      background: rgba(2, 6, 23, 0.82);
-      color: #fff;
-    }
-
-    .ns-launcher:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
-      animation: none;
-    }
-
-    .ns-launcher.hide-animation {
-      animation: none;
-    }
-
-    .ns-launcher:active {
-      transform: scale(0.99);
-    }
-
-    .ns-launcher .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--ns-accent), #2563eb);
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
-      flex: 0 0 auto;
-    }
-
-    .ns-launcher .label {
-      font-weight: 800;
-      font-size: 13px;
-      letter-spacing: 0.1px;
-      white-space: nowrap;
-    }
-
-    .ns-shell {
-      position: fixed;
-      right: 18px;
-      bottom: calc(78px + var(--safe-bottom));
-      z-index: 999999;
-      width: 430px;
-      max-width: calc(100vw - 36px);
-      height: min(82dvh, 760px);
-      min-height: 600px;
-      min-width: 340px;
-      max-height: 95dvh;
-      max-width: 95vw;
-      background: var(--ns-surface);
-      border: 1px solid var(--border-soft);
-      border-radius: 24px;
-      box-shadow: var(--shadow-2);
-      overflow: hidden;
-      display: none;
-      backdrop-filter: blur(20px);
-      resize: both;
-    }
-
-    .ns-shell.open {
-      display: block;
-      height: 750px;
-    }
-
-    .ns-shell.fullscreen {
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100vw !important;
-      height: 100dvh !important;
-      max-width: none !important;
-      max-height: none !important;
-      border-radius: 0;
-      min-width: 100vw;
-      min-height: 100dvh;
-      resize: none;
-    }
-
-    .ns-shell.minimized {
-      height: 72px !important;
-      min-height: 72px !important;
-      width: 360px;
-      resize: none;
-      overflow: hidden;
-    }
-
-    .ns-shell.minimized .ns-body {
-      display: none;
-    }
-
-    .ns-shell.minimized .ns-topbar {
-      min-height: 72px;
-    }
-
-    .ns-topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 14px 14px 16px;
-      background: var(--ns-header-gradient);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      min-height: 70px;
-    }
-
-    .ns-topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .ns-logo {
-      height: 26px;
-      width: auto;
-      display: block;
-      margin: 0;
-    }
-
-    .ns-topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-shrink: 0;
-    }
-
-    .btn-primary,
-    .btn-secondary,
-    .btn-icon,
-    .btn-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      font-weight: 800;
-      cursor: pointer;
-      border: none;
-      background: none;
-      font-family: var(--font);
-      transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        opacity 0.15s ease,
-        background 0.15s ease;
-      user-select: none;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--ns-accent), #2563eb);
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
-      padding: 10px 14px;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .btn-secondary {
-      color: var(--ns-text);
-      background: var(--chip-bg);
-      border: 1px solid var(--border-soft);
-      padding: 10px 14px;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .btn-icon {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(226, 232, 240, 0.22);
-      background: rgba(2, 6, 23, 0.18);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    .btn-link {
-      color: #2563eb;
-      padding: 0;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    body.ns-theme-dark .btn-link {
-      color: #93c5fd;
-    }
-
-    .btn-primary:active,
-    .btn-secondary:active,
-    .btn-icon:active {
-      transform: scale(0.98);
-    }
-
-    .ns-body {
-      height: calc(100% - 70px);
-      display: flex;
-      flex-direction: column;
-      background: var(--ns-bg);
-    }
-
-    body.ns-theme-dark .ns-body {
-      background: radial-gradient(circle at top,
-          rgba(15, 23, 42, 0.92),
-          #020617 70%);
-    }
-
-    .ns-screen {
-      padding: 18px 16px 12px;
-      overflow: auto;
-      flex: 1 1 auto;
-      scroll-behavior: smooth;
-    }
-
-    .thread {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      animation: nsFadeIn 0.22s ease-out;
-    }
-
-    @keyframes nsFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(5px);
+      body {
+        font-family: var(--font);
+        background: transparent;
+        color: var(--ns-text);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero {
-      border: 1px solid var(--border-soft);
-      background: var(--ns-surface-2);
-      border-radius: 22px;
-      padding: 18px 16px;
-      box-shadow: 0 10px 24px rgba(2, 6, 23, 0.06);
-    }
-
-    .heroBadge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--chip-bg);
-      border: 1px solid var(--border-soft);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--ns-dim);
-      margin-bottom: 14px;
-    }
-
-    .heroTitle {
-      margin: 0 0 8px;
-      font-size: 28px;
-      line-height: 1.02;
-      letter-spacing: -0.045em;
-      font-weight: 800;
-      color: var(--ns-text);
-    }
-
-    .heroText {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--ns-muted);
-      max-width: 34ch;
-    }
-
-    .heroActions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-
-    .quickSectionTitle {
-      margin: 6px 2px 2px;
-      color: var(--ns-dim);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .quickGrid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .chip {
-      border: 1px solid var(--border-soft);
-      background: transparent;
-      color: var(--ns-text);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: var(--font);
-      transition:
-        background 0.15s ease,
-        transform 0.15s ease,
-        border-color 0.15s ease;
-    }
-
-    .chip:hover {
-      background: var(--card-hover);
-      transform: translateY(-1px);
-    }
-
-    .chip-strong {
-      background: var(--chip-bg-strong);
-      border-color: transparent;
-    }
-
-    .cardRow {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .homeCard {
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      background: var(--card-bg);
-      padding: 14px;
-      cursor: pointer;
-      transition:
-        transform 0.15s ease,
-        background 0.15s ease;
-    }
-
-    .homeCard:hover {
-      background: var(--card-hover);
-      transform: translateY(-1px);
-    }
-
-    .homeCardTitle {
-      margin: 0 0 4px;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--ns-text);
-      letter-spacing: -0.01em;
-    }
-
-    .homeCardSub {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.35;
-      color: var(--ns-muted);
-    }
-
-    .ctaPanel {
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 14px;
-      background: linear-gradient(180deg, var(--success-bg), transparent);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .ctaPanelTitle {
-      margin: 0 0 4px;
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--ns-text);
-    }
-
-    .ctaPanelText {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.4;
-      color: var(--ns-muted);
-    }
-
-    .message {
-      display: flex;
-      width: 100%;
-      gap: 10px;
-      animation: nsFadeIn 0.18s ease-out;
-    }
-
-    .message.assistant {
-      justify-content: flex-start;
-    }
-
-    .message.user {
-      justify-content: flex-end;
-    }
-
-    .avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 800;
-      color: #fff;
-      background: linear-gradient(135deg, var(--ns-accent), #2563eb);
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
-      margin-top: 2px;
-    }
-
-    .bubbleWrap {
-      max-width: min(84%, 320px);
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .message.user .bubbleWrap {
-      align-items: flex-end;
-    }
-
-    .bubbleLabel {
-      font-size: 11px;
-      color: var(--ns-dim);
-      font-weight: 700;
-      padding: 0 2px;
-    }
-
-    .bubble {
-      border-radius: 18px;
-      padding: 13px 14px;
-      border: 1px solid var(--border-soft);
-      background: var(--assistant-bubble);
-      color: var(--ns-text);
-      line-height: 1.55;
-      font-size: 13px;
-      overflow-wrap: anywhere;
-    }
-
-    .message.user .bubble {
-      background: var(--user-bubble);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.22);
-    }
-
-    .assistantActions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .microPill {
-      border-radius: 999px;
-      padding: 8px 11px;
-      border: 1px solid var(--border-soft);
-      background: var(--chip-bg);
-      color: var(--ns-text);
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-      font-family: var(--font);
-    }
-
-    .microPill:hover {
-      background: var(--card-hover);
-    }
-
-    .typingBubble {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      min-height: 18px;
-    }
-
-    .typingBubble span {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--ns-dim);
-      display: block;
-      animation: nsBlink 1.2s infinite ease-in-out;
-    }
-
-    .typingBubble span:nth-child(2) {
-      animation-delay: 0.15s;
-    }
-
-    .typingBubble span:nth-child(3) {
-      animation-delay: 0.3s;
-    }
-
-    @keyframes nsBlink {
-
-      0%,
-      80%,
-      100% {
-        opacity: 0.35;
-        transform: translateY(0);
+      .ns-launcher {
+        position: fixed;
+        right: 18px;
+        bottom: calc(18px + var(--safe-bottom));
+        z-index: 999999;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: var(--shadow-1);
+        color: #0f172a;
+        cursor: pointer;
+        user-select: none;
+        backdrop-filter: blur(14px);
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+        animation: nsPulseShake 5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+        transform-origin: center;
       }
 
-      40% {
-        opacity: 1;
+      @keyframes nsPulseShake {
+        0%,
+        80%,
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+
+        82% {
+          transform: scale(1.05) rotate(4deg);
+        }
+
+        84% {
+          transform: scale(1.05) rotate(-4deg);
+        }
+
+        86% {
+          transform: scale(1.05) rotate(4deg);
+        }
+
+        88% {
+          transform: scale(1.05) rotate(-4deg);
+        }
+
+        90% {
+          transform: scale(1) rotate(0deg);
+        }
+      }
+
+      body.ns-theme-dark .ns-launcher {
+        border-color: rgba(255, 255, 255, 0.1);
+        background: rgba(2, 6, 23, 0.82);
+        color: #fff;
+      }
+
+      .ns-launcher:hover {
         transform: translateY(-1px);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+        animation: none;
       }
-    }
 
-    .richAnswer p {
-      margin: 0 0 10px;
-    }
+      .ns-launcher.hide-animation {
+        animation: none;
+      }
 
-    .richAnswer p:last-child {
-      margin-bottom: 0;
-    }
+      .ns-launcher:active {
+        transform: scale(0.99);
+      }
 
-    .richAnswer ul,
-    .richAnswer ol {
-      margin: 0 0 10px 18px;
-      padding: 0;
-    }
+      .ns-launcher .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--ns-accent), #2563eb);
+        box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+        flex: 0 0 auto;
+      }
 
-    .richAnswer li {
-      margin: 0 0 6px;
-    }
+      .ns-launcher .label {
+        font-weight: 800;
+        font-size: 13px;
+        letter-spacing: 0.1px;
+        white-space: nowrap;
+      }
 
-    .richAnswer strong {
-      font-weight: 800;
-      color: var(--ns-text);
-    }
-
-    .message.user .richAnswer strong {
-      color: #fff;
-    }
-
-    .richAnswer .callout {
-      display: block;
-      margin: 10px 0;
-      padding: 10px 11px;
-      border-radius: 14px;
-      background: var(--warning-bg);
-      border: 1px solid var(--border-soft);
-      font-size: 12px;
-    }
-
-    .metaRow {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
-    .metaTag {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--ns-dim);
-      background: var(--chip-bg);
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      padding: 6px 10px;
-    }
-
-    .stuckCard {
-      margin-top: 2px;
-      border: 1px solid var(--border-soft);
-      background: var(--ns-surface-2);
-      border-radius: 18px;
-      padding: 14px;
-    }
-
-    .stuckTitle {
-      margin: 0 0 5px;
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--ns-text);
-    }
-
-    .stuckText {
-      margin: 0 0 10px;
-      font-size: 12px;
-      line-height: 1.4;
-      color: var(--ns-muted);
-    }
-
-    .composer {
-      padding: 12px 12px calc(12px + var(--safe-bottom));
-      border-top: 1px solid var(--border-soft);
-      display: flex;
-      gap: 10px;
-      align-items: flex-end;
-      background: var(--footer-bar);
-      backdrop-filter: blur(14px);
-    }
-
-    .composerMain {
-      flex: 1 1 auto;
-      display: flex;
-      align-items: flex-end;
-      gap: 10px;
-      border: 1px solid var(--input-border);
-      background: var(--input-bg);
-      border-radius: 20px;
-      padding: 8px 14px;
-    }
-
-    .composerMain:focus-within {
-      border-color: var(--ns-accent);
-      box-shadow: 0 0 0 1px var(--input-focus);
-    }
-
-    .composer textarea {
-      width: 100%;
-      min-height: 26px;
-      max-height: 110px;
-      resize: none;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: var(--ns-text);
-      font-size: 13px;
-      line-height: 1.45;
-      font-family: var(--font);
-      padding: 5px 0;
-      margin: 0;
-    }
-
-    .composer textarea:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
-    .send {
-      width: 46px;
-      height: 46px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--ns-accent), #2563eb);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-      color: #fff;
-      font-weight: 900;
-      font-size: 16px;
-      transition:
-        transform 0.15s ease,
-        opacity 0.15s ease;
-      flex: 0 0 auto;
-    }
-
-    .send:active {
-      transform: scale(0.98);
-    }
-
-    .send:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
-
-    .footerHint {
-      font-size: 11px;
-      color: var(--ns-dim);
-      margin: 0 2px 2px;
-      text-align: center;
-    }
-
-    @media (max-width: 520px) {
       .ns-shell {
-        right: 12px;
-        left: 12px;
-        width: auto;
-        bottom: calc(76px + var(--safe-bottom));
-        height: min(86dvh, 760px);
-        min-height: 540px;
-        min-width: auto;
-        max-width: calc(100vw - 24px);
+        position: fixed;
+        right: 18px;
+        bottom: calc(78px + var(--safe-bottom));
+        z-index: 999999;
+        width: 430px;
+        max-width: calc(100vw - 36px);
+        height: min(82dvh, 760px);
+        min-height: 600px;
+        min-width: 340px;
+        max-height: 95dvh;
+        max-width: 95vw;
+        background: var(--ns-surface);
+        border: 1px solid var(--border-soft);
+        border-radius: 24px;
+        box-shadow: var(--shadow-2);
+        overflow: hidden;
+        display: none;
+        backdrop-filter: blur(20px);
+        resize: both;
+      }
+
+      .ns-shell.open {
+        display: block;
+        height: 750px;
+      }
+
+      .ns-shell.fullscreen {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw !important;
+        height: 100dvh !important;
+        max-width: none !important;
+        max-height: none !important;
+        border-radius: 0;
+        min-width: 100vw;
+        min-height: 100dvh;
         resize: none;
       }
 
+      .ns-shell.fullscreen .bubbleWrap {
+        max-width: none;
+      }
+
+      .ns-shell.fullscreen .bubble {
+        width: 448px;
+      }
+
+      .ns-shell.minimized {
+        height: 72px !important;
+        min-height: 72px !important;
+        width: 360px;
+        resize: none;
+        overflow: hidden;
+      }
+
+      .ns-shell.minimized .ns-body {
+        display: none;
+      }
+
+      .ns-shell.minimized .ns-topbar {
+        min-height: 72px;
+      }
+
+      .ns-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 14px 14px 16px;
+        background: var(--ns-header-gradient);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        min-height: 70px;
+      }
+
+      .ns-topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .ns-logo {
+        height: 26px;
+        width: auto;
+        display: block;
+        margin: 0;
+      }
+
+      .ns-topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-shrink: 0;
+      }
+
+      .btn-primary,
+      .btn-secondary,
+      .btn-icon,
+      .btn-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        font-weight: 800;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-family: var(--font);
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          opacity 0.15s ease,
+          background 0.15s ease;
+        user-select: none;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--ns-accent), #2563eb);
+        color: #fff;
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+        padding: 10px 14px;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .btn-secondary {
+        color: var(--ns-text);
+        background: var(--chip-bg);
+        border: 1px solid var(--border-soft);
+        padding: 10px 14px;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .btn-icon {
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(226, 232, 240, 0.22);
+        background: rgba(2, 6, 23, 0.18);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .btn-link {
+        color: #2563eb;
+        padding: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      body.ns-theme-dark .btn-link {
+        color: #93c5fd;
+      }
+
+      .btn-primary:active,
+      .btn-secondary:active,
+      .btn-icon:active {
+        transform: scale(0.98);
+      }
+
+      .ns-body {
+        height: calc(100% - 70px);
+        display: flex;
+        flex-direction: column;
+        background: var(--ns-bg);
+      }
+
+      body.ns-theme-dark .ns-body {
+        background: radial-gradient(
+          circle at top,
+          rgba(15, 23, 42, 0.92),
+          #020617 70%
+        );
+      }
+
+      .ns-screen {
+        padding: 18px 16px 12px;
+        overflow: auto;
+        flex: 1 1 auto;
+        scroll-behavior: smooth;
+      }
+
+      .thread {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        animation: nsFadeIn 0.22s ease-out;
+      }
+
+      @keyframes nsFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero {
+        border: 1px solid var(--border-soft);
+        background: var(--ns-surface-2);
+        border-radius: 22px;
+        padding: 18px 16px;
+        box-shadow: 0 10px 24px rgba(2, 6, 23, 0.06);
+      }
+
+      .heroBadge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--chip-bg);
+        border: 1px solid var(--border-soft);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--ns-dim);
+        margin-bottom: 14px;
+      }
+
       .heroTitle {
-        font-size: 26px;
+        margin: 0 0 8px;
+        font-size: 28px;
+        line-height: 1.02;
+        letter-spacing: -0.045em;
+        font-weight: 800;
+        color: var(--ns-text);
+      }
+
+      .heroText {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--ns-muted);
+        max-width: 34ch;
+      }
+
+      .heroActions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+
+      .quickSectionTitle {
+        margin: 6px 2px 2px;
+        color: var(--ns-dim);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .quickGrid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .chip {
+        border: 1px solid var(--border-soft);
+        background: transparent;
+        color: var(--ns-text);
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: var(--font);
+        transition:
+          background 0.15s ease,
+          transform 0.15s ease,
+          border-color 0.15s ease;
+      }
+
+      .chip:hover {
+        background: var(--card-hover);
+        transform: translateY(-1px);
+      }
+
+      .chip-strong {
+        background: var(--chip-bg-strong);
+        border-color: transparent;
       }
 
       .cardRow {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .homeCard {
+        border: 1px solid var(--border-soft);
+        border-radius: 18px;
+        background: var(--card-bg);
+        padding: 14px;
+        cursor: pointer;
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .homeCard:hover {
+        background: var(--card-hover);
+        transform: translateY(-1px);
+      }
+
+      .homeCardTitle {
+        margin: 0 0 4px;
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--ns-text);
+        letter-spacing: -0.01em;
+      }
+
+      .homeCardSub {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.35;
+        color: var(--ns-muted);
+      }
+
+      .ctaPanel {
+        border: 1px solid var(--border-soft);
+        border-radius: 18px;
+        padding: 14px;
+        background: linear-gradient(180deg, var(--success-bg), transparent);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .ctaPanelTitle {
+        margin: 0 0 4px;
+        font-size: 13px;
+        font-weight: 900;
+        color: var(--ns-text);
+      }
+
+      .ctaPanelText {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.4;
+        color: var(--ns-muted);
+      }
+
+      .message {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        animation: nsFadeIn 0.18s ease-out;
+      }
+
+      .message.assistant {
+        justify-content: flex-start;
+      }
+
+      .message.user {
+        justify-content: flex-end;
+      }
+
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 800;
+        color: #fff;
+        background: linear-gradient(135deg, var(--ns-accent), #2563eb);
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+        margin-top: 2px;
       }
 
       .bubbleWrap {
-        max-width: 88%;
+        max-width: min(84%, 320px);
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
       }
-    }
 
-    .ns-launcher-note {
-      position: fixed;
-      right: 18px;
-      bottom: calc(76px + var(--safe-bottom));
-      z-index: 999998;
-      background: #fff;
-      color: var(--ns-text);
-      padding: 10px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-1);
-      font-size: 13px;
-      font-weight: 600;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(10px) scale(0.95);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      transform-origin: bottom right;
-      cursor: pointer;
-    }
+      .message.user .bubbleWrap {
+        align-items: flex-end;
+      }
 
-    .ns-launcher-note.show {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0) scale(1);
-    }
+      .bubbleLabel {
+        font-size: 11px;
+        color: var(--ns-dim);
+        font-weight: 700;
+        padding: 0 2px;
+      }
 
-    .ns-launcher-note::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      right: 24px;
-      width: 10px;
-      height: 10px;
-      background: #fff;
-      border-right: 1px solid var(--border-soft);
-      border-bottom: 1px solid var(--border-soft);
-      transform: rotate(45deg);
-    }
+      .bubble {
+        border-radius: 18px;
+        padding: 13px 14px;
+        border: 1px solid var(--border-soft);
+        background: var(--assistant-bubble);
+        color: var(--ns-text);
+        line-height: 1.55;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+      }
 
-    body.ns-theme-dark .ns-launcher-note {
-      background: rgba(2, 6, 23, 0.92);
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.1);
-    }
+      .message.user .bubble {
+        background: var(--user-bubble);
+        color: #fff;
+        border-color: transparent;
+        box-shadow: 0 10px 28px rgba(37, 99, 235, 0.22);
+      }
 
-    body.ns-theme-dark .ns-launcher-note::after {
-      background: rgba(2, 6, 23, 0.92);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-  </style>
-</head>
+      .assistantActions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
 
-<body class="ns-theme-light">
-  <div class="ns-launcher-note" id="nsLauncherNote">Chat with us</div>
-  <div class="ns-launcher" id="nsLauncher" aria-label="Open NerveSpa Support">
-    <span class="dot"></span>
-    <span class="label">Support</span>
-  </div>
-  <div class="ns-shell" id="nsShell" role="dialog" aria-modal="true" aria-label="NerveSpa Support Widget">
-    <div class="ns-topbar">
-      <div class="ns-topbar-left">
-        <img class="ns-logo"
-          src="https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/publicshare/nerve-spa-logo-white.png" alt="NerveSpa" />
-      </div>
-      <div class="ns-topbar-right">
-        <button class="btn-icon" id="btnClear" aria-label="Clear chat" title="Clear chat">
-          ⌫
-        </button>
-        <button class="btn-icon" id="btnResize" aria-label="Toggle full screen" title="Toggle full screen">
-          ⤢
-        </button>
-        <button class="btn-icon"
-          style="width: auto; padding: 0 12px; gap: 1px; font-size: 13px; font-weight: 700; align-items: center;"
-          onclick="window.nsWidgetActions.openContact()" aria-label="Support" title="Support">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-            <path
-              d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
-            </path>
-          </svg>
-          Support
-        </button>
-        <button class="btn-icon" id="btnTheme" aria-label="Toggle theme" title="Toggle theme">
-          ☀
-        </button>
-        <button class="btn-icon" id="btnClose" aria-label="Close" title="Close">
-          ✕
-        </button>
-      </div>
+      .microPill {
+        border-radius: 999px;
+        padding: 8px 11px;
+        border: 1px solid var(--border-soft);
+        background: var(--chip-bg);
+        color: var(--ns-text);
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+        font-family: var(--font);
+      }
+
+      .microPill:hover {
+        background: var(--card-hover);
+      }
+
+      .typingBubble {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 18px;
+      }
+
+      .typingBubble span {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--ns-dim);
+        display: block;
+        animation: nsBlink 1.2s infinite ease-in-out;
+      }
+
+      .typingBubble span:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+
+      .typingBubble span:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes nsBlink {
+        0%,
+        80%,
+        100% {
+          opacity: 0.35;
+          transform: translateY(0);
+        }
+
+        40% {
+          opacity: 1;
+          transform: translateY(-1px);
+        }
+      }
+
+      .richAnswer p {
+        margin: 0 0 10px;
+      }
+
+      .richAnswer p:last-child {
+        margin-bottom: 0;
+      }
+
+      .richAnswer ul,
+      .richAnswer ol {
+        margin: 0 0 10px 18px;
+        padding: 0;
+      }
+
+      .richAnswer li {
+        margin: 0 0 6px;
+      }
+
+      .richAnswer strong {
+        font-weight: 800;
+        color: var(--ns-text);
+      }
+
+      .message.user .richAnswer strong {
+        color: #fff;
+      }
+
+      .richAnswer .callout {
+        display: block;
+        margin: 10px 0;
+        padding: 10px 11px;
+        border-radius: 14px;
+        background: var(--warning-bg);
+        border: 1px solid var(--border-soft);
+        font-size: 12px;
+      }
+
+      .metaRow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 6px;
+      }
+
+      .metaTag {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--ns-dim);
+        background: var(--chip-bg);
+        border: 1px solid var(--border-soft);
+        border-radius: 999px;
+        padding: 6px 10px;
+      }
+
+      .stuckCard {
+        margin-top: 2px;
+        border: 1px solid var(--border-soft);
+        background: var(--ns-surface-2);
+        border-radius: 18px;
+        padding: 14px;
+      }
+
+      .stuckTitle {
+        margin: 0 0 5px;
+        font-size: 13px;
+        font-weight: 900;
+        color: var(--ns-text);
+      }
+
+      .stuckText {
+        margin: 0 0 10px;
+        font-size: 12px;
+        line-height: 1.4;
+        color: var(--ns-muted);
+      }
+
+      .composer {
+        padding: 12px 12px calc(12px + var(--safe-bottom));
+        border-top: 1px solid var(--border-soft);
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+        background: var(--footer-bar);
+        backdrop-filter: blur(14px);
+      }
+
+      .composerMain {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+        border: 1px solid var(--input-border);
+        background: var(--input-bg);
+        border-radius: 20px;
+        padding: 8px 14px;
+      }
+
+      .composerMain:focus-within {
+        border-color: var(--ns-accent);
+        box-shadow: 0 0 0 1px var(--input-focus);
+      }
+
+      .composer textarea {
+        width: 100%;
+        min-height: 26px;
+        max-height: 110px;
+        resize: none;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: var(--ns-text);
+        font-size: 13px;
+        line-height: 1.45;
+        font-family: var(--font);
+        padding: 5px 0;
+        margin: 0;
+      }
+
+      .composer textarea:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .send {
+        width: 46px;
+        height: 46px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(135deg, var(--ns-accent), #2563eb);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        color: #fff;
+        font-weight: 900;
+        font-size: 16px;
+        transition:
+          transform 0.15s ease,
+          opacity 0.15s ease;
+        flex: 0 0 auto;
+      }
+
+      .send:active {
+        transform: scale(0.98);
+      }
+
+      .send:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      .footerHint {
+        font-size: 11px;
+        color: var(--ns-dim);
+        margin: 0 2px 2px;
+        text-align: center;
+      }
+
+      @media (max-width: 520px) {
+        .ns-shell {
+          right: 12px;
+          left: 12px;
+          width: auto;
+          bottom: calc(76px + var(--safe-bottom));
+          height: min(86dvh, 760px);
+          min-height: 540px;
+          min-width: auto;
+          max-width: calc(100vw - 24px);
+          resize: none;
+        }
+
+        .heroTitle {
+          font-size: 26px;
+        }
+
+        .cardRow {
+          grid-template-columns: 1fr;
+        }
+
+        .bubbleWrap {
+          max-width: 88%;
+        }
+      }
+
+      .ns-launcher-note {
+        position: fixed;
+        right: 18px;
+        bottom: calc(76px + var(--safe-bottom));
+        z-index: 999998;
+        background: #fff;
+        color: var(--ns-text);
+        padding: 10px 16px;
+        border-radius: 14px;
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-1);
+        font-size: 13px;
+        font-weight: 600;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px) scale(0.95);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transform-origin: bottom right;
+        cursor: pointer;
+      }
+
+      .ns-launcher-note.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+      }
+
+      .ns-launcher-note::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        right: 24px;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-right: 1px solid var(--border-soft);
+        border-bottom: 1px solid var(--border-soft);
+        transform: rotate(45deg);
+      }
+
+      body.ns-theme-dark .ns-launcher-note {
+        background: rgba(2, 6, 23, 0.92);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      body.ns-theme-dark .ns-launcher-note::after {
+        background: rgba(2, 6, 23, 0.92);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+
+  <body class="ns-theme-light">
+    <div class="ns-launcher-note" id="nsLauncherNote">Chat with us</div>
+    <div class="ns-launcher" id="nsLauncher" aria-label="Open NerveSpa Support">
+      <span class="dot"></span>
+      <span class="label">Support</span>
     </div>
-    <div class="ns-body">
-      <div class="ns-screen" id="screen" role="log" aria-live="polite" aria-relevant="additions" aria-atomic="false">
+    <div
+      class="ns-shell"
+      id="nsShell"
+      role="dialog"
+      aria-modal="true"
+      aria-label="NerveSpa Support Widget"
+    >
+      <div class="ns-topbar">
+        <div class="ns-topbar-left">
+          <img
+            class="ns-logo"
+            src="https://s3.us-east-2.amazonaws.com/cdn.hmsctl.com/publicshare/nerve-spa-logo-white.png"
+            alt="NerveSpa"
+          />
+        </div>
+        <div class="ns-topbar-right">
+          <button
+            class="btn-icon"
+            id="btnClear"
+            aria-label="Clear chat"
+            title="Clear chat"
+          >
+            ⌫
+          </button>
+          <button
+            class="btn-icon"
+            id="btnResize"
+            aria-label="Toggle full screen"
+            title="Toggle full screen"
+          >
+            ⤢
+          </button>
+          <button
+            class="btn-icon"
+            style="
+              width: auto;
+              padding: 0 12px;
+              gap: 1px;
+              font-size: 13px;
+              font-weight: 700;
+              align-items: center;
+            "
+            onclick="window.nsWidgetActions.openContact()"
+            aria-label="Support"
+            title="Support"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+              <path
+                d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+              ></path>
+            </svg>
+            Support
+          </button>
+          <button
+            class="btn-icon"
+            id="btnTheme"
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            ☀
+          </button>
+          <button
+            class="btn-icon"
+            id="btnClose"
+            aria-label="Close"
+            title="Close"
+          >
+            ✕
+          </button>
+        </div>
       </div>
-      <div class="composer" id="composer">
-        <div style="flex: 1 1 auto">
-          <div class="composerMain">
-            <textarea id="freeText" rows="1"
-              placeholder="Ask a question about setup, troubleshooting, orders, or warranty…"></textarea>
-          </div>
-          <!-- <div class="footerHint" id="footerHint">
+      <div class="ns-body">
+        <div
+          class="ns-screen"
+          id="screen"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+          aria-atomic="false"
+        ></div>
+        <div class="composer" id="composer">
+          <div style="flex: 1 1 auto">
+            <div class="composerMain">
+              <textarea
+                id="freeText"
+                rows="1"
+                placeholder="Ask a question about setup, troubleshooting, orders, or warranty…"
+              ></textarea>
+            </div>
+            <!-- <div class="footerHint" id="footerHint">
               Ask about setup, troubleshooting, orders, or warranty.
             </div> -->
+          </div>
+          <button class="send" id="btnSend" aria-label="Send">➤</button>
         </div>
-        <button class="send" id="btnSend" aria-label="Send">➤</button>
       </div>
     </div>
-  </div>
-  <script>
-    const CONTACT_URL = "https://nervespa.com/contact";
-    const WARRANTY_URL = "https://nervespa.com/warranty";
-    const WEBHOOK_URL =
-      "https://n8n.srv917960.hstgr.cloud/webhook/nervespa-chatbot";
-    const LOG_WEBHOOK_URL =
-      "https://n8n.srv917960.hstgr.cloud/webhook/chat-messages";
-    const SUPPORT_WEBHOOK_URL =
-      "https://n8n.srv917960.hstgr.cloud/webhook/submit-support";
+    <script>
+      const CONTACT_URL = "https://nervespa.com/contact";
+      const WARRANTY_URL = "https://nervespa.com/warranty";
+      const WEBHOOK_URL =
+        "https://n8n.srv917960.hstgr.cloud/webhook/nervespa-chatbot";
+      const LOG_WEBHOOK_URL =
+        "https://n8n.srv917960.hstgr.cloud/webhook/chat-messages";
+      const SUPPORT_WEBHOOK_URL =
+        "https://n8n.srv917960.hstgr.cloud/webhook/submit-support";
 
-    const THEME_KEY = "ns_widget_theme";
-    const THREAD_KEY = "ns_widget_thread_v2";
-    const SIZE_KEY = "ns_widget_size_v1";
-    const WINDOW_STATE_KEY = "ns_widget_window_state_v1";
+      const THEME_KEY = "ns_widget_theme";
+      const THREAD_KEY = "ns_widget_thread_v2";
+      const SIZE_KEY = "ns_widget_size_v1";
+      const WINDOW_STATE_KEY = "ns_widget_window_state_v1";
 
-    const CATEGORIES = [
-      {
-        key: "setup",
-        title: "Setup & Getting Started",
-        sub: "Device setup and first-use guidance",
-      },
-      {
-        key: "protocols",
-        title: "Programs & Protocols",
-        sub: "Clinical program overviews and usage guidance",
-      },
-      {
-        key: "troubleshooting",
-        title: "Troubleshooting",
-        sub: "Power, stimulation, wraps, cables, and device issues",
-      },
-      {
-        key: "orders",
-        title: "Orders & Purchasing",
-        sub: "Buying, invoices, tracking, returns, and bulk orders",
-      },
-      {
-        key: "care",
-        title: "Care & Warranty",
-        sub: "Cleaning, maintenance, replacement, and warranty coverage",
-      },
-    ];
+      const CATEGORIES = [
+        {
+          key: "setup",
+          title: "Setup & Getting Started",
+          sub: "Device setup and first-use guidance",
+        },
+        {
+          key: "protocols",
+          title: "Programs & Protocols",
+          sub: "Clinical program overviews and usage guidance",
+        },
+        {
+          key: "troubleshooting",
+          title: "Troubleshooting",
+          sub: "Power, stimulation, wraps, cables, and device issues",
+        },
+        {
+          key: "orders",
+          title: "Orders & Purchasing",
+          sub: "Buying, invoices, tracking, returns, and bulk orders",
+        },
+        {
+          key: "care",
+          title: "Care & Warranty",
+          sub: "Cleaning, maintenance, replacement, and warranty coverage",
+        },
+      ];
 
-    const HOME_CHIPS = [
-      { label: "Setup", action: "category", value: "setup" },
-      {
-        label: "Troubleshooting",
-        action: "category",
-        value: "troubleshooting",
-      },
-      { label: "Warranty", action: "warranty" },
-      { label: "Orders", action: "category", value: "orders" },
-      { label: "Protocols", action: "category", value: "protocols" },
-      { label: "Talk to Human", action: "contact" },
-    ];
+      const HOME_CHIPS = [
+        { label: "Setup", action: "category", value: "setup" },
+        {
+          label: "Troubleshooting",
+          action: "category",
+          value: "troubleshooting",
+        },
+        { label: "Warranty", action: "warranty" },
+        { label: "Orders", action: "category", value: "orders" },
+        { label: "Protocols", action: "category", value: "protocols" },
+        { label: "Talk to Human", action: "contact" },
+      ];
 
-    const POPULAR_ROTATING = [
-      "How do I set up the Nerve Bath?",
-      "What if the session stops?",
-      "The stimulation feels too strong — how do I adjust it?",
-      "What does the warranty cover?",
-      "How do I place an order?",
-      "How do I clean and care for my device?",
-      "How often should I do sessions?",
-      "How do clinics place bulk orders?",
-    ];
+      const POPULAR_ROTATING = [
+        "How do I set up the Nerve Bath?",
+        "What if the session stops?",
+        "The stimulation feels too strong — how do I adjust it?",
+        "What does the warranty cover?",
+        "How do I place an order?",
+        "How do I clean and care for my device?",
+        "How often should I do sessions?",
+        "How do clinics place bulk orders?",
+      ];
 
-    const sessionId =
-      crypto?.randomUUID?.() ||
-      Date.now() + "-" + Math.random().toString(16).slice(2);
-    let lastUserQuery = null;
-    let currentArticleId = null;
-    let thread = [];
-    let isTyping = false;
-    let isFullscreen = false;
-    let isMinimized = false;
+      const sessionId =
+        crypto?.randomUUID?.() ||
+        Date.now() + "-" + Math.random().toString(16).slice(2);
+      let lastUserQuery = null;
+      let currentArticleId = null;
+      let thread = [];
+      let isTyping = false;
+      let isFullscreen = false;
+      let isMinimized = false;
 
-    const elShell = document.getElementById("nsShell");
-    const elLauncher = document.getElementById("nsLauncher");
-    const elLauncherNote = document.getElementById("nsLauncherNote");
-    const elScreen = document.getElementById("screen");
+      const elShell = document.getElementById("nsShell");
+      const elLauncher = document.getElementById("nsLauncher");
+      const elLauncherNote = document.getElementById("nsLauncherNote");
+      const elScreen = document.getElementById("screen");
 
-    const noteMessages = ["Chat with us!", "Have any questions?", "Need help?"];
-    let noteIndex = 0;
+      const noteMessages = [
+        "Chat with us!",
+        "Have any questions?",
+        "Need help?",
+      ];
+      let noteIndex = 0;
 
-    if (elLauncherNote) {
-      const showNextNote = () => {
-        if (elShell.classList.contains("open")) return;
-        elLauncherNote.textContent = noteMessages[noteIndex];
-        elLauncherNote.classList.add("show");
+      if (elLauncherNote) {
+        const showNextNote = () => {
+          if (elShell.classList.contains("open")) return;
+          elLauncherNote.textContent = noteMessages[noteIndex];
+          elLauncherNote.classList.add("show");
+
+          setTimeout(() => {
+            elLauncherNote.classList.remove("show");
+            noteIndex = (noteIndex + 1) % noteMessages.length;
+          }, 3500);
+        };
 
         setTimeout(() => {
+          showNextNote();
+          setInterval(showNextNote, 7000);
+        }, 2000);
+
+        elLauncherNote.addEventListener("click", () => {
           elLauncherNote.classList.remove("show");
-          noteIndex = (noteIndex + 1) % noteMessages.length;
-        }, 3500);
-      };
+          openWidget();
+        });
+      }
+      const elFreeText = document.getElementById("freeText");
+      const btnTheme = document.getElementById("btnTheme");
+      const btnResize = document.getElementById("btnResize");
+      const btnClear = document.getElementById("btnClear");
+      const btnSend = document.getElementById("btnSend");
 
-      setTimeout(() => {
-        showNextNote();
-        setInterval(showNextNote, 7000);
-      }, 2000);
+      function openWarranty() {
+        window.open(WARRANTY_URL, "_blank");
+      }
 
-      elLauncherNote.addEventListener("click", () => {
-        elLauncherNote.classList.remove("show");
-        openWidget();
+      function escapeHtml(s) {
+        return String(s ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function escapeJsString(s) {
+        return String(s ?? "")
+          .replaceAll("\\", "\\\\")
+          .replaceAll("'", "\\'")
+          .replaceAll("\n", "\\n")
+          .replaceAll("\r", "");
+      }
+
+      function truncate(str, max = 140) {
+        const s = String(str || "");
+        if (s.length <= max) return s;
+        return s.slice(0, max - 1) + "…";
+      }
+
+      function setTheme(theme) {
+        const isDark = theme === "dark";
+        document.body.classList.toggle("ns-theme-dark", isDark);
+        document.body.classList.toggle("ns-theme-light", !isDark);
+        localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+        btnTheme.textContent = isDark ? "☾" : "☀";
+        btnTheme.title = isDark
+          ? "Switch to light mode"
+          : "Switch to dark mode";
+        btnTheme.setAttribute("aria-label", btnTheme.title);
+      }
+
+      function initTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+        if (saved === "dark") setTheme("dark");
+        else setTheme("light");
+      }
+
+      btnTheme.addEventListener("click", () => {
+        const next = document.body.classList.contains("ns-theme-dark")
+          ? "light"
+          : "dark";
+        setTheme(next);
       });
-    }
-    const elFreeText = document.getElementById("freeText");
-    const btnTheme = document.getElementById("btnTheme");
-    const btnResize = document.getElementById("btnResize");
-    const btnClear = document.getElementById("btnClear");
-    const btnSend = document.getElementById("btnSend");
 
-    function openWarranty() {
-      window.open(WARRANTY_URL, "_blank");
-    }
-
-    function escapeHtml(s) {
-      return String(s ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function escapeJsString(s) {
-      return String(s ?? "")
-        .replaceAll("\\", "\\\\")
-        .replaceAll("'", "\\'")
-        .replaceAll("\n", "\\n")
-        .replaceAll("\r", "");
-    }
-
-    function truncate(str, max = 140) {
-      const s = String(str || "");
-      if (s.length <= max) return s;
-      return s.slice(0, max - 1) + "…";
-    }
-
-    function setTheme(theme) {
-      const isDark = theme === "dark";
-      document.body.classList.toggle("ns-theme-dark", isDark);
-      document.body.classList.toggle("ns-theme-light", !isDark);
-      localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
-      btnTheme.textContent = isDark ? "☾" : "☀";
-      btnTheme.title = isDark
-        ? "Switch to light mode"
-        : "Switch to dark mode";
-      btnTheme.setAttribute("aria-label", btnTheme.title);
-    }
-
-    function initTheme() {
-      const saved = localStorage.getItem(THEME_KEY);
-      if (saved === "dark") setTheme("dark");
-      else setTheme("light");
-    }
-
-    btnTheme.addEventListener("click", () => {
-      const next = document.body.classList.contains("ns-theme-dark")
-        ? "light"
-        : "dark";
-      setTheme(next);
-    });
-
-    async function logToMessagesWebhook(role, message) {
-      try {
-        await fetch(LOG_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            session_id: sessionId,
-            role: role,
-            message: message,
-          }),
-        });
-      } catch (err) { }
-    }
-
-    function saveThread() {
-      try {
-        localStorage.setItem(THREAD_KEY, JSON.stringify(thread.slice(-40)));
-      } catch (e) { }
-    }
-
-    function loadThread() {
-      try {
-        const saved = localStorage.getItem(THREAD_KEY);
-        if (!saved) return [];
-        const parsed = JSON.parse(saved);
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (e) {
-        return [];
+      async function logToMessagesWebhook(role, message) {
+        try {
+          await fetch(LOG_WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              session_id: sessionId,
+              role: role,
+              message: message,
+            }),
+          });
+        } catch (err) {}
       }
-    }
 
-    function saveWindowState() {
-      try {
-        localStorage.setItem(
-          WINDOW_STATE_KEY,
-          JSON.stringify({
-            fullscreen: isFullscreen,
-          }),
-        );
-      } catch (e) { }
-    }
+      function saveThread() {
+        try {
+          localStorage.setItem(THREAD_KEY, JSON.stringify(thread.slice(-40)));
+        } catch (e) {}
+      }
 
-    function restoreWindowState() {
-      try {
-        const saved = localStorage.getItem(WINDOW_STATE_KEY);
-        if (!saved) return;
-        const parsed = JSON.parse(saved);
-        isFullscreen = !!parsed?.fullscreen;
-        isMinimized = false;
-        if (isFullscreen) elShell.classList.add("fullscreen");
+      function loadThread() {
+        try {
+          const saved = localStorage.getItem(THREAD_KEY);
+          if (!saved) return [];
+          const parsed = JSON.parse(saved);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveWindowState() {
+        try {
+          localStorage.setItem(
+            WINDOW_STATE_KEY,
+            JSON.stringify({
+              fullscreen: isFullscreen,
+            }),
+          );
+        } catch (e) {}
+      }
+
+      function restoreWindowState() {
+        try {
+          const saved = localStorage.getItem(WINDOW_STATE_KEY);
+          if (!saved) return;
+          const parsed = JSON.parse(saved);
+          isFullscreen = !!parsed?.fullscreen;
+          isMinimized = false;
+          if (isFullscreen) elShell.classList.add("fullscreen");
+          syncWindowButtons();
+        } catch (e) {}
+      }
+
+      function saveSize() {
+        if (isFullscreen || isMinimized) return;
+        try {
+          const rect = elShell.getBoundingClientRect();
+          localStorage.setItem(
+            SIZE_KEY,
+            JSON.stringify({
+              width: Math.round(rect.width),
+              height: Math.round(rect.height),
+            }),
+          );
+        } catch (e) {}
+      }
+
+      function restoreSize() {
+        try {
+          const saved = localStorage.getItem(SIZE_KEY);
+          if (!saved) return;
+          const size = JSON.parse(saved);
+          if (!size?.width || !size?.height) return;
+          const maxWidth = Math.floor(window.innerWidth * 0.95);
+          const maxHeight = Math.floor(window.innerHeight * 0.95);
+          const width = Math.min(size.width, maxWidth);
+          const height = Math.min(size.height, maxHeight);
+          if (window.innerWidth > 520) {
+            elShell.style.width = width + "px";
+            elShell.style.height = height + "px";
+          }
+        } catch (e) {}
+      }
+
+      function syncWindowButtons() {
+        btnResize.textContent = isFullscreen ? "🗗" : "⤢";
+        btnResize.title = isFullscreen
+          ? "Exit full screen"
+          : "Enter full screen";
+        btnResize.setAttribute("aria-label", btnResize.title);
+      }
+
+      function setFullscreen(next) {
+        isFullscreen = !!next;
+        elShell.classList.toggle("fullscreen", isFullscreen);
+        if (isFullscreen) {
+          elShell.classList.remove("minimized");
+          isMinimized = false;
+        } else {
+          restoreSize();
+        }
         syncWindowButtons();
-      } catch (e) { }
-    }
+        saveWindowState();
+      }
 
-    function saveSize() {
-      if (isFullscreen || isMinimized) return;
-      try {
-        const rect = elShell.getBoundingClientRect();
-        localStorage.setItem(
-          SIZE_KEY,
-          JSON.stringify({
-            width: Math.round(rect.width),
-            height: Math.round(rect.height),
-          }),
-        );
-      } catch (e) { }
-    }
-
-    function restoreSize() {
-      try {
-        const saved = localStorage.getItem(SIZE_KEY);
-        if (!saved) return;
-        const size = JSON.parse(saved);
-        if (!size?.width || !size?.height) return;
-        const maxWidth = Math.floor(window.innerWidth * 0.95);
-        const maxHeight = Math.floor(window.innerHeight * 0.95);
-        const width = Math.min(size.width, maxWidth);
-        const height = Math.min(size.height, maxHeight);
-        if (window.innerWidth > 520) {
-          elShell.style.width = width + "px";
-          elShell.style.height = height + "px";
-        }
-      } catch (e) { }
-    }
-
-    function syncWindowButtons() {
-      btnResize.textContent = isFullscreen ? "🗗" : "⤢";
-      btnResize.title = isFullscreen
-        ? "Exit full screen"
-        : "Enter full screen";
-      btnResize.setAttribute("aria-label", btnResize.title);
-    }
-
-    function setFullscreen(next) {
-      isFullscreen = !!next;
-      elShell.classList.toggle("fullscreen", isFullscreen);
-      if (isFullscreen) {
-        elShell.classList.remove("minimized");
+      function setMinimized(next) {
         isMinimized = false;
-      } else {
-        restoreSize();
-      }
-      syncWindowButtons();
-      saveWindowState();
-    }
-
-    function setMinimized(next) {
-      isMinimized = false;
-      elShell.classList.remove("minimized");
-      syncWindowButtons();
-      saveWindowState();
-    }
-
-    btnResize.addEventListener("click", () => setFullscreen(!isFullscreen));
-    btnClear.addEventListener("click", () => clearConversation());
-
-    if ("ResizeObserver" in window) {
-      const ro = new ResizeObserver(() => saveSize());
-      ro.observe(elShell);
-    }
-
-    function autoMobileFullscreen() {
-      if (window.innerWidth < 520) setFullscreen(true);
-    }
-
-    window.addEventListener("resize", () => {
-      autoMobileFullscreen();
-      if (!isFullscreen && !isMinimized) restoreSize();
-    });
-
-    function autoGrowTextarea() {
-      elFreeText.style.height = "26px";
-      elFreeText.style.height = Math.min(elFreeText.scrollHeight, 110) + "px";
-    }
-
-    elFreeText.addEventListener("input", autoGrowTextarea);
-
-    function getRotatingPopular() {
-      const daySeed = Math.floor(Date.now() / 86400000);
-      const out = [];
-      for (let i = 0; i < 6; i++) {
-        out.push(POPULAR_ROTATING[(daySeed + i) % POPULAR_ROTATING.length]);
-      }
-      return out;
-    }
-
-    function seedQuestionsForCategory(key) {
-      switch (key) {
-        case "setup":
-          return [
-            "How do I set up the Nerve Bath?",
-            "How do I use the LED wrap?",
-            "How do I set up Knee Pro?",
-            "How do I set up Shoulder Pro?",
-          ];
-        case "protocols":
-          return [
-            "What is the Neuropathy Protocol?",
-            "What is the Joint & Mobility Protocol?",
-            "How do I combine protocols in one routine?",
-            "How often should I do sessions?",
-          ];
-        case "troubleshooting":
-          return [
-            "My device is not powering on. What should I check?",
-            "I don’t feel any sensation during a session. Is that normal?",
-            "The stimulation feels too strong. How do I adjust it?",
-            "What if the session stops?",
-          ];
-        case "orders":
-          return [
-            "How do I place an order?",
-            "How do I track my order?",
-            "How do I request an invoice or receipt?",
-            "What is the return process?",
-            "How do clinics place bulk orders?",
-          ];
-        case "care":
-          return [
-            "How do I clean and care for my device?",
-            "What does the warranty cover?",
-            "How do I start a warranty claim?",
-            "How do I replace worn accessories?",
-          ];
-        default:
-          return getRotatingPopular();
-      }
-    }
-
-    function formatAnswerText(raw) {
-      let text = String(raw || "").trim();
-      if (!text) return "<p>I’m here to help.</p>";
-
-      text = text.replace(/\\n/g, "\n").replace(/\/n/g, "\n").replace(/\r\n/g, "\n");
-
-      // Replace bullets mapped to category searches
-      if (text.includes("specif") && text.includes("category")) {
-        text = text.replace(/•\s*([^<\n]+)(?:\n|$)/g, (match, p1) => {
-          const category = p1.trim().replace(/['"]/g, "");
-          return `\n__BTN_${category}__\n`;
-        });
+        elShell.classList.remove("minimized");
+        syncWindowButtons();
+        saveWindowState();
       }
 
-      const lines = text.split("\n");
-      let html = "";
-      let inUl = false;
-      let inOl = false;
-      let paragraph = [];
+      btnResize.addEventListener("click", () => setFullscreen(!isFullscreen));
+      btnClear.addEventListener("click", () => clearConversation());
 
-      const flushParagraph = () => {
-        if (!paragraph.length) return;
-        const joined = paragraph.join("<br>").trim();
-        if (joined) html += `<p>${formatInline(joined)}</p>`;
-        paragraph = [];
-      };
+      if ("ResizeObserver" in window) {
+        const ro = new ResizeObserver(() => saveSize());
+        ro.observe(elShell);
+      }
 
-      const closeLists = () => {
-        if (inUl) {
-          html += "</ul>";
-          inUl = false;
+      function autoMobileFullscreen() {
+        if (window.innerWidth < 520) setFullscreen(true);
+      }
+
+      window.addEventListener("resize", () => {
+        autoMobileFullscreen();
+        if (!isFullscreen && !isMinimized) restoreSize();
+      });
+
+      function autoGrowTextarea() {
+        elFreeText.style.height = "26px";
+        elFreeText.style.height = Math.min(elFreeText.scrollHeight, 110) + "px";
+      }
+
+      elFreeText.addEventListener("input", autoGrowTextarea);
+
+      function getRotatingPopular() {
+        const daySeed = Math.floor(Date.now() / 86400000);
+        const out = [];
+        for (let i = 0; i < 6; i++) {
+          out.push(POPULAR_ROTATING[(daySeed + i) % POPULAR_ROTATING.length]);
         }
-        if (inOl) {
-          html += "</ol>";
-          inOl = false;
+        return out;
+      }
+
+      function seedQuestionsForCategory(key) {
+        switch (key) {
+          case "setup":
+            return [
+              "How do I set up the Nerve Bath?",
+              "How do I use the LED wrap?",
+              "How do I set up Knee Pro?",
+              "How do I set up Shoulder Pro?",
+            ];
+          case "protocols":
+            return [
+              "What is the Neuropathy Protocol?",
+              "What is the Joint & Mobility Protocol?",
+              "How do I combine protocols in one routine?",
+              "How often should I do sessions?",
+            ];
+          case "troubleshooting":
+            return [
+              "My device is not powering on. What should I check?",
+              "I don’t feel any sensation during a session. Is that normal?",
+              "The stimulation feels too strong. How do I adjust it?",
+              "What if the session stops?",
+            ];
+          case "orders":
+            return [
+              "How do I place an order?",
+              "How do I track my order?",
+              "How do I request an invoice or receipt?",
+              "What is the return process?",
+              "How do clinics place bulk orders?",
+            ];
+          case "care":
+            return [
+              "How do I clean and care for my device?",
+              "What does the warranty cover?",
+              "How do I start a warranty claim?",
+              "How do I replace worn accessories?",
+            ];
+          default:
+            return getRotatingPopular();
         }
-      };
+      }
 
-      function formatInline(str) {
-        if (str.startsWith("__BTN_")) {
-          const cat = str.replace("__BTN_", "").replace("__", "");
-          return `<button class="chip" style="margin-top:4px; margin-bottom:4px; display:inline-block;" onclick="window.nsWidgetActions.ask('suggests me some products of ${escapeJsString(cat)}?')">${escapeHtml(cat)}</button>`;
-        }
+      function formatAnswerText(raw) {
+        let text = String(raw || "").trim();
+        if (!text) return "<p>I’m here to help.</p>";
 
-        let s = escapeHtml(str);
-
-        // Markdown links mapping
-        s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, p1, p2) => {
-          let url = p2;
-          if (url.includes("mailto:support@nervespa.com")) {
-            url =
-              "https://mail.google.com/mail/?view=cm&fs=1&to=support@nervespa.com";
-          }
-          return `<a href="${url}" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">${p1}</a>`;
-        });
-
-        // URL matching
-        const urlRegex = /(https?:\/\/[^\s<]+[^.,\s<])/g;
-        s = s.replace(urlRegex, (match, p1) => {
-          if (s.includes('href="' + p1)) return match;
-          return `<a href="${p1}" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">${p1}</a>`;
-        });
-
-        s = s.replace(
-          /(support@nervespa\.com)(?!")/g,
-          '<a href="https://mail.google.com/mail/?view=cm&fs=1&to=$1" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">$1</a>',
+        text = text.replace(/\\n/g, "\n").replace(/\r\n/g, "\n");
+        // Safety fix for URLs that might have been corrupted by literal `/n` replacements
+        text = text.replace(
+          /https:\/(\n|<br>|\\n|\/n)ervespa\.com/gi,
+          "https://nervespa.com",
         );
-        s = s.replace(
-          /(1-800-239-7880)/g,
-          '<a href="tel:18002397880" class="btn-link" style="text-decoration:underline;">$1</a>',
+        text = text.replace(
+          /\/(products|pages|collections)(\n|<br>|\\n|\/n)(erve|europathy)/gi,
+          "/$1/n$3",
         );
 
-        s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-        s = s.replace(
-          /(^|[\s(])NOTE:\s*/g,
-          '$1<span class="callout"><strong>Note:</strong> ',
-        );
-        if (s.includes('<span class="callout">') && !s.endsWith("</span>"))
-          s += "</span>";
-        return s;
-      }
-
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (!trimmed) {
-          flushParagraph();
-          closeLists();
-          continue;
+        // Replace bullets mapped to category searches
+        if (text.includes("specif") && text.includes("category")) {
+          text = text.replace(/•\s*([^<\n]+)(?:\n|$)/g, (match, p1) => {
+            const category = p1.trim().replace(/['"]/g, "");
+            return `\n__BTN_${category}__\n`;
+          });
         }
 
-        if (trimmed.startsWith("__BTN_")) {
-          flushParagraph();
-          closeLists();
-          html += formatInline(trimmed);
-          continue;
-        }
+        const lines = text.split("\n");
+        let html = "";
+        let inUl = false;
+        let inOl = false;
+        let paragraph = [];
 
-        const ulMatch = trimmed.match(/^[-]\s+(.+)/);
-        const olMatch = trimmed.match(/^\d+\.\s+(.+)/);
+        const flushParagraph = () => {
+          if (!paragraph.length) return;
+          const joined = paragraph.join("<br>").trim();
+          if (joined) html += `<p>${formatInline(joined)}</p>`;
+          paragraph = [];
+        };
 
-        if (ulMatch) {
-          flushParagraph();
-          if (inOl) {
-            html += "</ol>";
-            inOl = false;
-          }
-          if (!inUl) {
-            html += "<ul>";
-            inUl = true;
-          }
-          html += `<li>${formatInline(ulMatch[1])}</li>`;
-          continue;
-        }
-
-        if (olMatch) {
-          flushParagraph();
+        const closeLists = () => {
           if (inUl) {
             html += "</ul>";
             inUl = false;
           }
-          if (!inOl) {
-            html += "<ol>";
-            inOl = true;
+          if (inOl) {
+            html += "</ol>";
+            inOl = false;
           }
-          html += `<li>${formatInline(olMatch[1])}</li>`;
-          continue;
+        };
+
+        function formatInline(str) {
+          if (str.startsWith("__BTN_")) {
+            const cat = str.replace("__BTN_", "").replace("__", "");
+            return `<button class="chip" style="margin-top:4px; margin-bottom:4px; display:inline-block;" onclick="window.nsWidgetActions.ask('suggests me some products of ${escapeJsString(cat)}?')">${escapeHtml(cat)}</button>`;
+          }
+
+          let s = escapeHtml(str);
+
+          // Allow <br> tags (whether from backend or injected by UI join) to render as newlines
+          s = s.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
+
+          // Markdown links mapping
+          s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, p1, p2) => {
+            let url = p2;
+            if (url.includes("mailto:support@nervespa.com")) {
+              url =
+                "https://mail.google.com/mail/?view=cm&fs=1&to=support@nervespa.com";
+            }
+            return `<a href="${url}" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">${p1}</a>`;
+          });
+
+          // URL matching
+          const urlRegex = /(https?:\/\/[^\s<]+[^.,\s<])/g;
+          s = s.replace(urlRegex, (match, p1) => {
+            if (s.includes('href="' + p1)) return match;
+            return `<a href="${p1}" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">${p1}</a>`;
+          });
+
+          s = s.replace(
+            /(support@nervespa\.com)(?!")/g,
+            '<a href="https://mail.google.com/mail/?view=cm&fs=1&to=$1" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">$1</a>',
+          );
+          s = s.replace(
+            /(1-800-239-7880)/g,
+            '<a href="tel:18002397880" class="btn-link" style="text-decoration:underline;">$1</a>',
+          );
+
+          s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+          s = s.replace(
+            /(^|[\s(])NOTE:\s*/g,
+            '$1<span class="callout"><strong>Note:</strong> ',
+          );
+          if (s.includes('<span class="callout">') && !s.endsWith("</span>"))
+            s += "</span>";
+          return s;
         }
 
-        if (trimmed.toLowerCase().startsWith("note:")) {
-          flushParagraph();
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed) {
+            flushParagraph();
+            closeLists();
+            continue;
+          }
+
+          if (trimmed.startsWith("__BTN_")) {
+            flushParagraph();
+            closeLists();
+            html += formatInline(trimmed);
+            continue;
+          }
+
+          const ulMatch = trimmed.match(/^[-]\s+(.+)/);
+          const olMatch = trimmed.match(/^\d+\.\s+(.+)/);
+
+          if (ulMatch) {
+            flushParagraph();
+            if (inOl) {
+              html += "</ol>";
+              inOl = false;
+            }
+            if (!inUl) {
+              html += "<ul>";
+              inUl = true;
+            }
+            html += `<li>${formatInline(ulMatch[1])}</li>`;
+            continue;
+          }
+
+          if (olMatch) {
+            flushParagraph();
+            if (inUl) {
+              html += "</ul>";
+              inUl = false;
+            }
+            if (!inOl) {
+              html += "<ol>";
+              inOl = true;
+            }
+            html += `<li>${formatInline(olMatch[1])}</li>`;
+            continue;
+          }
+
+          if (trimmed.toLowerCase().startsWith("note:")) {
+            flushParagraph();
+            closeLists();
+            html += `<div class="callout"><strong>Note:</strong> ${formatInline(trimmed.slice(5).trim())}</div>`;
+            continue;
+          }
+
           closeLists();
-          html += `<div class="callout"><strong>Note:</strong> ${formatInline(trimmed.slice(5).trim())}</div>`;
-          continue;
+          paragraph.push(trimmed);
         }
 
+        flushParagraph();
         closeLists();
-        paragraph.push(trimmed);
+
+        return html || `<p>${formatInline(text)}</p>`;
       }
 
-      flushParagraph();
-      closeLists();
-
-      return html || `<p>${formatInline(text)}</p>`;
-    }
-
-    function createHomeMarkup() {
-      const rotating = getRotatingPopular();
-      return `
+      function createHomeMarkup() {
+        const rotating = getRotatingPopular();
+        return `
         <div class="thread">
           <div class="hero">
             <div class="heroBadge">NerveSpa Support</div>
@@ -1461,25 +1550,25 @@
           <div class="quickSectionTitle">Quick actions</div>
           <div class="quickGrid">
             ${HOME_CHIPS.map((chip) => {
-        if (chip.action === "category")
-          return `<button class="chip ${chip.label === "Talk to Human" ? "chip-strong" : ""}" onclick="window.nsWidgetActions.renderCategory('${escapeHtml(chip.value)}')">${escapeHtml(chip.label)}</button>`;
-        if (chip.action === "warranty")
-          return `<button class="chip" onclick="window.nsWidgetActions.openWarranty()">${escapeHtml(chip.label)}</button>`;
-        if (chip.action === "contact")
-          return `<button class="chip chip-strong" onclick="window.nsWidgetActions.openContact()">${escapeHtml(chip.label)}</button>`;
-        return "";
-      }).join("")}
+              if (chip.action === "category")
+                return `<button class="chip ${chip.label === "Talk to Human" ? "chip-strong" : ""}" onclick="window.nsWidgetActions.renderCategory('${escapeHtml(chip.value)}')">${escapeHtml(chip.label)}</button>`;
+              if (chip.action === "warranty")
+                return `<button class="chip" onclick="window.nsWidgetActions.openWarranty()">${escapeHtml(chip.label)}</button>`;
+              if (chip.action === "contact")
+                return `<button class="chip chip-strong" onclick="window.nsWidgetActions.openContact()">${escapeHtml(chip.label)}</button>`;
+              return "";
+            }).join("")}
           </div>
           <div class="quickSectionTitle">Browse support</div>
           <div class="cardRow">
             ${CATEGORIES.map(
-        (c) => `
+              (c) => `
               <div class="homeCard" onclick="window.nsWidgetActions.renderCategory('${escapeHtml(c.key)}')">
                 <div class="homeCardTitle">${escapeHtml(c.title)}</div>
                 <p class="homeCardSub">${escapeHtml(c.sub)}</p>
               </div>
             `,
-      ).join("")}
+            ).join("")}
           </div>
           <div class="quickSectionTitle">Popular questions</div>
           <div class="quickGrid">
@@ -1494,13 +1583,13 @@
           </div>
         </div>
       `;
-    }
+      }
 
-    function createCategoryMarkup(key) {
-      const category = CATEGORIES.find((x) => x.key === key);
-      const label = category?.title || "Support";
-      const prompts = seedQuestionsForCategory(key);
-      return `
+      function createCategoryMarkup(key) {
+        const category = CATEGORIES.find((x) => x.key === key);
+        const label = category?.title || "Support";
+        const prompts = seedQuestionsForCategory(key);
+        return `
         <div class="thread">
           <div class="quickGrid" style="margin-bottom:2px;">
             <button class="chip" onclick="window.nsWidgetActions.renderHome()">← Back</button>
@@ -1523,10 +1612,10 @@
           </div>
         </div>
       `;
-    }
+      }
 
-    function createUserMessageHtml(text) {
-      return `
+      function createUserMessageHtml(text) {
+        return `
         <div class="message user">
           <div class="bubbleWrap">
             <div class="bubbleLabel">You</div>
@@ -1534,14 +1623,14 @@
           </div>
         </div>
       `;
-    }
+      }
 
-    function createAssistantMessageHtml(message) {
-      const meta = [];
-      if (message.category) meta.push(message.category);
-      if (message.subcategory) meta.push(message.subcategory);
+      function createAssistantMessageHtml(message) {
+        const meta = [];
+        if (message.category) meta.push(message.category);
+        if (message.subcategory) meta.push(message.subcategory);
 
-      return `
+        return `
         <div class="message assistant">
           <div class="avatar">NS</div>
           <div class="bubbleWrap">
@@ -1553,34 +1642,34 @@
           </div>
         </div>
       `;
-    }
+      }
 
-    function createSystemCardHtml(title, body, actions = []) {
-      return `
+      function createSystemCardHtml(title, body, actions = []) {
+        return `
         <div class="stuckCard">
           <div class="stuckTitle">${escapeHtml(title)}</div>
           <div class="stuckText">${escapeHtml(body)}</div>
           <div class="assistantActions">
             ${actions
-          .map((action) => {
-            if (action.type === "contact")
-              return `<button class="microPill" onclick="window.nsWidgetActions.openContact()">${escapeHtml(action.label)}</button>`;
-            if (action.type === "retry")
-              return `<button class="microPill" onclick="window.nsWidgetActions.ask('${escapeJsString(action.value || "")}')">${escapeHtml(action.label)}</button>`;
-            if (action.type === "home")
-              return `<button class="microPill" onclick="window.nsWidgetActions.renderHome()">${escapeHtml(action.label)}</button>`;
-            if (action.type === "warranty")
-              return `<button class="microPill" onclick="window.nsWidgetActions.openWarranty()">${escapeHtml(action.label)}</button>`;
-            return "";
-          })
-          .join("")}
+              .map((action) => {
+                if (action.type === "contact")
+                  return `<button class="microPill" onclick="window.nsWidgetActions.openContact()">${escapeHtml(action.label)}</button>`;
+                if (action.type === "retry")
+                  return `<button class="microPill" onclick="window.nsWidgetActions.ask('${escapeJsString(action.value || "")}')">${escapeHtml(action.label)}</button>`;
+                if (action.type === "home")
+                  return `<button class="microPill" onclick="window.nsWidgetActions.renderHome()">${escapeHtml(action.label)}</button>`;
+                if (action.type === "warranty")
+                  return `<button class="microPill" onclick="window.nsWidgetActions.openWarranty()">${escapeHtml(action.label)}</button>`;
+                return "";
+              })
+              .join("")}
           </div>
         </div>
       `;
-    }
+      }
 
-    function createTypingHtml() {
-      return `
+      function createTypingHtml() {
+        return `
         <div class="message assistant" id="typingIndicator">
           <div class="avatar">NS</div>
           <div class="bubbleWrap">
@@ -1591,22 +1680,22 @@
           </div>
         </div>
       `;
-    }
+      }
 
-    function renderHome() {
-      elScreen.innerHTML = createHomeMarkup();
-      elScreen.scrollTop = 0;
-      setTimeout(() => elFreeText?.focus(), 50);
-    }
+      function renderHome() {
+        elScreen.innerHTML = createHomeMarkup();
+        elScreen.scrollTop = 0;
+        setTimeout(() => elFreeText?.focus(), 50);
+      }
 
-    function renderCategory(key) {
-      elScreen.innerHTML = createCategoryMarkup(key);
-      elScreen.scrollTop = 0;
-      setTimeout(() => elFreeText?.focus(), 50);
-    }
+      function renderCategory(key) {
+        elScreen.innerHTML = createCategoryMarkup(key);
+        elScreen.scrollTop = 0;
+        setTimeout(() => elFreeText?.focus(), 50);
+      }
 
-    function renderSupportForm() {
-      const html = `
+      function renderSupportForm() {
+        const html = `
         <div class="thread">
           <div class="quickGrid" style="margin-bottom:2px;">
             <button class="chip" onclick="window.nsWidgetActions.renderHome()">← Back</button>
@@ -1625,339 +1714,341 @@
           </div>
         </div>
       `;
-      elScreen.innerHTML = html;
-      elScreen.scrollTop = 0;
-    }
+        elScreen.innerHTML = html;
+        elScreen.scrollTop = 0;
+      }
 
-    window.nsWidgetActions = window.nsWidgetActions || {};
-    window.nsWidgetActions.submitSupportForm = async function () {
-      const btn = document.getElementById("support-submit");
-      const name = document.getElementById("support-name").value.trim();
-      const email = document.getElementById("support-email").value.trim();
-      const phone = document.getElementById("support-phone").value.trim();
-      const msg = document.getElementById("support-msg").value.trim();
-      const errEl = document.getElementById("support-error");
-      
-      const showError = (text) => {
-        errEl.textContent = text;
-        errEl.style.display = "block";
+      window.nsWidgetActions = window.nsWidgetActions || {};
+      window.nsWidgetActions.submitSupportForm = async function () {
+        const btn = document.getElementById("support-submit");
+        const name = document.getElementById("support-name").value.trim();
+        const email = document.getElementById("support-email").value.trim();
+        const phone = document.getElementById("support-phone").value.trim();
+        const msg = document.getElementById("support-msg").value.trim();
+        const errEl = document.getElementById("support-error");
+
+        const showError = (text) => {
+          errEl.textContent = text;
+          errEl.style.display = "block";
+        };
+
+        if (errEl) errEl.style.display = "none";
+
+        if (!name) return showError("Please enter your name.");
+        if (/\d/.test(name))
+          return showError("Please enter a valid name without numbers.");
+        if (!email) return showError("Please enter your email.");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+          return showError("Please enter a valid email address.");
+        if (!phone) return showError("Please enter your phone number.");
+        if (!/^[\d+]+$/.test(phone))
+          return showError("Please enter a valid phone number.");
+        if (!msg) return showError("Please enter a message.");
+
+        const origText = btn.textContent;
+        btn.textContent = "Sending...";
+        btn.disabled = true;
+
+        try {
+          const res = await fetch(SUPPORT_WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+              session_id: sessionId,
+              name: name,
+              email: email,
+              phone: phone,
+              msg: msg,
+            }),
+          });
+
+          if (!res.ok) throw new Error("Server error");
+
+          btn.textContent = "Sent Successfully! ✅";
+          btn.style.background = "var(--success-bg)";
+          btn.style.color = "var(--ns-text)";
+
+          setTimeout(() => {
+            renderHome();
+            thread.push({
+              role: "assistant",
+              text: "Thank you! I've successfully shared your details with our support team. One of our specialists will reach out to you shortly. ✨\\n\\nIs there anything else I can help you with today?",
+            });
+            saveThread();
+            renderThread();
+          }, 2000);
+        } catch (e) {
+          alert(
+            "Error sending request. Please try again or contact support directly.",
+          );
+          btn.textContent = origText;
+          btn.disabled = false;
+        }
       };
 
-      if (errEl) errEl.style.display = "none";
-
-      if (!name) return showError("Please enter your name.");
-      if (/\d/.test(name)) return showError("Please enter a valid name without numbers.");
-      if (!email) return showError("Please enter your email.");
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError("Please enter a valid email address.");
-      if (!phone) return showError("Please enter your phone number.");
-      if (!/^[\d+]+$/.test(phone)) return showError("Please enter a valid phone number.");
-      if (!msg) return showError("Please enter a message.");
-
-      const origText = btn.textContent;
-      btn.textContent = "Sending...";
-      btn.disabled = true;
-
-      try {
-        const res = await fetch(SUPPORT_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams({
-            session_id: sessionId,
-            name: name,
-            email: email,
-            phone: phone,
-            msg: msg,
-          }),
-        });
-
-        if (!res.ok) throw new Error("Server error");
-
-        btn.textContent = "Sent Successfully! ✅";
-        btn.style.background = "var(--success-bg)";
-        btn.style.color = "var(--ns-text)";
-
-        setTimeout(() => {
-          renderHome();
-          thread.push({
-            role: "assistant",
-            text: "Thank you! I've successfully shared your details with our support team. One of our specialists will reach out to you shortly. ✨\\n\\nIs there anything else I can help you with today?",
-          });
-          saveThread();
-          renderThread();
-        }, 2000);
-      } catch (e) {
-        alert(
-          "Error sending request. Please try again or contact support directly.",
-        );
-        btn.textContent = origText;
-        btn.disabled = false;
+      function openContact() {
+        renderSupportForm();
       }
-    };
 
-    function openContact() {
-      renderSupportForm();
-    }
-
-    function renderThread() {
-      const html = `
+      function renderThread() {
+        const html = `
         <div class="thread">
           ${thread
-          .map((item) => {
-            if (item.role === "user") return createUserMessageHtml(item.text);
-            if (item.role === "assistant")
-              return createAssistantMessageHtml(item);
-            if (item.role === "system")
-              return createSystemCardHtml(
-                item.title,
-                item.body,
-                item.actions || [],
-              );
-            return "";
-          })
-          .join("")}
+            .map((item) => {
+              if (item.role === "user") return createUserMessageHtml(item.text);
+              if (item.role === "assistant")
+                return createAssistantMessageHtml(item);
+              if (item.role === "system")
+                return createSystemCardHtml(
+                  item.title,
+                  item.body,
+                  item.actions || [],
+                );
+              return "";
+            })
+            .join("")}
           ${isTyping ? createTypingHtml() : ""}
         </div>
       `;
-      elScreen.innerHTML = html;
-      scrollToBottom();
-    }
-
-    function pushSystemCard(card) {
-      const last = thread[thread.length - 1];
-      if (
-        last?.role === "system" &&
-        last.title === card.title &&
-        last.body === card.body
-      )
-        return;
-      thread.push({
-        role: "system",
-        title: card.title,
-        body: card.body,
-        actions: card.actions || [],
-      });
-      saveThread();
-      renderThread();
-    }
-
-    function renderNetworkError(error) {
-      const msg = String(error?.message || "").toLowerCase();
-      let title = "Connection issue";
-      let body =
-        "We couldn’t reach support right now. Please check your internet connection and try again.";
-      if (msg.includes("timeout")) {
-        title = "Request timed out";
-        body =
-          "Support is taking longer than expected to respond. Please try again in a moment.";
-      } else if (
-        msg.includes("500") ||
-        msg.includes("502") ||
-        msg.includes("503") ||
-        msg.includes("504")
-      ) {
-        title = "Support is temporarily unavailable";
-        body =
-          "Our support service is having trouble right now. Please try again shortly, or contact our team directly.";
+        elScreen.innerHTML = html;
+        scrollToBottom();
       }
-      pushSystemCard({
-        title,
-        body,
-        actions: [
-          { type: "retry", label: "Try Again", value: lastUserQuery || "" },
-          { type: "contact", label: "Contact Support" },
-          { type: "home", label: "Home" },
-        ],
-      });
-    }
 
-    function renderFallback() {
-      thread.push({
-        role: "assistant",
-        text: "I don’t see that exact detail in the current knowledge base. Please contact our team so we can provide the most accurate guidance.",
-        answer:
-          "I don’t see that exact detail in the current knowledge base.\n\nPlease contact our team so we can provide the most accurate guidance.",
-      });
-      saveThread();
-      renderThread();
-      pushSystemCard({
-        title: "Want direct help?",
-        body: "Our team can follow up with personalized support for your device, order, or warranty question.",
-        actions: [
-          { type: "contact", label: "Contact Support" },
-          { type: "home", label: "Back Home" },
-        ],
-      });
-    }
+      function pushSystemCard(card) {
+        const last = thread[thread.length - 1];
+        if (
+          last?.role === "system" &&
+          last.title === card.title &&
+          last.body === card.body
+        )
+          return;
+        thread.push({
+          role: "system",
+          title: card.title,
+          body: card.body,
+          actions: card.actions || [],
+        });
+        saveThread();
+        renderThread();
+      }
 
-    function pushUserMessage(text) {
-      thread.push({ role: "user", text });
-      saveThread();
-      renderThread();
-    }
-
-    function showTyping() {
-      isTyping = true;
-      btnSend.disabled = true;
-      elFreeText.disabled = true;
-      renderThread();
-    }
-
-    function hideTyping() {
-      isTyping = false;
-      btnSend.disabled = false;
-      elFreeText.disabled = false;
-      renderThread();
-      setTimeout(() => elFreeText?.focus(), 30);
-    }
-
-    function scrollToBottom() {
-      elScreen.scrollTo({
-        top: elScreen.scrollHeight,
-        behavior: thread.length > 1 ? "smooth" : "auto",
-      });
-    }
-
-    async function sendFeedback(wasHelpful) {
-      if (!wasHelpful) {
+      function renderNetworkError(error) {
+        const msg = String(error?.message || "").toLowerCase();
+        let title = "Connection issue";
+        let body =
+          "We couldn’t reach support right now. Please check your internet connection and try again.";
+        if (msg.includes("timeout")) {
+          title = "Request timed out";
+          body =
+            "Support is taking longer than expected to respond. Please try again in a moment.";
+        } else if (
+          msg.includes("500") ||
+          msg.includes("502") ||
+          msg.includes("503") ||
+          msg.includes("504")
+        ) {
+          title = "Support is temporarily unavailable";
+          body =
+            "Our support service is having trouble right now. Please try again shortly, or contact our team directly.";
+        }
         pushSystemCard({
-          title: "We can help directly",
-          body: "If the answer didn’t fully solve it, contact our team for personalized guidance.",
+          title,
+          body,
+          actions: [
+            { type: "retry", label: "Try Again", value: lastUserQuery || "" },
+            { type: "contact", label: "Contact Support" },
+            { type: "home", label: "Home" },
+          ],
+        });
+      }
+
+      function renderFallback() {
+        thread.push({
+          role: "assistant",
+          text: "I don’t see that exact detail in the current knowledge base. Please contact our team so we can provide the most accurate guidance.",
+          answer:
+            "I don’t see that exact detail in the current knowledge base.\n\nPlease contact our team so we can provide the most accurate guidance.",
+        });
+        saveThread();
+        renderThread();
+        pushSystemCard({
+          title: "Want direct help?",
+          body: "Our team can follow up with personalized support for your device, order, or warranty question.",
           actions: [
             { type: "contact", label: "Contact Support" },
             { type: "home", label: "Back Home" },
           ],
         });
       }
-    }
 
-    async function ask(query) {
-      if (isTyping) return;
-      const q = (query || "").trim();
-      if (!q) return;
-      lastUserQuery = q;
-      pushUserMessage(q);
-      logToMessagesWebhook("user", q);
-      showTyping();
-
-      try {
-        const url = `${WEBHOOK_URL}?chatInput=${encodeURIComponent(q)}&sessionId=${encodeURIComponent(sessionId)}`;
-        const res = await fetch(url, {
-          method: "GET",
-          headers: { Accept: "application/json" },
-        });
-        hideTyping();
-
-        if (!res.ok) throw new Error("HTTP " + res.status);
-
-        const data = await res.json();
-        let answer = "";
-        if (Array.isArray(data) && data.length > 0 && data[0].output)
-          answer = data[0].output;
-        else if (data && data.text) answer = data.text;
-        else
-          answer =
-            "I received a response but couldn't parse it. Please try again.";
-
-        thread.push({ role: "assistant", text: answer, answer: answer });
-        logToMessagesWebhook("bot", answer);
+      function pushUserMessage(text) {
+        thread.push({ role: "user", text });
         saveThread();
         renderThread();
+      }
 
-        // Add helpful push card optionally here
-        pushSystemCard({
-          title: "Was this helpful?",
-          body: "You can ask a follow-up, choose a related question, or contact support directly.",
-          actions: [
-            { type: "home", label: "Home" },
-            { type: "contact", label: "Talk to Human" },
-            { type: "retry", label: "Ask Again", value: q },
-          ],
+      function showTyping() {
+        isTyping = true;
+        btnSend.disabled = true;
+        elFreeText.disabled = true;
+        renderThread();
+      }
+
+      function hideTyping() {
+        isTyping = false;
+        btnSend.disabled = false;
+        elFreeText.disabled = false;
+        renderThread();
+        setTimeout(() => elFreeText?.focus(), 30);
+      }
+
+      function scrollToBottom() {
+        elScreen.scrollTo({
+          top: elScreen.scrollHeight,
+          behavior: thread.length > 1 ? "smooth" : "auto",
         });
-      } catch (e) {
-        hideTyping();
-        renderNetworkError(e);
       }
-    }
 
-    function submitFreeText() {
-      const v = elFreeText.value || "";
-      if (!v.trim() || isTyping) return;
-      elFreeText.value = "";
+      async function sendFeedback(wasHelpful) {
+        if (!wasHelpful) {
+          pushSystemCard({
+            title: "We can help directly",
+            body: "If the answer didn’t fully solve it, contact our team for personalized guidance.",
+            actions: [
+              { type: "contact", label: "Contact Support" },
+              { type: "home", label: "Back Home" },
+            ],
+          });
+        }
+      }
+
+      async function ask(query) {
+        if (isTyping) return;
+        const q = (query || "").trim();
+        if (!q) return;
+        lastUserQuery = q;
+        pushUserMessage(q);
+        logToMessagesWebhook("user", q);
+        showTyping();
+
+        try {
+          const url = `${WEBHOOK_URL}?chatInput=${encodeURIComponent(q)}&sessionId=${encodeURIComponent(sessionId)}`;
+          const res = await fetch(url, {
+            method: "GET",
+            headers: { Accept: "application/json" },
+          });
+          hideTyping();
+
+          if (!res.ok) throw new Error("HTTP " + res.status);
+
+          const data = await res.json();
+          let answer = "";
+          if (Array.isArray(data) && data.length > 0 && data[0].output)
+            answer = data[0].output;
+          else if (data && data.text) answer = data.text;
+          else
+            answer =
+              "I received a response but couldn't parse it. Please try again.";
+
+          thread.push({ role: "assistant", text: answer, answer: answer });
+          logToMessagesWebhook("bot", answer);
+          saveThread();
+          renderThread();
+
+          // Add helpful push card optionally here
+          pushSystemCard({
+            title: "Was this helpful?",
+            body: "You can ask a follow-up, choose a related question, or contact support directly.",
+            actions: [
+              { type: "home", label: "Home" },
+              { type: "contact", label: "Talk to Human" },
+              { type: "retry", label: "Ask Again", value: q },
+            ],
+          });
+        } catch (e) {
+          hideTyping();
+          renderNetworkError(e);
+        }
+      }
+
+      function submitFreeText() {
+        const v = elFreeText.value || "";
+        if (!v.trim() || isTyping) return;
+        elFreeText.value = "";
+        autoGrowTextarea();
+        ask(v);
+      }
+
+      function askHomePrompt() {
+        elFreeText.focus();
+        elFreeText.setSelectionRange(
+          elFreeText.value.length,
+          elFreeText.value.length,
+        );
+      }
+
+      function clearConversation() {
+        const confirmed = window.confirm("Clear this conversation?");
+        if (!confirmed) return;
+        thread = [];
+        saveThread();
+        renderHome();
+      }
+
+      function openWidget() {
+        elShell.classList.add("open");
+        elLauncher.classList.add("hide-animation");
+        if (isMinimized) setMinimized(false);
+        renderHome();
+        setTimeout(() => elFreeText?.focus(), 50);
+      }
+
+      function closeWidget() {
+        elShell.classList.remove("open");
+        elLauncher.classList.remove("hide-animation");
+      }
+
+      document
+        .getElementById("btnClose")
+        .addEventListener("click", closeWidget);
+      btnSend.addEventListener("click", submitFreeText);
+
+      elFreeText.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          submitFreeText();
+        }
+      });
+
+      elLauncher.addEventListener("click", () => {
+        if (elLauncherNote) elLauncherNote.classList.remove("show");
+        if (elShell.classList.contains("open")) closeWidget();
+        else openWidget();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeWidget();
+      });
+
+      window.nsWidgetActions = Object.assign(window.nsWidgetActions || {}, {
+        ask,
+        renderHome,
+        renderCategory,
+        openContact,
+        openWarranty,
+        askHomePrompt,
+        clearConversation,
+        sendFeedback,
+      });
+
+      initTheme();
+      thread = loadThread();
+      restoreSize();
+      restoreWindowState();
+      autoMobileFullscreen();
+      syncWindowButtons();
       autoGrowTextarea();
-      ask(v);
-    }
-
-    function askHomePrompt() {
-      elFreeText.focus();
-      elFreeText.setSelectionRange(
-        elFreeText.value.length,
-        elFreeText.value.length,
-      );
-    }
-
-    function clearConversation() {
-      const confirmed = window.confirm("Clear this conversation?");
-      if (!confirmed) return;
-      thread = [];
-      saveThread();
       renderHome();
-    }
-
-    function openWidget() {
-      elShell.classList.add("open");
-      elLauncher.classList.add("hide-animation");
-      if (isMinimized) setMinimized(false);
-      renderHome();
-      setTimeout(() => elFreeText?.focus(), 50);
-    }
-
-    function closeWidget() {
-      elShell.classList.remove("open");
-      elLauncher.classList.remove("hide-animation");
-    }
-
-    document
-      .getElementById("btnClose")
-      .addEventListener("click", closeWidget);
-    btnSend.addEventListener("click", submitFreeText);
-
-    elFreeText.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault();
-        submitFreeText();
-      }
-    });
-
-    elLauncher.addEventListener("click", () => {
-      if (elLauncherNote) elLauncherNote.classList.remove("show");
-      if (elShell.classList.contains("open")) closeWidget();
-      else openWidget();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeWidget();
-    });
-
-    window.nsWidgetActions = Object.assign(window.nsWidgetActions || {}, {
-      ask,
-      renderHome,
-      renderCategory,
-      openContact,
-      openWarranty,
-      askHomePrompt,
-      clearConversation,
-      sendFeedback,
-    });
-
-    initTheme();
-    thread = loadThread();
-    restoreSize();
-    restoreWindowState();
-    autoMobileFullscreen();
-    syncWindowButtons();
-    autoGrowTextarea();
-    renderHome();
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

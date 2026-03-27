@@ -9,7 +9,7 @@ const qaPairs = [
   {
     question: "What are the best things and benefits about NerveSpa?",
     answer:
-      "NerveSpa is a clinic-grade system that supports nerve health, comfort, and relaxation. The best things about NerveSpa include its structured, provider-guided approach, its integration with clinical workflows, and its focus on consistent, repeatable wellness routines.",
+      "NerveSpa is a family of clinical-grade devices and programs designed to treat neuropathy, back and joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
     question: "Is there a setup guide for first-time users?",
@@ -210,7 +210,7 @@ const qaPairs = [
   {
     question: "What is NerveSpa?",
     answer:
-      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+      "NerveSpa is a family of clinical-grade devices and programs designed to treat neuropathy, back and joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
     question: "Do I need a prescription?",
@@ -235,7 +235,7 @@ const qaPairs = [
   {
     question: "Tell me about NerveSpa",
     answer:
-      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+      "NerveSpa is a family of clinical-grade devices and programs designed to treat neuropathy, back and joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
     question: "Explain NerveSpa to me",
@@ -2094,6 +2094,41 @@ const qaPairs = [
     answer:
       "NerveSpa is part of Pain Management Technologies (PMT) and is positioned as a provider-guided therapeutic platform used by clinics nationwide. The website features testimonials and clinic-use references from clinicians including Dr. James P. Perkins, DC, Dr. Corey Brumbaugh, DC, Dr. Alyse Duffer, DC, Dr. Clint Freeman, DC, and others who integrate NerveSpa into patient care plans.",
   },
+  {
+    question: "Describe what training is needed for staff to use NerveSpa.",
+    answer:
+      "Yes, NerveSpa provides ongoing support and training for clinics. This includes guided onboarding, product training, and clinical resources to ensure your staff is comfortable and proficient with the systems and protocols.",
+  },
+  {
+    question: "Explain how to monitor patients using NerveSpa",
+    answer:
+      "Providers may monitor patient-reported comfort, tolerance, functional ease, and overall experience during use. These indicators are observational and experiential, not diagnostic or treatment outcomes.",
+  },
+  {
+    question: "Should a healthy hand be able to feel the \"tingle\" in the glove?",
+    answer:
+      "Yes. A healthy hand should usually feel a mild, comfortable tingle when the glove is fitted correctly and the intensity is set appropriately.",
+  },
+  {
+    question: "What is the difference between the NerveSpa Single and the NerveSpa Dual",
+    answer:
+      "The NerveSpa Dual is designed for simultaneous bilateral treatment, allowing both hands or both feet to be treated at the same time. The NerveSpa Single treats one area at a time, such as the hands or the feet, but it does not run both at once.",
+  },
+  {
+    question: "What is the set-up for treating both hands",
+    answer:
+      "Place one glove on the left hand and one on the right hand, moisten the garments thoroughly with conductive spray or light moisture, connect them to the controller, and gradually increase intensity until the stimulation feels mild and comfortable. To promote even wear, alternate the gloves or leadwire positions from left to right between sessions.",
+  },
+  {
+    question: "How do I get the best results from the NerveSpa program",
+    answer:
+      "Best results are typically achieved by following the full NerveSpa protocol consistently and using the recommended modalities together as directed by your provider. The program is designed so each modality supports the others over the course of the 90-use regimen, followed by maintenance as needed. Full protocol: https://nervespa.com/protocol",
+  },
+  {
+    question: "Is conductive spray required for efficacy?",
+    answer:
+      "Conductive spray or light moisture is recommended to help ensure consistent contact and effective stimulation, especially if the sensation feels weak.",
+  },
 ];
 
 // Synonym map
@@ -2320,6 +2355,31 @@ const synonyms = {
   reviews: "feedback",
   testimonial: "feedback",
   testimonials: "feedback",
+  setup: "set up",
+  sensation: "tingle",
+  shock: "tingle",
+  zap: "tingle",
+  feeling: "feel",
+  normal: "healthy",
+  mitt: "glove",
+  mitts: "glove",
+  versus: "difference",
+  vs: "difference",
+  one: "single",
+  two: "dual",
+  bilateral: "dual",
+  simultaneous: "dual",
+  prepare: "set up",
+  preparation: "set up",
+  outcomes: "results",
+  outcome: "results",
+  optimal: "recommend",
+  protocol: "program",
+  regimen: "program",
+  need: "required",
+  necessary: "required",
+  must: "required",
+  liquid: "spray",
 };
 
 // Stop words

@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NerveSpa Admin Panel</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ns-primary: #2563eb;
+        --ns-accent: #38bdf8;
+        --ns-bg: #020617;
+        --ns-surface: rgba(15, 23, 42, 0.76);
+        --ns-surface-light: rgba(255, 255, 255, 0.03);
+        --ns-text: #f3f4f6;
+        --ns-muted: rgba(229, 231, 235, 0.78);
+        --ns-dim: rgba(229, 231, 235, 0.54);
+        --border-soft: rgba(255, 255, 255, 0.08);
+        --border-strong: rgba(255, 255, 255, 0.14);
+        --input-bg: rgba(15, 23, 42, 0.88);
+        --input-border: rgba(148, 163, 184, 0.28);
+        --input-focus: rgba(56, 189, 248, 0.4);
+        --shadow-btn: 0 10px 24px rgba(37, 99, 235, 0.22);
+        --font: "Inter", system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font);
+        background: var(--ns-bg);
+        color: var(--ns-text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Animated Background Effects */
+      .ambient-glow {
+        position: absolute;
+        width: 80vw;
+        height: 80vw;
+        max-width: 1000px;
+        max-height: 1000px;
+        background: radial-gradient(
+          circle,
+          rgba(37, 99, 235, 0.12) 0%,
+          rgba(2, 6, 23, 0) 70%
+        );
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        pointer-events: none;
+        animation: pulse 12s infinite alternate ease-in-out;
+      }
+
+      .ambient-glow-2 {
+        position: absolute;
+        width: 60vw;
+        height: 60vw;
+        max-width: 800px;
+        max-height: 800px;
+        background: radial-gradient(
+          circle,
+          rgba(56, 189, 248, 0.08) 0%,
+          rgba(2, 6, 23, 0) 70%
+        );
+        border-radius: 50%;
+        top: 0;
+        right: 0;
+        transform: translate(20%, -20%);
+        z-index: 1;
+        pointer-events: none;
+        animation: float 15s infinite alternate ease-in-out;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: translate(-50%, -50%) scale(0.9);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(20%, -20%) rotate(0deg);
+        }
+        100% {
+          transform: translate(5%, -5%) rotate(5deg);
+        }
+      }
+
+      /* Login Card */
+      .login-card {
+        background: var(--ns-surface);
+        border: 1px solid var(--border-soft);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-radius: 24px;
+        padding: 48px 40px;
+        width: 100%;
+        max-width: 440px;
+        z-index: 10;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+        animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+        transform: translateY(30px);
+        margin: 20px;
+      }
+
+      @keyframes slideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Logo wrapper matching circular design */
+      .logo-container {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .logo-container .logo-wrapper {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 88px;
+        height: 88px;
+        background: #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        margin: 0 auto;
+        overflow: hidden;
+        border: 2px solid var(--border-soft);
+      }
+
+      .logo-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      h1 {
+        font-size: 26px;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 10px;
+        letter-spacing: -0.03em;
+        background: linear-gradient(135deg, #ffffff, #93c5fd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      p.subtitle {
+        text-align: center;
+        font-size: 14px;
+        color: var(--ns-muted);
+        margin-bottom: 36px;
+        line-height: 1.5;
+      }
+
+      .form-group {
+        margin-bottom: 22px;
+        position: relative;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ns-muted);
+        margin-bottom: 8px;
+        letter-spacing: 0.02em;
+      }
+
+      .form-input {
+        width: 100%;
+        background: var(--input-bg);
+        border: 1px solid var(--input-border);
+        color: var(--ns-text);
+        padding: 14px 16px;
+        border-radius: 14px;
+        font-size: 15px;
+        font-family: inherit;
+        transition: all 0.2s ease;
+        outline: none;
+      }
+
+      .form-input::placeholder {
+        color: var(--ns-dim);
+      }
+
+      .form-input:focus {
+        border-color: var(--ns-accent);
+        box-shadow: 0 0 0 3px var(--input-focus);
+        background: rgba(15, 23, 42, 0.95);
+      }
+
+      .submit-btn {
+        width: 100%;
+        background: linear-gradient(135deg, var(--ns-accent), #2563eb);
+        color: #ffffff;
+        border: none;
+        padding: 16px;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        margin-top: 10px;
+        margin-bottom: 26px;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
+        box-shadow: var(--shadow-btn);
+        letter-spacing: 0.02em;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 32px rgba(37, 99, 235, 0.4);
+      }
+
+      .submit-btn:active {
+        transform: translateY(0);
+      }
+
+      .footer-link {
+        text-align: center;
+        font-size: 13px;
+        color: var(--ns-dim);
+        line-height: 1.6;
+      }
+
+      .footer-link a {
+        color: var(--ns-accent);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.15s ease;
+      }
+
+      .footer-link a:hover {
+        color: #7dd3fc;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Subtle animated background elements -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="login-card">
+      <!-- Logo -->
+      <div class="logo-container">
+        <div class="logo-wrapper">
+          <!-- Replace 'logo.png' below with the actual path to your saved logo image file if needed -->
+          <img src="logo.jpg" alt="NerveSpa Logo" />
+        </div>
+      </div>
+
+      <!-- Headings -->
+      <h1>Welcome to NerveSpa<br />Admin Panel</h1>
+      <p class="subtitle">
+        Please provide your credentials to access the secure dashboard.
+      </p>
+
+      <!-- Form -->
+      <form action="#" method="POST" onsubmit="event.preventDefault()">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            class="form-input"
+            placeholder="admin@nervespa.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-input"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="submit-btn"
+          aria-label="Sign In to Dashboard"
+        >
+          Sign In
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <div class="footer-link">
+        Forgot password? <br />
+        <div style="color: var(--ns-primary)">Contact the management team</div>
+      </div>
+    </div>
+  </body>
+</html>
