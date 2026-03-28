@@ -89,6 +89,7 @@
       body {
         margin: 0;
         padding: 0;
+        overflow-x: hidden;
       }
 
       body {
@@ -231,11 +232,7 @@
       }
 
       .ns-shell.fullscreen .bubbleWrap {
-        max-width: none;
-      }
-
-      .ns-shell.fullscreen .bubble {
-        width: 448px;
+        max-width: min(88%, 600px);
       }
 
       .ns-shell.minimized {
@@ -827,6 +824,8 @@
       }
 
       @media (max-width: 520px) {
+        #btnResize { display: none !important; }
+        .support-btn-text { display: none; }
         .ns-shell {
           right: 12px;
           left: 12px;
@@ -973,7 +972,7 @@
                 d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
               ></path>
             </svg>
-            Support
+            <span class="support-btn-text">Support</span>
           </button>
           <button
             class="btn-icon"
@@ -1025,7 +1024,7 @@
       const WEBHOOK_URL =
         "https://n8n.srv917960.hstgr.cloud/webhook/nervespa-chatbot";
       const LOG_WEBHOOK_URL =
-        "https://n8n.srv917960.hstgr.cloud/webhook/chat-messages";
+        "https://n8n.srv917960.hstgr.cloud/webhook/create-chat-messages";
       const SUPPORT_WEBHOOK_URL =
         "https://n8n.srv917960.hstgr.cloud/webhook/submit-support";
 
@@ -1100,6 +1099,22 @@
       const elLauncher = document.getElementById("nsLauncher");
       const elLauncherNote = document.getElementById("nsLauncherNote");
       const elScreen = document.getElementById("screen");
+      const elLogo = document.querySelector(".ns-logo");
+
+      let logoClickCount = 0;
+      let logoClickTimer = null;
+      if(elLogo) {
+        elLogo.addEventListener("click", () => {
+          logoClickCount++;
+          clearTimeout(logoClickTimer);
+          if (logoClickCount >= 5) {
+            logoClickCount = 0;
+            renderDevLogin();
+          } else {
+            logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1000);
+          }
+        });
+      }
 
       const noteMessages = [
         "Chat with us!",
@@ -1190,6 +1205,7 @@
 
       async function logToMessagesWebhook(role, message) {
         try {
+          const isDev = localStorage.getItem("is_dev") === "true";
           await fetch(LOG_WEBHOOK_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -1197,6 +1213,7 @@
               session_id: sessionId,
               role: role,
               message: message,
+              is_dev: isDev
             }),
           });
         } catch (err) {}
@@ -1719,6 +1736,60 @@
       }
 
       window.nsWidgetActions = window.nsWidgetActions || {};
+
+      function renderDevLogin() {
+        const isDev = localStorage.getItem("is_dev") === "true";
+        if (isDev) {
+           const disable = confirm("Dev Mode is currently ON. Do you want to disable it?");
+           if (disable) {
+              localStorage.removeItem("is_dev");
+              alert("Dev Mode Disabled.");
+           }
+           return;
+        }
+
+        const html = `
+        <div class="thread">
+          <div class="quickGrid" style="margin-bottom:2px;">
+            <button class="chip" onclick="window.nsWidgetActions.renderHome()">← Back</button>
+          </div>
+          <div class="hero">
+            <div class="heroBadge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: transparent;">Developer Access</div>
+            <h1 class="heroTitle" style="font-size:24px;">Restricted Area</h1>
+          </div>
+          <div class="stuckCard" style="display:flex; flex-direction:column; gap:12px;">
+            <input type="email" id="dev-email" placeholder="Developer Email" style="padding:12px; border-radius:12px; border:1px solid var(--border-soft); background:var(--input-bg); color:var(--ns-text); font-family:var(--font);" />
+            <input type="password" id="dev-pass" placeholder="Password" style="padding:12px; border-radius:12px; border:1px solid var(--border-soft); background:var(--input-bg); color:var(--ns-text); font-family:var(--font);" />
+            <div id="dev-error" style="color:#ef4444; font-size:13px; display:none; padding-left:4px; font-weight:500;">Invalid credentials</div>
+            <button class="btn-primary" onclick="window.nsWidgetActions.submitDevLogin()" style="margin-top:4px; background: linear-gradient(135deg, #a855f7, #6b21a8);">Authenticate</button>
+          </div>
+        </div>
+        `;
+        elScreen.innerHTML = html;
+        elScreen.scrollTop = 0;
+      }
+
+      window.nsWidgetActions.submitDevLogin = function() {
+        const em = document.getElementById("dev-email").value.trim();
+        const pwd = document.getElementById("dev-pass").value.trim();
+        const err = document.getElementById("dev-error");
+        
+        if (em === "nervespa@dev.com" && pwd === "Nervespa@1800") {
+           localStorage.setItem("is_dev", "true");
+           err.style.display = "none";
+           renderHome();
+           thread.push({
+              role: "system",
+              title: "Developer Mode Activated",
+              body: "You are now running the chatbot in Dev Mode. 'is_dev=true' will be sent in queries."
+           });
+           saveThread();
+           renderThread();
+        } else {
+           err.style.display = "block";
+        }
+      };
+
       window.nsWidgetActions.submitSupportForm = async function () {
         const btn = document.getElementById("support-submit");
         const name = document.getElementById("support-name").value.trim();
@@ -1932,7 +2003,8 @@
         showTyping();
 
         try {
-          const url = `${WEBHOOK_URL}?chatInput=${encodeURIComponent(q)}&sessionId=${encodeURIComponent(sessionId)}`;
+          const isDev = localStorage.getItem("is_dev") === "true";
+          const url = `${WEBHOOK_URL}?chatInput=${encodeURIComponent(q)}&sessionId=${encodeURIComponent(sessionId)}&is_dev=${isDev}`;
           const res = await fetch(url, {
             method: "GET",
             headers: { Accept: "application/json" },

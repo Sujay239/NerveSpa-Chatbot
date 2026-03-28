@@ -278,50 +278,178 @@
         </div>
       </div>
 
-      <!-- Headings -->
-      <h1>Welcome to NerveSpa<br />Admin Panel</h1>
-      <p class="subtitle">
-        Please provide your credentials to access the secure dashboard.
-      </p>
-
-      <!-- Form -->
-      <form action="#" method="POST" onsubmit="event.preventDefault()">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            class="form-input"
-            placeholder="admin@nervespa.com"
-            required
-          />
+      <!-- PIN Entry Form -->
+      <div id="pin-section">
+        <h1>Admin PIN Required</h1>
+        <p class="subtitle">Enter the 4-digit security PIN to proceed.</p>
+        
+        <div style="display: flex; gap: 12px; justify-content: center; margin-bottom: 30px;">
+          <input type="text" maxlength="1" class="form-input otp-box" id="pin-1" inputmode="numeric" autocomplete="one-time-code" />
+          <input type="text" maxlength="1" class="form-input otp-box" id="pin-2" inputmode="numeric" />
+          <input type="text" maxlength="1" class="form-input otp-box" id="pin-3" inputmode="numeric" />
+          <input type="text" maxlength="1" class="form-input otp-box" id="pin-4" inputmode="numeric" />
         </div>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            class="form-input"
-            placeholder="••••••••"
-            required
-          />
+        <div id="pin-error" style="color: #f87171; font-size: 13px; text-align: center; margin-bottom: 16px; display: none;">
+          Incorrect PIN. Access denied.
         </div>
 
-        <button
-          type="submit"
-          class="submit-btn"
-          aria-label="Sign In to Dashboard"
-        >
-          Sign In
+        <button type="button" id="verify-pin-btn" class="submit-btn" style="margin-bottom: 0;">
+          Verify PIN
         </button>
-      </form>
+      </div>
 
-      <!-- Footer -->
-      <div class="footer-link">
-        Forgot password? <br />
-        <div style="color: var(--ns-primary)">Contact the management team</div>
+      <!-- Login Form (Initially Hidden) -->
+      <div id="login-section" style="display: none;">
+        <h1>Welcome to NerveSpa<br />Admin Panel</h1>
+        <p class="subtitle">Please provide your credentials to access the secure dashboard.</p>
+        
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="admin@nervespa.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-input" placeholder="••••••••" required />
+          </div>
+
+          <div id="login-error" style="color: #f87171; font-size: 13px; text-align: center; margin-bottom: 16px; display: none;">
+            Invalid credentials. Please try again.
+          </div>
+
+          <button type="submit" id="submit-btn" class="submit-btn" aria-label="Sign In to Dashboard">
+            Sign In
+          </button>
+        </form>
+
+        <div class="footer-link">
+          Forgot password? <br />
+          <div style="color: var(--ns-primary)">Contact the management team</div>
+        </div>
       </div>
     </div>
+
+    <style>
+      .otp-box {
+        width: 60px !important;
+        height: 60px;
+        text-align: center;
+        font-size: 24px !important;
+        font-weight: 700 !important;
+        padding: 0 !important;
+        background: rgba(15, 23, 42, 0.6) !important;
+      }
+    </style>
+
+    <script>
+      const REQUIRED_PIN = "3487";
+      const pinSection = document.getElementById("pin-section");
+      const loginSection = document.getElementById("login-section");
+      const pinInputs = [
+        document.getElementById("pin-1"),
+        document.getElementById("pin-2"),
+        document.getElementById("pin-3"),
+        document.getElementById("pin-4")
+      ];
+      const verifyPinBtn = document.getElementById("verify-pin-btn");
+      const pinError = document.getElementById("pin-error");
+
+      pinInputs[0].focus();
+
+      // PIN Input Logic (OTP behavior)
+      pinInputs.forEach((input, index) => {
+        input.addEventListener("input", (e) => {
+          if (e.data && index < 3) {
+            pinInputs[index + 1].focus();
+          }
+          checkPinAuto();
+        });
+
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace" && !input.value && index > 0) {
+            pinInputs[index - 1].focus();
+          }
+        });
+      });
+
+      function checkPinAuto() {
+          const pin = pinInputs.map(i => i.value).join("");
+          if (pin.length === 4) {
+              verifyPin();
+          }
+      }
+
+      function verifyPin() {
+        const pin = pinInputs.map(i => i.value).join("");
+        if (pin === REQUIRED_PIN) {
+          sessionStorage.setItem("pinVerified", "true");
+          pinSection.style.opacity = "0";
+          setTimeout(() => {
+            pinSection.style.display = "none";
+            loginSection.style.display = "block";
+            loginSection.style.opacity = "0";
+            setTimeout(() => loginSection.style.opacity = "1", 50);
+          }, 300);
+        } else {
+          pinError.style.display = "block";
+          pinInputs.forEach(i => {
+              i.value = "";
+              i.style.borderColor = "#f87171";
+          });
+          pinInputs[0].focus();
+        }
+      }
+
+      verifyPinBtn.addEventListener("click", verifyPin);
+
+      // Login Logic
+      const loginForm = document.getElementById("login-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const errorDiv = document.getElementById("login-error");
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        // Final security check
+        if (sessionStorage.getItem("pinVerified") !== "true") {
+            alert("Unauthorized access attempt.");
+            location.reload();
+            return;
+        }
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Signing In...";
+        errorDiv.style.display = "none";
+        
+        try {
+          const response = await fetch("https://n8n.srv917960.hstgr.cloud/webhook/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+          });
+          
+          if (response.ok) {
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("activeDashboardTab", "overview");
+            window.location.href = "dashboard.html";
+          } else {
+            errorDiv.innerText = "Login failed. Please check your credentials.";
+            errorDiv.style.display = "block";
+          }
+        } catch (err) {
+          console.error("Login error:", err);
+          errorDiv.innerText = "Connection error. Please try again later.";
+          errorDiv.style.display = "block";
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Sign In";
+        }
+      });
+    </script>
   </body>
 </html>
