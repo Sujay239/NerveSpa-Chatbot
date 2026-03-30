@@ -220,17 +220,17 @@ const qaPairs = [
   {
     question: "Is NerveSpa a medical company?",
     answer:
-      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+      "NerveSpa is a family of clinical-grade devices and programs designed to treat neuropathy, back and joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
     question: "Can you explain what NerveSpa?",
     answer:
-      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+      "NerveSpa is a family of clinical-grade devices and programs designed to treat neuropathy, back and joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
     question: "Could you describe what NerveSpa?",
     answer:
-      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+      "NerveSpa is a family of clinical-grade devices and programs designed to treat neuropathy, back and joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
     question: "Tell me about NerveSpa",
@@ -240,7 +240,7 @@ const qaPairs = [
   {
     question: "Explain NerveSpa to me",
     answer:
-      "NerveSpa is a family of clinical-grade products and programs designed to support neuropathy, joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
+      "NerveSpa is a family of clinical-grade devices and programs designed to treat neuropathy, back and joint pain, and metabolic health. It includes aquatic nerve stimulation, LED therapy, cold laser, vibration therapy, supplements, and topicals. All products are manufactured in FDA-registered facilities and distributed through licensed clinicians.",
   },
   {
     question: "Who owns NerveSpa?",
@@ -2127,7 +2127,7 @@ const qaPairs = [
   {
     question: "Is conductive spray required for efficacy?",
     answer:
-      "Conductive spray or light moisture is recommended to help ensure consistent contact and effective stimulation, especially if the sensation feels weak.",
+      "Conductive spray is not strictly required, but it is strongly recommended to ensure consistent contact and effective stimulation—especially if the sensation feels weak or uneven. It helps improve both performance and comfort in several ways: Improves conductivity by reducing resistance and allowing the current to flow more evenly\nMakes treatments more comfortable by preventing hot spots, tingling, or uneven stimulation\nAllows for effective results at lower intensity levels\nHelps reduce skin irritation and dryness during use\nSupports the longevity of conductive garments by promoting even current distribution\nBottom line: The system can be used without it, but for best results, comfort, and consistency, a light mist of conductive spray (or slight skin moisture) is recommended.",
   },
 ];
 

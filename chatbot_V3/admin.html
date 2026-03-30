@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
       :root {
         --ns-primary: #2563eb;
@@ -262,12 +266,51 @@
         color: #7dd3fc;
         text-decoration: underline;
       }
+
+      /* Toast Notification */
+      #toast-container {
+        position: fixed;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3000;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .toast {
+        background: var(--ns-surface);
+        border: 1px solid var(--border-soft);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        padding: 12px 24px;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        animation: toastIn 0.3s ease forwards, toastOut 0.3s ease 3.7s forwards;
+        border: 1px solid var(--border-strong);
+      }
+      @keyframes toastIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes toastOut {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(-20px); }
+      }
     </style>
   </head>
   <body>
     <!-- Subtle animated background elements -->
     <div class="ambient-glow"></div>
     <div class="ambient-glow-2"></div>
+    <div id="toast-container"></div>
 
     <div class="login-card">
       <!-- Logo -->
@@ -434,9 +477,16 @@
           });
           
           if (response.ok) {
-            localStorage.setItem("isLoggedIn", "true");
-            localStorage.setItem("activeDashboardTab", "overview");
-            window.location.href = "dashboard.html";
+            const data = await response.json();
+            if (data.token) {
+              localStorage.setItem("authToken", data.token);
+              localStorage.setItem("isLoggedIn", "true");
+              localStorage.setItem("activeDashboardTab", "overview");
+              window.location.href = "dashboard.html";
+            } else {
+              errorDiv.innerText = "Authentication error: Missing security token.";
+              errorDiv.style.display = "block";
+            }
           } else {
             errorDiv.innerText = "Login failed. Please check your credentials.";
             errorDiv.style.display = "block";
@@ -450,6 +500,27 @@
           submitBtn.innerText = "Sign In";
         }
       });
+
+      // Show Toast Notification
+      function showToast(msg, type = "success") {
+        const container = document.getElementById("toast-container");
+        if (!container) return;
+        const toast = document.createElement("div");
+        toast.className = `toast`;
+        const icon = type === "success" ? "fa-circle-check" : "fa-circle-exclamation";
+        const color = type === "success" ? "#4ade80" : "#f87171";
+        toast.innerHTML = `<i class="fa-solid ${icon}" style="color: ${color}"></i> ${msg}`;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
+      }
+
+      // Check for session expiry error on load
+      window.onload = () => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("error") === "session_expired") {
+          showToast("Session expired or invalid access. Please log in again.", "error");
+        }
+      };
     </script>
   </body>
 </html>

@@ -958,6 +958,17 @@ for (let i = 0; i < predefinedQuestions.length; i++) {
 const threshold = 0.5;
 let matchFound = bestScore >= threshold;
 
+// ================= PROHIBITED INTENT OVERRIDE =================
+const prohibitedKeywords = [
+  "joke", "poem", "write me a", "write an email", "write a message", 
+  "how you work", "what you can do", "what can you do", "explain yourself","monitor patients"
+];
+const isProhibited = prohibitedKeywords.some(keyword => userQuestion.toLowerCase().includes(keyword));
+
+if (isProhibited) {
+  matchFound = false;
+}
+
 // ================= PRODUCT OVERRIDE =================
 if (matchFound && bestScore < 0.85) {
   const normQ = userQuestion.toLowerCase();

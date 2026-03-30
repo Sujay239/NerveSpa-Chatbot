@@ -15,7 +15,7 @@
     />
     <script>
       // Immediate access control check
-      if (localStorage.getItem("isLoggedIn") !== "true") {
+      if (localStorage.getItem("isLoggedIn") !== "true" || !localStorage.getItem("authToken")) {
         window.location.href = "admin.html";
       }
     </script>
@@ -106,6 +106,28 @@
           opacity: 1;
         }
       }
+      
+      .range-select {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-soft);
+        color: var(--ns-muted);
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+        outline: none;
+      }
+      .range-select:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--border-strong);
+      }
+      .range-select option {
+        background: var(--ns-bg);
+        color: var(--ns-text);
+      }
+
       @keyframes float {
         0% {
           transform: translate(20%, -20%) rotate(0deg);
@@ -942,6 +964,99 @@
           transform: translateY(-20px);
         }
       }
+      /* Confirmation Modal Styling */
+      .confirm-modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        background: rgba(2, 6, 23, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .confirm-modal-overlay.open {
+        display: flex;
+        opacity: 1;
+      }
+      .confirm-modal-box {
+        background: var(--ns-surface);
+        width: 100%;
+        max-width: 400px;
+        border-radius: 28px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        border: 1px solid var(--border-strong);
+        overflow: hidden;
+        transform: scale(0.9);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        text-align: center;
+        padding: 32px;
+      }
+      .confirm-modal-overlay.open .confirm-modal-box {
+        transform: scale(1);
+      }
+      .confirm-modal-icon {
+        width: 64px;
+        height: 64px;
+        background: rgba(239, 68, 68, 0.15);
+        color: #f87171;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin: 0 auto 20px;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        box-shadow: 0 8px 16px rgba(239, 68, 68, 0.2);
+      }
+      .confirm-modal-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #fff;
+      }
+      .confirm-modal-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--ns-muted);
+        margin-bottom: 28px;
+      }
+      .confirm-btn-group {
+        display: flex;
+        gap: 12px;
+      }
+      .confirm-btn {
+        flex: 1;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 1px solid transparent;
+      }
+      .confirm-btn-cancel {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--ns-muted);
+        border-color: var(--border-soft);
+      }
+      .confirm-btn-cancel:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+      .confirm-btn-delete {
+        background: linear-gradient(135deg, #ef4444, #b91c1c);
+        color: white;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+      }
+      .confirm-btn-delete:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+      }
     </style>
   </head>
   <body>
@@ -1067,6 +1182,11 @@
             <div class="chart-card">
               <div class="chart-header">
                 <div class="chart-title">Chatbot Usage</div>
+                <select id="usage-range-select" class="range-select">
+                  <option value="7">Last 7 Days</option>
+                  <option value="15">Last 15 Days</option>
+                  <option value="30">Last 30 Days</option>
+                </select>
               </div>
               <div class="chart-container" id="usage-chart-parent">
                 <div class="skeleton skeleton-chart"></div>
@@ -1750,14 +1870,47 @@
       </div>
     </div>
 
+    <!-- Confirmation Modal -->
+    <div id="delete-confirm-modal" class="confirm-modal-overlay">
+      <div class="confirm-modal-box">
+        <div class="confirm-modal-icon">
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+        <div class="confirm-modal-title">Confirm Deletion</div>
+        <p class="confirm-modal-text" id="confirm-modal-message">Are you sure you want to delete this permanently? This action cannot be undone.</p>
+        <div class="confirm-btn-group">
+          <button class="confirm-btn confirm-btn-cancel" onclick="closeDeleteConfirmModal()">Cancel</button>
+          <button class="confirm-btn confirm-btn-delete" id="confirm-modal-delete-btn">Delete Now</button>
+        </div>
+      </div>
+    </div>
+
     <div id="toast-container"></div>
 
     <script>
       // Authentication & Session
       function logout() {
         localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("authToken");
         localStorage.removeItem("activeDashboardTab");
         window.location.href = "admin.html";
+      }
+
+      function getAuthHeaders() {
+        return {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+        };
+      }
+
+      function handleAuthError(res) {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("authToken");
+          window.location.href = "admin.html?error=session_expired";
+          return true;
+        }
+        return false;
       }
 
       // Current Date
@@ -1889,13 +2042,18 @@
 
       let lastSubmissionsData = [];
       let lastChatLogsData = [];
+      let lastAnalyticsRawData = null;
       let lastAnalyticsTestingData = null;
+      let qaData = [];
 
       function loadSubmissions() {
-        fetch(SUBMISSION_WEBHOOK)
-          .then((res) =>
-            res.ok ? res.json() : Promise.reject("Submission fetch error"),
-          )
+        fetch(SUBMISSION_WEBHOOK, {
+          headers: getAuthHeaders()
+        })
+          .then((res) => {
+            if (handleAuthError(res)) return Promise.reject("Session expired");
+            return res.ok ? res.json() : Promise.reject("Submission fetch error");
+          })
           .then((data) => {
             loadedStates.submissions = true;
             lastSubmissionsData = data;
@@ -1905,10 +2063,13 @@
       }
 
       function loadChatLogs() {
-        fetch(CHATLOGS_WEBHOOK)
-          .then((res) =>
-            res.ok ? res.json() : Promise.reject("Chat logs fetch error"),
-          )
+        fetch(CHATLOGS_WEBHOOK, {
+          headers: getAuthHeaders()
+        })
+          .then((res) => {
+            if (handleAuthError(res)) return Promise.reject("Session expired");
+            return res.ok ? res.json() : Promise.reject("Chat logs fetch error");
+          })
           .then((data) => {
             loadedStates.chatlogs = true;
             lastChatLogsData = data;
@@ -1927,143 +2088,144 @@
           "testing-sessions-count",
         );
 
-        fetch(ANALYTICS_WEBHOOK)
-          .then((res) =>
-            res.ok ? res.json() : Promise.reject("Analytics fetch error"),
-          )
+        fetch(ANALYTICS_WEBHOOK, {
+          headers: getAuthHeaders()
+        })
+          .then((res) => {
+            if (handleAuthError(res)) return Promise.reject("Session expired");
+            return res.ok ? res.json() : Promise.reject("Analytics fetch error");
+          })
           .then((data) => {
             if (!Array.isArray(data)) return;
             loadedStates.analytics = true;
-
-            const overview = {
-              total_msgs: 0,
-              total_questions: 0,
-              usage_series: [],
-            };
-            const testing = {
-              sessions: 0,
-              total_msgs: 0,
-              heatmap_series: new Array(24).fill(0),
-              interactivity_series: new Array(7).fill(0),
-            };
-            const qaItems = [];
-
-            // DATE MAPPING (Last 7 Days)
-            const dateMap = {};
-            const last7Days = [];
-            for (let i = 6; i >= 0; i--) {
-              const d = new Date();
-              d.setDate(d.getDate() - i);
-              const ds = d.toISOString().split("T")[0];
-              last7Days.push(ds);
-              dateMap[ds] = { msgs: 0, totalDepth: 0, sessions: 0 };
-            }
-
-            data.forEach((item) => {
-              if (item.total_predefined_questions)
-                overview.total_questions = item.total_predefined_questions;
-              if (item.total_live_messages) {
-                overview.total_msgs = item.total_live_messages;
-                testing.total_msgs = parseInt(item.total_live_messages);
-              }
-              if (item.total_sessions) {
-                overview.total_sessions = item.total_sessions;
-                testing.sessions = parseInt(item.total_sessions);
-              }
-
-              // Usage Chart Align
-              if (item.chat_day) {
-                const ds = item.chat_day.split("T")[0];
-                if (dateMap[ds])
-                  dateMap[ds].msgs = parseInt(item.message_count) || 0;
-              }
-
-              // Interactivity Bar Chart (Avg depth per day)
-              if (item.id && item.interactions && item.created_at) {
-                const ds = item.created_at.split("T")[0];
-                if (dateMap[ds]) {
-                  dateMap[ds].totalDepth += parseInt(item.interactions) || 0;
-                  dateMap[ds].sessions++;
-                }
-              }
-
-              // Heatmap Data (Hourly)
-              if (item.interaction_hour !== undefined) {
-                const h = parseInt(item.interaction_hour);
-                if (h >= 0 && h < 24)
-                  testing.heatmap_series[h] =
-                    parseInt(item.activity_count) || 0;
-              }
-
-              if (item.question && item.answer) {
-                qaItems.push({
-                  id: item.id || Math.random(),
-                  question: item.question,
-                  answer: item.answer,
-                });
-              }
-            });
-
-            // Build Finals
-            overview.usage_series = last7Days.map((ds) => dateMap[ds].msgs);
-            testing.interactivity_series = last7Days.map((ds) => {
-              const day = dateMap[ds];
-              return day.sessions > 0
-                ? parseFloat((day.totalDepth / day.sessions).toFixed(1))
-                : 0;
-            });
-
-            const dayLabels = last7Days.map((ds) => {
-              const d = new Date(ds + "T00:00:00");
-              return d.toLocaleDateString("en-US", { weekday: "short" });
-            });
-
-            // Counters
-            const ovQuestionsCount = document.getElementById(
-              "overview-questions-count",
-            );
-            const ovSessionsCount = document.getElementById(
-              "overview-sessions-count",
-            );
-            const testSessionCount = document.getElementById(
-              "testing-sessions-count",
-            );
-
-            if (ovQuestionsCount)
-              ovQuestionsCount.innerText = overview.total_questions || "0";
-            if (ovSessionsCount)
-              ovSessionsCount.innerText = overview.total_sessions || "0";
-            if (testSessionCount)
-              testSessionCount.innerText = testing.sessions || "0";
-
-            if (qaItems.length) {
-              qaData = qaItems;
-              renderQATable();
-            }
-
-            // Dynamic Chart Refresh
-            if (usageChart) {
-              usageChart.data.labels = dayLabels;
-              usageChart.data.datasets[0].data = overview.usage_series;
-              usageChart.update();
-            }
-            if (interactivityChart) {
-              interactivityChart.data.labels = dayLabels;
-              interactivityChart.data.datasets[0].data =
-                testing.interactivity_series;
-              interactivityChart.update();
-            }
-
-            renderOverview(overview);
-            lastAnalyticsTestingData = testing;
-            renderTestingReport(testing);
+            lastAnalyticsRawData = data;
+            processAnalyticsData(30); 
+            updateCharts(7); 
           })
           .catch((err) => {
             console.warn("Analytics fetch failed, using mock trends.", err);
-            lastAnalyticsTestingData = mockDashboardData.testing;
+            lastAnalyticsRawData = null;
             renderOverview(mockDashboardData.overview);
             renderTestingReport(mockDashboardData.testing);
           });
+      }
+
+      function updateCharts(days) {
+        if (!lastAnalyticsRawData) return;
+        
+        const dateMap = {};
+        const rangeLabels = [];
+        const usageSeries = [];
+        const interactivitySeries = [];
+
+        for (let i = days - 1; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(d.getDate() - i);
+          const ds = d.toISOString().split("T")[0];
+          rangeLabels.push(ds);
+          dateMap[ds] = { msgs: 0, totalDepth: 0, sessions: 0 };
+        }
+
+        lastAnalyticsRawData.forEach((item) => {
+          if (item.chat_day) {
+            const ds = item.chat_day.split("T")[0];
+            if (dateMap[ds]) dateMap[ds].msgs = parseInt(item.message_count) || 0;
+          }
+          const ts = item.created_at || item.chat_day;
+          const sessionId = item.id || item.session_id;
+          const interactions = parseInt(item.interactions);
+
+          if (sessionId && !isNaN(interactions) && ts) {
+            const ds = ts.split("T")[0];
+            if (dateMap[ds]) {
+              dateMap[ds].totalDepth += interactions;
+              dateMap[ds].sessions++;
+            }
+          }
+        });
+
+        const usageData = rangeLabels.map((ds) => dateMap[ds].msgs);
+        const interData = rangeLabels.map((ds) => {
+            const day = dateMap[ds];
+            return day.sessions > 0 ? parseFloat((day.totalDepth / day.sessions).toFixed(1)) : 0;
+        });
+
+        const labels = rangeLabels.map((ds) => {
+          const d = new Date(ds + "T00:00:00");
+          return days <= 7 
+            ? d.toLocaleDateString("en-US", { weekday: "short" })
+            : d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+        });
+
+        if (usageChart) {
+          const parent = document.getElementById("usage-chart-parent");
+          if (parent) {
+            const skel = parent.querySelector(".skeleton");
+            if (skel) skel.remove();
+            const canvas = parent.querySelector("canvas");
+            if (canvas) canvas.style.display = "block";
+          }
+          usageChart.data.labels = labels;
+          usageChart.data.datasets[0].data = usageData;
+          usageChart.update();
+        }
+        if (interactivityChart) {
+          const parent = document.getElementById("interactivity-chart-parent");
+          if (parent) {
+            const skel = parent.querySelector(".skeleton");
+            if (skel) skel.remove();
+            const canvas = parent.querySelector("canvas");
+            if (canvas) canvas.style.display = "block";
+          }
+          interactivityChart.data.labels = labels;
+          interactivityChart.data.datasets[0].data = interData;
+          interactivityChart.update();
+        }
+      }
+
+      function processAnalyticsData(maxDays) {
+        const data = lastAnalyticsRawData;
+        const overview = { total_msgs: 0, total_questions: 0 };
+        const testing = {
+          sessions: 0,
+          total_msgs: 0,
+          heatmap_series: new Array(24).fill(0),
+        };
+        const qaItems = [];
+
+        data.forEach((item) => {
+          if (item.total_predefined_questions) overview.total_questions = item.total_predefined_questions;
+          if (item.total_live_messages) {
+            overview.total_msgs = item.total_live_messages;
+            testing.total_msgs = parseInt(item.total_live_messages);
+          }
+          if (item.total_sessions) {
+            overview.total_sessions = item.total_sessions;
+            testing.sessions = parseInt(item.total_sessions);
+          }
+          if (item.interaction_hour !== undefined) {
+            const h = parseInt(item.interaction_hour);
+            if (h >= 0 && h < 24) testing.heatmap_series[h] = parseInt(item.activity_count) || 0;
+          }
+          if (item.question && item.answer) {
+            qaItems.push({ id: item.id || Math.random(), question: item.question, answer: item.answer });
+          }
+        });
+
+        const ovQuestionsCount = document.getElementById("overview-questions-count");
+        const ovSessionsCount = document.getElementById("overview-sessions-count");
+        const testSessionCount = document.getElementById("testing-sessions-count");
+
+        if (ovQuestionsCount) ovQuestionsCount.innerText = overview.total_questions || "0";
+        if (ovSessionsCount) ovSessionsCount.innerText = overview.total_sessions || "0";
+        if (testSessionCount) testSessionCount.innerText = testing.sessions || "0";
+
+        if (qaItems.length) {
+          qaData = qaItems;
+          renderQATable();
+        }
+
+        renderTestingReport(testing);
       }
 
       // ----------------------------------------------------------------------
@@ -2208,10 +2370,13 @@
         const container = document.getElementById("qa-container");
         if (!container) return;
         let rows = qaData || [];
-        if (filterText)
+        if (filterText) {
+          const search = filterText.toLowerCase();
           rows = rows.filter((r) =>
-            r.question.toLowerCase().includes(filterText.toLowerCase()),
+            (r.question && r.question.toLowerCase().includes(search)) ||
+            (r.answer && r.answer.toLowerCase().includes(search)),
           );
+        }
 
         let table =
           "<table><thead><tr><th>Question</th><th>Answer</th><th style='text-align:center'>Actions</th></tr></thead><tbody>";
@@ -2247,10 +2412,54 @@
           : `<div class="error">Empty knowledge base.</div>`;
       }
 
+      let onDeleteConfirm = null;
+
+      function showDeleteConfirmModal(message, confirmCallback) {
+        const modal = document.getElementById("delete-confirm-modal");
+        const msgEl = document.getElementById("confirm-modal-message");
+        const deleteBtn = document.getElementById("confirm-modal-delete-btn");
+
+        if (message) msgEl.innerText = message;
+        onDeleteConfirm = confirmCallback;
+
+        modal.classList.add("open");
+
+        // Set one-time listener for delete button
+        deleteBtn.onclick = function() {
+          if (onDeleteConfirm) onDeleteConfirm();
+          closeDeleteConfirmModal();
+        };
+      }
+
+      function closeDeleteConfirmModal() {
+        const modal = document.getElementById("delete-confirm-modal");
+        modal.classList.remove("open");
+        onDeleteConfirm = null;
+      }
+
       function deleteQA(id) {
-        if (!confirm("Are you sure you want to delete this Q&A?")) return;
-        qaData = qaData.filter((item) => item.id != id);
-        renderQATable();
+        showDeleteConfirmModal("Are you sure you want to delete this Q&A? This will remove it permanently.", async function() {
+          try {
+            showToast("Deleting...", "info");
+            
+            const res = await fetch("https://n8n.srv917960.hstgr.cloud/webhook/delete-question", {
+              method: "DELETE",
+              headers: getAuthHeaders(),
+              body: JSON.stringify({ id: id })
+            });
+
+            if (handleAuthError(res)) return;
+
+            if (!res.ok) throw new Error("Delete failed");
+
+            qaData = qaData.filter((item) => item.id != id);
+            renderQATable();
+            showToast("Successfully deleted the question!");
+          } catch (err) {
+            console.error(err);
+            showToast("Failed to delete. Please check CORS or backend configuration.", "error");
+          }
+        });
       }
 
       function openAddQaModal() {
@@ -2374,9 +2583,11 @@
         try {
           const res = await fetch(url, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: getAuthHeaders(),
             body: JSON.stringify(payload),
           });
+          
+          if (handleAuthError(res)) return;
 
           if (!res.ok) throw new Error("Backend Error");
 
@@ -2413,17 +2624,6 @@
         if (ov.total_questions !== undefined) {
           const qCount = document.getElementById("overview-questions-count");
           if (qCount) qCount.innerText = ov.total_questions;
-        }
-        if (usageChart && ov.usage_series) {
-          const parent = document.getElementById("usage-chart-parent");
-          if (parent) {
-            const skel = parent.querySelector(".skeleton");
-            if (skel) skel.remove();
-            const canvas = parent.querySelector("canvas");
-            if (canvas) canvas.style.display = "block";
-          }
-          usageChart.data.datasets[0].data = ov.usage_series;
-          usageChart.update();
         }
       }
 
@@ -2820,6 +3020,9 @@
       document
         .getElementById("search-qa")
         .addEventListener("input", (e) => renderQATable(e.target.value));
+      document
+        .getElementById("usage-range-select")
+        .addEventListener("change", (e) => updateCharts(parseInt(e.target.value)));
       document
         .getElementById("refresh-chatlogs")
         .addEventListener("click", loadChatLogs);

@@ -13,12 +13,12 @@ SELECT COUNT(DISTINCT session_id) AS total_sessions FROM chat_messages WHERE is_
 -- Total Messages excluding Developer mode
 SELECT COUNT(*) AS total_live_messages FROM chat_messages WHERE is_dev = false;
 
--- Daily Chatbot Usage (Last 7 Days)
+-- Daily Chatbot Usage (Last 30 Days)
 SELECT 
     DATE(created_at) as chat_day, 
     COUNT(*) as message_count 
 FROM chat_messages 
-WHERE created_at > NOW() - INTERVAL '7 days' AND is_dev = false
+WHERE created_at > NOW() - INTERVAL '30 days' AND is_dev = false
 GROUP BY chat_day
 ORDER BY chat_day ASC;
 
@@ -61,7 +61,7 @@ SELECT
 FROM chat_messages;
 
 -- User Interactivity (Messages per Session)
-SELECT session_id, COUNT(*) as interactions 
+SELECT session_id, COUNT(*) as interactions, MAX(created_at) as created_at
 FROM chat_messages 
 GROUP BY session_id 
 ORDER BY interactions DESC;
