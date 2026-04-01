@@ -1462,13 +1462,6 @@
             return `<a href="${url}" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">${p1}</a>`;
           });
 
-          // URL matching
-          const urlRegex = /(https?:\/\/[^\s<]+[^.,\s<])/g;
-          s = s.replace(urlRegex, (match, p1) => {
-            if (s.includes('href="' + p1)) return match;
-            return `<a href="${p1}" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">${p1}</a>`;
-          });
-
           s = s.replace(
             /(support@nervespa\.com)(?!")/g,
             '<a href="https://mail.google.com/mail/?view=cm&fs=1&to=$1" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline;">$1</a>',
@@ -1477,6 +1470,43 @@
             /(1-800-239-7880)/g,
             '<a href="tel:18002397880" class="btn-link" style="text-decoration:underline;">$1</a>',
           );
+
+          // Advanced URL matching for http, https, www, and common domains without protocol
+          const urlRegex = /(<a\b[^>]*>.*?<\/a>|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|(\b(?:https?:\/\/|www\.)[^\s<]+[^.,\s<"'])|(\b(?:[a-zA-Z0-9-]+\.)+(?:com|org|net|io|co|us|uk|ca|edu|gov|be)(?:\/[^\s<]*[^.,\s<"'])?)/gi;
+          s = s.replace(urlRegex, (match, skipGroup, p2, p3, offset, str) => {
+            if (skipGroup) return skipGroup;
+            let href = match;
+            if (!href.match(/^https?:\/\//i)) {
+              href = 'https://' + href;
+            }
+            
+            let linkText = 'Click Here';
+            const lowerHref = href.toLowerCase();
+            if (lowerHref.includes('youtube.com') || lowerHref.includes('youtu.be')) {
+              linkText = 'Watch Video';
+            } else if (lowerHref.includes('drive.google.com') || lowerHref.includes('docs.google.com')) {
+              const prefix = str.slice(Math.max(0, offset - 40), offset).toLowerCase();
+              if (prefix.includes('quick') || prefix.includes('setup') || prefix.includes('start')) {
+                linkText = 'Quick Start Guide';
+              } else if (prefix.includes('full') || prefix.includes('manual') || prefix.includes('user') || prefix.includes('complete')) {
+                linkText = 'Complete User Manual';
+              } else {
+                linkText = 'View Document';
+              }
+            } else if (lowerHref.includes('nervespa.com/products') || lowerHref.includes('nervespa.com/collections')) {
+              linkText = 'View More Products';
+            } else if (lowerHref.includes('nervespa.com')) {
+              linkText = 'Visit NerveSpa';
+            } else {
+              try {
+                const urlObj = new URL(href);
+                linkText = urlObj.hostname.replace(/^www\./i, '');
+              } catch(e) {
+                linkText = 'Click Here';
+              }
+            }
+            return `<a href="${href}" target="_blank" rel="noopener" class="btn-link" style="text-decoration:underline; font-weight:700;">${linkText}</a>`;
+          });
 
           s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
           s = s.replace(
@@ -2000,6 +2030,22 @@
         lastUserQuery = q;
         pushUserMessage(q);
         logToMessagesWebhook("user", q);
+
+        const isEnglishOnly = /^[\x00-\x7F\u2013\u2014\u2018\u2019\u201C\u201D\u2026\u00A3\u20AC]*$/.test(q);
+        if (!isEnglishOnly) {
+          setTimeout(() => {
+            pushSystemCard({
+              title: "Language Not Supported",
+              body: "I can only process questions in English. Please write your question in English and try again.",
+              actions: [
+                { type: "contact", label: "Talk to Human" },
+                { type: "home", label: "Home" }
+              ]
+            });
+          }, 300);
+          return;
+        }
+
         showTyping();
 
         try {
