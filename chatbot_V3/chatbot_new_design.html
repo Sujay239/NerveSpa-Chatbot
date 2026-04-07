@@ -1729,19 +1729,27 @@
       `;
       }
 
+      function setComposerVisible(visible) {
+        const comp = document.getElementById("composer");
+        if (comp) comp.style.display = visible ? "flex" : "none";
+      }
+
       function renderHome() {
+        setComposerVisible(true);
         elScreen.innerHTML = createHomeMarkup();
         elScreen.scrollTop = 0;
         setTimeout(() => elFreeText?.focus(), 50);
       }
 
       function renderCategory(key) {
+        setComposerVisible(true);
         elScreen.innerHTML = createCategoryMarkup(key);
         elScreen.scrollTop = 0;
         setTimeout(() => elFreeText?.focus(), 50);
       }
 
       function renderSupportForm() {
+        setComposerVisible(false);
         const html = `
         <div class="thread">
           <div class="quickGrid" style="margin-bottom:2px;">
@@ -1778,6 +1786,7 @@
            return;
         }
 
+        setComposerVisible(false);
         const html = `
         <div class="thread">
           <div class="quickGrid" style="margin-bottom:2px;">
@@ -1892,6 +1901,7 @@
       }
 
       function renderThread() {
+        setComposerVisible(true);
         const html = `
         <div class="thread">
           ${thread
