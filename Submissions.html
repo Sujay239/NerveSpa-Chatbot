@@ -4,215 +4,525 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Submissions - NerveSpa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
-
-      * {
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
+      }
+
+      :root {
+        /* Colors (Matched to chatbot_test.html) */
+        --accent-start: #04091a;
+        --accent-mid: #32b0ed;
+        --accent-end: #22a6e9;
+        --accent-glow: rgba(34, 166, 233, 0.4);
+
+        --bg-glass: rgba(255, 255, 255, 0.75);
+        --bg-dark-glass: rgba(8, 17, 48, 0.85);
+        --bg-user: linear-gradient(135deg, #060c24, #3858e4);
+
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-on-dark: #ffffff;
+        --border-color: rgba(255, 255, 255, 0.4);
+        --border-dark: rgba(255, 255, 255, 0.1);
+
+        /* Specs */
+        --radius-full: 999px;
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.15);
+        --font: "Inter", -apple-system, sans-serif;
       }
 
       body {
-        font-family:
-          "Inter",
-          system-ui,
-          -apple-system,
-          sans-serif;
-        background: #f8fafc;
-        margin: 0;
+        font-family: var(--font);
+        color: var(--text-primary);
         min-height: 100vh;
-        color: #1a202c;
-      }
-      h1 {
-        text-align: center;
-        margin: 32px 0 48px;
-        color: #0072bc;
-        font-weight: 600;
-        font-size: 2.5rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      .container {
-        background: #fff;
-        border-radius: 16px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        padding: 1px;
+        background: radial-gradient(
+            ellipse at 20% 50%,
+            rgba(13, 148, 136, 0.06) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 20%,
+            rgba(14, 165, 233, 0.05) 0%,
+            transparent 50%
+          ),
+          #f8fafc;
+        overflow-x: hidden;
       }
 
-      .data-card {
-        background: #fff;
-        border-radius: 16px;
-        overflow: hidden;
-      }
-
-      table {
-        margin: 0 auto;
-        border-collapse: separate;
-        border-spacing: 0;
-        width: 100%;
-        background: #fff;
-        font-size: 0.925rem;
-      }
-      .msg-cell {
-        max-width: 200px;
-      }
-      .msg-preview {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 180px;
-        display: inline-block;
-        vertical-align: middle;
-      }
-      .msg-view-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        vertical-align: middle;
-        margin-left: 8px;
-        font-size: 0.72rem;
-        font-weight: 600;
-        color: #fff;
-        background: #6366f1;
-        border: none;
-        border-radius: 20px;
-        padding: 3px 10px 3px 7px;
-        cursor: pointer;
-        white-space: nowrap;
-        line-height: 1.4;
-        transition: background 0.18s;
-      }
-      .msg-view-btn svg {
-        flex-shrink: 0;
-      }
-      .msg-view-btn:hover {
-        background: #4f46e5;
-      }
-      /* Message modal */
-      #msg-modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0, 0, 0, 0.45);
-      }
-      #msg-modal.open {
+      /* ====== DASHBOARD LAYOUT ====== */
+      .dashboard-layout {
         display: flex;
+        min-height: 100vh;
       }
-      #msg-modal-box {
-        background: #fff;
-        border-radius: 14px;
-        padding: 28px 28px 20px;
-        max-width: 520px;
-        width: 90%;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        position: relative;
+
+      /* ====== SIDEBAR ====== */
+      .sidebar {
+        width: 280px;
+        background: linear-gradient(180deg, #081130 0%, #030712 100%);
+        color: var(--text-on-dark);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1000;
+        border-right: 1px solid var(--border-dark);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
       }
-      #msg-modal-title {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #64748b;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 12px;
+
+      .sidebar-header {
+        padding: 32px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid var(--border-dark);
       }
-      #msg-modal-body {
-        font-size: 0.95rem;
-        color: #1e293b;
-        white-space: pre-wrap;
-        word-break: break-word;
-        max-height: 60vh;
-        overflow-y: auto;
-        line-height: 1.6;
+
+      .sidebar-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px var(--accent-glow);
       }
-      #msg-modal-close {
-        position: absolute;
-        top: 14px;
-        right: 16px;
-        background: none;
+
+      .sidebar-title {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        background: linear-gradient(
+          to right,
+          var(--text-on-dark),
+          var(--accent-mid)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        padding: 24px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar-link {
+        width: 100%;
+        padding: 14px 20px;
         border: none;
-        font-size: 1.3rem;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.6);
+        border-radius: 12px;
         cursor: pointer;
-        color: #94a3b8;
-      }
-      #msg-modal-close:hover {
-        color: #1e293b;
-      }
-      th,
-      td {
-        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 15px;
+        font-weight: 500;
+        transition: var(--transition);
         text-align: left;
       }
 
-      th {
+      .sidebar-link svg {
+        width: 20px;
+        height: 20px;
+        transition: var(--transition);
+      }
+
+      .sidebar-link:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-on-dark);
+      }
+
+      .sidebar-link.active {
+        background: var(--bg-user);
+        color: white;
+        box-shadow: 0 4px 15px rgba(56, 88, 228, 0.3);
+      }
+
+      .sidebar-link.active svg {
+        color: white;
+      }
+
+      /* ====== MAIN CONTENT ====== */
+      .dashboard-main {
+        flex: 1;
+        margin-left: 280px;
+        padding: 32px 40px;
+        transition: var(--transition);
+      }
+
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+      }
+
+      #dashboard-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent-start);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      #dashboard-title svg {
+        color: var(--accent-mid);
+      }
+
+      .dashboard-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .search-input {
+        background: white;
+        border: 1px solid #e2e8f0;
+        padding: 10px 16px;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 14px;
+        min-width: 260px;
+        transition: var(--transition);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: var(--accent-mid);
+        box-shadow: 0 0 0 4px rgba(50, 176, 237, 0.1);
+      }
+
+      .dashboard-btn {
+        padding: 10px 20px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        color: var(--text-secondary);
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: var(--transition);
+      }
+
+      .dashboard-btn:hover {
+        border-color: var(--accent-mid);
+        color: var(--accent-mid);
         background: #f8fafc;
-        color: #64748b;
+      }
+
+      .dashboard-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ====== CONTENT CARDS ====== */
+      .content-card {
+        background: var(--bg-glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-premium);
+        overflow: hidden;
+      }
+
+      .data-card {
+        padding: 0;
+      }
+
+      /* ====== STATS GRID ====== */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+      .message-item {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .message-item:last-child {
+        border-bottom: none;
+      }
+      .role-badge {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 2px 6px;
+        border-radius: 4px;
+        width: fit-content;
+      }
+      .user-msg {
+        background: rgba(50, 176, 237, 0.1);
+        color: var(--accent-start);
+      }
+      .bot-msg {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 24px;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: var(--transition);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-value {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--accent-start);
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: var(--text-secondary);
         font-weight: 500;
-        font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+      }
+
+      /* ====== TABLES ====== */
+      #table-container {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      th {
+        background: rgba(248, 250, 252, 0.5);
+        padding: 16px 24px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
         border-bottom: 1px solid #e2e8f0;
       }
 
-      tr {
-        transition: background 0.2s ease;
-      }
-
-      tr:hover {
-        background: #f8fafc;
-      }
-
       td {
+        padding: 16px 24px;
+        font-size: 14px;
+        color: var(--text-primary);
         border-bottom: 1px solid #f1f5f9;
-        color: #334155;
-        font-size: 0.875rem;
+        transition: var(--transition);
+      }
+
+      tr:hover td {
+        background: rgba(50, 176, 237, 0.03);
       }
 
       tr:last-child td {
         border-bottom: none;
       }
 
-      .message-cell {
+      .session-id-pill {
+        padding: 4px 10px;
+        background: #f1f5f9;
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 13px;
+        color: var(--accent-start);
+        font-weight: 600;
+      }
+
+      .msg-preview {
         max-width: 300px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        display: inline-block;
+        color: var(--text-secondary);
       }
-      .error {
+
+      .msg-view-btn {
+        background: var(--bg-user);
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-left: 12px;
+      }
+
+      .msg-view-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(56, 88, 228, 0.3);
+      }
+
+      /* ====== MESSAGES LIST ====== */
+      .message-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .message-item {
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #f1f5f9;
+        font-size: 14px;
+        line-height: 1.5;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      }
+
+      /* ====== MODAL ====== */
+      #msg-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(4, 9, 26, 0.4);
+        backdrop-filter: blur(8px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      #msg-modal.open {
+        display: flex;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      #msg-modal-box {
+        background: white;
+        width: 100%;
+        max-width: 600px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-premium);
+        position: relative;
+        overflow: hidden;
+        animation: modalSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      }
+
+      @keyframes modalSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      #msg-modal-header {
+        background: linear-gradient(135deg, #081130 0%, #235ad5 100%);
+        padding: 20px 24px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #msg-modal-title {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      #msg-modal-close {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        color: #dc2626;
-        text-align: center;
-        margin: 32px 0;
-        padding: 16px;
-        font-size: 0.875rem;
+        font-size: 18px;
+        transition: var(--transition);
       }
 
-      .error svg {
-        width: 20px;
-        height: 20px;
-        stroke: currentColor;
+      #msg-modal-close:hover {
+        background: rgba(255, 255, 255, 0.2);
       }
 
+      #msg-modal-body {
+        padding: 32px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: var(--text-primary);
+        max-height: 60vh;
+        overflow-y: auto;
+        white-space: pre-wrap;
+      }
+
+      /* ====== UTILS ====== */
       .loading {
+        padding: 64px;
+        text-align: center;
+        color: var(--text-secondary);
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 48px 0;
-        color: #64748b;
-        font-size: 0.875rem;
+        gap: 16px;
       }
 
       .loading-spinner {
-        width: 20px;
-        height: 20px;
-        border: 2px solid #e2e8f0;
-        border-top-color: #0369a1;
+        width: 40px;
+        height: 40px;
+        border: 3px solid #f1f5f9;
+        border-top-color: var(--accent-mid);
         border-radius: 50%;
         animation: spin 0.8s linear infinite;
       }
@@ -222,440 +532,173 @@
           transform: rotate(360deg);
         }
       }
-      .dashboard-layout {
-        display: flex;
-        min-height: 100vh;
-        height: 100vh;
-        overflow: hidden;
-      }
-      .sidebar {
-        width: 240px;
-        background: #fff;
-        border-right: 1px solid #e5e7eb;
-        color: #1a202c;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 0;
-        height: 100vh;
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        overflow: hidden;
-      }
 
-      .sidebar-header {
+      .error {
+        padding: 40px;
+        text-align: center;
+        color: #ef4444;
+        background: #fef2f2;
+        border-radius: var(--radius-md);
+        margin: 24px;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 12px;
-        padding: 24px;
-        border-bottom: 1px solid #e5e7eb;
-      }
-
-      .sidebar-logo {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        object-fit: cover;
-      }
-      .sidebar-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-      }
-      .sidebar-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-top: 24px;
-        padding: 0 24px;
-      }
-      .sidebar-link {
-        background: none;
-        border: none;
-        color: #64748b;
-        font-size: 0.9375rem;
         font-weight: 500;
-        padding: 10px 12px;
-        margin: 2px 0;
-        text-align: left;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
       }
 
-      .sidebar-link svg {
-        width: 18px;
-        height: 18px;
-        opacity: 0.7;
-      }
-
-      .sidebar-link.active {
-        background: #f1f5f9;
-        color: #0369a1;
-      }
-
-      .sidebar-link:hover:not(.active) {
-        background: #f8fafc;
-        color: #334155;
-      }
-      .dashboard-main {
-        flex: 1;
-        padding: 0px 26px;
-        background: #f8fafc;
-        min-height: 100vh;
-        margin-left: 240px;
-        height: 100vh;
-        overflow-y: auto;
-      }
-
-      .dashboard-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: -2px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: #f8fafc;
-      }
-
-      #dashboard-title {
-        color: #0f172a;
-        font-weight: 600;
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .dashboard-actions {
-        display: flex;
-        gap: 8px;
-      }
-
-      .dashboard-btn {
-        padding: 8px 16px;
-        border: 1px solid #e2e8f0;
-        background: #fff;
-        color: #475569;
-        border-radius: 6px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
-      .dashboard-btn:hover {
-        border-color: #cbd5e1;
-        background: #f8fafc;
-      }
-
-      #dashboard-content {
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      }
-      @media (max-width: 900px) {
-        .dashboard-layout {
-          flex-direction: column;
-        }
+      /* ====== MOBILE RESPONSIVENESS ====== */
+      @media (max-width: 1024px) {
         .sidebar {
-          width: 100%;
-          flex-direction: row;
-          justify-content: space-between;
-          padding: 0 12px;
-          box-shadow: none;
+          width: 80px;
+          padding: 20px 0;
         }
+
+        .sidebar-title,
+        .sidebar-link span {
+          display: none;
+        }
+
         .sidebar-header {
-          padding: 16px 0;
+          padding: 20px;
+          justify-content: center;
         }
+
         .sidebar-nav {
-          flex-direction: row;
-          gap: 12px;
-          margin-top: 0;
-          padding: 0;
+          padding: 20px 10px;
         }
+
+        .sidebar-link {
+          justify-content: center;
+          padding: 12px;
+        }
+
         .dashboard-main {
-          padding: 16px 0 0 0;
+          margin-left: 80px;
         }
-        #dashboard-title {
-          margin: 24px 0 16px 16px;
-          font-size: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          display: none; /* Hide sidebar on mobile for now */
         }
-        #dashboard-content {
-          margin-left: 16px;
-          margin-right: 8px;
+
+        .dashboard-main {
+          margin-left: 0;
+          padding: 20px;
+        }
+
+        .dashboard-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+
+        .dashboard-actions {
+          width: 100%;
+        }
+
+        .search-input {
+          flex: 1;
+          min-width: auto;
         }
       }
     </style>
   </head>
   <body>
     <div class="dashboard-layout">
+      <!-- Sidebar -->
       <aside class="sidebar">
         <div class="sidebar-header">
-          <img src="logo.jpg" alt="NerveSpa Logo" class="sidebar-logo" />
-          <span class="sidebar-title">NerveSpa</span>
+          <img src="nerva.png" alt="Nerva" class="sidebar-logo" />
+          <span class="sidebar-title">Nerva Dashboard</span>
         </div>
         <nav class="sidebar-nav">
           <button class="sidebar-link active" id="sidebar-dashboard">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" rx="2" />
+              <rect x="14" y="3" width="7" height="7" rx="2" />
+              <rect x="14" y="14" width="7" height="7" rx="2" />
+              <rect x="3" y="14" width="7" height="7" rx="2" />
+            </svg>
+            <span>Dashboard</span>
+          </button>
+          <button class="sidebar-link" id="sidebar-submissions">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Submissions</span>
+          </button>
+          <button class="sidebar-link" id="sidebar-conversations">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            <span>Conversations</span>
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <header class="dashboard-header">
+          <h1 id="dashboard-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
               <rect x="3" y="3" width="7" height="7" rx="2" />
               <rect x="14" y="3" width="7" height="7" rx="2" />
               <rect x="14" y="14" width="7" height="7" rx="2" />
               <rect x="3" y="14" width="7" height="7" rx="2" />
             </svg>
             Dashboard
-          </button>
-          <button class="sidebar-link" id="sidebar-submissions">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-            Submissions
-          </button>
-          <button class="sidebar-link" id="sidebar-conversations">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </svg>
-            Conversations
-          </button>
-        </nav>
-      </aside>
-      <main class="dashboard-main">
-        <div class="dashboard-header">
-          <h1 id="dashboard-title">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              width="24"
-              height="24"
-            >
-              <path
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-            Contact Submissions
           </h1>
           <div class="dashboard-actions" id="dashboard-actions">
-            <button class="dashboard-btn" id="refresh-btn-submissions">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                />
-              </svg>
-              Refresh
-            </button>
+            <!-- Dynamic Actions -->
           </div>
-        </div>
-        <div id="dashboard-content">
-          <div class="data-card">
-            <div id="table-container">
-              <div class="loading">Loading data</div>
-            </div>
+        </header>
+
+        <section id="dashboard-content" class="content-card">
+          <div class="loading">
+            <div class="loading-spinner"></div>
+            <span>Initializing Dashboard...</span>
           </div>
-        </div>
+        </section>
       </main>
     </div>
     <script>
-      function fetchContactData() {
-        const tableContainer = document.getElementById("table-container");
-        if (tableContainer) {
-          tableContainer.innerHTML = `<div class=\"loading\"><div class=\"loading-spinner\"></div>Loading submissions...</div>`;
-        }
-        // Replace with your n8n endpoint that returns all submissions as JSON
-        const url =
-          "https://n8n.srv917960.hstgr.cloud/webhook/ce10fcd9-bd8b-4cdf-bf96-01ad02a19074";
-        console.log("Fetching submissions from:", url);
-        fetch(url)
-          .then((response) => {
-            console.log("Fetch response:", response);
-            if (!response.ok) throw new Error("Network response was not ok");
-            return response.json();
-          })
-          .then((data) => {
-            console.log("Fetched data:", data);
-            let rows = Array.isArray(data) ? data : [data];
-            rows.sort((a, b) => {
-              const getTs = (s) => {
-                if (!s) return 0;
-                const parts = s.split("-");
-                return parseInt(parts[parts.length - 1], 10) || 0;
-              };
-              return getTs(b.session_id) - getTs(a.session_id);
-            });
-            if (!rows.length || !rows[0].session_id) {
-              tableContainer.innerHTML = `
-                        <div class=\"error\">
-                            <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\"/></svg>
-                            No submissions found
-                        </div>`;
-              return;
-            }
-            let table = "<table><thead><tr>";
-            table +=
-              "<th>Session ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Submitted At</th></tr></thead><tbody>";
-            rows.forEach((row) => {
-              const ts = row.created_at
-                ? new Date(row.created_at).toLocaleString()
-                : "";
-              const msg = row.message || "";
-              const msgPreview =
-                msg.length > 60 ? msg.substring(0, 60) + "…" : msg;
-              const msgCell = `<span class="msg-preview">${msgPreview}</span><button class="msg-view-btn" onclick="openMsgModal(this)" data-msg="${msg.replace(/"/g, "&quot;").replace(/\n/g, "&#10;")}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</button>`;
-              table += `<tr>
-                        <td>${row.session_id || ""}</td>
-                        <td>${row.name || ""}</td>
-                        <td>${row.email || ""}</td>
-                        <td>${row.phone || ""}</td>
-                        <td class="msg-cell">${msgCell}</td>
-                        <td>${ts}</td>
-                    </tr>`;
-            });
-            table += "</tbody></table>";
-            tableContainer.innerHTML = table;
-          })
-          .catch((err) => {
-            console.error("Failed to fetch submissions:", err);
-            tableContainer.innerHTML = `<div class=\"error\">
-                    <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\"/></svg>
-                    Unable to load submissions. Please check your internet connection or try again later.
-                </div>`;
-          });
-      }
-
-      function fetchConversationsData() {
-        const dashboardContent = document.getElementById("dashboard-content");
-        if (dashboardContent) {
-          dashboardContent.innerHTML = `<div class='data-card'><div class='loading'><div class='loading-spinner'></div>Loading conversations...</div></div>`;
-        }
-        // Updated webhook endpoint for conversations
-        const url =
-          "https://n8n.srv917960.hstgr.cloud/webhook/ecbeb13e-6565-4e83-ae86-2a6d12d08741";
-        console.log("Fetching conversations from:", url);
-        fetch(url)
-          .then((response) => {
-            console.log("Fetch response:", response);
-            if (!response.ok) throw new Error("Network response was not ok");
-            return response.json();
-          })
-          .then((data) => {
-            console.log("Fetched conversations data:", data);
-            let rows = Array.isArray(data) ? data : [data];
-            if (!rows.length) {
-              dashboardContent.innerHTML = `
-                        <div class='data-card'><div class='error'>
-                            <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
-                                <path d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'/>
-                            </svg>
-                            No conversation data available yet.
-                        </div></div>`;
-              return;
-            }
-            // Group messages by session_id
-            const grouped = {};
-            rows.forEach((row) => {
-              const sid = row.session_id || row.sessionId || "";
-              if (!grouped[sid]) grouped[sid] = [];
-              grouped[sid].push(row);
-            });
-            let table = "<table><thead><tr>";
-            table += "<th>Session ID</th><th>Messages</th></tr></thead><tbody>";
-            // Sort session IDs by newest first (based on first message id in each group)
-            const sortedSessionIds = Object.keys(grouped).sort((a, b) => {
-              // Use the highest id in each session group for sorting
-              const getMaxId = (sid) =>
-                Math.max(...grouped[sid].map((m) => m.id || 0));
-              return getMaxId(b) - getMaxId(a);
-            });
-            sortedSessionIds.forEach((sessionId) => {
-              let messagesHtml = '<ul style="margin:0;padding-left:18px;">';
-              grouped[sessionId].forEach((msg) => {
-                let messageContent = "";
-                if (typeof msg.message === "object") {
-                  const type =
-                    msg.message.type !== undefined ? msg.message.type : "";
-                  const content =
-                    msg.message.content !== undefined
-                      ? msg.message.content
-                      : "";
-                  messageContent = `<strong>type:</strong> ${type}, <strong>content:</strong> ${content}`;
-                } else {
-                  messageContent = msg.message;
-                }
-                messagesHtml += `<li style=\"margin-bottom:8px;\">${messageContent}</li>`;
-              });
-              messagesHtml += "</ul>";
-              table += `<tr><td>${sessionId}</td><td>${messagesHtml}</td></tr>`;
-            });
-            table += "</tbody></table>";
-            dashboardContent.innerHTML = `<div class='data-card'>${table}</div>`;
-          })
-          .catch((err) => {
-            console.error("Failed to fetch conversations:", err);
-            dashboardContent.innerHTML = `<div class='data-card'><div class='error'>Failed to load data: ${err.message}</div></div>`;
-          });
-      }
 
       function loadDashboardStats() {
-        dashboardContent.innerHTML = `<div class='data-card' style='padding:32px;text-align:center;'>
-            <h2 style='color:#0369a1;font-size:2rem;font-weight:600;margin-bottom:16px;'>Welcome to NerveSpa Chatbot Dashboard</h2>
-            <p style='font-size:1.1rem;color:#475569;margin-bottom:24px;'>Here you can manage submissions, view user conversations, and monitor system status.</p>
-            <div style='display:flex;justify-content:center;gap:32px;margin-bottom:32px;flex-wrap:wrap;'>
-                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
-                    <div id='stat-submissions' style='font-size:2.2rem;font-weight:700;color:#0f172a;'>...</div>
-                    <div style='color:#64748b;font-size:1rem;'>Total Submissions</div>
-                </div>
-                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
-                    <div id='stat-conversations' style='font-size:2.2rem;font-weight:700;color:#0f172a;'>...</div>
-                    <div style='color:#64748b;font-size:1rem;'>User Conversations</div>
-                </div>
-                <div style='background:#f1f5f9;border-radius:12px;padding:24px 32px;min-width:180px;'>
-                    <div id='stat-latest' style='font-size:1.1rem;font-weight:700;color:#0f172a;'>...</div>
-                    <div style='color:#64748b;font-size:1rem;'>Latest Submission</div>
-                </div>
+        dashboardContent.innerHTML = `
+          <div style='padding: 32px;'>
+            <h2 style='color: var(--accent-start); font-size: 28px; font-weight: 700; margin-bottom: 8px;'>Welcome to Nerva Dashboard</h2>
+            <p style='color: var(--text-secondary); margin-bottom: 32px;'>A quick overview of your chatbot's performance and activity.</p>
+            
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-label">Total Submissions</div>
+                <div id='stat-submissions' class="stat-value">...</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">User Conversations</div>
+                <div id='stat-conversations' class="stat-value">...</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Latest Activity</div>
+                <div id='stat-latest' style="font-size: 16px; font-weight: 600; color: var(--accent-start); margin-top: 14px;">...</div>
+              </div>
             </div>
-        </div>`;
+
+            <div style="background: white; padding: 24px; border-radius: 20px; border: 1px solid #f1f5f9; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+              <h3 style="font-size: 18px; margin-bottom: 12px; color: var(--accent-start);">System Status</h3>
+              <div style="display: flex; align-items: center; gap: 8px; color: #10b981; font-weight: 600; font-size: 14px;">
+                <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981;"></span>
+                Webhooks Operational
+              </div>
+            </div>
+          </div>
+        `;
         document.getElementById("dashboard-actions").innerHTML = "";
 
         // Fetch submissions count
-        fetch(
-          "https://n8n.srv917960.hstgr.cloud/webhook/ce10fcd9-bd8b-4cdf-bf96-01ad02a19074",
-        )
+        fetch("https://n8n.srv917960.hstgr.cloud/webhook/submission")
           .then((r) => r.json())
           .then((data) => {
             const rows = Array.isArray(data) ? data : [data];
@@ -674,17 +717,16 @@
                 : "N/A";
             }
           })
-          .catch(() => {
+          .catch((err) => {
+            console.error("Fetch error:", err);
             const el = document.getElementById("stat-submissions");
-            if (el) el.textContent = "N/A";
+            if (el) el.textContent = "Error (Check CORS)";
             const latestEl = document.getElementById("stat-latest");
-            if (latestEl) latestEl.textContent = "N/A";
+            if (latestEl) latestEl.textContent = "Error";
           });
 
         // Fetch conversations count
-        fetch(
-          "https://n8n.srv917960.hstgr.cloud/webhook/ecbeb13e-6565-4e83-ae86-2a6d12d08741",
-        )
+        fetch("https://n8n.srv917960.hstgr.cloud/webhook/chat-messages")
           .then((r) => r.json())
           .then((data) => {
             const rows = Array.isArray(data) ? data : [data];
@@ -695,9 +737,10 @@
             const el = document.getElementById("stat-conversations");
             if (el) el.textContent = uniqueSessions;
           })
-          .catch(() => {
+          .catch((err) => {
+            console.error("Fetch error:", err);
             const el = document.getElementById("stat-conversations");
-            if (el) el.textContent = "N/A";
+            if (el) el.textContent = "Error";
           });
       }
 
@@ -715,7 +758,7 @@
         dashboardTitle.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Contact Submissions`;
         dashboardContent.innerHTML = `<div id="table-container"><div class="loading">Loading data</div></div>`;
         document.getElementById("dashboard-actions").innerHTML = `
-            <input type="text" id="search-submissions" placeholder="Search submissions" style="padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;font-size:0.95rem;margin-right:8px;" />
+            <input type="text" id="search-submissions" class="search-input" placeholder="Search submissions..." />
             <button class="dashboard-btn" id="refresh-btn-submissions">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
@@ -725,14 +768,7 @@
         let lastSubmissionsData = null;
         function renderSubmissionsTable(data, filterText = "") {
           let rows = Array.isArray(data) ? data : [data];
-          rows.sort((a, b) => {
-            const getTs = (s) => {
-              if (!s) return 0;
-              const parts = s.split("-");
-              return parseInt(parts[parts.length - 1], 10) || 0;
-            };
-            return getTs(b.session_id) - getTs(a.session_id);
-          });
+          rows.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
           if (!rows.length || !rows[0].session_id) {
             document.getElementById("table-container").innerHTML = `
                     <div class="error">
@@ -755,14 +791,14 @@
             const msg = row.message || "";
             const msgPreview =
               msg.length > 60 ? msg.substring(0, 60) + "…" : msg;
-            const msgCell = `<span class="msg-preview">${msgPreview}</span><button class="msg-view-btn" onclick="openMsgModal(this)" data-msg="${msg.replace(/"/g, "&quot;").replace(/\n/g, "&#10;")}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>`;
+            const msgCell = `<span class="msg-preview">${msgPreview}</span><button class="msg-view-btn" onclick="openMsgModal(this)" data-msg="${msg.replace(/"/g, "&quot;").replace(/\n/g, "&#10;")}">View Message</button>`;
             table += `<tr>
-                    <td>${row.session_id || ""}</td>
-                    <td>${row.name || ""}</td>
+                    <td><span class="session-id-pill">${row.session_id || ""}</span></td>
+                    <td style="font-weight: 600;">${row.name || ""}</td>
                     <td>${row.email || ""}</td>
                     <td>${row.phone || ""}</td>
                     <td class="msg-cell">${msgCell}</td>
-                    <td>${ts}</td>
+                    <td style="color: var(--text-secondary); font-size: 13px;">${ts}</td>
                 </tr>`;
           });
           table += "</tbody></table>";
@@ -773,8 +809,7 @@
           if (tableContainer) {
             tableContainer.innerHTML = `<div class=\"loading\"><div class=\"loading-spinner\"></div>Loading submissions...</div>`;
           }
-          const url =
-            "https://n8n.srv917960.hstgr.cloud/webhook/ce10fcd9-bd8b-4cdf-bf96-01ad02a19074";
+          const url = "https://n8n.srv917960.hstgr.cloud/webhook/submission";
           fetch(url)
             .then((response) => {
               if (!response.ok) throw new Error("Network response was not ok");
@@ -785,7 +820,11 @@
               renderSubmissionsTable(data);
             })
             .catch((err) => {
-              tableContainer.innerHTML = `<div class=\"error\">Unable to load submissions. Please check your internet connection or try again later.</div>`;
+              console.error("Submissions fetch error:", err);
+              tableContainer.innerHTML = `<div class="error">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Unable to load data. This is likely a CORS issue in n8n. Please enable 'Access-Control-Allow-Origin' in your Webhook settings.
+              </div>`;
             });
         }
         fetchAndRenderSubmissions();
@@ -805,7 +844,7 @@
         dashboardTitle.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg> User Conversations`;
         dashboardContent.innerHTML = `<div class='data-card'><div class='loading'><div class='loading-spinner'></div>Loading conversations...</div></div>`;
         document.getElementById("dashboard-actions").innerHTML = `
-            <input type="text" id="search-session-id" placeholder="Search by Session ID" style="padding:8px 12px;border:1px solid #e2e8f0;border-radius:6px;font-size:0.95rem;margin-right:8px;" />
+            <input type="text" id="search-session-id" class="search-input" placeholder="Search Session ID..." />
             <button class="dashboard-btn" id="refresh-btn-conversations">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
@@ -832,11 +871,11 @@
             if (!grouped[sid]) grouped[sid] = [];
             grouped[sid].push(row);
           });
-          // Sort session IDs by newest first
+          // Sort session IDs by newest first (based on latest created_at in each group)
           const sortedSessionIds = Object.keys(grouped).sort((a, b) => {
-            const getMaxId = (sid) =>
-              Math.max(...grouped[sid].map((m) => m.id || 0));
-            return getMaxId(b) - getMaxId(a);
+            const getLatestTs = (sid) =>
+              Math.max(...grouped[sid].map((m) => new Date(m.created_at).getTime() || 0));
+            return getLatestTs(b) - getLatestTs(a);
           });
           let table = "<table><thead><tr>";
           table += "<th>Session</th><th></th></tr></thead><tbody>";
@@ -844,25 +883,25 @@
             if (filterSessionId && !sessionId.includes(filterSessionId)) return;
             // Collapsible row: closed by default
             const collapseId = `collapse-session-${idx}`;
-            let messagesHtml = '<ul style="margin:0;padding-left:18px;">';
+            let messagesHtml = '<ul class="message-list">';
             grouped[sessionId].forEach((msg) => {
               let messageContent = "";
+              const role = msg.role || "user";
+              const roleClass = role.toLowerCase() === "bot" ? "bot-msg" : "user-msg";
               if (typeof msg.message === "object") {
-                const type =
-                  msg.message.type !== undefined ? msg.message.type : "";
-                const content =
-                  msg.message.content !== undefined ? msg.message.content : "";
+                const type = msg.message.type !== undefined ? msg.message.type : "";
+                const content = msg.message.content !== undefined ? msg.message.content : "";
                 messageContent = `<strong>type:</strong> ${type}, <strong>content:</strong> ${content}`;
               } else {
                 messageContent = msg.message;
               }
-              messagesHtml += `<li style=\"margin-bottom:8px;\">${messageContent}</li>`;
+              messagesHtml += `<li class="message-item"><span class="role-badge ${roleClass}">${role.toUpperCase()}:</span> ${messageContent}</li>`;
             });
             messagesHtml += "</ul>";
-            table += `<tr class="session-row" data-collapse="${collapseId}" style="cursor:pointer;background:#f8fafc;">
-                    <td colspan="2"><span style="font-weight:600;color:#0369a1;">${sessionId}</span> <span style="float:right;color:#64748b;font-size:0.95rem;">Click to open</span></td>
+            table += `<tr class="session-row" data-collapse="${collapseId}" style="cursor:pointer;">
+                    <td colspan="2"><span class="session-id-pill">${sessionId}</span> <span style="float:right;color: var(--accent-mid);font-size: 13px; font-weight: 600;">View Conversation →</span></td>
                 </tr>`;
-            table += `<tr id="${collapseId}" style="display:none;"><td></td><td>${messagesHtml}</td></tr>`;
+            table += `<tr id="${collapseId}" style="display:none;"><td colspan="2" style="background: rgba(241, 245, 249, 0.5); padding: 24px;">${messagesHtml}</td></tr>`;
           });
           table += "</tbody></table>";
           dashboardContent.innerHTML = `<div class='data-card'>${table}</div>`;
@@ -876,11 +915,11 @@
                   if (detailRow.style.display === "none") {
                     detailRow.style.display = "";
                     row.querySelector("span:last-child").textContent =
-                      "Click to close";
+                      "View Less ↑";
                   } else {
                     detailRow.style.display = "none";
                     row.querySelector("span:last-child").textContent =
-                      "Click to open";
+                      "View Conversation →";
                   }
                 }
               });
@@ -888,8 +927,7 @@
           );
         }
         function fetchAndRenderConversations() {
-          const url =
-            "https://n8n.srv917960.hstgr.cloud/webhook/ecbeb13e-6565-4e83-ae86-2a6d12d08741";
+          const url = "https://n8n.srv917960.hstgr.cloud/webhook/chat-messages";
           dashboardContent.innerHTML = `<div class='data-card'><div class='loading'><div class='loading-spinner'></div>Loading conversations...</div></div>`;
           fetch(url)
             .then((response) => {
@@ -901,7 +939,11 @@
               renderConversationsTable(data);
             })
             .catch((err) => {
-              dashboardContent.innerHTML = `<div class='data-card'><div class='error'>Failed to load data: ${err.message}</div></div>`;
+              console.error("Conversations fetch error:", err);
+              dashboardContent.innerHTML = `<div class='data-card'><div class='error'>
+                  <svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'/></svg>
+                  Access Blocked (CORS). Ensure your n8n Webhook node has 'Response Headers' set to allow your origin.
+              </div></div>`;
             });
         }
         fetchAndRenderConversations();
@@ -931,17 +973,12 @@
       });
     </script>
     <!-- Message Full-View Modal -->
-    <div
-      id="msg-modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="msg-modal-title"
-    >
+    <div id="msg-modal" role="dialog" aria-modal="true" aria-labelledby="msg-modal-title">
       <div id="msg-modal-box">
-        <button id="msg-modal-close" onclick="closeMsgModal()" title="Close">
-          &#x2715;
-        </button>
-        <div id="msg-modal-title">Full Message</div>
+        <header id="msg-modal-header">
+          <div id="msg-modal-title">Full Message</div>
+          <button id="msg-modal-close" onclick="closeMsgModal()" title="Close">✕</button>
+        </header>
         <div id="msg-modal-body"></div>
       </div>
     </div>

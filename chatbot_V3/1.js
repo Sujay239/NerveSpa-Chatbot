@@ -1,9 +1,33 @@
 // ================= INPUT =================
-const userQuestion = $json.query?.chatInput || $input.first()?.json?.query?.chatInput || "";
-const sessionId = $json.query?.sessionId || $input.first()?.json?.query?.sessionId || "";
+const userQuestion =
+  $json.query?.chatInput || $input.first()?.json?.query?.chatInput || "";
+const sessionId =
+  $json.query?.sessionId || $input.first()?.json?.query?.sessionId || "";
 
 // ================= PREDEFINED QUESTIONS =================
 const predefinedQuestions = [
+  "Is it safe if I have a pacemaker?",
+  "Can I use NerveSpa if I’m pregnant?",
+  "Is this safe after surgery?",
+  "Is it safe for seniors?",
+  "Is the treatment painful?",
+  "Are there any side effects?",
+  "Can I overuse the therapy?",
+  "What happens if I miss a session?",
+  "Can NerveSpa help with plantar fasciitis?",
+  "plantar fasciitis treatment",
+  "How much does NerveSpa cost?",
+  "How much does it cost?",
+  "cost",
+  "How to manage discomfort or adverse sensations?",
+  "adverse sensations management",
+  "Is continuing education provided?",
+  "Does NerveSpa provide ongoing training?",
+  "Are there any side effects?",
+  "side effects",
+  "Is it safe if I have a pacemaker?",
+  "pacemaker safety",
+  "how much this cost",
   "Is there a setup guide for first-time users?",
   "Can I use it for both feet at the same time?",
   "What is the difference between the LED wrap and the laser?",
@@ -12,6 +36,7 @@ const predefinedQuestions = [
   "What payment methods do you accept?",
   "Can I return it if it does not work for me?",
   "What is NerveSpa?",
+  "What are the best things and benefits about NerveSpa?",
   "Is NerveSpa a medical company?",
   "Can you explain what NerveSpa?",
   "Could you describe what NerveSpa?",
@@ -25,14 +50,16 @@ const predefinedQuestions = [
   "Is NerveSpa FDA-registered?",
   "Is NerveSpa covered by insurance?",
   "What warranty and return policy does NerveSpa offer?",
+  "Tell me about the NerveSpa return policy",
+  "What is the return policy for NerveSpa devices?",
+  "Can I return a used product to NerveSpa?",
   "Where is NerveSpa manufactured?",
   "How long has PMT been in business?",
   "Where can FDA listings be verified?",
   "What certifications does PMT hold?",
   "Does NerveSpa replace medical care?",
-  "Who decides if NerveSpa is appropriate?",
-  "Can NerveSpa be used with other treatments?",
-  "Do I need a prescription for NerveSpa?",
+  "Who decides if NerveSpa is appropriate or right for me?",
+  "Am I a good candidate for NerveSpa? Is it suitable for my condition?",
   "Is NerveSpa a US based company?",
   "How does NerveSpa compare to other nerve therapy systems?",
   "What makes NerveSpa unique?",
@@ -378,22 +405,28 @@ const predefinedQuestions = [
   "Can I use two LED therapy wraps at the same time?",
   "Will my insurance cover the NerveSpa?",
   "What is the HCPCS code for the NerveSpa?",
-  "Can you explain what the NerveSpa system actually is?",
   "What if my skin feels too sensitive after PowerWrap use?",
   "What if the Nerve Bath unit does not turn on?",
   "What if stimulation feels too weak?",
   "Where do I download the user manual for Shoulder Pro",
   "Do you ship to Canada?",
-  "Can you suggest me products?",
-  "What products do you recommend?",
-  "Which product should I use for joint pain?",
-  "Recommend me some products",
-  "What product is best for my pain?",
-  "Suggest products for knee pain",
-  "Suggest products for shoulder pain",
-  "What should I buy for arthritis?",
-  "Help me choose the right product",
-  "Which NerveSpa product is right for me?"
+  "Who are the doctors or clinicians associated with NerveSpa?",
+  "What therapies are included in NerveSpa?",
+  "Is NerveSpa a clinic, a product, or a treatment program?",
+  "What kind of patients usually use NerveSpa?",
+  "Will this help with balance issues caused by neuropathy?",
+  "Is NerveSpa only for foot problems, or can it help hands too?",
+  "Why is water used in the treatment?",
+  "Do you offer financing?",
+  "How do I find a provider near me?",
+  "Do I need a prescription?",
+  "Describe what training is needed for staff to use NerveSpa.",
+  "Explain how to monitor patients using NerveSpa",
+  "Should a healthy hand be able to feel the \"tingle\" in the glove?",
+  "What is the difference between the NerveSpa Single and the NerveSpa Dual",
+  "What is the set-up for treating both hands",
+  "How do I get the best results from the NerveSpa program",
+  "Is conductive spray required for efficacy?",
 ];
 
 // ================= SYNONYMS =================
@@ -413,8 +446,6 @@ const synonyms = {
   providers: "clinic",
   provider: "clinic",
   practice: "clinic",
-  medical: "clinic",
-  doctor: "clinic",
   physician: "clinic",
   offering: "start",
   begin: "start",
@@ -447,6 +478,12 @@ const synonyms = {
   address: "support",
   manage: "support",
   help: "support",
+  impacted: "replace",
+  impacts: "replace",
+  interfere: "replace",
+  interference: "replace",
+  treatment: "medical",
+  care: "medical",
   supplies: "consumables",
   materials: "consumables",
   items: "consumables",
@@ -475,14 +512,71 @@ const synonyms = {
   credit: "pay",
   ship: "shipped",
   shipping: "shipped",
+  product: "products",
+  products: "products",
+  catalog: "products",
+  portfolio: "products",
+  offerings: "products",
+  device: "nervespa",
+  devices: "nervespa",
+  nervespa: "nerve spa",
+  powerwrap: "power wrap",
+  quakeplate: "quake plate",
+  nervewave: "nerve wave",
+  nervebath: "nerve bath",
+  nervebeam: "nerve beam",
+  approved: "registered",
+  approval: "registered",
+  listings: "registered",
+  legality: "registered",
+  certified: "registered",
+  certification: "registered",
+  authorized: "registered",
+  best: "recommend",
+  choose: "recommend",
+  pick: "recommend",
+  select: "recommend",
+  suggestion: "recommend",
+  suggest: "recommend",
+
+  appropriate: "suitable",
+  candidate: "suitable",
+  fit: "suitable",
+  right: "suitable",
+  eligibility: "suitable",
+  eligible: "suitable",
+
+  decide: "determine",
+  decides: "determine",
+  determine: "determine",
+  determines: "determine",
+  know: "determine",
+  tell: "determine",
+  education: "training",
+  adverse: "discomfort",
+  sensations: "discomfort",
+  nervebeam: "nerve beam",
+
+  length: "long",
+  duration: "long",
+  time: "long",
+  info: "about",
+  information: "about",
+  details: "about",
+
+  fda: "registered",
   track: "shipped",
   tracking: "shipped",
   arrive: "shipped",
   delivery: "shipped",
-  return: "return my order",
-  exchange: "return my order",
-  refund: "return my order",
-  cancel: "return my order",
+  return: "return",
+  exchange: "return",
+  refund: "return",
+  cancel: "return",
+  policy: "return",
+  used: "return",
+  opened: "return",
+  unboxed: "return",
   damage: "warranty",
   broken: "warranty",
   repair: "warranty",
@@ -518,30 +612,33 @@ const synonyms = {
   store: "clean",
   diagnose: "medical",
   medication: "medical",
-  sore: "condition",
-  swelling: "condition",
-  blood: "condition",
-  cancer: "condition",
-  kidney: "condition",
-  allergy: "condition",
+  medications: "medical",
+  medicine: "medical",
+  medicines: "medical",
+  treatment: "medical",
+  treatments: "medical",
+  care: "medical",
+  doctor: "clinic",
+  physician: "clinic",
   emergency: "medical",
   plan: "program",
   clinician: "medical",
+
   tens: "compare",
   gabapentin: "compare",
   pregabalin: "compare",
   physical: "compare",
   massage: "compare",
   acupuncture: "compare",
+
   evidence: "certified",
   research: "certified",
   data: "certified",
   outcome: "certified",
+
   password: "login",
   account: "login",
-  suggest: "recommend",
-  suggestion: "recommend",
-  suggestions: "recommend",
+
   recommended: "recommend",
   recommendation: "recommend",
   recommendations: "recommend",
@@ -549,15 +646,113 @@ const synonyms = {
   pick: "choose",
   select: "choose",
   best: "right",
+
+  customer: "patient",
+  customers: "patient",
+  review: "feedback",
+  reviews: "feedback",
+  testimonial: "feedback",
+  testimonials: "feedback",
+  setup: "set up",
+  sensation: "tingle",
+  shock: "tingle",
+  zap: "tingle",
+  feeling: "feel",
+  normal: "healthy",
+  mitt: "glove",
+  mitts: "glove",
+  versus: "difference",
+  vs: "difference",
+  one: "single",
+  two: "dual",
+  bilateral: "dual",
+  simultaneous: "dual",
+  prepare: "set up",
+  preparation: "set up",
+  outcomes: "results",
+  outcome: "results",
+  optimal: "recommend",
+  protocol: "program",
+  regimen: "program",
+  need: "required",
+  necessary: "required",
+  must: "required",
+  liquid: "spray",
 };
 
 // ================= STOPWORDS =================
 const stopWords = new Set([
-  "a","an","and","are","as","at","be","but","by","for","if","in","into","is","it",
-  "no","of","on","or","such","that","the","their","then","there","these","they",
-  "this","to","was","will","with","do","does","did","can","could","should","would",
-  "i","you","he","she","we","my","your","his","her","our","how","what","why","where",
-  "when","who","has","been","hold"
+  "a",
+  "an",
+  "and",
+  "are",
+  "as",
+  "at",
+  "be",
+  "but",
+  "by",
+  "for",
+  "if",
+  "in",
+  "into",
+  "is",
+  "it",
+  "no",
+  "of",
+  "on",
+  "or",
+  "such",
+  "that",
+  "the",
+  "their",
+  "then",
+  "there",
+  "these",
+  "they",
+  "this",
+  "to",
+  "was",
+  "will",
+  "with",
+  "do",
+  "does",
+  "did",
+  "can",
+  "could",
+  "should",
+  "would",
+  "i",
+  "you",
+  "he",
+  "she",
+  "we",
+  "my",
+  "your",
+  "his",
+  "her",
+  "our",
+  "how",
+  "what",
+  "why",
+  "where",
+  "when",
+  "who",
+  "has",
+  "been",
+  "hold",
+  "u",
+  "s",
+  "me",
+  "about",
+  "some",
+  "more",
+  "much",
+  "very",
+  "give",
+  "get",
+  "please",
+  "current",
+  "go",
 ]);
 
 // ================= NORMALIZE =================
@@ -589,10 +784,11 @@ function stem(word) {
 
 // ================= TOKENIZE =================
 function getTokens(text) {
-  return normalize(text)
+  const tokens = normalize(text)
     .split(" ")
     .filter((w) => w && !stopWords.has(w))
     .map(stem);
+  return [...new Set(tokens)];
 }
 
 // ================= LEVENSHTEIN =================
@@ -607,13 +803,14 @@ function levenshteinDistance(a, b) {
 
   for (let i = 1; i <= b.length; i++) {
     for (let j = 1; j <= a.length; j++) {
-      matrix[i][j] = b[i - 1] === a[j - 1]
-        ? matrix[i - 1][j - 1]
-        : Math.min(
-            matrix[i - 1][j] + 1,
-            matrix[i][j - 1] + 1,
-            matrix[i - 1][j - 1] + 1
-          );
+      matrix[i][j] =
+        b[i - 1] === a[j - 1]
+          ? matrix[i - 1][j - 1]
+          : Math.min(
+              matrix[i - 1][j] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j - 1] + 1,
+            );
     }
   }
 
@@ -663,8 +860,8 @@ function getSemanticScore(input, target) {
   let totalInputWeight = 0;
   let totalTargetWeight = 0;
 
-  tokens1.forEach((t) => totalInputWeight += (idfWeights[t] || 1.0));
-  tokens2.forEach((t) => totalTargetWeight += (idfWeights[t] || 1.0));
+  tokens1.forEach((t) => (totalInputWeight += idfWeights[t] || 1.0));
+  tokens2.forEach((t) => (totalTargetWeight += idfWeights[t] || 1.0));
 
   const matched2 = new Set();
 
@@ -694,7 +891,10 @@ function getSemanticScore(input, target) {
         if (similarity >= 0.75 && similarity > bestMatchScore) {
           bestMatchScore = similarity;
           bestMatchIndex = j;
-        } else if ((w1.includes(w2) || w2.includes(w1)) && 0.6 > bestMatchScore) {
+        } else if (
+          (w1.includes(w2) || w2.includes(w1)) &&
+          0.6 > bestMatchScore
+        ) {
           bestMatchScore = 0.6;
           bestMatchIndex = j;
         }
@@ -707,13 +907,17 @@ function getSemanticScore(input, target) {
     }
   }
 
-  const inputCoverage = totalInputWeight ? weightedIntersection / totalInputWeight : 0;
-  const targetCoverage = totalTargetWeight ? weightedIntersection / totalTargetWeight : 0;
+  const inputCoverage = totalInputWeight
+    ? weightedIntersection / totalInputWeight
+    : 0;
+  const targetCoverage = totalTargetWeight
+    ? weightedIntersection / totalTargetWeight
+    : 0;
 
   let finalScore = inputCoverage * 0.7 + targetCoverage * 0.3;
 
-  if (tokens1.length >= 4 && weightedIntersection < 2.5) {
-    finalScore *= 0.5;
+  if (tokens1.length >= 5 && weightedIntersection < 2.0) {
+    finalScore *= 0.7;
   }
 
   return Math.max(0, Math.min(1, finalScore));
@@ -732,11 +936,7 @@ function combinedScore(input, target) {
   const jaccard = jaccardScore(input, target);
 
   // Weighted final score
-  return (
-    semantic * 0.55 +
-    jaccard * 0.25 +
-    charSimilarity * 0.20
-  );
+  return semantic * 0.55 + jaccard * 0.25 + charSimilarity * 0.2;
 }
 
 // ================= MATCH FINDING =================
@@ -754,11 +954,89 @@ for (let i = 0; i < predefinedQuestions.length; i++) {
 }
 
 // ================= THRESHOLD =================
-// You can tune this between 0.60 and 0.75 depending on strictness
-const threshold = 0.65;
-const matchFound = bestScore >= threshold;
+// You can tune this between 0.45 and 0.65 depending on strictness
+const threshold = 0.5;
+let matchFound = bestScore >= threshold;
+
+// ================= PROHIBITED INTENT OVERRIDE =================
+const prohibitedKeywords = [
+  "joke", "poem", "write me a", "write an email", "write a message", 
+  "how you work", "what you can do", "what can you do", "explain yourself","monitor patients"
+];
+const isProhibited = prohibitedKeywords.some(keyword => userQuestion.toLowerCase().includes(keyword));
+
+if (isProhibited) {
+  matchFound = false;
+}
+
+// ================= PRODUCT OVERRIDE =================
+if (matchFound && bestScore < 0.85) {
+  const normQ = userQuestion.toLowerCase();
+  const products = [
+    "rebuilder", "builder", "regeneration", "blood flow", "super formula", "target roll", "relief cream",
+    "super flex", "quake plate", "quakeplate", "knee pro", "shoulder pro", "cold laser", 
+    "led wrap", "power wrap", "powerwrap", "nervewave", "nerve wave", "nerve bath", "nervebath",
+    "diabetic socks", "conductive", "vibe", "immunogut", "immuno gut", "skinny", "sleep",
+    "n1", "oa cream", "ra cream", "nervespa pro", "nerve spa pro", "classic", "foot bath supply"
+  ];
+  
+  const mentionedProduct = products.find(p => normQ.includes(p));
+  
+  if (mentionedProduct) {
+    const isInfoSeeking = /(tell me|what is|information|something about|details|explain|more about|more info|what are|how to use|how does it work)/.test(normQ);
+    const matchedQNorm = predefinedQuestions[bestIndex].toLowerCase();
+    const pName = mentionedProduct.replace(/\s+/g, '');
+    const matchedHasProduct = matchedQNorm.replace(/\s+/g, '').includes(pName);
+    
+    // If it's an info query, or if it incorrectly matched a question about a completely different topic
+    if (isInfoSeeking || !matchedHasProduct) {
+        matchFound = false;
+    }
+  }
+}
 
 // ================= OUTPUT =================
+let resultOutput = "";
+let bestMatch = "";
+
+if (matchFound) {
+  bestMatch = predefinedQuestions[bestIndex];
+  const inputTokens = getTokens(userQuestion);
+  const inputHasProgram =
+    inputTokens.includes("program") ||
+    userQuestion.toLowerCase().includes("program");
+
+  const programQualifiers = [
+    "neuropathy",
+    "joint",
+    "mobility",
+    "clinical",
+    "vagus",
+    "regenerative",
+    "restorative",
+    "pain",
+    "metabolic",
+    "nervespa",
+  ];
+  const inputHasQualifier = programQualifiers.some(
+    (q) => inputTokens.includes(q) || userQuestion.toLowerCase().includes(q),
+  );
+
+  if (
+    inputHasProgram &&
+    !inputHasQualifier &&
+    bestMatch.toLowerCase().includes("program")
+  ) {
+    resultOutput =
+      "It sounds like you're asking about one of our programs. To give you the most accurate info, which program are you referring to? (e.g., Neuropathy Program, Joint & Mobility Program, or the NerveSpa system in general?)";
+  } else {
+    resultOutput =
+      "Matched with defined questions. Please see the details below";
+  }
+} else {
+  resultOutput = "None of the defined questions matched.";
+}
+
 return [
   {
     json: {
@@ -766,7 +1044,9 @@ return [
       matchIndex: matchFound ? bestIndex : -1,
       normalizedQuestion: normalize(userQuestion),
       similarityScore: Number(bestScore.toFixed(4)),
-      sessionId: sessionId
+      sessionId: sessionId,
+      output: resultOutput,
+      matched_question: matchFound ? bestMatch : "",
     },
   },
 ];

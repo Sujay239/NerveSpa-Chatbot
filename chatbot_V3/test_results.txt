@@ -1,0 +1,13 @@
+--- Testing 1.js (Gatekeeper) ---
+Query: "Does NerveSpa replace medications or work alongside them?" -> Match: true, Score: 0.6371, Matched: "Does NerveSpa replace medical care?"
+Query: "can i go for nervespa while on other treatment?" -> Match: true, Score: 0.5401, Matched: "Does NerveSpa replace medical care?"
+Query: "Is it safe if I have a pacemaker?" -> Match: true, Score: 1, Matched: "Is it safe if I have a pacemaker?"
+Query: "How much does it cost?" -> Match: true, Score: 1, Matched: "How much does it cost?"
+Query: "what can you tell me about nervebeam cold laser?" -> Match: false, Score: 0.7695, Matched: ""
+
+--- Testing 2.js (Knowledge Base) ---
+Query: "Does NerveSpa replace medications or work alongside them?" -> Match: undefined, Score: undefined, Matched: "undefined"
+Query: "can i go for nervespa while on other treatment?" -> Match: undefined, Score: undefined, Matched: "undefined"
+Query: "Is it safe if I have a pacemaker?" -> Match: undefined, Score: undefined, Matched: "undefined"
+Query: "How much does it cost?" -> Match: undefined, Score: undefined, Matched: "undefined"
+Query: "what can you tell me about nervebeam cold laser?" -> Match: undefined, Score: undefined, Matched: "undefined"
